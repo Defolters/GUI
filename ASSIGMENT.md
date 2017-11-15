@@ -24,6 +24,9 @@ TextBox = Александр Савченко, Малышев Иван
 
 TextArea(TextBox + ScrollBar) = Ульянова Алина, Дарья Шибанова
 
+ColorChooser = Потапкина Юлия 
+
+PasswordField = Костина Татьяна
 
 
 Tests = Ковалев Василий
