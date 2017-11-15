@@ -10,3 +10,4 @@ sfml-*
 *.suo
 *.pro
 *.pro.user
+*.vs
