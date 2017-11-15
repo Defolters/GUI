@@ -1,5 +1,5 @@
 #include "GUIlayer.h"
-GUILayer::GUILayer(RenderWindow &Swindow)
+GUILayer::GUILayer(RenderWindow &Swindow, Vector2f position_, Vector2f size_) : IDrawable(position_, size_)
 {
 	window = &Swindow;
 }
@@ -59,7 +59,7 @@ std::shared_ptr<GUIButton> GUILayer::CreateButton(float x, float y, Vector2f siz
 	return button;
 }
 
-void GUILayer::DrawAll()
+void GUILayer::Draw()
 {
 	for (std::shared_ptr<GUIBox> bo : boxes)
 		bo->Draw();
