@@ -1,4 +1,4 @@
-#include "Handler.h"
+#include "Headers.h"
 
 void main() 
 {
@@ -17,11 +17,8 @@ void main()
 	
 	WindowTab main(VideoMode(800, 600), "Ants");
 	
-	GUILayer hui(main.window);
-	std::shared_ptr<GUIBox> huebox = hui.CreateBox(0, 0, 300, 400, "fuck you", &tst, &gst);
-	static Texture objWTex;
-	objWTex.loadFromFile("anthill_1.png");
-	std::shared_ptr<WindowObject> objW = main.WindowObj(&objWTex, Vector2f(1, 1), Vector2f(400, 0));
+	GUILayer layer(main.window);
+	std::shared_ptr<GUIBox> box = layer.CreateBox(0, 0, 300, 400, "omegaLUL", &tst, &gst);
 	
 	while (main.window.isOpen())
 	{
@@ -32,8 +29,7 @@ void main()
 			if (event.type == Event::Closed)
 				main.window.close();
 		}
-		hui.DrawAll();
-		main.DrawWindowObjects();
+		layer.DrawAll();
 		main.window.display();
 	}
 }
