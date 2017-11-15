@@ -1,0 +1,12 @@
+Debug
+sfml-*
+*.sdf
+*.aps
+*.vcxproj*
+*.sln
+*v14\
+*.db
+*.opendb
+*.suo
+*.pro
+*.pro.user
