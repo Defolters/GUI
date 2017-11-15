@@ -3,10 +3,10 @@
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;
 
-//окей. теперь fun part
+//РѕРєРµР№. С‚РµРїРµСЂСЊ fun part
 void main() 
 {
-	//пример создания стиля gui
+	//РїСЂРёРјРµСЂ СЃРѕР·РґР°РЅРёСЏ СЃС‚РёР»СЏ gui
 	static GUIStyle gst;
 	gst.mainTex.loadFromFile("backGUI.png");
 	gst.pressTex.loadFromFile("pressGUI.png");
@@ -14,22 +14,22 @@ void main()
 	gst.frame.loadFromFile("frame.png");
 	gst.frameWid = 5;
 
-	//пример создания стиля текста
+	//РїСЂРёРјРµСЂ СЃРѕР·РґР°РЅРёСЏ СЃС‚РёР»СЏ С‚РµРєСЃС‚Р°
 	static TextStyle tst;
 	tst.font.loadFromFile("alte-haas-grotesk.regular.ttf");
 	tst.color.r = tst.color.g = tst.color.b = 10;
 	tst.fontSize = 22;
 	tst.align = 'c';
 	
-	//создание окна и слоя гуи на нем (можете прям копировать, если лень разбираться, да оно и не сильно надо пока)
+	//СЃРѕР·РґР°РЅРёРµ РѕРєРЅР° Рё СЃР»РѕСЏ РіСѓРё РЅР° РЅРµРј (РјРѕР¶РµС‚Рµ РїСЂСЏРј РєРѕРїРёСЂРѕРІР°С‚СЊ, РµСЃР»Рё Р»РµРЅСЊ СЂР°Р·Р±РёСЂР°С‚СЊСЃСЏ, РґР° РѕРЅРѕ Рё РЅРµ СЃРёР»СЊРЅРѕ РЅР°РґРѕ РїРѕРєР°)
 	WindowTab main(VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "main");
 	GUILayer layer(main.window, Vector2f(0,0), Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
-	//вот досюда
+	//РІРѕС‚ РґРѕСЃСЋРґР°
 
-	//пример создания просто "коробки" с созданными стилями, положением 0,0 и размером 300,400 на созданном выше слое
+	//РїСЂРёРјРµСЂ СЃРѕР·РґР°РЅРёСЏ РїСЂРѕСЃС‚Рѕ "РєРѕСЂРѕР±РєРё" СЃ СЃРѕР·РґР°РЅРЅС‹РјРё СЃС‚РёР»СЏРјРё, РїРѕР»РѕР¶РµРЅРёРµРј 0,0 Рё СЂР°Р·РјРµСЂРѕРј 300,400 РЅР° СЃРѕР·РґР°РЅРЅРѕРј РІС‹С€Рµ СЃР»РѕРµ
 	std::shared_ptr<GUIBox> box = layer.CreateBox(0, 0, 300, 400, "omegaLUL", &tst, &gst);
 
-	//тоже можете просто копировать, это я потом сам допишу
+	//С‚РѕР¶Рµ РјРѕР¶РµС‚Рµ РїСЂРѕСЃС‚Рѕ РєРѕРїРёСЂРѕРІР°С‚СЊ, СЌС‚Рѕ СЏ РїРѕС‚РѕРј СЃР°Рј РґРѕРїРёС€Сѓ
 	while (main.window.isOpen())
 	{
 		main.window.clear();
