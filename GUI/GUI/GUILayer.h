@@ -10,9 +10,13 @@ class GUILayer : IDrawable
 {
 private:
 	//вектора элементов на этом слое
-	//СОЗДАВАЙТЕ такой для своих элементов!
-	std::vector<std::shared_ptr<GUIBox>> boxes;
-	std::vector<std::shared_ptr<GUIButton>> buttons;
+	//в CreateElement() методах для своих элементов добавляйте share_ptr на свои элементы в этот вектор
+	//пусть ваш элемент - elementType
+	//тогда в CreateElementType()
+	//в конце пишите 
+	//elements.push_back(тут_shared_ptr_на ваш элемент);
+	//return тут_shared_ptr_на ваш элемент;
+	std::vector<std::shared_ptr<IDisplayable>> elements;
 	//указатель на окно на котором находится это слой
 	RenderWindow* window;
 public:
@@ -27,7 +31,6 @@ public:
 	//для сохранения инкапсуляции:
 	//СОЗДАВАЙТЕ ТАКИЕ МЕТОДЫ (хотя бы 1) ДЛЯ СВОИХ ЭЛЕМЕНТОВ
 	//он должен создавать элемент, сохранять его в векторе (описаны выше) и возвращать shared_ptr на него (как это используется смотрите в handler.cpp)
-	//примеры реализации офк в GUILayer.cpp, они не сложные, но так делать НЕОБХОДИМО (поверьте на слово)
 	std::shared_ptr<GUIBox> CreateBox(float x, float y, float width, float height, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
 	std::shared_ptr<GUIBox> CreateBox(Vector2f position_, Vector2f size_, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
 	std::shared_ptr<GUIBox> CreateBox(Vector2f position_, float width, float height, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
@@ -38,7 +41,6 @@ public:
 	std::shared_ptr<GUIButton> CreateButton(Vector2f position_, float width, float height, std::string text, TextStyle *tstyle, GUIStyle *gstyle, void(*action)());
 	std::shared_ptr<GUIButton> CreateButton(float x, float y, Vector2f size_, std::string text, TextStyle *tstyle, GUIStyle *gstyle, void(*action)());
 
-	//это метод отрисоывавает все содержимое векторов с элементами, соответственно при добавлении новых типов элементов
-	//их надо добавлять в этот метод (прям в GUILayer.cpp)
+	//это метод отрисоывавает все содержимое векторов с элементами, ТРОГАТЬ ЕГО НЕ НАДО
 	void Draw() override;
 };
