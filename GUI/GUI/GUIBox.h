@@ -31,7 +31,7 @@ public:
 	//те же функции что и в IDisplayable
 	//без надобности лучше их не перегружать, если перегружаете - вызывать функцию родительского класса в начале
 	//если не поняли что написано выше - стучите в лс или гуглите, но это риал важно
-	void Draw() override;
+	virtual void Draw() override;
 	void SetPosition(float x, float y) override;
 	void SetPosition(Vector2f position_) override;
 	void SetSize(float width, float height) override;
