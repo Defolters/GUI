@@ -2,7 +2,8 @@
 #include <memory>
 #include <vector>
 #include <string>
-#include "GUIButton.h"
+#include "../General/Headers.h"
+#include "GUIBox.h"
 
 //по сути Layout, класс группирующий элементы интерфейса 
 //как например отдельные зоны для кода, отладки и файлов в visual studio
