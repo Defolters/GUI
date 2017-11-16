@@ -2,46 +2,46 @@
 #include "../General/Styles.hpp"
 #include "../IDisplayable.h"
 
-//Базовый класс для одиночных элементов
-//от него наследуйте
-//этот  класс, как и остальные НЕ МОДИФИЦИРУЙТЕ
-//иначе мы все умрем
+//Р‘Р°Р·РѕРІС‹Р№ РєР»Р°СЃСЃ РґР»СЏ РѕРґРёРЅРѕС‡РЅС‹С… СЌР»РµРјРµРЅС‚РѕРІ
+//РѕС‚ РЅРµРіРѕ РЅР°СЃР»РµРґСѓР№С‚Рµ
+//СЌС‚РѕС‚  РєР»Р°СЃСЃ, РєР°Рє Рё РѕСЃС‚Р°Р»СЊРЅС‹Рµ РќР• РњРћР”РР¤РР¦РР РЈР™РўР•
+//РёРЅР°С‡Рµ РјС‹ РІСЃРµ СѓРјСЂРµРј
 class GUIBox : public IDisplayable
 {
 private:
-	//графический стиль и текстовый стиль описаны в styles.h
+	//РіСЂР°С„РёС‡РµСЃРєРёР№ СЃС‚РёР»СЊ Рё С‚РµРєСЃС‚РѕРІС‹Р№ СЃС‚РёР»СЊ РѕРїРёСЃР°РЅС‹ РІ styles.h
 	GUIStyle *gstyle;
 	TextStyle *tstyle;
-	//обычный sfml спрайт
+	//РѕР±С‹С‡РЅС‹Р№ sfml СЃРїСЂР°Р№С‚
 	Sprite sprite;
-	//спрайты рамок (вроде пытался объяснить на паре зачем они нужны отдельно)
-	//если не слышали зачем - поверьте на слово
+	//СЃРїСЂР°Р№С‚С‹ СЂР°РјРѕРє (РІСЂРѕРґРµ РїС‹С‚Р°Р»СЃСЏ РѕР±СЉСЏСЃРЅРёС‚СЊ РЅР° РїР°СЂРµ Р·Р°С‡РµРј РѕРЅРё РЅСѓР¶РЅС‹ РѕС‚РґРµР»СЊРЅРѕ)
+	//РµСЃР»Рё РЅРµ СЃР»С‹С€Р°Р»Рё Р·Р°С‡РµРј - РїРѕРІРµСЂСЊС‚Рµ РЅР° СЃР»РѕРІРѕ
 	Sprite frames[4];
-	//текст (кек)
+	//С‚РµРєСЃС‚ (РєРµРє)
 	Text text;
-	//пока что нужно, подумаю как избавиться, но не думаю что возможно
+	//РїРѕРєР° С‡С‚Рѕ РЅСѓР¶РЅРѕ, РїРѕРґСѓРјР°СЋ РєР°Рє РёР·Р±Р°РІРёС‚СЊСЃСЏ, РЅРѕ РЅРµ РґСѓРјР°СЋ С‡С‚Рѕ РІРѕР·РјРѕР¶РЅРѕ
 	friend class GUILayer;
 protected:
-	//стандартные конструкторы, как и в IDisplayable
+	//СЃС‚Р°РЅРґР°СЂС‚РЅС‹Рµ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹, РєР°Рє Рё РІ IDisplayable
 	GUIBox(RenderWindow* renderWindow_, float x, float y, float width, float height, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
 	GUIBox(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
 	GUIBox(RenderWindow* renderWindow_, float x, float y, Vector2f size_, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
 	GUIBox(RenderWindow* renderWindow_, Vector2f position_, float width, float height, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
 public:
-	//те же функции что и в IDisplayable
-	//без надобности лучше их не перегружать, если перегружаете - вызывать функцию родительского класса в начале
-	//если не поняли что написано выше - стучите в лс или гуглите, но это риал важно
+	//С‚Рµ Р¶Рµ С„СѓРЅРєС†РёРё С‡С‚Рѕ Рё РІ IDisplayable
+	//Р±РµР· РЅР°РґРѕР±РЅРѕСЃС‚Рё Р»СѓС‡С€Рµ РёС… РЅРµ РїРµСЂРµРіСЂСѓР¶Р°С‚СЊ, РµСЃР»Рё РїРµСЂРµРіСЂСѓР¶Р°РµС‚Рµ - РІС‹Р·С‹РІР°С‚СЊ С„СѓРЅРєС†РёСЋ СЂРѕРґРёС‚РµР»СЊСЃРєРѕРіРѕ РєР»Р°СЃСЃР° РІ РЅР°С‡Р°Р»Рµ
+	//РµСЃР»Рё РЅРµ РїРѕРЅСЏР»Рё С‡С‚Рѕ РЅР°РїРёСЃР°РЅРѕ РІС‹С€Рµ - СЃС‚СѓС‡РёС‚Рµ РІ Р»СЃ РёР»Рё РіСѓРіР»РёС‚Рµ, РЅРѕ СЌС‚Рѕ СЂРёР°Р» РІР°Р¶РЅРѕ
 	virtual void Draw() override;
-	void SetPosition(float x, float y) override;
-	void SetPosition(Vector2f position_) override;
-	void SetSize(float width, float height) override;
-	void SetSize(Vector2f size_) override;
-	//сеттеры стилей и текста
+	virtual void SetPosition(float x, float y) override;
+	virtual void SetPosition(Vector2f position_) override;
+	virtual void SetSize(float width, float height) override;
+	virtual void SetSize(Vector2f size_) override;
+	//СЃРµС‚С‚РµСЂС‹ СЃС‚РёР»РµР№ Рё С‚РµРєСЃС‚Р°
 	virtual void SetText(char *text);
 	virtual void SetGStyle(GUIStyle *gstyle);
 	virtual void SetTStyle(TextStyle *tstyle);
-	//КЛЮЧЕВОЙ МОМЕНТ
-	//если при изменении размера или положения элемента что-то должно мменяться - прегружайте в наследниках эту функцию
-	//и тоже самое - если перегрузили, то в начале вызываем ее родительскую версию, потом свой код
+	//РљР›Р®Р§Р•Р’РћР™ РњРћРњР•РќРў
+	//РµСЃР»Рё РїСЂРё РёР·РјРµРЅРµРЅРёРё СЂР°Р·РјРµСЂР° РёР»Рё РїРѕР»РѕР¶РµРЅРёСЏ СЌР»РµРјРµРЅС‚Р° С‡С‚Рѕ-С‚Рѕ РґРѕР»Р¶РЅРѕ РјРјРµРЅСЏС‚СЊСЃСЏ - РїСЂРµРіСЂСѓР¶Р°Р№С‚Рµ РІ РЅР°СЃР»РµРґРЅРёРєР°С… СЌС‚Сѓ С„СѓРЅРєС†РёСЋ
+	//Рё С‚РѕР¶Рµ СЃР°РјРѕРµ - РµСЃР»Рё РїРµСЂРµРіСЂСѓР·РёР»Рё, С‚Рѕ РІ РЅР°С‡Р°Р»Рµ РІС‹Р·С‹РІР°РµРј РµРµ СЂРѕРґРёС‚РµР»СЊСЃРєСѓСЋ РІРµСЂСЃРёСЋ, РїРѕС‚РѕРј СЃРІРѕР№ РєРѕРґ
 	virtual void Recalc();
 };
