@@ -4,18 +4,18 @@ GroupWork :package:
 - названия переменных пишем целиком, т.е. position а не pos, width а не w
 - везде CamelCase, по правилам Кожевникова, т.е.:
 ```
-Class
-Class.method
-Class.field
-variable
-CONSTANT-VARIABLE
+ClassName
+Class.methodName
+Class.fieldName
+variableName
+CONSTANT_VARIABLE_NAME
 ```
 - если у вас есть сеттер для переменной variable, то он конечно принимает аргумет. Тогда пишем (это не я придумал, почаны, не бейте):
 ```
-void variableSetter (type vraiable_)
+void variableSetter (type variable_)
 {
-    //код
-    variable = variable_
+    //какой-то еще код, есл нужен
+    variable = variable_;
 }
 ```
 - комментарии пишем на русском, раз договорлись
@@ -28,3 +28,5 @@ void variableSetter (type vraiable_)
 - для каждого типа элементов добавляем вектор этого типа в GUILayer и там же создаем его "конструкторы" (может изменится, но пока так)
 - эти конструкторы должны создавать элемент, помещать его в вектор и возвращать shared_ptr<типЭлемента>
 - остальные технически подробности важны, но их смотрите в комментах (я их потом добавлю сюда прост, пока так)
+
+Пример кастомного элемента - Elements/Button/GUIButton. Функционально еще не закончен, но общий смысл для всех элементов (кроме составных) примерно такой
