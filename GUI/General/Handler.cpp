@@ -1,4 +1,5 @@
-#include "Headers.h"
+#include "../GUI/GUILayer.h"
+#include "../Window/WindowTab.h"
 
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;

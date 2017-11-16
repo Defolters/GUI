@@ -1,5 +1,5 @@
 #pragma once
-#include "GUIBox.h"
+#include "../../GUI/GUIBox.h"
 class GUIButton : public GUIBox
 {
 private:
