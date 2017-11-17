@@ -1,28 +1,24 @@
 #pragma once
-#include <SFML/Graphics.hpp>
-using namespace sf;
+#include "IDrawable.h"
 
-class IDisplayable abstract
+//базовый класс сложных элементов
+class IDisplayable abstract : public IDrawable
 {
 private:
+	//отвечает за то будет элемент рисоваться или нет
 	bool toDraw;
 public:
-	virtual bool IsClickedThrough();
+	//позволяет получить toDraw
 	virtual bool GetDrawState();
+	//позволяет назначить toDraw
 	virtual void SetDrawState(bool);
+	//проверка на то прокликивается ли элемент мышкой, нужно для event
+	virtual bool IsClickedThrough();//пока не думаем об этом
 	//virtual sf::Vector2i GetScreenSize() = 0;//TODO
-
-	virtual void SetPosition(float x, float y);
-	virtual void SetPosition(Vector2f position_);
-	virtual void SetSize(float width, float height);
-	virtual void SetSize(Vector2f size_);
-	Vector2f GetSize();
-	Vector2f GetPosition();
-	virtual void Draw() = 0;
+	//TODO events
 protected:
-	Vector2f size;
-	Vector2f position;
 	bool clicksThrough;
+	//указатель на окно в которое надо рисовать
 	RenderWindow* renderWindow;
 	IDisplayable(RenderWindow*, float, float, float, float);
 	IDisplayable(RenderWindow*, Vector2f, float, float);

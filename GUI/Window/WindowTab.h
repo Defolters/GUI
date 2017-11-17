@@ -2,6 +2,7 @@
 #include <map>
 #include "../GUI/GUILayer.h"
 
+//просто примите его существование как данность пока что, пользутесь им так же как написан ов handler.cpp (можете прост ctrl-c)
 class WindowTab
 {
 private:

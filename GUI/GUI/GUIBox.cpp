@@ -1,8 +1,7 @@
 #include "GUIBox.h"
 
-GUIBox::GUIBox(RenderWindow* renderWindow_, float x, float y, float width, float height, std::string text_, TextStyle *Ñtstyle, GUIStyle *Cgstyle) : GUIElement(renderWindow_, x, y, width, height)
+GUIBox::GUIBox(RenderWindow* renderWindow_, float x, float y, float width, float height, std::string text_, TextStyle *Ñtstyle, GUIStyle *Cgstyle) : IDisplayable(renderWindow_, x, y, width, height)
 {
-	ChangeParam(x, y, width, height);
 	gstyle = Cgstyle;
 	tstyle = Ñtstyle;
 	text.setString(text_);
@@ -12,9 +11,8 @@ GUIBox::GUIBox(RenderWindow* renderWindow_, float x, float y, float width, float
 	Recalc();
 }
 
-GUIBox::GUIBox(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_, std::string text_, TextStyle *Ñtstyle, GUIStyle *Cgstyle) : GUIElement(renderWindow_, position_,size_)
+GUIBox::GUIBox(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_, std::string text_, TextStyle *Ñtstyle, GUIStyle *Cgstyle) : IDisplayable(renderWindow_, position_,size_)
 {
-	ChangeParam(position_,size_);//Will look into this later, does it even do anything?
 	gstyle = Cgstyle;
 	tstyle = Ñtstyle;
 	text.setString(text_);
@@ -24,9 +22,8 @@ GUIBox::GUIBox(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_, 
 	Recalc();
 }
 
-GUIBox::GUIBox(RenderWindow* renderWindow_, float x, float y, Vector2f size_, std::string text_, TextStyle *Ñtstyle, GUIStyle *Cgstyle) : GUIElement(renderWindow_, x, y, size_)
+GUIBox::GUIBox(RenderWindow* renderWindow_, float x, float y, Vector2f size_, std::string text_, TextStyle *Ñtstyle, GUIStyle *Cgstyle) : IDisplayable(renderWindow_, x, y, size_)
 {
-	ChangeParam(x,y, size_);
 	gstyle = Cgstyle;
 	tstyle = Ñtstyle;
 	text.setString(text_);
@@ -36,9 +33,8 @@ GUIBox::GUIBox(RenderWindow* renderWindow_, float x, float y, Vector2f size_, st
 	Recalc();
 }
 
-GUIBox::GUIBox(RenderWindow* renderWindow_, Vector2f position_, float width, float height, std::string text_, TextStyle *Ñtstyle, GUIStyle *Cgstyle) : GUIElement(renderWindow_, position_, width, height)
+GUIBox::GUIBox(RenderWindow* renderWindow_, Vector2f position_, float width, float height, std::string text_, TextStyle *Ñtstyle, GUIStyle *Cgstyle) : IDisplayable(renderWindow_, position_, width, height)
 {
-	ChangeParam(position_, width, height);
 	gstyle = Cgstyle;
 	tstyle = Ñtstyle;
 	text.setString(text_);
@@ -83,23 +79,23 @@ void GUIBox::Recalc()
 
 void GUIBox::SetPosition(Vector2f position_)
 {
-	GUIElement::SetPosition(position_);
+	IDisplayable::SetPosition(position_);
 	Recalc();
 }
 void GUIBox::SetPosition(float x, float y)
 {
-	GUIElement::SetPosition(x, y);
+	IDisplayable::SetPosition(x, y);
 	Recalc();
 }
 
 void GUIBox::SetSize(Vector2f size_)
 {
-	GUIElement::SetSize(size_);
+	IDisplayable::SetSize(size_);
 	Recalc();
 }
 void GUIBox::SetSize(float width, float height)
 {
-	GUIElement::SetSize(width, height);
+	IDisplayable::SetSize(width, height);
 	Recalc();
 }
 

@@ -21,7 +21,7 @@ IDisplayable::IDisplayable(RenderWindow* renderWindow_, float x, float y, float 
 	toDraw = true;
 }
 
-IDisplayable::IDisplayable(RenderWindow* renderWindow_, Vector2f position_, float width, float height) : IDrawable(position_, width, height)
+IDisplayable::IDisplayable(RenderWindow* renderWindow_, Vector2f position_, float width, float height) : IDrawable(x, y, width, height)
 {
 	renderWindow = renderWindow_;
 	toDraw = true;
@@ -33,7 +33,7 @@ IDisplayable::IDisplayable(RenderWindow* renderWindow_, float x, float y , Vecto
 	toDraw = true;
 }
 
-IDisplayable::IDisplayable(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_) : IDrawable(position_, size_)
+IDisplayable::IDisplayable(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_) : IDrawable(x, y, width, height)
 {
 	renderWindow = renderWindow_;
 	toDraw = true;
