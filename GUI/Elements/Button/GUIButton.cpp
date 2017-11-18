@@ -21,3 +21,8 @@ GUIButton::GUIButton(RenderWindow* renderWindow_, float x, float y, Vector2f siz
 	clicked = false;
 }
 
+void GUIButton::handleEvent(const sf::Event & event)
+{
+
+}
+
