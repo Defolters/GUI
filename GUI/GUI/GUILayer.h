@@ -8,7 +8,7 @@
 #include "../Observable.h"
 //по сути Layout, класс группирующий элементы интерфейса 
 //как например отдельные зоны для кода, отладки и файлов в visual studio
-class GUILayer : IDrawable, Observer, ObservableGUI
+class GUILayer : IDrawable, ObservableGUI
 {
 private:
 	//вектора элементов на этом слое

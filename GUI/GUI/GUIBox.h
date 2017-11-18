@@ -42,7 +42,7 @@ public:
 	virtual void SetTStyle(TextStyle *tstyle);
 
 	//ПРИМЕР КАСТОМНОГО ОБРАБОТЧИКА СОБЫТИЙ!!!
-	/*void handleEvent(const sf::Event& event) override
+	void handleEvent(const sf::Event& event) override
 	{
 	//Смотрит была ли нажата ЛЮБАЯ кнопка мыши
 	if (event.type == sf::Event::MouseButtonPressed)
@@ -60,7 +60,7 @@ public:
 	}
 	std::cout << std::endl;
 	}
-	};*/
+	};
 
 	//КЛЮЧЕВОЙ МОМЕНТ
 	//если при изменении размера или положения элемента что-то должно мменяться - прегружайте в наследниках эту функцию
