@@ -4,6 +4,7 @@ GUILabel::GUILabel(RenderWindow* renderWindow_, float x, float y, float width,
     float height, std::string text_, TextStyle *Ctstyle, GUIStyle *Cgstyle) : 
     GUIBox(renderWindow_, x, y, width, height, text_, Ctstyle, Cgstyle) 
 {
+    tstyle = Ctstyle;
     text.setString(text_);
     text.setFont(tstyle->font);
     text.setCharacterSize(tstyle->fontSize);
@@ -17,6 +18,7 @@ GUILabel::GUILabel(RenderWindow* renderWindow_, Vector2f position_, Vector2f siz
     std::string text_, TextStyle *Ctstyle, GUIStyle *Cgstyle) :
     GUIBox(renderWindow_, position_, size_, text_, Ctstyle, Cgstyle)
 {
+    tstyle = Ctstyle;
     text.setString(text_);
     text.setFont(tstyle->font);
     text.setCharacterSize(tstyle->fontSize);
@@ -31,6 +33,7 @@ GUILabel::GUILabel(RenderWindow * renderWindow_, float x, float y, float width,
     GUIBox(renderWindow_, x, y, width, height, text_, Ctstyle, Cgstyle)
 
 {
+    tstyle = Ctstyle;
     text.setString(text_);
     text.setFont(tstyle->font);
     text.setCharacterSize(tstyle->fontSize);
@@ -45,6 +48,7 @@ GUILabel::GUILabel(RenderWindow * renderWindow_, Vector2f position_, Vector2f si
     GUIBox(renderWindow_, position_, size_, text_, Ctstyle, Cgstyle)
 
 {
+    tstyle = Ctstyle;
     text.setString(text_);
     text.setFont(tstyle->font);
     text.setCharacterSize(tstyle->fontSize);
