@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "Observer.h"
 //FOR DEBUG ONLY
 #include <iostream>
 using namespace sf;
@@ -8,7 +9,7 @@ using namespace sf;
 //им надо наследовать от IDisplayable если это композиция
 //и от GUIBox если это одиночный элемент
 //подробнее см. GUIBox.h
-class IDrawable abstract
+class IDrawable abstract : Observer
 {
 public:
 	//Геттеры/сеттеры позиции и размера. счет идет от верхнего левого угла эелемента.

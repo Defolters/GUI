@@ -1,9 +1,8 @@
 #pragma once
 #include "IDrawable.h"
-#include "Observer.h"
 
 //базовый класс сложных элементов
-class IDisplayable abstract : public IDrawable, Observer
+class IDisplayable abstract : public IDrawable
 {
 private:
 	//отвечает за то будет элемент рисоваться или нет
