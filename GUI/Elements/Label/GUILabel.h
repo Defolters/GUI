@@ -1,46 +1,46 @@
-#pragma once
+ï»¿#pragma once
 #include "../../GUI/GUIBox.h"
 class GUILabel : public GUIBox
 {
 private:
     friend class GUILayer;
-    Text text; /*!< òåêñò */ 
-    Texture *iconT; /*!< òåêñòóðà èêîíêè */ 
-    Sprite *icon; /*!< èêîíêà, êîòîðóþ ìîæíî íàðèñîâàòü */ 
+    Text text; /*!< Ñ‚ÐµÐºÑÑ‚ */ 
+    Texture *iconT; /*!< Ñ‚ÐµÐºÑÑ‚ÑƒÑ€Ð° Ð¸ÐºÐ¾Ð½ÐºÐ¸ */ 
+    Sprite *icon; /*!< Ð¸ÐºÐ¾Ð½ÐºÐ°, ÐºÐ¾Ñ‚Ð¾Ñ€ÑƒÑŽ Ð¼Ð¾Ð¶Ð½Ð¾ Ð½Ð°Ñ€Ð¸ÑÐ¾Ð²Ð°Ñ‚ÑŒ */ 
 
 protected:
-    //! Êîíñòðóêòîð
+    //! ÐšÐ¾Ð½ÑÑ‚Ñ€ÑƒÐºÑ‚Ð¾Ñ€
     /*!
-    Ñîçäàåò òåêñòîâûé label
+    Ð¡Ð¾Ð·Ð´Ð°ÐµÑ‚ Ñ‚ÐµÐºÑÑ‚Ð¾Ð²Ñ‹Ð¹ label
     */
     GUILabel(RenderWindow* renderWindow_, float x, float y, float width, float height, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
 
-    //! Êîíñòðóêòîð
+    //! ÐšÐ¾Ð½ÑÑ‚Ñ€ÑƒÐºÑ‚Ð¾Ñ€
     /*!
-    Ñîçäàåò òåêñòîâûé label
+    Ð¡Ð¾Ð·Ð´Ð°ÐµÑ‚ Ñ‚ÐµÐºÑÑ‚Ð¾Ð²Ñ‹Ð¹ label
     */
     GUILabel(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
 
-    //! Êîíñòðóêòîð
+    //! ÐšÐ¾Ð½ÑÑ‚Ñ€ÑƒÐºÑ‚Ð¾Ñ€
     /*!
-    Ñîçäàåò label, ñîñòîÿùèé èç îäíîé èêîíêè, åñëè òåêñò çàäàí ïóñòîé ñòðîêîé.
-    Åñëè òåêñò çàäàí, òî ñîçäàåò label, ñîäåðæàùèé èêîíêó è òåêñò
-    \param renderWindow_ îêíî, â êîòîðîå ðèñóåì
+    Ð¡Ð¾Ð·Ð´Ð°ÐµÑ‚ label, ÑÐ¾ÑÑ‚Ð¾ÑÑ‰Ð¸Ð¹ Ð¸Ð· Ð¾Ð´Ð½Ð¾Ð¹ Ð¸ÐºÐ¾Ð½ÐºÐ¸, ÐµÑÐ»Ð¸ Ñ‚ÐµÐºÑÑ‚ Ð·Ð°Ð´Ð°Ð½ Ð¿ÑƒÑÑ‚Ð¾Ð¹ ÑÑ‚Ñ€Ð¾ÐºÐ¾Ð¹.
+    Ð•ÑÐ»Ð¸ Ñ‚ÐµÐºÑÑ‚ Ð·Ð°Ð´Ð°Ð½, Ñ‚Ð¾ ÑÐ¾Ð·Ð´Ð°ÐµÑ‚ label, ÑÐ¾Ð´ÐµÑ€Ð¶Ð°Ñ‰Ð¸Ð¹ Ð¸ÐºÐ¾Ð½ÐºÑƒ Ð¸ Ñ‚ÐµÐºÑÑ‚
+    \param renderWindow_ Ð¾ÐºÐ½Ð¾, Ð² ÐºÐ¾Ñ‚Ð¾Ñ€Ð¾Ðµ Ñ€Ð¸ÑÑƒÐµÐ¼
     */
     GUILabel(RenderWindow* renderWindow_, float x, float y, float width, float height, std::string text, TextStyle *tstyle, Texture *icon_, GUIStyle *gstyle);
     
-    //! Êîíñòðóêòîð
+    //! ÐšÐ¾Ð½ÑÑ‚Ñ€ÑƒÐºÑ‚Ð¾Ñ€
     /*!
-    Ñîçäàåò label, ñîñòîÿùèé èç îäíîé èêîíêè, åñëè òåêñò çàäàí ïóñòîé ñòðîêîé.
-    Åñëè òåêñò çàäàí, òî ñîçäàåò label, ñîäåðæàùèé èêîíêó è òåêñò
-    \param renderWindow_ îêíî, â êîòîðîå ðèñóåì
+    Ð¡Ð¾Ð·Ð´Ð°ÐµÑ‚ label, ÑÐ¾ÑÑ‚Ð¾ÑÑ‰Ð¸Ð¹ Ð¸Ð· Ð¾Ð´Ð½Ð¾Ð¹ Ð¸ÐºÐ¾Ð½ÐºÐ¸, ÐµÑÐ»Ð¸ Ñ‚ÐµÐºÑÑ‚ Ð·Ð°Ð´Ð°Ð½ Ð¿ÑƒÑÑ‚Ð¾Ð¹ ÑÑ‚Ñ€Ð¾ÐºÐ¾Ð¹.
+    Ð•ÑÐ»Ð¸ Ñ‚ÐµÐºÑÑ‚ Ð·Ð°Ð´Ð°Ð½, Ñ‚Ð¾ ÑÐ¾Ð·Ð´Ð°ÐµÑ‚ label, ÑÐ¾Ð´ÐµÑ€Ð¶Ð°Ñ‰Ð¸Ð¹ Ð¸ÐºÐ¾Ð½ÐºÑƒ Ð¸ Ñ‚ÐµÐºÑÑ‚
+    \param renderWindow_ Ð¾ÐºÐ½Ð¾, Ð² ÐºÐ¾Ñ‚Ð¾Ñ€Ð¾Ðµ Ñ€Ð¸ÑÑƒÐµÐ¼
     */
     GUILabel(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_, std::string text, TextStyle *tstyle, Texture *icon_, GUIStyle *gstyle);
     
-    //! Ïåðåîïðåäåëÿåì ôóíêöèþ Draw
+    //! ÐŸÐµÑ€ÐµÐ¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÑÐµÐ¼ Ñ„ÑƒÐ½ÐºÑ†Ð¸ÑŽ Draw
     virtual void Draw() override;
 
-    //! Ïåðåîïðåäåëÿåì ôóíêöèþ Recalc
+    //! ÐŸÐµÑ€ÐµÐ¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÑÐµÐ¼ Ñ„ÑƒÐ½ÐºÑ†Ð¸ÑŽ Recalc
     virtual void Recalc() override;
 };
 
