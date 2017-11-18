@@ -4,6 +4,7 @@ class GUILabel : public GUIBox
 {
 private:
     friend class GUILayer;
+    TextStyle *tstyle; /*!< стиль текста */
     Text text; /*!< текст */ 
     Texture *iconT; /*!< текстура иконки */ 
     Sprite *icon; /*!< иконка, которую можно нарисовать */ 

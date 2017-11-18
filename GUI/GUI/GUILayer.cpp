@@ -56,6 +56,31 @@ std::shared_ptr<GUIButton> GUILayer::CreateButton(float x, float y, Vector2f siz
 	return button;
 }
 
+std::shared_ptr<GUILabel> GUILayer::CreateLabel(float x, float y, float width, float height, std::string text_, TextStyle *tstyle, GUIStyle *gstyle)
+{
+    std::shared_ptr<GUILabel> label(new GUILabel(window, x, y, width, height, text_, tstyle, gstyle));
+    elements.push_back(label);
+    return label;
+}
+std::shared_ptr<GUILabel> GUILayer::CreateLabel(Vector2f position_, Vector2f size_, std::string text_, TextStyle * tstyle, GUIStyle * gstyle)
+{
+    std::shared_ptr<GUILabel> label(new GUILabel(window, position_, size_, text_, tstyle, gstyle));
+    elements.push_back(label);
+    return label;
+}
+std::shared_ptr<GUILabel> GUILayer::CreateLabel(float x, float y, float width, float height, std::string text_, TextStyle * tstyle, Texture * texture, GUIStyle *gstyle)
+{
+    std::shared_ptr<GUILabel> label(new GUILabel(window, x, y, width, height, text_, tstyle, texture, gstyle));
+    elements.push_back(label);
+    return label;
+}
+std::shared_ptr<GUILabel> GUILayer::CreateLabel(Vector2f position_, Vector2f size_, std::string text_, TextStyle * tstyle, Texture * texture, GUIStyle *gstyle)
+{
+    std::shared_ptr<GUILabel> label(new GUILabel(window, position_, size_, text_, tstyle, texture, gstyle));
+    elements.push_back(label);
+    return label;
+}
+
 void GUILayer::notifyAll(const sf::Event & event) const
 {
 	for (auto& element : elements)
