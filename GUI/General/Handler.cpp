@@ -1,4 +1,3 @@
-#include "../GUI/GUILayer.h"
 #include "../Window/WindowTab.h"
 
 const int SCREEN_WIDTH = 800;
