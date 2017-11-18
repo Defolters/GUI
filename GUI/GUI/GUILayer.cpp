@@ -1,10 +1,7 @@
 #include "GUIlayer.h"
-GUILayer::GUILayer(RenderWindow &Swindow, Vector2f position_, Vector2f size_) : IDrawable(position_, size_)
-{
-	window = &Swindow;
-}
+#include <iostream>
 
-void GUILayer::SetWindow(RenderWindow &Swindow)
+GUILayer::GUILayer(RenderWindow &Swindow, Vector2f position_, Vector2f size_) : IDrawable(position_, size_)
 {
 	window = &Swindow;
 }
@@ -57,6 +54,27 @@ std::shared_ptr<GUIButton> GUILayer::CreateButton(float x, float y, Vector2f siz
 	std::shared_ptr<GUIButton> button (new GUIButton(window, x, y, size_, text_, tstyle, gstyle, action));
 	elements.push_back(button);
 	return button;
+}
+
+void GUILayer::notifyAll(const sf::Event & event) const
+{
+	for (auto& element : elements)
+		element->handleEvent(event);
+}
+
+void GUILayer::removeElement(IDrawable* observer)
+{
+	IDisplayable* IDispPtr = dynamic_cast<IDisplayable*> (observer);
+	auto position = std::find_if(elements.begin(), elements.end(),
+		[IDispPtr](std::shared_ptr<IDisplayable> const& i)
+	{ return i.get() == IDispPtr; });
+	if (position != elements.end())
+		std::cout << "found" << std::endl;
+}
+
+void GUILayer::handleEvent(const sf::Event & event)
+{
+	notifyAll(event);
 }
 
 void GUILayer::Draw()

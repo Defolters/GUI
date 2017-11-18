@@ -1,5 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+//FOR DEBUG ONLY
+#include <iostream>
 using namespace sf;
 
 //Элементы интерфейса НЕ ДОЛЖНЫ наследовать от этого класса
