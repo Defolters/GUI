@@ -40,26 +40,26 @@ public:
 	virtual void SetText(char *text);
 	virtual void SetGStyle(GUIStyle *gstyle);
 	virtual void SetTStyle(TextStyle *tstyle);
-	
+
 	//ѕ–»ћ≈–  ј—“ќћЌќ√ќ ќЅ–јЅќ“„» ј —ќЅџ“»…!!!
 	/*void handleEvent(const sf::Event& event) override
 	{
-		//—мотрит была ли нажата ЋёЅјя кнопка мыши
-		if (event.type == sf::Event::MouseButtonPressed)
-		{
-			std::cout << "Mouse button pressed" << std::endl;
-			//—мотрит, была ли это Ћ≈¬јя кнопка
-			if (event.mouseButton.button == sf::Mouse::Left)
-			{
-				std::cout << "It was LEFT button" << std::endl;
-				std::cout << "mouse x: " << event.mouseButton.x << std::endl;
-				std::cout << "mouse y: " << event.mouseButton.y << std::endl;
-				//» если нажали на этот элемент, выводит сообщение "Pressed element!"
-				if (sprite.getGlobalBounds().contains(Vector2f(event.mouseButton.x, event.mouseButton.y)))
-					std::cout << "Pressed element!" << std::endl;
-			}
-			std::cout << std::endl;
-		}
+	//—мотрит была ли нажата ЋёЅјя кнопка мыши
+	if (event.type == sf::Event::MouseButtonPressed)
+	{
+	std::cout << "Mouse button pressed" << std::endl;
+	//—мотрит, была ли это Ћ≈¬јя кнопка
+	if (event.mouseButton.button == sf::Mouse::Left)
+	{
+	std::cout << "It was LEFT button" << std::endl;
+	std::cout << "mouse x: " << event.mouseButton.x << std::endl;
+	std::cout << "mouse y: " << event.mouseButton.y << std::endl;
+	//» если нажали на этот элемент, выводит сообщение "Pressed element!"
+	if (sprite.getGlobalBounds().contains(Vector2f(event.mouseButton.x, event.mouseButton.y)))
+	std::cout << "Pressed element!" << std::endl;
+	}
+	std::cout << std::endl;
+	}
 	};*/
 
 	// Ћё„≈¬ќ… ћќћ≈Ќ“
