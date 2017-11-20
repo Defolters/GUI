@@ -3,6 +3,8 @@
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;
 
+
+
 //окей. теперь fun part
 void main() 
 {
@@ -29,6 +31,9 @@ void main()
 	//пример создания просто "коробки" с созданными стилями, положением 0,0 и размером 300,400 на созданном выше слое
 	std::shared_ptr<GUIBox> box = layer->CreateBox(0, 0, 300, 400, "omegaLUL", &tst, &gst);
 
+	std::shared_ptr<ScrollBar> scrollbarHor = layer->CreateScrollBar(0, 0, 0, 0, "test", &tst, &gst, Orientation::HORIZONTAL);
+
+	std::shared_ptr<ScrollBar> scrollbarVert = layer->CreateScrollBar(0, 0, 0, 0, "test", &tst, &gst, Orientation::VERTICAL);
 	//красиво жи ну, ради этого все и затевалось
 	while (1)
 		main.Redraw();
