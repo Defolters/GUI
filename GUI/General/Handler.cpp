@@ -31,6 +31,7 @@ void main()
 
 	// Cоздание прогресс бара. 
 	std::shared_ptr<GUIProgressBar> progressBar = layer->CreateProgressBar(SCREEN_WIDTH / 3, SCREEN_HEIGHT / 3, 300, 30, "Sorting...", &tst, &gst,
+	std::shared_ptr<GUIProgressBar> progressBar = layer->CreateProgressBar(SCREEN_WIDTH / 3 + 50, SCREEN_HEIGHT / 3, 200, 30, "Sorting...", &tst, &gst,
 		0, 200, Color::White, Color::Green);
 	
 	//Создание label
