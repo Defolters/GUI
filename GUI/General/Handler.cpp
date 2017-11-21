@@ -28,10 +28,21 @@ void main()
 	//вот досюда
 
 	//пример создания просто "коробки" с созданными стилями, положением 0,0 и размером 300,400 на созданном выше слое
-	std::shared_ptr<GUIBox> box = layer->CreateBox(0, 0, 20,10, "omegaLUL", &tst, &gst);
+	std::shared_ptr<GUIBox> box = layer->CreateBox(0, 0, 300,300, "omegaLUL", &tst, &gst);
 
-	// Cоздание прогресс бара. 
-	std::shared_ptr<GUIProgressBar> progressBar = layer->CreateProgressBar(SCREEN_WIDTH / 3, SCREEN_HEIGHT / 3, 300, 30, "Sorting...", &tst, &gst,
+	// создание label
+    Texture icon, icon2;
+    icon.loadFromFile("Danger.png");
+    icon2.loadFromFile("Galaxy.png");
+    // просто текст
+    std::shared_ptr<GUILabel> label = layer->CreateLabel(0, 300, 0, 0, "Just text", &tst, &gst);
+    // иконка
+    std::shared_ptr<GUILabel> label1 = layer->CreateLabel(0, 330, 0, 0, "", &tst, &icon, &gst);
+    // текст и иконка
+    std::shared_ptr<GUILabel> label2 = layer->CreateLabel(0, 400, 0, 0, "text to the right of the icon", &tst, &icon2, &gst);
+
+    // Cоздание прогресс бара. 
+	std::shared_ptr<GUIProgressBar> progressBar = layer->CreateProgressBar(SCREEN_WIDTH / 3 + 50, SCREEN_HEIGHT / 3, 200, 30, "Sorting...", &tst, &gst,
 		0, 200, Color::White, Color::Green);
 
 	//красиво жи ну, ради этого все и затевалось
