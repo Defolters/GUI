@@ -9,6 +9,9 @@
 class GUIBox : public IDisplayable
 {
 private:
+	//пока что нужно, подумаю как избавиться, но не думаю что возможно
+	friend class GUILayer;
+protected:
 	//графический стиль и текстовый стиль описаны в styles.h
 	GUIStyle *gstyle;
 	TextStyle *tstyle;
@@ -19,9 +22,6 @@ private:
 	Sprite frames[4];
 	//текст (кек)
 	Text text;
-	//пока что нужно, подумаю как избавиться, но не думаю что возможно
-	friend class GUILayer;
-protected:
 	//стандартные конструкторы, как и в IDisplayable
 	GUIBox(RenderWindow* renderWindow_, float x, float y, float width, float height, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
 	GUIBox(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_, std::string text, TextStyle *tstyle, GUIStyle *gstyle);

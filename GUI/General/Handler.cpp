@@ -4,7 +4,10 @@
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;
 
-
+void buttonAction()
+{
+	std::cout << "Button pressed!" << std::endl;
+}
 
 //окей. теперь fun part
 void main() 
@@ -30,7 +33,7 @@ void main()
 	//вот досюда
 
 	//пример создания просто "коробки" с созданными стилями, положением 0,0 и размером 300,400 на созданном выше слое
-	std::shared_ptr<GUIBox> box = layer->CreateBox(20, 20, 100,100, "omegaLUL", &tst, &gst);
+	std::shared_ptr<GUIBox> box = layer->CreateButton(20, 20, 100,100, "omegaLUL", &tst, &gst, &buttonAction);
 
 	// создание label
 	Texture icon, icon2;
