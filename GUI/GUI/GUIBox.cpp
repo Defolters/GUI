@@ -122,6 +122,7 @@ void GUIBox::SetTStyle(TextStyle *Ctstyle)
 	if (tstyle->align == 'l')
 		text.setPosition(Vector2f(posX + 1, posY + 1));
 }
+
 void GUIBox::SetText(char *Ctext)
 {
 	text.setString(Ctext);

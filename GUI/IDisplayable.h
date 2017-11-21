@@ -12,10 +12,14 @@ public:
 	virtual bool GetDrawState();
 	//позвол€ет назначить toDraw
 	virtual void SetDrawState(bool);
-	//проверка на то прокликиваетс€ ли элемент мышкой, нужно дл€ event
 	virtual bool IsClickedThrough();//пока не думаем об этом
-	//virtual sf::Vector2i GetScreenSize() = 0;//TODO
-	//TODO events
+	//virtual sf::Vector2f GetScreenSize() = 0;//TODO
+
+	//¬»–“”јЋ№Ќџ… ќЅ–јЅќ“„»  —ќЅџ“»…!
+	//≈го надо перегружать и в нем все обрабатывать
+	//ѕример как есть в GUIBox.h (он там закомменчен)
+	virtual void handleEvent(const sf::Event& event) {};
+
 protected:
 	bool clicksThrough;
 	//указатель на окно в которое надо рисовать
