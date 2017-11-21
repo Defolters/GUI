@@ -31,17 +31,17 @@ void main()
 	std::shared_ptr<GUIBox> box = layer->CreateBox(0, 0, 300,300, "omegaLUL", &tst, &gst);
 
 	// создание label
-    Texture icon, icon2;
-    icon.loadFromFile("Danger.png");
-    icon2.loadFromFile("Galaxy.png");
-    // просто текст
-    std::shared_ptr<GUILabel> label = layer->CreateLabel(0, 300, 0, 0, "Just text", &tst, &gst);
-    // иконка
-    std::shared_ptr<GUILabel> label1 = layer->CreateLabel(0, 330, 0, 0, "", &tst, &icon, &gst);
-    // текст и иконка
-    std::shared_ptr<GUILabel> label2 = layer->CreateLabel(0, 400, 0, 0, "text to the right of the icon", &tst, &icon2, &gst);
+    	Texture icon, icon2;
+    	icon.loadFromFile("Danger.png");
+    	icon2.loadFromFile("Galaxy.png");
+    	// просто текст
+    	std::shared_ptr<GUILabel> label = layer->CreateLabel(0, 300, 0, 0, "Just text", &tst, &gst);
+    	// иконка
+    	std::shared_ptr<GUILabel> label1 = layer->CreateLabel(0, 330, 0, 0, "", &tst, &icon, &gst);
+    	// текст и иконка
+    	std::shared_ptr<GUILabel> label2 = layer->CreateLabel(0, 400, 0, 0, "text to the right of the icon", &tst, &icon2, &gst);
 
-    // Cоздание прогресс бара. 
+    	// Cоздание прогресс бара. 
 	std::shared_ptr<GUIProgressBar> progressBar = layer->CreateProgressBar(SCREEN_WIDTH / 3 + 50, SCREEN_HEIGHT / 3, 200, 30, "Sorting...", &tst, &gst,
 		0, 200, Color::White, Color::Green);
 
