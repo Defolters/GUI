@@ -47,13 +47,10 @@ void main()
 	std::shared_ptr<GUIProgressBar> progressBar = layer->CreateProgressBar(SCREEN_WIDTH / 3 + 50, SCREEN_HEIGHT / 3, 200, 30, "Sorting...", &tst, &gst,
 		0, 200, Color::White, Color::Green);
 
-<<<<<<< HEAD
-=======
 	std::shared_ptr<ScrollBar> scrollbarHor = layer->CreateScrollBar(0, 0, 0, 0, "test", &tst, &gst, Orientation::HORIZONTAL);
 
 	std::shared_ptr<ScrollBar> scrollbarVert = layer->CreateScrollBar(0, 0, 0, 0, "test", &tst, &gst, Orientation::VERTICAL);
 	//красиво жи ну, ради этого все и затевалось
->>>>>>> pr/4
 	while (1)
 	{
 		// Костыль для теста на время, пока нет Observer.
