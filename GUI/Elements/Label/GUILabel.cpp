@@ -58,6 +58,17 @@ GUILabel::GUILabel(RenderWindow * renderWindow_, Vector2f position_, Vector2f si
     Recalc();
 }
 
+void GUILabel::setIcon(Texture * iconT)
+{
+    this->iconT = iconT;
+    icon = new Sprite(*iconT);
+}
+
+void GUILabel::SetText(char * text)
+{
+    this->text.setString(text);
+}
+
 void GUILabel::Draw()
 {
     if (text.getString() != "")

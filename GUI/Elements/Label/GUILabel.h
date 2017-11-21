@@ -38,6 +38,9 @@ protected:
     */
     GUILabel(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_, std::string text, TextStyle *tstyle, Texture *icon_, GUIStyle *gstyle);
     
+    void setIcon(Texture* iconT);
+    virtual void SetText(char *text) override;
+
     //! Переопределяем функцию Draw
     virtual void Draw() override;
 
