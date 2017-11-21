@@ -29,12 +29,10 @@ void main()
 	std::shared_ptr<GUILayer> layer = main.CreateGUILayer(Vector2f(0,0), Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
 	//вот досюда
 
-	// Cоздание прогресс бара. 
-	std::shared_ptr<GUIProgressBar> progressBar = layer->CreateProgressBar(SCREEN_WIDTH / 3, SCREEN_HEIGHT / 3, 300, 30, "Sorting...", &tst, &gst,
-	std::shared_ptr<GUIProgressBar> progressBar = layer->CreateProgressBar(SCREEN_WIDTH / 3 + 50, SCREEN_HEIGHT / 3, 200, 30, "Sorting...", &tst, &gst,
-		0, 200, Color::White, Color::Green);
-	
-	//Создание label
+	//пример создания просто "коробки" с созданными стилями, положением 0,0 и размером 300,400 на созданном выше слое
+	std::shared_ptr<GUIBox> box = layer->CreateBox(20, 20, 100,100, "omegaLUL", &tst, &gst);
+
+	// создание label
 	Texture icon, icon2;
 	icon.loadFromFile("Danger.png");
 	icon2.loadFromFile("Galaxy.png");
@@ -44,6 +42,10 @@ void main()
 	std::shared_ptr<GUILabel> label1 = layer->CreateLabel(0, 330, 0, 0, "", &tst, &icon, &gst);
 	// текст и иконка
 	std::shared_ptr<GUILabel> label2 = layer->CreateLabel(0, 400, 0, 0, "text to the right of the icon", &tst, &icon2, &gst);
+
+	// Cоздание прогресс бара. 
+	std::shared_ptr<GUIProgressBar> progressBar = layer->CreateProgressBar(SCREEN_WIDTH / 3 + 50, SCREEN_HEIGHT / 3, 200, 30, "Sorting...", &tst, &gst,
+		0, 200, Color::White, Color::Green);
 
 	while (1)
 	{
