@@ -1,4 +1,4 @@
-#include "WindowTab.h"
+ #include "WindowTab.h"
 
 std::shared_ptr<GUILayer> WindowTab::CreateGUILayer(Vector2f position_, Vector2f size_)
 {

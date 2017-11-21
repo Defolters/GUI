@@ -81,6 +81,15 @@ std::shared_ptr<GUILabel> GUILayer::CreateLabel(Vector2f position_, Vector2f siz
     return label;
 }
 
+std::shared_ptr<GUIProgressBar> GUILayer::CreateProgressBar(float x, float y, float width, float height,
+	std::string text_, TextStyle *tstyle, GUIStyle *gstyle,
+	float leftBorder, float rightBorder, Color staticBarColor, Color dynamicBarColor)
+{
+	std::shared_ptr<GUIProgressBar> progressBar(new GUIProgressBar(window, x, y, width, height, text_, tstyle, gstyle, leftBorder, rightBorder, staticBarColor, dynamicBarColor));
+	elements.push_back(progressBar);
+	return progressBar;
+}
+
 void GUILayer::notifyAll(const sf::Event & event) const
 {
 	for (auto& element : elements)

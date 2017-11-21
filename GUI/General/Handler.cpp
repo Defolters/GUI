@@ -1,4 +1,5 @@
 #include "../Window/WindowTab.h"
+#include <Windows.h>
 
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;
@@ -17,7 +18,7 @@ void main()
 	//пример создания стиля текста
 	static TextStyle tst;
 	tst.font.loadFromFile("Robotic.ttf");
-	tst.color.r = tst.color.g = tst.color.b = 10;
+	tst.color.r = tst.color.g = tst.color.b = 255;
 	tst.fontSize = 22;
 	tst.align = 'c';
 	
@@ -27,9 +28,22 @@ void main()
 	//вот досюда
 
 	//пример создания просто "коробки" с созданными стилями, положением 0,0 и размером 300,400 на созданном выше слое
-	std::shared_ptr<GUIBox> box = layer->CreateBox(0, 0, 300, 400, "omegaLUL", &tst, &gst);
+	std::shared_ptr<GUIBox> box = layer->CreateBox(0, 0, 20,10, "omegaLUL", &tst, &gst);
+
+	// Cоздание прогресс бара. 
+	std::shared_ptr<GUIProgressBar> progressBar = layer->CreateProgressBar(SCREEN_WIDTH / 3, SCREEN_HEIGHT / 3, 300, 30, "Sorting...", &tst, &gst,
+		0, 200, Color::White, Color::Green);
 
 	//красиво жи ну, ради этого все и затевалось
 	while (1)
+	{
+		// Костыль для теста на время, пока нет Observer.
+		// Потом будет передаваться ивент об изменении значения бара.
+		//*****тест ProgressBar****
+		progressBar->increase();
+		Sleep(20);
+		//*************************
+
 		main.Redraw();
+	}	
 }
