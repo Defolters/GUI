@@ -55,6 +55,9 @@ public:
 	std::shared_ptr<GUIProgressBar> CreateProgressBar(float x, float y, float width, float height,
 		std::string text, TextStyle *tstyle, GUIStyle *gstyle,
 		float leftBorder, float rightBorder, Color staticBarColor, Color dynamicBarColor);
+
+	std::shared_ptr<ScrollBar> CreateScrollBar(float x, float y, float width, float height, std::string text, TextStyle *tstyle, GUIStyle *gstyle, Orientation orientation);
+	
 	//Запускает обработчики у элементов, трогать его не надо
 	void handleEvent(const sf::Event& event) override;
 	//TODO
