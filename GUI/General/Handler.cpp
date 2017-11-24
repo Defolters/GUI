@@ -46,6 +46,12 @@ void main()
 	// текст и иконка
 	std::shared_ptr<GUILabel> label2 = layer->CreateLabel(0, 400, 0, 0, "text to the right of the icon", &tst, &icon2, &gst);
 
+	//добавляем label1 уже существующий label2 как дочерний
+	//НО
+	//По скольку Даниил в label1.Draw() не вызывает метод Draw() базового класса, label2 не отрисовывается
+	//Метод Draw базового класса рисует все дочерние элементы
+	//поэтому если вам это надо, то в начале своей функции Draw вызовите родительский Draw
+	label1->AddElement(label2);
 	// Cоздание прогресс бара. 
 	std::shared_ptr<GUIProgressBar> progressBar = layer->CreateProgressBar(SCREEN_WIDTH / 3 + 50, SCREEN_HEIGHT / 3, 200, 30, "Sorting...", &tst, &gst,
 		0, 200, Color::White, Color::Green);
@@ -53,7 +59,7 @@ void main()
 	std::shared_ptr<ScrollBar> scrollbarHor = layer->CreateScrollBar(0, 0, 0, 0, "test", &tst, &gst, Orientation::HORIZONTAL);
 
 	std::shared_ptr<ScrollBar> scrollbarVert = layer->CreateScrollBar(0, 0, 0, 0, "test", &tst, &gst, Orientation::VERTICAL);
-	//красиво жи ну, ради этого все и затевалось
+
 	while (1)
 	{
 		// Костыль для теста на время, пока нет Observer.

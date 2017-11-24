@@ -71,6 +71,7 @@ void GUILabel::SetText(char * text)
 
 void GUILabel::Draw()
 {
+	//IDisplayable::Draw(); //если бы это строчка была раскоменчена, то Label рисовал бы дочерние элементы
     if (text.getString() != "")
     {
         renderWindow->draw(text);
