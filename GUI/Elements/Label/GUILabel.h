@@ -4,7 +4,6 @@ class GUILabel : public GUIBox
 {
 private:
     friend class GUILayer;
-    TextStyle *tstyle; /*!< стиль текста */
     Text text; /*!< текст */ 
     Texture *iconT; /*!< текстура иконки */ 
     Sprite *icon; /*!< иконка, которую можно нарисовать */ 
@@ -38,6 +37,9 @@ protected:
     */
     GUILabel(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_, std::string text, TextStyle *tstyle, Texture *icon_, GUIStyle *gstyle);
     
+    void setIcon(Texture* iconT);
+    virtual void SetText(char *text) override;
+
     //! Переопределяем функцию Draw
     virtual void Draw() override;
 

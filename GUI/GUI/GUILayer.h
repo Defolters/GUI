@@ -1,6 +1,4 @@
 #pragma once
-#include <algorithm>
-#include <memory>
 #include <vector>
 #include <string>
 #include "../General/Headers.h"
@@ -11,14 +9,6 @@
 class GUILayer : IDrawable, ObservableGUI
 {
 private:
-	//вектора элементов на этом слое
-	//в CreateElement() методах для своих элементов добавляйте share_ptr на свои элементы в этот вектор
-	//пусть ваш элемент - elementType
-	//тогда в CreateElementType()
-	//в конце пишите 
-	//elements.push_back(тут_shared_ptr_на ваш элемент);
-	//return тут_shared_ptr_на_ваш_элемент;
-	std::vector<std::shared_ptr<IDisplayable>> elements;
 	//указатель на окно на котором находится это слой
 	RenderWindow* window;
 	void notifyAll(const sf::Event& event) const override;
@@ -51,8 +41,13 @@ public:
     std::shared_ptr<GUILabel> CreateLabel(Vector2f position_, Vector2f size_, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
     std::shared_ptr<GUILabel> CreateLabel(float x, float y, float width, float height, std::string text, TextStyle *tstyle, Texture *texture, GUIStyle *gstyle);
     std::shared_ptr<GUILabel> CreateLabel(Vector2f position_, Vector2f size_, std::string text, TextStyle *tstyle, Texture *texture, GUIStyle *gstyle);
-	
+
+	std::shared_ptr<GUIProgressBar> CreateProgressBar(float x, float y, float width, float height,
+		std::string text, TextStyle *tstyle, GUIStyle *gstyle,
+		float leftBorder, float rightBorder, Color staticBarColor, Color dynamicBarColor);
+
 	std::shared_ptr<ScrollBar> CreateScrollBar(float x, float y, float width, float height, std::string text, TextStyle *tstyle, GUIStyle *gstyle, Orientation orientation);
+	
 	//Запускает обработчики у элементов, трогать его не надо
 	void handleEvent(const sf::Event& event) override;
 	//TODO

@@ -1,4 +1,6 @@
 #pragma once
+#include <memory>
+#include <algorithm>
 #include <SFML/Graphics.hpp>
 #include "Observer.h"
 //FOR DEBUG ONLY
@@ -25,7 +27,7 @@ public:
 	//КАЖДЫЙ элемент интерфейса должен переопределять ее по своему
 	//но главное - в этой функции он должен отрисовывать свой Sprite в RenderWindow
 	//для большей информации см. IDisplayable.h
-	virtual void Draw() = 0;
+	virtual void Draw();
 	//Конструкторы, сначала позиция (x,y)
 	//потом размер (ширина, высота)
 	IDrawable(float, float, float, float);
@@ -33,7 +35,22 @@ public:
 	IDrawable(float, float, Vector2f);
 	IDrawable(Vector2f, Vector2f);
 	~IDrawable();
+
+	//ВИРТУАЛЬНЫЙ ОБРАБОТЧИК СОБЫТИЙ!
+	//Его надо перегружать и в нем все обрабатывать
+	//Пример как есть в GUIBox.h (он там закомменчен)
+	virtual void handleEvent(const sf::Event& event) {};
+	virtual void AddElement(std::shared_ptr<IDrawable>);
 protected:
+	IDrawable* parent;
+	//вектора элементов на этом слое
+	//в CreateElement() методах для своих элементов добавляйте share_ptr на свои элементы в этот вектор
+	//пусть ваш элемент - elementType
+	//тогда в CreateElementType()
+	//в конце пишите 
+	//elements.push_back(тут_shared_ptr_на ваш элемент);
+	//return тут_shared_ptr_на_ваш_элемент;
+	std::vector<std::shared_ptr<IDrawable>> elements;
 	//размер и позиция
 	Vector2f size;
 	Vector2f position;

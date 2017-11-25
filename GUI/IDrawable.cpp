@@ -32,6 +32,12 @@ Vector2f IDrawable::GetPosition()
 	return position;
 }
 
+void IDrawable::Draw()
+{
+	for (auto& element : elements)
+		element->Draw();
+}
+
 IDrawable::IDrawable(float x, float y, float width, float height)
 {
 	position.x = x;
@@ -62,4 +68,15 @@ IDrawable::IDrawable(Vector2f position_, Vector2f size_)
 
 IDrawable::~IDrawable()
 {
+}
+
+void IDrawable::AddElement(std::shared_ptr<IDrawable> element)
+{
+	auto position = std::find_if(element->parent->elements.begin(), element->parent->elements.end(),
+		[element](std::shared_ptr<IDrawable> const& i)
+	{ return i.get() == element.get(); });
+	if (position != element->parent->elements.end())
+		element->parent->elements.erase(position);
+	element->parent = this;
+	elements.push_back(element);
 }

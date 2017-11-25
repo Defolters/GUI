@@ -6,6 +6,7 @@ private:
 	friend class GUILayer;
 	void(*action)();
 	bool clicked;
+	bool entered;
 protected:
 	GUIButton(RenderWindow* renderWindow_, float x, float y, float width, float height, std::string text, TextStyle *tstyle, GUIStyle *gstyle, void(*action)());
 	GUIButton(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_, std::string text, TextStyle *tstyle, GUIStyle *gstyle, void(*action)());
