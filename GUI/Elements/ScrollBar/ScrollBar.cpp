@@ -1,30 +1,14 @@
 #include "ScrollBar.h"
 
 
-
-
 ScrollBar::ScrollBar(RenderWindow* renderWindow_, Orientation orientation_, std::string text, TextStyle *tstyle, GUIStyle *gstyle)
 	: GUIBox(renderWindow_, renderWindow_->getSize().x - width, 0.0, width, height, text, tstyle, gstyle),
 	orientation(orientation_), isMousePressed(false)
 {
-	if (orientation == Orientation::HORIZONTAL) {
-		height=renderWindow_->getSize().y;
-		band.setSize(sf::Vector2f(width, height));
-		roller.setSize(sf::Vector2f(width, 2 * width));
-		band.setPosition(renderWindow->getSize().x-width,0.0);
-		roller.setPosition(renderWindow->getSize().x - width, 0.0);
-	}
-	else {
-		height = renderWindow_->getSize().x;
-		band.setSize(sf::Vector2f(height, width));
-		roller.setSize(sf::Vector2f(2 * width, width));
-		band.setPosition(0.0,renderWindow->getSize().y - width);
-		roller.setPosition(0.0,renderWindow->getSize().y - width);
-	}
+    Recalc();
 	roller.setFillColor(sf::Color::Green);
 	band.setFillColor(sf::Color::Blue);
 }
-
 
 void null(const float& x, const float& y)
 {
@@ -194,6 +178,25 @@ void null(const float& x, const float& y)
 
 
 void ScrollBar::Draw() {
+    Recalc();
 	renderWindow->draw(band);
 	renderWindow->draw(roller);
+}
+
+void ScrollBar::Recalc()
+{
+    if (orientation == Orientation::HORIZONTAL) {
+        height = renderWindow->getSize().y;
+        band.setSize(sf::Vector2f(width, height));
+        roller.setSize(sf::Vector2f(width, 2 * width));
+        band.setPosition(renderWindow->getSize().x - width, 0.0);
+        roller.setPosition(renderWindow->getSize().x - width, roller.getPosition().y); 
+    }
+    else {
+        height = renderWindow->getSize().x;
+        band.setSize(sf::Vector2f(height, width));
+        roller.setSize(sf::Vector2f(2 * width, width));
+        band.setPosition(0.0, renderWindow->getSize().y - width);
+        roller.setPosition(roller.getPosition().x, renderWindow->getSize().y - width);
+    }
 }

@@ -18,6 +18,9 @@ public:
 
 	virtual void Draw() override;
 
+    virtual void Recalc() override;
+
+
 private:
 	bool isMousePressed;
 	float lastPosY;

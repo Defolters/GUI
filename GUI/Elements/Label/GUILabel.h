@@ -45,5 +45,7 @@ protected:
 
     //! Переопределяем функцию Recalc
     virtual void Recalc() override;
+
+    void handleEvent(const sf::Event& event) override;
 };
 

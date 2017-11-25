@@ -133,6 +133,7 @@ void GUIBox::SetText(char *Ctext)
 
 void GUIBox::Draw()
 {
+    Recalc();
 	renderWindow->draw(sprite);
 	renderWindow->draw(frames[0]);
 	renderWindow->draw(frames[1]);
