@@ -1,10 +1,10 @@
 #pragma once
 #include "IDrawable.h"
-
 //базовый класс сложных элементов
 class IDisplayable abstract : public IDrawable
 {
 private:
+	//std::vector<std::shared_ptr<IDrawable>> elements;
 	//отвечает за то будет элемент рисоватьс€ или нет
 	bool toDraw;
 public:
@@ -14,11 +14,6 @@ public:
 	virtual void SetDrawState(bool);
 	virtual bool IsClickedThrough();//пока не думаем об этом
 	//virtual sf::Vector2f GetScreenSize() = 0;//TODO
-
-	//¬»–“”јЋ№Ќџ… ќЅ–јЅќ“„»  —ќЅџ“»…!
-	//≈го надо перегружать и в нем все обрабатывать
-	//ѕример как есть в GUIBox.h (он там закомменчен)
-	virtual void handleEvent(const sf::Event& event) {};
 
 protected:
 	bool clicksThrough;
