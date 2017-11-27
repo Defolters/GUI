@@ -58,8 +58,21 @@ GUILabel::GUILabel(RenderWindow * renderWindow_, Vector2f position_, Vector2f si
     Recalc();
 }
 
+void GUILabel::setIcon(Texture * iconT)
+{
+    this->iconT = iconT;
+    icon = new Sprite(*iconT);
+}
+
+void GUILabel::SetText(char * text)
+{
+    this->text.setString(text);
+}
+
 void GUILabel::Draw()
 {
+	//IDisplayable::Draw(); //если бы это строчка была раскоменчена, то Label рисовал бы дочерние элементы
+    Recalc();
     if (text.getString() != "")
     {
         renderWindow->draw(text);
@@ -88,6 +101,7 @@ void GUILabel::Recalc()
     if (icon != nullptr)
     {
         icon->setPosition(posX, posY);
+        icon->setScale(1, 1);
         iconX = icon->getGlobalBounds().width + textRect.width / 2.0f;
         iconY = icon->getGlobalBounds().height / 2.0f;
         text.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
@@ -107,4 +121,8 @@ void GUILabel::Recalc()
     if (tstyle->align == 'l')
         text.setPosition(Vector2f(posX + 1, posY + 1));
     */
+}
+
+void GUILabel::handleEvent(const sf::Event & event)
+{    
 }
