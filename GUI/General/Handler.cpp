@@ -9,8 +9,14 @@ void buttonAction()
 	std::cout << "Button pressed!" << std::endl;
 }
 
+//функция, которая будет вызываться каждый кадр во время перемещения слайдера
+void onSliderMove(float slider_value)
+{
+	std::cout << "slider value = " << slider_value << std::endl;
+}
+
 //окей. теперь fun part
-void main() 
+void main()
 {
 	//пример создания стиля gui
 	static GUIStyle gst;
@@ -59,6 +65,10 @@ void main()
 	std::shared_ptr<ScrollBar> scrollbarHor = layer->CreateScrollBar(0, 0, 0, 0, "test", &tst, &gst, Orientation::HORIZONTAL);
 
 	std::shared_ptr<ScrollBar> scrollbarVert = layer->CreateScrollBar(0, 0, 0, 0, "test", &tst, &gst, Orientation::VERTICAL);
+
+	//создаем слайдер
+	std::shared_ptr<Slider> slider = layer->CreateSlider(225, 450, 350, 20, 35, 38, 0, 100, 20, &onSliderMove);
+	slider.get()->SetTextures("slider_back_line.png", "slider_front_line.png", "slider_handler.png");
 
 	while (1)
 	{
