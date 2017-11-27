@@ -20,6 +20,10 @@ void WindowTab::Redraw()
 				window.close();
 				state = closed;
 			}
+            else if (event.type == sf::Event::Resized)
+            {
+                window.setView(sf::View(sf::FloatRect(0, 0, event.size.width, event.size.height)));
+            }
 		}
 		for (auto& layer : GUILayers)
 			layer->Draw();
