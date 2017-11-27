@@ -8,6 +8,7 @@ GUIBox::GUIBox(RenderWindow* renderWindow_, float x, float y, float width, float
 	text.setFont(tstyle->font);
 	text.setCharacterSize(tstyle->fontSize);
 	text.setFillColor(tstyle->color);
+	sprite.setTexture(gstyle->mainTex);
 	Recalc();
 }
 
@@ -19,6 +20,7 @@ GUIBox::GUIBox(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_, 
 	text.setFont(tstyle->font);
 	text.setCharacterSize(tstyle->fontSize);
 	text.setFillColor(tstyle->color);
+	sprite.setTexture(gstyle->mainTex);
 	Recalc();
 }
 
@@ -30,6 +32,7 @@ GUIBox::GUIBox(RenderWindow* renderWindow_, float x, float y, Vector2f size_, st
 	text.setFont(tstyle->font);
 	text.setCharacterSize(tstyle->fontSize);
 	text.setFillColor(tstyle->color);
+	sprite.setTexture(gstyle->mainTex);
 	Recalc();
 }
 
@@ -41,6 +44,7 @@ GUIBox::GUIBox(RenderWindow* renderWindow_, Vector2f position_, float width, flo
 	text.setFont(tstyle->font);
 	text.setCharacterSize(tstyle->fontSize);
 	text.setFillColor(tstyle->color);
+	sprite.setTexture(gstyle->mainTex);
 	Recalc();
 }
 
@@ -60,7 +64,6 @@ void GUIBox::Recalc()
 	}
 	if (tstyle->align == 'l')
 		text.setPosition(Vector2f(posX + 1, posY + 1));
-	sprite.setTexture(gstyle->mainTex);
 	sprite.setPosition(posX, posY);
 	sprite.setTextureRect(IntRect(0, 0, width, height));
 	for (int i = 0; i < 4; i++)
@@ -130,6 +133,7 @@ void GUIBox::SetText(char *Ctext)
 
 void GUIBox::Draw()
 {
+    Recalc();
 	renderWindow->draw(sprite);
 	renderWindow->draw(frames[0]);
 	renderWindow->draw(frames[1]);
