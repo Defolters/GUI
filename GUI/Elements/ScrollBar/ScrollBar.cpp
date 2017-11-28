@@ -2,7 +2,7 @@
 
 
 ScrollBar::ScrollBar(RenderWindow* renderWindow_, Orientation orientation_, std::string text, TextStyle *tstyle, GUIStyle *gstyle)
-	: GUIBox(renderWindow_, renderWindow_->getSize().x - width, 0.0, width, height, text, tstyle, gstyle),
+	: GUIBox(renderWindow_, renderWindow_->getSize().x - width, 0.0, width, height, gstyle),
 	orientation(orientation_), isMousePressed(false)
 {
     Recalc();

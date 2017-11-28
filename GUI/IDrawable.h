@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <SFML/Graphics.hpp>
 #include "Observer.h"
+#include "UIDGenerator.h"
 //FOR DEBUG ONLY
 #include <iostream>
 using namespace sf;
@@ -23,6 +24,8 @@ public:
 	virtual void SetSize(Vector2f size_);
 	Vector2f GetSize();
 	Vector2f GetPosition();
+	int GetID();
+	std::shared_ptr<IDrawable> GetElement(int);
 	//Функция отрисовки
 	//КАЖДЫЙ элемент интерфейса должен переопределять ее по своему
 	//но главное - в этой функции он должен отрисовывать свой Sprite в RenderWindow
@@ -30,6 +33,7 @@ public:
 	virtual void Draw();
 	//Конструкторы, сначала позиция (x,y)
 	//потом размер (ширина, высота)
+	IDrawable();
 	IDrawable(float, float, float, float);
 	IDrawable(Vector2f, float, float);
 	IDrawable(float, float, Vector2f);
@@ -42,6 +46,7 @@ public:
 	virtual void handleEvent(const sf::Event& event) {};
 	virtual void AddElement(std::shared_ptr<IDrawable>);
 protected:
+	int id;
 	IDrawable* parent;
 	//вектора элементов на этом слое
 	//в CreateElement() методах для своих элементов добавляйте share_ptr на свои элементы в этот вектор
