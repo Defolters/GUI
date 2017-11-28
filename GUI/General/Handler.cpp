@@ -26,6 +26,16 @@ void main()
 	gst.frame.loadFromFile("frame.png");
 	gst.frameWid = 5;
 
+
+	static GUIStyle radStyle;
+	radStyle.mainTex.loadFromFile("error.png");
+	radStyle.pressTex.loadFromFile("success.png");
+	radStyle.overTex.loadFromFile("error.png");
+	radStyle.frame.create(0, 0);
+	radStyle.frameWid = 5;
+
+
+
 	//пример создания стиля текста
 	static TextStyle tst;
 	tst.font.loadFromFile("Robotic.ttf");
@@ -68,13 +78,24 @@ void main()
 	std::shared_ptr<GUIProgressBar> progressBar = layer->CreateProgressBar(SCREEN_WIDTH / 3 + 50, SCREEN_HEIGHT / 3, 200, 30, "Sorting...", &tst, &gst,
 		0, 200, Color::White, Color::Green);
 
-	std::shared_ptr<ScrollBar> scrollbarHor = layer->CreateScrollBar(0, 0, 0, 0, &gst, Orientation::HORIZONTAL,1600);
 
-	std::shared_ptr<ScrollBar> scrollbarVert = layer->CreateScrollBar(0, 0, 0, 0, &gst, Orientation::VERTICAL,1800);
+    std::shared_ptr<ScrollBar> scrollbarHor = layer->CreateScrollBar(0, 0, 0, 0, &gst, Orientation::HORIZONTAL, 1600);
+
+    std::shared_ptr<ScrollBar> scrollbarVert = layer->CreateScrollBar(0, 0, 0, 0, &gst, Orientation::VERTICAL, 1800);
 
 	//создаем слайдер
 	std::shared_ptr<Slider> slider = layer->CreateSlider(225, 450, 350, 20, 35, 38, 0, 100, 20, &onSliderMove);
 	slider.get()->SetTextures("slider_back_line.png", "slider_front_line.png", "slider_handler.png");
+
+	//radioButton
+	std::vector<std::string> texts = { "", "", "", "","","", "","","","" };
+	std::shared_ptr <RadioButton> radBut = layer->CreateRadButton(layer, 4, 300, 20, 30, 30, texts, &tst, &radStyle);
+
+	statusBar->AddElement(box1);
+	statusBar->AddElement(box2);
+	statusBar->AddElement(box3);
+
+	std::shared_ptr<TextField> textBox = layer->CreateTextField(250, 350, 100, 40, "textField", &tst, &gst);
 
 	while (1)
 	{
