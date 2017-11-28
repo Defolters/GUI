@@ -35,14 +35,14 @@ private:
 	void(*action_on_move)(float slider_value);
 	bool isMoving; //истина, пока нажата мышь
 	float delta; //расстояние от центра ползунка до курсора в момент нажатия
-
+	GUIStyle* guistyle;
 public:
 	//конструкторы (с методом, вызываемом при передвижении слайдера, и без него)
 	Slider(RenderWindow* renderWindow_, float line_position_x_, float line_position_y_,
-		float line_width_, float line_height_, float handler_width_, float handler_height_,
+		float line_width_, float line_height_, float handler_width_, float handler_height_, GUIStyle* gst,
 		float value_range_from_, float value_range_to_, float value_, void(*action_on_move)(float slider_value));
 	Slider(RenderWindow* renderWindow_, float line_position_x_, float line_position_y_,
-		float line_width_, float line_height_, float handler_width_, float handler_height_,
+		float line_width_, float line_height_, float handler_width_, float handler_height_, GUIStyle* gst,
 		float value_range_from_, float value_range_to_, float value_);
 	//принимает события
 	virtual void handleEvent(const sf::Event& event) override;
@@ -63,13 +63,9 @@ public:
 	void SetHandlerSize(float width_, float height_);
 	// позиция спрайта ползунка по вертикали в процентах от высоты текстуры линии
 	float GetVerticalHandlerPosition();
-	void SetVerticalHandlerPosition(float persentage_of_line_height_); //значение от 0 до 100 (проценты)
-	//сеттеры текстур
-	void SetBackLineTexture(std::string file_name_);
-	void SetFrontLineTexture(std::string file_name_);
-	void SetHandlerTexture(std::string file_name_);
-	void SetTextures(std::string back_line_file_name_, std::string front_line_file_name_,
-					 std::string handler_file_name_);
+	void SetVerticalHandlerPosition(float persentage_of_line_height_);
+	void SetTextures();
+	void SetGUIStyle(GUIStyle* gst);
 	//нужно вызывать после любых изменений размера или позиции составных частей слайдера
-	void Recalc();
+	//void Recalc();
 };
