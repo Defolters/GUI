@@ -1,6 +1,4 @@
 #pragma once
-#include <algorithm>
-#include <memory>
 #include <vector>
 #include <string>
 #include "../General/Headers.h"
@@ -11,14 +9,6 @@
 class GUILayer : IDrawable, ObservableGUI
 {
 private:
-	//вектора элементов на этом слое
-	//в CreateElement() методах для своих элементов добавляйте share_ptr на свои элементы в этот вектор
-	//пусть ваш элемент - elementType
-	//тогда в CreateElementType()
-	//в конце пишите 
-	//elements.push_back(тут_shared_ptr_на ваш элемент);
-	//return тут_shared_ptr_на_ваш_элемент;
-	std::vector<std::shared_ptr<IDisplayable>> elements;
 	//указатель на окно на котором находится это слой
 	RenderWindow* window;
 	void notifyAll(const sf::Event& event) const override;
@@ -37,10 +27,10 @@ public:
 	//для сохранения инкапсуляции:
 	//СОЗДАВАЙТЕ ТАКИЕ МЕТОДЫ (хотя бы 1) ДЛЯ СВОИХ ЭЛЕМЕНТОВ
 	//он должен создавать элемент, сохранять его в векторе (описаны выше) и возвращать shared_ptr на него (как это используется смотрите в handler.cpp)
-	std::shared_ptr<GUIBox> CreateBox(float x, float y, float width, float height, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
-	std::shared_ptr<GUIBox> CreateBox(Vector2f position_, Vector2f size_, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
-	std::shared_ptr<GUIBox> CreateBox(Vector2f position_, float width, float height, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
-	std::shared_ptr<GUIBox> CreateBox(float x, float y, Vector2f size_, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
+	std::shared_ptr<GUIBox> CreateBox(float x, float y, float width, float height, GUIStyle *gstyle);
+	std::shared_ptr<GUIBox> CreateBox(Vector2f position_, Vector2f size_, GUIStyle *gstyle);
+	std::shared_ptr<GUIBox> CreateBox(Vector2f position_, float width, float height, GUIStyle *gstyle);
+	std::shared_ptr<GUIBox> CreateBox(float x, float y, Vector2f size_, GUIStyle *gstyle);
 
 	std::shared_ptr<GUIButton> CreateButton(float x, float y, float width, float height, std::string text, TextStyle *tstyle, GUIStyle *gstyle, void(*action)());
 	std::shared_ptr<GUIButton> CreateButton(Vector2f position_, Vector2f size_, std::string text, TextStyle *tstyle, GUIStyle *gstyle, void(*action)());
@@ -51,8 +41,23 @@ public:
     std::shared_ptr<GUILabel> CreateLabel(Vector2f position_, Vector2f size_, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
     std::shared_ptr<GUILabel> CreateLabel(float x, float y, float width, float height, std::string text, TextStyle *tstyle, Texture *texture, GUIStyle *gstyle);
     std::shared_ptr<GUILabel> CreateLabel(Vector2f position_, Vector2f size_, std::string text, TextStyle *tstyle, Texture *texture, GUIStyle *gstyle);
+
+	std::shared_ptr<GUIProgressBar> CreateProgressBar(float x, float y, float width, float height,
+		std::string text, TextStyle *tstyle, GUIStyle *gstyle,
+		float leftBorder, float rightBorder, Color staticBarColor, Color dynamicBarColor);
+
+	std::shared_ptr<ScrollBar> CreateScrollBar(float x, float y, float width, float height, GUIStyle *gstyle, Orientation orientation, float sizeScrollPanel_);
+	
+	std::shared_ptr<GUIStatusBar> CreateStatusBar(float height_, float frameSize_, float spacing_, GUIStyle *sBarStyle_);
+
+	std::shared_ptr<Slider> CreateSlider(float line_position_x, float line_position_y, float line_width_, float line_height_, float handler_width_, float handler_height_, GUIStyle* gst, float value_range_from_, float value_range_to_, float value_);
+	std::shared_ptr<Slider> CreateSlider(float line_position_x, float line_position_y, float line_width_, float line_height_, float handler_width_, float handler_height_, GUIStyle* gst, float value_range_from_, float value_range_to_, float value_, void(*action_on_move)(float slider_value));
+
+	std::shared_ptr<TextField> CreateTextField(float x, float y, float width, float height, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
+
 	//Запускает обработчики у элементов, трогать его не надо
 	void handleEvent(const sf::Event& event) override;
+
 	//TODO
 	//НЕДОПИЛЕН, НЕ ЮЗАТЬ ПОКА!
 	void removeElement(IDrawable* observer) override;

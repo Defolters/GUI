@@ -4,11 +4,10 @@ class GUILabel : public GUIBox
 {
 private:
     friend class GUILayer;
-    TextStyle *tstyle; /*!< стиль текста */
-    Text text; /*!< текст */ 
-    Texture *iconT; /*!< текстура иконки */ 
-    Sprite *icon; /*!< иконка, которую можно нарисовать */ 
-
+    Text text; /*!< текст */
+    Texture *iconT; /*!< текстура иконки */
+    Sprite *icon; /*!< иконка, которую можно нарисовать */
+    TextStyle *tstyle;
 protected:
     //! Конструктор
     /*!
@@ -29,7 +28,7 @@ protected:
     \param renderWindow_ окно, в которое рисуем
     */
     GUILabel(RenderWindow* renderWindow_, float x, float y, float width, float height, std::string text, TextStyle *tstyle, Texture *icon_, GUIStyle *gstyle);
-    
+
     //! Конструктор
     /*!
     Создает label, состоящий из одной иконки, если текст задан пустой строкой.
@@ -37,11 +36,21 @@ protected:
     \param renderWindow_ окно, в которое рисуем
     */
     GUILabel(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_, std::string text, TextStyle *tstyle, Texture *icon_, GUIStyle *gstyle);
-    
+
     //! Переопределяем функцию Draw
     virtual void Draw() override;
 
     //! Переопределяем функцию Recalc
     virtual void Recalc() override;
+
+    void handleEvent(const sf::Event& event) override;
+
+public:
+    virtual void SetSize(float width, float height) override;
+    virtual void SetSize(Vector2f size_) override;
+    unsigned int getSize();
+
+    void setIcon(Texture* iconT);
+    virtual void SetText(char *text);
 };
 
