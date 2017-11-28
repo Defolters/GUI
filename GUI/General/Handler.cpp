@@ -88,6 +88,8 @@ void main()
 	statusBar->AddElement(box2);
 	statusBar->AddElement(box3);
 
+	std::shared_ptr<TextField> textBox = layer->CreateTextField(250, 350, 100, 40, "textField", &tst, &gst);
+
 	while (1)
 	{
 		// Костыль для теста на время, пока нет Observer.
