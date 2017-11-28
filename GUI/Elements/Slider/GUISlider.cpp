@@ -16,9 +16,10 @@ void Slider::SetPosition(float x_, float y_)
 {
 	back_line_sprite.setPosition(x_, y_);
 	front_line_sprite.setPosition(x_, y_);
-	SetValue(value);
 	line_position_x = x_;
 	line_position_y = y_;
+	SetVerticalHandlerPosition(vertical_handler_pos);
+	SetValue(value);
 }
 
 void Slider::SetPosition(Vector2f position_)
@@ -55,6 +56,11 @@ void Slider::SetHandlerSize(float width_, float height_)
 	handler_size_y = height_;
 }
 
+float Slider::GetVerticalHandlerPosition()
+{
+	return vertical_handler_pos;
+}
+
 void Slider::SetVerticalHandlerPosition(float persentage_of_line_height_)
 {
 	vertical_handler_pos = persentage_of_line_height_;
@@ -62,6 +68,7 @@ void Slider::SetVerticalHandlerPosition(float persentage_of_line_height_)
 	handler_sprite.setPosition(handler_sprite.getPosition().x, new_pos_y);
 }
 
+/*
 void Slider::SetTextures(std::string back_line_file_name_, std::string front_line_file_name_, std::string handler_file_name_)
 {
 	back_line_texture.loadFromFile(back_line_file_name_);
@@ -79,7 +86,32 @@ void Slider::SetTextures(std::string back_line_file_name_, std::string front_lin
 	SetVerticalHandlerPosition(vertical_handler_pos);
 
 	SetValue(value);
+}*/
+
+void Slider::SetTextures()
+ {
+	back_line_texture = guistyle->sliderBackTex;
+	front_line_texture = guistyle->sliderFrontTex;
+	handler_texture = guistyle->sliderHandlerTex;
+	
+		back_line_sprite.setTexture(back_line_texture);
+	front_line_sprite.setTexture(front_line_texture);
+	handler_sprite.setTexture(handler_texture);
+	
+		SetSize(line_size_x, line_size_y);
+	
+		SetHandlerSize(handler_size_x, handler_size_y);
+	handler_sprite.setOrigin(handler_size_x, handler_size_y);
+	SetVerticalHandlerPosition(vertical_handler_pos);
+	
+		SetValue(value);
 }
+
+void Slider::SetGUIStyle(GUIStyle* gst)
+ {
+	guistyle = gst;
+	SetTextures();
+	}
 
 void Slider::onHandlerMove()
 {
@@ -111,11 +143,12 @@ void Slider::onHandlerMove()
 }
 
 Slider::Slider(RenderWindow * renderWindow_, float line_position_x_, float line_position_y_,
-	float line_width_, float line_height_, float handler_width_, float handler_height_,
+	float line_width_, float line_height_, float handler_width_, float handler_height_, GUIStyle* gst,
 	float value_range_from_, float value_range_to_, float value_, void (*action_on_move)(float slider_value))
-	: IDisplayable(renderWindow_, line_position_x, line_position_y, line_width_, line_height_)
+	: IDisplayable(renderWindow_, line_position_x_, line_position_y_, line_width_, line_height_)
 {
 	renderWindow = renderWindow_;
+	guistyle = gst;
 
 	value = value_;
 	value_range_from = value_range_from_;
@@ -137,6 +170,7 @@ Slider::Slider(RenderWindow * renderWindow_, float line_position_x_, float line_
 	handler_texture.setSmooth(true);
 	back_line_texture.setSmooth(true);
 	front_line_texture.setSmooth(true);
+	SetTextures();
 
 	isMoving = false;
 
@@ -144,11 +178,12 @@ Slider::Slider(RenderWindow * renderWindow_, float line_position_x_, float line_
 }
 
 Slider::Slider(RenderWindow * renderWindow_, float line_position_x_, float line_position_y_,
-	float line_width_, float line_height_, float handler_width_, float handler_height_,
+	float line_width_, float line_height_, float handler_width_, float handler_height_, GUIStyle* gst,
 	float value_range_from_, float value_range_to_, float value_)
-	: IDisplayable(renderWindow_, line_position_x, line_position_y, line_width_, line_height_)
+	: IDisplayable(renderWindow_, line_position_x_, line_position_y_, line_width_, line_height_)
 {
 	renderWindow = renderWindow_;
+	guistyle = gst;
 
 	value = value_;
 	value_range_from = value_range_from_;
@@ -172,6 +207,7 @@ Slider::Slider(RenderWindow * renderWindow_, float line_position_x_, float line_
 	front_line_texture.setSmooth(true);
 
 	isMoving = false;
+	SetTextures();
 }
 
 void Slider::handleEvent(const sf::Event & event)
@@ -185,6 +221,14 @@ void Slider::handleEvent(const sf::Event & event)
 		{
 			isMoving = true;
 			delta = handler_sprite.getPosition().x - event.mouseButton.x;
+		}
+		else if (event.mouseButton.x > back_line_sprite.getPosition().x &&
+				event.mouseButton.x < back_line_sprite.getPosition().x + line_size_x &&
+				event.mouseButton.y > back_line_sprite.getPosition().y &&
+				event.mouseButton.y < back_line_sprite.getPosition().y + line_size_y)
+		{
+			delta = 0;
+			isMoving = true;
 		}
 	}
 	else if (event.type == Event::MouseButtonReleased && event.mouseButton.button == Mouse::Button::Left)
@@ -207,7 +251,10 @@ float Slider::GetValue()
 
 void Slider::SetValue(float value_)
 {
-	//std::co
+	if (value_ > value_range_to || value_ < value_range_from)
+	{
+		value_ = value_range_from;
+	}
 	value = value_;
 	float percent = (value - value_range_from) / (value_range_to - value_range_from);
 	handler_sprite.setPosition(line_position_x + line_size_x * percent, line_position_y);
