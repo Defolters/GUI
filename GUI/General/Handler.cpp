@@ -70,6 +70,15 @@ void main()
 	std::shared_ptr<Slider> slider = layer->CreateSlider(225, 450, 350, 20, 35, 38, 0, 100, 20, &onSliderMove);
 	slider.get()->SetTextures("slider_back_line.png", "slider_front_line.png", "slider_handler.png");
 
+	//Создание статус бара
+	Texture statusBarBackground;
+	statusBarBackground.loadFromFile("statusBar.png");
+	std::shared_ptr<GUIStatusBar>  statusBar = layer->CreateStatusBar(40, 5, 10, &statusBarBackground);
+	std::shared_ptr<GUIBox> box2 = layer->CreateButton(100, 00, 40, 40, "A", &tst, &gst, &buttonAction);
+	std::shared_ptr<GUIBox> box3 = layer->CreateButton(100, 00, 40, 40, "B", &tst, &gst, &buttonAction);
+
+	statusBar->AddElement(box2);
+	statusBar->AddElement(box3);
 	while (1)
 	{
 		// Костыль для теста на время, пока нет Observer.
