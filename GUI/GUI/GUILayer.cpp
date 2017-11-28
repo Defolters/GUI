@@ -137,16 +137,16 @@ std::shared_ptr<ScrollBar> GUILayer::CreateScrollBar(float x, float y, float wid
 	return scrollbar;
 }
 
-std::shared_ptr<Slider> GUILayer::CreateSlider(float line_position_x, float line_position_y, float line_width_, float line_height_, float handler_width_, float handler_height_, GUIStyle* gst, float value_range_from_, float value_range_to_, float value_)
+std::shared_ptr<Slider> GUILayer::CreateSlider(float line_position_x, float line_position_y, float line_width_, float line_height_, float handler_width_, float handler_height_, float value_range_from_, float value_range_to_, float value_)
 {
-	std::shared_ptr<Slider> slider(new Slider(window, line_position_x, line_position_y, line_width_, line_height_, handler_width_, handler_height_, gst, value_range_from_, value_range_to_, value_));
+	std::shared_ptr<Slider> slider(new Slider(window, line_position_x, line_position_y, line_width_, line_height_, handler_width_, handler_height_, value_range_from_, value_range_to_, value_));
 	elements.push_back(slider);
 	return slider;
 }
 
-std::shared_ptr<Slider> GUILayer::CreateSlider(float line_position_x, float line_position_y, float line_width_, float line_height_, float handler_width_, float handler_height_, GUIStyle* gst, float value_range_from_, float value_range_to_, float value_, void(*action_on_move)(float slider_value))
+std::shared_ptr<Slider> GUILayer::CreateSlider(float line_position_x, float line_position_y, float line_width_, float line_height_, float handler_width_, float handler_height_, float value_range_from_, float value_range_to_, float value_, void(*action_on_move)(float slider_value))
 {
-	std::shared_ptr<Slider> slider(new Slider(window, line_position_x, line_position_y, line_width_, line_height_, handler_width_, handler_height_, gst, value_range_from_, value_range_to_, value_, action_on_move));
+	std::shared_ptr<Slider> slider(new Slider(window, line_position_x, line_position_y, line_width_, line_height_, handler_width_, handler_height_, value_range_from_, value_range_to_, value_, action_on_move));
 	elements.push_back(slider);
 	return slider;
 }
