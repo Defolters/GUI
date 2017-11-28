@@ -130,8 +130,9 @@ void GUILayer::Draw()
 		bo->Draw();
 }
 
-std::shared_ptr<ScrollBar> GUILayer::CreateScrollBar(float x, float y, float width, float height, std::string text, TextStyle *tstyle, GUIStyle *gstyle, Orientation orientation) {
-	std::shared_ptr<ScrollBar> scrollbar(new ScrollBar(window, orientation, text, tstyle, gstyle));
+std::shared_ptr<ScrollBar> GUILayer::CreateScrollBar(float x, float y, float width, float height,
+	GUIStyle *gstyle, Orientation orientation, float sizeScrollPanel_) {
+	std::shared_ptr<ScrollBar> scrollbar(new ScrollBar(window, orientation, gstyle, sizeScrollPanel_));
 	scrollbar->parent = this;
 	elements.push_back(scrollbar);
 	return scrollbar;
@@ -150,3 +151,22 @@ std::shared_ptr<Slider> GUILayer::CreateSlider(float line_position_x, float line
 	elements.push_back(slider);
 	return slider;
 }
+
+std::shared_ptr<GUIStatusBar> GUILayer::CreateStatusBar(float height_, float frameSize_,
+	float spacing_, GUIStyle *sBarStyle_)
+{
+	std::shared_ptr<GUIStatusBar> statusBar(new GUIStatusBar(window, height_, frameSize_,
+		spacing_, sBarStyle_));
+	statusBar->parent = this;
+	elements.push_back(statusBar);
+	return statusBar;
+}
+
+std::shared_ptr<TextField> GUILayer::CreateTextField(float x, float y, float width, float height, std::string text_, TextStyle *tstyle, GUIStyle *gstyle)
+{
+	std::shared_ptr<TextField> textField(new TextField(window, x, y, width, height, text_, tstyle, gstyle));
+	textField->parent = this;
+	elements.push_back(textField);
+	return textField;
+}
+

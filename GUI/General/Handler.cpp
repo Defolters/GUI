@@ -78,9 +78,10 @@ void main()
 	std::shared_ptr<GUIProgressBar> progressBar = layer->CreateProgressBar(SCREEN_WIDTH / 3 + 50, SCREEN_HEIGHT / 3, 200, 30, "Sorting...", &tst, &gst,
 		0, 200, Color::White, Color::Green);
 
-	std::shared_ptr<ScrollBar> scrollbarHor = layer->CreateScrollBar(0, 0, 0, 0, "test", &tst, &gst, Orientation::HORIZONTAL);
 
-	std::shared_ptr<ScrollBar> scrollbarVert = layer->CreateScrollBar(0, 0, 0, 0, "test", &tst, &gst, Orientation::VERTICAL);
+    std::shared_ptr<ScrollBar> scrollbarHor = layer->CreateScrollBar(0, 0, 0, 0, &gst, Orientation::HORIZONTAL, 1600);
+
+    std::shared_ptr<ScrollBar> scrollbarVert = layer->CreateScrollBar(0, 0, 0, 0, &gst, Orientation::VERTICAL, 1800);
 
 	//создаем слайдер
 	std::shared_ptr<Slider> slider = layer->CreateSlider(225, 450, 350, 20, 35, 38, 0, 100, 20, &onSliderMove);
@@ -89,6 +90,12 @@ void main()
 	//radioButton
 	std::vector<std::string> texts = { "", "", "", "","","", "","","","" };
 	std::shared_ptr <RadioButton> radBut = layer->CreateRadButton(layer, 4, 300, 20, 30, 30, texts, &tst, &radStyle);
+
+	statusBar->AddElement(box1);
+	statusBar->AddElement(box2);
+	statusBar->AddElement(box3);
+
+	std::shared_ptr<TextField> textBox = layer->CreateTextField(250, 350, 100, 40, "textField", &tst, &gst);
 
 	while (1)
 	{
