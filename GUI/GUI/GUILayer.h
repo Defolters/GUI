@@ -54,6 +54,8 @@ public:
 	std::shared_ptr<GUIStatusBar> CreateStatusBar(float height_, float frameSize_,
 		float spacing_, GUIStyle *sBarStyle_);
 
+	std::shared_ptr<TextField> CreateTextField(float x, float y, float width, float height, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
+
 	//Запускает обработчики у элементов, трогать его не надо
 	void handleEvent(const sf::Event& event) override;
 	//TODO
