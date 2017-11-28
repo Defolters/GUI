@@ -139,6 +139,11 @@ void GUILabel::SetSize(Vector2f size_)
     }
 }
 
+unsigned int GUILabel::getSize()
+{
+    return text.getCharacterSize();
+}
+
 void GUILabel::setIcon(Texture * iconT)
 {
     this->iconT = iconT;
