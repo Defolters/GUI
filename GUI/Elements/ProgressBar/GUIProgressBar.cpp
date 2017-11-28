@@ -4,7 +4,7 @@
 GUIProgressBar::GUIProgressBar(RenderWindow* renderWindow_, float x, float y, float width,
 	float height, std::string text_, TextStyle *Ctstyle, GUIStyle *Cgstyle,
 	float leftBorder, float rightBorder, Color staticBarColor, Color dynamicBarColor) :
-	GUIBox(renderWindow_, x, y, width, height, text_, Ctstyle, Cgstyle),
+	GUIBox(renderWindow_, x, y, width, height, Cgstyle),
 	staticBar(new RectangleShape()), dynamicBar(new RectangleShape())
 {
 	tstyle = Ctstyle;
