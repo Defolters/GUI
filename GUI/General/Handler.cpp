@@ -54,17 +54,11 @@ void main()
 	icon.loadFromFile("Danger.png");
 	icon2.loadFromFile("Galaxy.png");
 	// просто текст
-<<<<<<< HEAD
-	std::shared_ptr<GUILabel> label = layer->CreateLabel(0, 300, 100, 40, "Just text", &tst, &gst);
-=======
->>>>>>> 38e15dc5d8443406c4672a148fff686e872975f4
+	std::shared_ptr<GUILabel> label = layer->CreateLabel(0, 300, 100, 20, "Just text", &tst, &gst);
 	// иконка
 	std::shared_ptr<GUILabel> label1 = layer->CreateLabel(0, 330, 100, 40, "", &tst, &icon, &gst);
 	// текст и иконка
-<<<<<<< HEAD
 	std::shared_ptr<GUILabel> label2 = layer->CreateLabel(0, 400, 100, 40, "text to the right of the icon", &tst, &icon2, &gst);
-=======
->>>>>>> 38e15dc5d8443406c4672a148fff686e872975f4
 
 	//сохраняем ID label2
 	int label2ID = label2->GetID();
