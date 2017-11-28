@@ -37,28 +37,28 @@ std::shared_ptr<GUIBox> GUILayer::CreateBox(Vector2f position_, float width, flo
 
 std::shared_ptr<GUIButton> GUILayer::CreateButton(float x, float y, float width, float height, std::string text_, TextStyle *tstyle, GUIStyle *gstyle, void(*action)())
 {
-	std::shared_ptr<GUIButton> button(new GUIButton(window, x, y, width, height, text_, tstyle, gstyle, action));
+	std::shared_ptr<GUIButton> button(new GUIButton(this, window, x, y, width, height, text_, tstyle, gstyle, action));
 	button->parent = this;
 	elements.push_back(button);
 	return button;
 }
 std::shared_ptr<GUIButton> GUILayer::CreateButton(Vector2f position_, Vector2f size_, std::string text_, TextStyle *tstyle, GUIStyle *gstyle, void(*action)())
 {
-	std::shared_ptr<GUIButton> button(new GUIButton(window, position_, size_, text_, tstyle, gstyle, action));
+	std::shared_ptr<GUIButton> button(new GUIButton(this, window, position_, size_, text_, tstyle, gstyle, action));
 	button->parent = this;
 	elements.push_back(button);
 	return button;
 }
 std::shared_ptr<GUIButton> GUILayer::CreateButton(Vector2f position_, float width, float height, std::string text_, TextStyle *tstyle, GUIStyle *gstyle, void(*action)())
 {
-	std::shared_ptr<GUIButton> button(new GUIButton(window, position_, width, height, text_, tstyle, gstyle, action));
+	std::shared_ptr<GUIButton> button(new GUIButton(this, window, position_, width, height, text_, tstyle, gstyle, action));
 	button->parent = this;
 	elements.push_back(button);
 	return button;
 }
 std::shared_ptr<GUIButton> GUILayer::CreateButton(float x, float y, Vector2f size_, std::string text_, TextStyle *tstyle, GUIStyle *gstyle, void(*action)())
 {
-	std::shared_ptr<GUIButton> button(new GUIButton(window, x, y, size_, text_, tstyle, gstyle, action));
+	std::shared_ptr<GUIButton> button(new GUIButton(this, window, x, y, size_, text_, tstyle, gstyle, action));
 	button->parent = this;
 	elements.push_back(button);
 	return button;
@@ -130,23 +130,42 @@ void GUILayer::Draw()
 		bo->Draw();
 }
 
-std::shared_ptr<ScrollBar> GUILayer::CreateScrollBar(float x, float y, float width, float height, std::string text, TextStyle *tstyle, GUIStyle *gstyle, Orientation orientation) {
-	std::shared_ptr<ScrollBar> scrollbar(new ScrollBar(window, orientation, text, tstyle, gstyle));
+std::shared_ptr<ScrollBar> GUILayer::CreateScrollBar(float x, float y, float width, float height,
+	GUIStyle *gstyle, Orientation orientation, float sizeScrollPanel_) {
+	std::shared_ptr<ScrollBar> scrollbar(new ScrollBar(window, orientation, gstyle, sizeScrollPanel_));
 	scrollbar->parent = this;
 	elements.push_back(scrollbar);
 	return scrollbar;
 }
 
-std::shared_ptr<Slider> GUILayer::CreateSlider(float line_position_x, float line_position_y, float line_width_, float line_height_, float handler_width_, float handler_height_, float value_range_from_, float value_range_to_, float value_)
+std::shared_ptr<Slider> GUILayer::CreateSlider(float line_position_x, float line_position_y, float line_width_, float line_height_, float handler_width_, float handler_height_, GUIStyle* gst, float value_range_from_, float value_range_to_, float value_)
 {
-	std::shared_ptr<Slider> slider(new Slider(window, line_position_x, line_position_y, line_width_, line_height_, handler_width_, handler_height_, value_range_from_, value_range_to_, value_));
+	std::shared_ptr<Slider> slider(new Slider(window, line_position_x, line_position_y, line_width_, line_height_, handler_width_, handler_height_, gst, value_range_from_, value_range_to_, value_));
 	elements.push_back(slider);
 	return slider;
 }
 
-std::shared_ptr<Slider> GUILayer::CreateSlider(float line_position_x, float line_position_y, float line_width_, float line_height_, float handler_width_, float handler_height_, float value_range_from_, float value_range_to_, float value_, void(*action_on_move)(float slider_value))
+std::shared_ptr<Slider> GUILayer::CreateSlider(float line_position_x, float line_position_y, float line_width_, float line_height_, float handler_width_, float handler_height_, GUIStyle* gst, float value_range_from_, float value_range_to_, float value_, void(*action_on_move)(float slider_value))
 {
-	std::shared_ptr<Slider> slider(new Slider(window, line_position_x, line_position_y, line_width_, line_height_, handler_width_, handler_height_, value_range_from_, value_range_to_, value_, action_on_move));
+	std::shared_ptr<Slider> slider(new Slider(window, line_position_x, line_position_y, line_width_, line_height_, handler_width_, handler_height_, gst, value_range_from_, value_range_to_, value_, action_on_move));
 	elements.push_back(slider);
 	return slider;
+}
+
+std::shared_ptr<GUIStatusBar> GUILayer::CreateStatusBar(float height_, float frameSize_,
+	float spacing_, GUIStyle *sBarStyle_)
+{
+	std::shared_ptr<GUIStatusBar> statusBar(new GUIStatusBar(window, height_, frameSize_,
+		spacing_, sBarStyle_));
+	statusBar->parent = this;
+	elements.push_back(statusBar);
+	return statusBar;
+}
+
+std::shared_ptr<TextField> GUILayer::CreateTextField(float x, float y, float width, float height, std::string text_, TextStyle *tstyle, GUIStyle *gstyle)
+{
+	std::shared_ptr<TextField> textField(new TextField(window, x, y, width, height, text_, tstyle, gstyle));
+	textField->parent = this;
+	elements.push_back(textField);
+	return textField;
 }
