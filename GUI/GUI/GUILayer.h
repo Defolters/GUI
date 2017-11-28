@@ -27,10 +27,10 @@ public:
 	//для сохранения инкапсуляции:
 	//СОЗДАВАЙТЕ ТАКИЕ МЕТОДЫ (хотя бы 1) ДЛЯ СВОИХ ЭЛЕМЕНТОВ
 	//он должен создавать элемент, сохранять его в векторе (описаны выше) и возвращать shared_ptr на него (как это используется смотрите в handler.cpp)
-	std::shared_ptr<GUIBox> CreateBox(float x, float y, float width, float height, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
-	std::shared_ptr<GUIBox> CreateBox(Vector2f position_, Vector2f size_, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
-	std::shared_ptr<GUIBox> CreateBox(Vector2f position_, float width, float height, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
-	std::shared_ptr<GUIBox> CreateBox(float x, float y, Vector2f size_, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
+	std::shared_ptr<GUIBox> CreateBox(float x, float y, float width, float height, GUIStyle *gstyle);
+	std::shared_ptr<GUIBox> CreateBox(Vector2f position_, Vector2f size_, GUIStyle *gstyle);
+	std::shared_ptr<GUIBox> CreateBox(Vector2f position_, float width, float height, GUIStyle *gstyle);
+	std::shared_ptr<GUIBox> CreateBox(float x, float y, Vector2f size_, GUIStyle *gstyle);
 
 	std::shared_ptr<GUIButton> CreateButton(float x, float y, float width, float height, std::string text, TextStyle *tstyle, GUIStyle *gstyle, void(*action)());
 	std::shared_ptr<GUIButton> CreateButton(Vector2f position_, Vector2f size_, std::string text, TextStyle *tstyle, GUIStyle *gstyle, void(*action)());
@@ -42,9 +42,9 @@ public:
     std::shared_ptr<GUILabel> CreateLabel(float x, float y, float width, float height, std::string text, TextStyle *tstyle, Texture *texture, GUIStyle *gstyle);
     std::shared_ptr<GUILabel> CreateLabel(Vector2f position_, Vector2f size_, std::string text, TextStyle *tstyle, Texture *texture, GUIStyle *gstyle);
 
-	std::shared_ptr<GUIProgressBar> CreateProgressBar(float x, float y, float width, float height,
+	std::shared_ptr<GUIProgressBar> CreateProgressBar(std::shared_ptr<GUILayer> _layer, float x, float y, float width, float height,
 		std::string text, TextStyle *tstyle, GUIStyle *gstyle,
-		float leftBorder, float rightBorder, Color staticBarColor, Color dynamicBarColor);
+		float minValue, float maxValue, Color staticBarColor, Color dynamicBarColor);
 
 	std::shared_ptr<ScrollBar> CreateScrollBar(float x, float y, float width, float height, std::string text, TextStyle *tstyle, GUIStyle *gstyle, Orientation orientation);
 	

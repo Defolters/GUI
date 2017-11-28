@@ -6,30 +6,30 @@ GUILayer::GUILayer(RenderWindow &Swindow, Vector2f position_, Vector2f size_) : 
 	window = &Swindow;
 }
 
-std::shared_ptr<GUIBox> GUILayer::CreateBox(float x, float y, float width, float height, std::string text_, TextStyle *tstyle, GUIStyle *gstyle)
+std::shared_ptr<GUIBox> GUILayer::CreateBox(float x, float y, float width, float height, GUIStyle *gstyle)
 {
-	std::shared_ptr<GUIBox> box(new GUIBox(window, x, y, width, height, text_, tstyle, gstyle));
+	std::shared_ptr<GUIBox> box(new GUIBox(window, x, y, width, height, gstyle));
 	box->parent = this;
 	elements.push_back(box);
 	return box;
 }
-std::shared_ptr<GUIBox> GUILayer::CreateBox(Vector2f position_, Vector2f size_, std::string text_, TextStyle *tstyle, GUIStyle *gstyle)
+std::shared_ptr<GUIBox> GUILayer::CreateBox(Vector2f position_, Vector2f size_, GUIStyle *gstyle)
 {
-	std::shared_ptr<GUIBox> box(new GUIBox(window, position_, size_, text_, tstyle, gstyle));
+	std::shared_ptr<GUIBox> box(new GUIBox(window, position_, size_, gstyle));
 	box->parent = this;
 	elements.push_back(box);
 	return box;
 }
-std::shared_ptr<GUIBox> GUILayer::CreateBox(float x, float y, Vector2f size_, std::string text_, TextStyle *tstyle, GUIStyle *gstyle)
+std::shared_ptr<GUIBox> GUILayer::CreateBox(float x, float y, Vector2f size_, GUIStyle *gstyle)
 {
-	std::shared_ptr<GUIBox> box(new GUIBox(window, x, y, size_, text_, tstyle, gstyle));
+	std::shared_ptr<GUIBox> box(new GUIBox(window, x, y, size_, gstyle));
 	box->parent = this;
 	elements.push_back(box);
 	return box;
 }
-std::shared_ptr<GUIBox> GUILayer::CreateBox(Vector2f position_, float width, float height, std::string text_, TextStyle *tstyle, GUIStyle *gstyle)
+std::shared_ptr<GUIBox> GUILayer::CreateBox(Vector2f position_, float width, float height, GUIStyle *gstyle)
 {
-	std::shared_ptr<GUIBox> box(new GUIBox(window, position_, width, height, text_, tstyle, gstyle));
+	std::shared_ptr<GUIBox> box(new GUIBox(window, position_, width, height, gstyle));
 	box->parent = this;
 	elements.push_back(box);
 	return box;
@@ -93,11 +93,11 @@ std::shared_ptr<GUILabel> GUILayer::CreateLabel(Vector2f position_, Vector2f siz
 	return label;
 }
 
-std::shared_ptr<GUIProgressBar> GUILayer::CreateProgressBar(float x, float y, float width, float height,
+std::shared_ptr<GUIProgressBar> GUILayer::CreateProgressBar(std::shared_ptr<GUILayer> _layer, float x, float y, float width, float height,
 	std::string text_, TextStyle *tstyle, GUIStyle *gstyle,
-	float leftBorder, float rightBorder, Color staticBarColor, Color dynamicBarColor)
+	float minValue, float maxValue, Color staticBarColor, Color dynamicBarColor)
 {
-	std::shared_ptr<GUIProgressBar> progressBar(new GUIProgressBar(window, x, y, width, height, text_, tstyle, gstyle, leftBorder, rightBorder, staticBarColor, dynamicBarColor));
+	std::shared_ptr<GUIProgressBar> progressBar(new GUIProgressBar(window, _layer, x, y, width, height, text_, tstyle, gstyle, minValue, maxValue, staticBarColor, dynamicBarColor));
 	progressBar->parent = this;
 	elements.push_back(progressBar);
 	return progressBar;
