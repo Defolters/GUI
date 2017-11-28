@@ -14,19 +14,16 @@ private:
 protected:
 	//графический стиль и текстовый стиль описаны в styles.h
 	GUIStyle *gstyle;
-	TextStyle *tstyle;
 	//обычный sfml спрайт
 	Sprite sprite;
 	//спрайты рамок (вроде пытался объяснить на паре зачем они нужны отдельно)
 	//если не слышали зачем - поверьте на слово
 	Sprite frames[4];
-	//текст (кек)
-	Text text;
 	//стандартные конструкторы, как и в IDisplayable
-	GUIBox(RenderWindow* renderWindow_, float x, float y, float width, float height, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
-	GUIBox(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
-	GUIBox(RenderWindow* renderWindow_, float x, float y, Vector2f size_, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
-	GUIBox(RenderWindow* renderWindow_, Vector2f position_, float width, float height, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
+	GUIBox(RenderWindow* renderWindow_, float x, float y, float width, float height, GUIStyle *gstyle);
+	GUIBox(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_, GUIStyle *gstyle);
+	GUIBox(RenderWindow* renderWindow_, float x, float y, Vector2f size_, GUIStyle *gstyle);
+	GUIBox(RenderWindow* renderWindow_, Vector2f position_, float width, float height, GUIStyle *gstyle);
 	virtual void Draw() override;
 	virtual void Recalc();
 public:
@@ -38,9 +35,7 @@ public:
 	virtual void SetSize(float width, float height) override;
 	virtual void SetSize(Vector2f size_) override;
 	//сеттеры стилей и текста
-	virtual void SetText(char *text);
 	virtual void SetGStyle(GUIStyle *gstyle);
-	virtual void SetTStyle(TextStyle *tstyle);
 
 	//ПРИМЕР КАСТОМНОГО ОБРАБОТЧИКА СОБЫТИЙ!!!
 	/*void handleEvent(const sf::Event& event) override
