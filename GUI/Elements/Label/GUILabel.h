@@ -48,6 +48,7 @@ protected:
 public:
     virtual void SetSize(float width, float height) override;
     virtual void SetSize(Vector2f size_) override;
+    unsigned int getSize();
 
     void setIcon(Texture* iconT);
     virtual void SetText(char *text);
