@@ -25,6 +25,10 @@ void main()
 	gst.overTex.loadFromFile("overGUI.png");
 	gst.frame.loadFromFile("frame.png");
 	gst.frameWid = 5;
+	//текстуры слайдера
+	gst.sliderBackTex.loadFromFile("slider_back_line.png");
+	gst.sliderFrontTex.loadFromFile("slider_front_line.png");
+	gst.sliderHandlerTex.loadFromFile("slider_handler.png");
 
 	//пример создания стиля текста
 	static TextStyle tst;
@@ -73,9 +77,8 @@ void main()
 	std::shared_ptr<ScrollBar> scrollbarVert = layer->CreateScrollBar(0, 0, 0, 0, "test", &tst, &gst, Orientation::VERTICAL);
 
 	//создаем слайдер
-	std::shared_ptr<Slider> slider = layer->CreateSlider(225, 450, 350, 20, 35, 38, 0, 100, 20, &onSliderMove);
-	slider.get()->SetTextures("slider_back_line.png", "slider_front_line.png", "slider_handler.png");
-
+	std::shared_ptr<Slider> slider = layer->CreateSlider(225, 450, 350, 20, 35, 38, &gst, 0, 100, 20, &onSliderMove);
+	
 	while (1)
 	{
 		// Костыль для теста на время, пока нет Observer.
