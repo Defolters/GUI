@@ -46,7 +46,7 @@ public:
 		std::string text, TextStyle *tstyle, GUIStyle *gstyle,
 		float leftBorder, float rightBorder, Color staticBarColor, Color dynamicBarColor);
 
-	std::shared_ptr<ScrollBar> CreateScrollBar(float x, float y, float width, float height, std::string text, TextStyle *tstyle, GUIStyle *gstyle, Orientation orientation);
+	std::shared_ptr<ScrollBar> CreateScrollBar(float x, float y, float width, float height, GUIStyle *gstyle, Orientation orientation, float sizeScrollPanel_);
 	
 	std::shared_ptr<Slider> CreateSlider(float line_position_x, float line_position_y, float line_width_, float line_height_, float handler_width_, float handler_height_, float value_range_from_, float value_range_to_, float value_);
 	std::shared_ptr<Slider> CreateSlider(float line_position_x, float line_position_y, float line_width_, float line_height_, float handler_width_, float handler_height_, float value_range_from_, float value_range_to_, float value_, void (*action_on_move)(float slider_value));

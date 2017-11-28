@@ -130,8 +130,9 @@ void GUILayer::Draw()
 		bo->Draw();
 }
 
-std::shared_ptr<ScrollBar> GUILayer::CreateScrollBar(float x, float y, float width, float height, std::string text, TextStyle *tstyle, GUIStyle *gstyle, Orientation orientation) {
-	std::shared_ptr<ScrollBar> scrollbar(new ScrollBar(window, orientation, text, tstyle, gstyle));
+std::shared_ptr<ScrollBar> GUILayer::CreateScrollBar(float x, float y, float width, float height,
+	GUIStyle *gstyle, Orientation orientation, float sizeScrollPanel_) {
+	std::shared_ptr<ScrollBar> scrollbar(new ScrollBar(window, orientation, gstyle, sizeScrollPanel_));
 	scrollbar->parent = this;
 	elements.push_back(scrollbar);
 	return scrollbar;
