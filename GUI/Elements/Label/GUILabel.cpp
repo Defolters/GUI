@@ -60,7 +60,7 @@ GUILabel::GUILabel(RenderWindow * renderWindow_, Vector2f position_, Vector2f si
 
 void GUILabel::Draw()
 {
-    IDisplayable::Draw(); //если бы это строчка была раскоменчена, то Label рисовал бы дочерние элементы
+    IDrawable::Draw(); //если бы это строчка была раскоменчена, то Label рисовал бы дочерние элементы
     Recalc();
     if (text.getString() != "")
     {
