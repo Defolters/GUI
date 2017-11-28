@@ -37,8 +37,6 @@ protected:
     */
     GUILabel(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_, std::string text, TextStyle *tstyle, Texture *icon_, GUIStyle *gstyle);
     
-    void setIcon(Texture* iconT);
-    virtual void SetText(char *text) override;
 
     //! Переопределяем функцию Draw
     virtual void Draw() override;
@@ -47,5 +45,10 @@ protected:
     virtual void Recalc() override;
 
     void handleEvent(const sf::Event& event) override;
+
+public:
+    void setIcon(Texture* iconT);
+    virtual void SetText(char *text) override;
+    void setFontSize(int fontSize);
 };
 
