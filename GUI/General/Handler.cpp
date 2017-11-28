@@ -40,14 +40,14 @@ void main()
 	static GUIStyle sBarStyle;
 	sBarStyle.background.loadFromFile("statusBar.png");
 	
-	//создание окна и слоя гуи на нем (можете прям копировать, если лень разбираться, да оно и не сильно надо пока)
+	//создание окна и слоя гуи на нем 
 	WindowTab main(VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "main");
 	std::shared_ptr<GUILayer> layer = main.CreateGUILayer(Vector2f(0,0), Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
 	//вот досюда
 
-	//пример создания просто "коробки" с созданными стилями, положением 0,0 и размером 300,400 на созданном выше слое
-	std::shared_ptr<GUIBox> box = layer->CreateButton(20, 20, 100,100, "omegaLUL", &tst, &gst, &buttonAction);
-
+	//пример создания кнопки
+	std::shared_ptr<GUIButton> button = layer->CreateButton(20, 20, 100,100, "button", &tst, &gst, &buttonAction);
+	
 	// создание label
 	Texture icon, icon2;
 	icon.loadFromFile("Danger.png");
