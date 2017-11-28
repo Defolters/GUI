@@ -14,5 +14,6 @@ struct TextStyle {
 struct GUIStyle {
 	Texture mainTex, pressTex, overTex;//пока что не робит, грузите все одной текстурой
 	Texture frame;//рамки (в тестовом примере просто коричневые)
+	Texture background;
 	int frameWid;//ширина рамки в пикселях
 };

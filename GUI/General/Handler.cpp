@@ -24,6 +24,7 @@ void main()
 	gst.pressTex.loadFromFile("pressGUI.png");
 	gst.overTex.loadFromFile("overGUI.png");
 	gst.frame.loadFromFile("frame.png");
+	gst.background.loadFromFile("statusBar.png");
 	gst.frameWid = 5;
 
 
@@ -91,6 +92,10 @@ void main()
 	std::vector<std::string> texts = { "", "", "", "","","", "","","","" };
 	std::shared_ptr <RadioButton> radBut = layer->CreateRadButton(layer, 4, 300, 20, 30, 30, texts, &tst, &radStyle);
 
+	std::shared_ptr<GUIStatusBar>  statusBar = layer->CreateStatusBar(40, 5, 10, &gst);
+	std::shared_ptr<GUIBox> box1 = layer->CreateButton(0, 0, 50, 50, "A", &tst, &gst, &buttonAction);
+	std::shared_ptr<GUIBox> box2 = layer->CreateButton(0, 0, 1, 1, "B", &tst, &gst, &buttonAction);
+	std::shared_ptr<GUIBox> box3 = layer->CreateButton(0, 0, 4, 1, "Test", &tst, &gst, &buttonAction);
 	statusBar->AddElement(box1);
 	statusBar->AddElement(box2);
 	statusBar->AddElement(box3);
