@@ -6,30 +6,30 @@ GUILayer::GUILayer(RenderWindow &Swindow, Vector2f position_, Vector2f size_) : 
 	window = &Swindow;
 }
 
-std::shared_ptr<GUIBox> GUILayer::CreateBox(float x, float y, float width, float height, std::string text_, TextStyle *tstyle, GUIStyle *gstyle)
+std::shared_ptr<GUIBox> GUILayer::CreateBox(float x, float y, float width, float height, GUIStyle *gstyle)
 {
-	std::shared_ptr<GUIBox> box(new GUIBox(window, x, y, width, height, text_, tstyle, gstyle));
+	std::shared_ptr<GUIBox> box(new GUIBox(window, x, y, width, height, gstyle));
 	box->parent = this;
 	elements.push_back(box);
 	return box;
 }
-std::shared_ptr<GUIBox> GUILayer::CreateBox(Vector2f position_, Vector2f size_, std::string text_, TextStyle *tstyle, GUIStyle *gstyle)
+std::shared_ptr<GUIBox> GUILayer::CreateBox(Vector2f position_, Vector2f size_, GUIStyle *gstyle)
 {
-	std::shared_ptr<GUIBox> box(new GUIBox(window, position_, size_, text_, tstyle, gstyle));
+	std::shared_ptr<GUIBox> box(new GUIBox(window, position_, size_, gstyle));
 	box->parent = this;
 	elements.push_back(box);
 	return box;
 }
-std::shared_ptr<GUIBox> GUILayer::CreateBox(float x, float y, Vector2f size_, std::string text_, TextStyle *tstyle, GUIStyle *gstyle)
+std::shared_ptr<GUIBox> GUILayer::CreateBox(float x, float y, Vector2f size_, GUIStyle *gstyle)
 {
-	std::shared_ptr<GUIBox> box(new GUIBox(window, x, y, size_, text_, tstyle, gstyle));
+	std::shared_ptr<GUIBox> box(new GUIBox(window, x, y, size_, gstyle));
 	box->parent = this;
 	elements.push_back(box);
 	return box;
 }
-std::shared_ptr<GUIBox> GUILayer::CreateBox(Vector2f position_, float width, float height, std::string text_, TextStyle *tstyle, GUIStyle *gstyle)
+std::shared_ptr<GUIBox> GUILayer::CreateBox(Vector2f position_, float width, float height, GUIStyle *gstyle)
 {
-	std::shared_ptr<GUIBox> box(new GUIBox(window, position_, width, height, text_, tstyle, gstyle));
+	std::shared_ptr<GUIBox> box(new GUIBox(window, position_, width, height, gstyle));
 	box->parent = this;
 	elements.push_back(box);
 	return box;
@@ -135,4 +135,18 @@ std::shared_ptr<ScrollBar> GUILayer::CreateScrollBar(float x, float y, float wid
 	scrollbar->parent = this;
 	elements.push_back(scrollbar);
 	return scrollbar;
+}
+
+std::shared_ptr<Slider> GUILayer::CreateSlider(float line_position_x, float line_position_y, float line_width_, float line_height_, float handler_width_, float handler_height_, float value_range_from_, float value_range_to_, float value_)
+{
+	std::shared_ptr<Slider> slider(new Slider(window, line_position_x, line_position_y, line_width_, line_height_, handler_width_, handler_height_, value_range_from_, value_range_to_, value_));
+	elements.push_back(slider);
+	return slider;
+}
+
+std::shared_ptr<Slider> GUILayer::CreateSlider(float line_position_x, float line_position_y, float line_width_, float line_height_, float handler_width_, float handler_height_, float value_range_from_, float value_range_to_, float value_, void(*action_on_move)(float slider_value))
+{
+	std::shared_ptr<Slider> slider(new Slider(window, line_position_x, line_position_y, line_width_, line_height_, handler_width_, handler_height_, value_range_from_, value_range_to_, value_, action_on_move));
+	elements.push_back(slider);
+	return slider;
 }
