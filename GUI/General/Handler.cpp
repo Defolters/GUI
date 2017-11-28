@@ -52,12 +52,18 @@ void main()
 	// текст и иконка
 	std::shared_ptr<GUILabel> label2 = layer->CreateLabel(0, 400, 0, 0, "text to the right of the icon", &tst, &icon2, &gst);
 
+	//сохраняем ID label2
+	int label2ID = label2->GetID();
 	//добавляем label1 уже существующий label2 как дочерний
 	//НО
 	//По скольку Даниил в label1.Draw() не вызывает метод Draw() базового класса, label2 не отрисовывается
 	//Метод Draw базового класса рисует все дочерние элементы
 	//поэтому если вам это надо, то в начале своей функции Draw вызовите родительский Draw
 	label1->AddElement(label2);
+	//получаем указатель на label2, находя его по id
+	auto label2again = label1->GetElement(label2ID);
+	if (label2again.get() != nullptr)//если label2 дочерний для label1, то вернется указатель на него, если нет, то на nullptr
+		std::cout << "label2 is child of label1!" << std::endl;
 	// Cоздание прогресс бара. 
 	std::shared_ptr<GUIProgressBar> progressBar = layer->CreateProgressBar(SCREEN_WIDTH / 3 + 50, SCREEN_HEIGHT / 3, 200, 30, "Sorting...", &tst, &gst,
 		0, 200, Color::White, Color::Green);

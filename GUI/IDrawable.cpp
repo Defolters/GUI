@@ -32,14 +32,40 @@ Vector2f IDrawable::GetPosition()
 	return position;
 }
 
+int IDrawable::GetID()
+{
+	return id;
+}
+
+std::shared_ptr<IDrawable> IDrawable::GetElement(int id)
+{
+	auto position = std::find_if(elements.begin(), elements.end(),
+		[id](std::shared_ptr<IDrawable> const& element)
+	{return id == element->GetID(); });
+	if (position != elements.end())
+		return *position;
+	else
+		return std::shared_ptr<IDrawable>(nullptr);
+}
+
 void IDrawable::Draw()
 {
 	for (auto& element : elements)
 		element->Draw();
 }
 
+IDrawable::IDrawable()
+{
+	id = UIDGenerator::Instance().GenerateID();
+	position.x = 0;
+	position.y = 0;
+	size.x = 0;
+	size.y = 0;
+}
+
 IDrawable::IDrawable(float x, float y, float width, float height)
 {
+	id = UIDGenerator::Instance().GenerateID();
 	position.x = x;
 	position.y = y;
 	size.x = width;
@@ -48,6 +74,7 @@ IDrawable::IDrawable(float x, float y, float width, float height)
 
 IDrawable::IDrawable(Vector2f position_, float width, float height)
 {
+	id = UIDGenerator::Instance().GenerateID();
 	position = position_;
 	size.x = width;
 	size.y = height;
@@ -55,6 +82,7 @@ IDrawable::IDrawable(Vector2f position_, float width, float height)
 
 IDrawable::IDrawable(float x, float y, Vector2f size_)
 {
+	id = UIDGenerator::Instance().GenerateID();
 	position.x = x;
 	position.y = y;
 	size = size_;
@@ -62,6 +90,7 @@ IDrawable::IDrawable(float x, float y, Vector2f size_)
 
 IDrawable::IDrawable(Vector2f position_, Vector2f size_)
 {
+	id = UIDGenerator::Instance().GenerateID();
 	position = position_;
 	size = size_;
 }

@@ -27,10 +27,10 @@ public:
 	//для сохранения инкапсуляции:
 	//СОЗДАВАЙТЕ ТАКИЕ МЕТОДЫ (хотя бы 1) ДЛЯ СВОИХ ЭЛЕМЕНТОВ
 	//он должен создавать элемент, сохранять его в векторе (описаны выше) и возвращать shared_ptr на него (как это используется смотрите в handler.cpp)
-	std::shared_ptr<GUIBox> CreateBox(float x, float y, float width, float height, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
-	std::shared_ptr<GUIBox> CreateBox(Vector2f position_, Vector2f size_, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
-	std::shared_ptr<GUIBox> CreateBox(Vector2f position_, float width, float height, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
-	std::shared_ptr<GUIBox> CreateBox(float x, float y, Vector2f size_, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
+	std::shared_ptr<GUIBox> CreateBox(float x, float y, float width, float height, GUIStyle *gstyle);
+	std::shared_ptr<GUIBox> CreateBox(Vector2f position_, Vector2f size_, GUIStyle *gstyle);
+	std::shared_ptr<GUIBox> CreateBox(Vector2f position_, float width, float height, GUIStyle *gstyle);
+	std::shared_ptr<GUIBox> CreateBox(float x, float y, Vector2f size_, GUIStyle *gstyle);
 
 	std::shared_ptr<GUIButton> CreateButton(float x, float y, float width, float height, std::string text, TextStyle *tstyle, GUIStyle *gstyle, void(*action)());
 	std::shared_ptr<GUIButton> CreateButton(Vector2f position_, Vector2f size_, std::string text, TextStyle *tstyle, GUIStyle *gstyle, void(*action)());
