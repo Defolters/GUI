@@ -161,3 +161,11 @@ std::shared_ptr<GUIStatusBar> GUILayer::CreateStatusBar(float height_, float fra
 	elements.push_back(statusBar);
 	return statusBar;
 }
+
+std::shared_ptr<TextField> GUILayer::CreateTextField(float x, float y, float width, float height, std::string text_, TextStyle *tstyle, GUIStyle *gstyle)
+{
+	std::shared_ptr<TextField> textField(new TextField(window, x, y, width, height, text_, tstyle, gstyle));
+	textField->parent = this;
+	elements.push_back(textField);
+	return textField;
+}
