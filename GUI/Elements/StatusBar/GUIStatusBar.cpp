@@ -41,11 +41,6 @@ void GUIStatusBar::Recalc()
 		(*el)->SetSize(height * ratio, height);
 		currPosition += (*el)->GetSize().x + spacing;
 		((*el)->SetPosition(renderWindow->getSize().x - currPosition, renderWindow->getSize().y - (*el)->GetSize().y - frameSize));
-		
-		/*if ((*el)->GetSize().y > height)
-		{
-			height = (*el)->GetSize().y;
-		}*/
 	}
 	statusBar->setScale(Vector2f(width, height + frameSize*2));
 	statusBar->setPosition(0, renderWindow->getSize().y - height - frameSize*2);

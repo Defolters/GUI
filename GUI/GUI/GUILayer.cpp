@@ -159,3 +159,4 @@ std::shared_ptr<GUIStatusBar> GUILayer::CreateStatusBar(float height_, float fra
 	statusBar->parent = this;
 	elements.push_back(statusBar);
 	return statusBar;
+}

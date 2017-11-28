@@ -62,9 +62,9 @@ void main()
 	std::shared_ptr<GUIProgressBar> progressBar = layer->CreateProgressBar(SCREEN_WIDTH / 3 + 50, SCREEN_HEIGHT / 3, 200, 30, "Sorting...", &tst, &gst,
 		0, 200, Color::White, Color::Green);
 
-	std::shared_ptr<ScrollBar> scrollbarHor = layer->CreateScrollBar(0, 0, 0, 0, "test", &tst, &gst, Orientation::HORIZONTAL);
+	//std::shared_ptr<ScrollBar> scrollbarHor = layer->CreateScrollBar(0, 0, 0, 0, "test", &tst, &gst, Orientation::HORIZONTAL);
 
-	std::shared_ptr<ScrollBar> scrollbarVert = layer->CreateScrollBar(0, 0, 0, 0, "test", &tst, &gst, Orientation::VERTICAL);
+	//std::shared_ptr<ScrollBar> scrollbarVert = layer->CreateScrollBar(0, 0, 0, 0, "test", &tst, &gst, Orientation::VERTICAL);
 
 	//создаем слайдер
 	std::shared_ptr<Slider> slider = layer->CreateSlider(225, 450, 350, 20, 35, 38, 0, 100, 20, &onSliderMove);
@@ -74,9 +74,11 @@ void main()
 	Texture statusBarBackground;
 	statusBarBackground.loadFromFile("statusBar.png");
 	std::shared_ptr<GUIStatusBar>  statusBar = layer->CreateStatusBar(40, 5, 10, &statusBarBackground);
-	std::shared_ptr<GUIBox> box2 = layer->CreateButton(100, 00, 40, 40, "A", &tst, &gst, &buttonAction);
-	std::shared_ptr<GUIBox> box3 = layer->CreateButton(100, 00, 40, 40, "B", &tst, &gst, &buttonAction);
+	std::shared_ptr<GUIBox> box1 = layer->CreateButton(0, 0, 1, 1, "A", &tst, &gst, &buttonAction);
+	std::shared_ptr<GUIBox> box2 = layer->CreateButton(0, 0, 1, 1, "B", &tst, &gst, &buttonAction);
+	std::shared_ptr<GUIBox> box3 = layer->CreateButton(0, 0, 4, 1, "Test", &tst, &gst, &buttonAction);
 
+	statusBar->AddElement(box1);
 	statusBar->AddElement(box2);
 	statusBar->AddElement(box3);
 	while (1)
