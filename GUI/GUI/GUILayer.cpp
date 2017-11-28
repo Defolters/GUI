@@ -169,3 +169,10 @@ std::shared_ptr<TextField> GUILayer::CreateTextField(float x, float y, float wid
 	elements.push_back(textField);
 	return textField;
 }
+
+std::shared_ptr<TextArea> GUILayer::CreateTextArea(float x, float y, float width, float height, TextStyle * tstyle, GUIStyle * gstyle)
+{
+	std::shared_ptr<TextArea> textarea(new TextArea(window, x, y, width, height, tstyle, gstyle));
+	elements.push_back(textarea);
+	return textarea;
+}

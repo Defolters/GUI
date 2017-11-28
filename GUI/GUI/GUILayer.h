@@ -54,7 +54,8 @@ public:
 	std::shared_ptr<Slider> CreateSlider(float line_position_x, float line_position_y, float line_width_, float line_height_, float handler_width_, float handler_height_, GUIStyle* gst, float value_range_from_, float value_range_to_, float value_, void(*action_on_move)(float slider_value));
 
 	std::shared_ptr<TextField> CreateTextField(float x, float y, float width, float height, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
-
+	
+	std::shared_ptr<TextArea> CreateTextArea(float x, float y, float width, float height, TextStyle * tstyle, GUIStyle * gstyle);
 	//Запускает обработчики у элементов, трогать его не надо
 	void handleEvent(const sf::Event& event) override;
 
