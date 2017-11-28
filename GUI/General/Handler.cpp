@@ -54,19 +54,15 @@ void main()
 	icon.loadFromFile("Danger.png");
 	icon2.loadFromFile("Galaxy.png");
 	// просто текст
-	std::shared_ptr<GUILabel> label = layer->CreateLabel(0, 300, 0, 0, "Just text", &tst, &gst);
+	std::shared_ptr<GUILabel> label = layer->CreateLabel(0, 300, 100, 40, "Just text", &tst, &gst);
 	// иконка
-	std::shared_ptr<GUILabel> label1 = layer->CreateLabel(0, 330, 0, 0, "", &tst, &icon, &gst);
+	std::shared_ptr<GUILabel> label1 = layer->CreateLabel(0, 330, 100, 40, "", &tst, &icon, &gst);
 	// текст и иконка
-	std::shared_ptr<GUILabel> label2 = layer->CreateLabel(0, 400, 0, 0, "text to the right of the icon", &tst, &icon2, &gst);
+	std::shared_ptr<GUILabel> label2 = layer->CreateLabel(0, 400, 100, 40, "text to the right of the icon", &tst, &icon2, &gst);
 
 	//сохраняем ID label2
 	int label2ID = label2->GetID();
 	//добавляем label1 уже существующий label2 как дочерний
-	//НО
-	//По скольку Даниил в label1.Draw() не вызывает метод Draw() базового класса, label2 не отрисовывается
-	//Метод Draw базового класса рисует все дочерние элементы
-	//поэтому если вам это надо, то в начале своей функции Draw вызовите родительский Draw
 	label1->AddElement(label2);
 	//получаем указатель на label2, находя его по id
 	auto label2again = label1->GetElement(label2ID);
@@ -85,12 +81,7 @@ void main()
 
 	//Создание статус бара
 	std::shared_ptr<GUIStatusBar>  statusBar = layer->CreateStatusBar(40, 5, 10, &sBarStyle);
-	std::shared_ptr<GUIBox> box1 = layer->CreateButton(100, 0, 50, 50, "A", &tst, &gst, &buttonAction);
-	std::shared_ptr<GUIBox> box2 = layer->CreateButton(0, 0, 1, 1, "B", &tst, &gst, &buttonAction);
-	std::shared_ptr<GUIBox> box3 = layer->CreateButton(0, 0, 4, 1, "Test", &tst, &gst, &buttonAction);
-
-	std::shared_ptr<GUIStatusBar>  statusBar = layer->CreateStatusBar(40, 5, 10, &gst);
-	std::shared_ptr<GUIBox> box1 = layer->CreateButton(0, 0, 50, 50, "A", &tst, &gst, &buttonAction);
+	std::shared_ptr<GUIBox> box1 = layer->CreateButton(100, 0, 50, 50, "", &tst, &gst, &buttonAction);
 	std::shared_ptr<GUIBox> box2 = layer->CreateButton(0, 0, 1, 1, "B", &tst, &gst, &buttonAction);
 	std::shared_ptr<GUIBox> box3 = layer->CreateButton(0, 0, 4, 1, "Test", &tst, &gst, &buttonAction);
 	statusBar->AddElement(box1);

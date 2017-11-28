@@ -14,7 +14,6 @@ struct TextStyle {
 struct GUIStyle {
 	Texture mainTex, pressTex, overTex;
 	Texture frame;//рамки (в тестовом примере просто коричневые)
-	Texture background;
 	int frameWid;//ширина рамки в пикселях
 	Texture sliderBackTex, sliderFrontTex, sliderHandlerTex;//текстуры для слайдера
 	Texture background;
