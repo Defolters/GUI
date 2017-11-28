@@ -25,6 +25,10 @@ void main()
 	gst.overTex.loadFromFile("overGUI.png");
 	gst.frame.loadFromFile("frame.png");
 	gst.frameWid = 5;
+	//текстуры слайдера
+	+gst.sliderBackTex.loadFromFile("slider_back_line.png");
+	+gst.sliderFrontTex.loadFromFile("slider_front_line.png");
+	+gst.sliderHandlerTex.loadFromFile("slider_handler.png");
 
 	//пример создания стиля текста
 	static TextStyle tst;
@@ -32,6 +36,9 @@ void main()
 	tst.color.r = tst.color.g = tst.color.b = 255;
 	tst.fontSize = 22;
 	tst.align = 'c';
+
+	static GUIStyle sBarStyle;
+	sBarStyle.background.loadFromFile("statusBar.png");
 	
 	//создание окна и слоя гуи на нем (можете прям копировать, если лень разбираться, да оно и не сильно надо пока)
 	WindowTab main(VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "main");
@@ -68,14 +75,22 @@ void main()
 	std::shared_ptr<GUIProgressBar> progressBar = layer->CreateProgressBar(SCREEN_WIDTH / 3 + 50, SCREEN_HEIGHT / 3, 200, 30, "Sorting...", &tst, &gst,
 		0, 200, Color::White, Color::Green);
 
-	std::shared_ptr<ScrollBar> scrollbarHor = layer->CreateScrollBar(0, 0, 0, 0, &gst, Orientation::HORIZONTAL,1600);
+    std::shared_ptr<ScrollBar> scrollbarHor = layer->CreateScrollBar(0, 0, 0, 0, &gst, Orientation::HORIZONTAL, 1600);
 
-	std::shared_ptr<ScrollBar> scrollbarVert = layer->CreateScrollBar(0, 0, 0, 0, &gst, Orientation::VERTICAL,1800);
+    std::shared_ptr<ScrollBar> scrollbarVert = layer->CreateScrollBar(0, 0, 0, 0, &gst, Orientation::VERTICAL, 1800);
 
 	//создаем слайдер
-	std::shared_ptr<Slider> slider = layer->CreateSlider(225, 450, 350, 20, 35, 38, 0, 100, 20, &onSliderMove);
-	slider.get()->SetTextures("slider_back_line.png", "slider_front_line.png", "slider_handler.png");
+	std::shared_ptr<Slider> slider = layer->CreateSlider(225, 450, 350, 20, 35, 38, &gst, 0, 100, 20, &onSliderMove);
 
+	//Создание статус бара
+	std::shared_ptr<GUIStatusBar>  statusBar = layer->CreateStatusBar(40, 5, 10, &sBarStyle);
+	std::shared_ptr<GUIBox> box1 = layer->CreateButton(100, 0, 50, 50, "A", &tst, &gst, &buttonAction);
+	std::shared_ptr<GUIBox> box2 = layer->CreateButton(0, 0, 1, 1, "B", &tst, &gst, &buttonAction);
+	std::shared_ptr<GUIBox> box3 = layer->CreateButton(0, 0, 4, 1, "Test", &tst, &gst, &buttonAction);
+
+	statusBar->AddElement(box1);
+	statusBar->AddElement(box2);
+	statusBar->AddElement(box3);
 	while (1)
 	{
 		// Костыль для теста на время, пока нет Observer.
