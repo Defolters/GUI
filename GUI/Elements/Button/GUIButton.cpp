@@ -1,29 +1,38 @@
 #include "GUIButton.h"
+#include "../../GUI/GUILayer.h"
+GUIButton::GUIButton(GUILayer* layer_, RenderWindow* renderWindow_, float x, float y, float width, float height, std::string text_, TextStyle *Ctstyle, GUIStyle *Cgstyle, void(*Caction)()) : GUIBox(renderWindow_, x, y, width, height, Cgstyle)
+{
+	auto label = layer_->CreateLabel(Vector2f(x, y), Vector2f(width, height), text_, Ctstyle, Cgstyle);
+	AddElement(label);
+	action = Caction;
+	clicked = false;
+	entered = false;
+}
+GUIButton::GUIButton(GUILayer* layer_, RenderWindow* renderWindow_, Vector2f position_, Vector2f size_, std::string text_, TextStyle *Ctstyle, GUIStyle *Cgstyle, void(*Caction)()) : GUIBox(renderWindow_, position_, size_, Cgstyle)
+{
+	auto label = layer_->CreateLabel(position_, size_, text_, Ctstyle, Cgstyle);
+	AddElement(label);
+	action = Caction;
+	clicked = false;
+	entered = false;
+}
+GUIButton::GUIButton(GUILayer* layer_, RenderWindow* renderWindow_, Vector2f position_, float width, float height, std::string text_, TextStyle *Ctstyle, GUIStyle *Cgstyle, void(*Caction)()) : GUIBox(renderWindow_, position_, width, height, Cgstyle)
+{
+	auto label = layer_->CreateLabel(position_, Vector2f(width, height), text_, Ctstyle, Cgstyle);
+	AddElement(label);
+	action = Caction;
+	clicked = false;
+	entered = false;
+}
+GUIButton::GUIButton(GUILayer* layer_, RenderWindow* renderWindow_, float x, float y, Vector2f size_, std::string text_, TextStyle *Ctstyle, GUIStyle *Cgstyle, void(*Caction)()) : GUIBox(renderWindow_, x, y, size_, Cgstyle)
+{
+	auto label = layer_->CreateLabel(Vector2f(x, y), size_, text_, Ctstyle, Cgstyle);
+	AddElement(label);
+	action = Caction;
+	clicked = false;
+	entered = false;
+}
 
-GUIButton::GUIButton(RenderWindow* renderWindow_, float x, float y, float width, float height, std::string text_, TextStyle *Ctstyle, GUIStyle *Cgstyle, void(*Caction)()) : GUIBox(renderWindow_, x, y, width, height, Cgstyle)
-{
-	action = Caction;
-	clicked = false;
-	entered = false;
-}
-GUIButton::GUIButton(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_, std::string text_, TextStyle *Ctstyle, GUIStyle *Cgstyle, void(*Caction)()) : GUIBox(renderWindow_, position_, size_, Cgstyle)
-{
-	action = Caction;
-	clicked = false;
-	entered = false;
-}
-GUIButton::GUIButton(RenderWindow* renderWindow_, Vector2f position_, float width, float height, std::string text_, TextStyle *Ctstyle, GUIStyle *Cgstyle, void(*Caction)()) : GUIBox(renderWindow_, position_, width, height, Cgstyle)
-{
-	action = Caction;
-	clicked = false;
-	entered = false;
-}
-GUIButton::GUIButton(RenderWindow* renderWindow_, float x, float y, Vector2f size_, std::string text_, TextStyle *Ctstyle, GUIStyle *Cgstyle, void(*Caction)()) : GUIBox(renderWindow_, x, y, size_, Cgstyle)
-{
-	action = Caction;
-	clicked = false;
-	entered = false;
-}
 
 void GUIButton::handleEvent(const sf::Event & event)
 {
@@ -82,3 +91,8 @@ void GUIButton::handleEvent(const sf::Event & event)
 		}
 }
 
+void GUIButton::Draw()
+{
+	GUIBox::Draw();
+	IDrawable::Draw();
+}

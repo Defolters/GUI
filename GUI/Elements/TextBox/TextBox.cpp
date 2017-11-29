@@ -6,7 +6,7 @@ TextField::TextField(RenderWindow* renderWindow_, float x, float y, float width,
 	//this->SetPosition(150, 150);
 	//this->SetSize(200, 100);
 	txt.setPosition(this->GetPosition().x + 2, this->GetPosition().y + 2);
-	txt.setColor(Color::Black);
+	//txt.setColor(Color::Black);
 	txt.setCharacterSize(this->GetSize().y / 1.5);
 	txt.setFont(tstyle->font);
 	txt.setString(text);
