@@ -14,7 +14,22 @@ void onSliderMove(float slider_value)
 {
 	std::cout << "slider value = " << slider_value << std::endl;
 }
-
+void buttonAction1()
+{
+    std::cout << "Button 1 pressed!" << std::endl;
+}
+void buttonAction2()
+{
+    std::cout << "Button 2 pressed!" << std::endl;
+}
+void buttonAction3()
+{
+    std::cout << "Button 3 pressed!" << std::endl;
+}
+void buttonAction4()
+{
+    std::cout << "Button 4 pressed!" << std::endl;
+}
 //окей. теперь fun part
 void main()
 {
@@ -31,6 +46,11 @@ void main()
 	+gst.sliderFrontTex.loadFromFile("slider_front_line.png");
 	+gst.sliderHandlerTex.loadFromFile("slider_handler.png");
 
+
+    static GUIStyle gst2;
+    gst2.mainTex.loadFromFile("01.png");
+    gst2.frame.loadFromFile("02.png");
+    gst2.frameWid = 5;
 	//пример создания стиля текста
 	static TextStyle tst;
 	tst.font.loadFromFile("Robotic.ttf");
@@ -47,8 +67,8 @@ void main()
 	//вот досюда
 
 	//пример создания кнопки
-	std::shared_ptr<GUIButton> button = layer->CreateButton(20, 20, 100,100, "button", &tst, &gst, &buttonAction);
-	
+	//std::shared_ptr<GUIButton> button = layer->CreateButton(20, 20, 100,100, "button", &tst, &gst, &buttonAction);
+
 	// создание label
 	Texture icon, icon2;
 	icon.loadFromFile("Danger.png");
@@ -87,6 +107,15 @@ void main()
 	statusBar->AddElement(box1);
 	statusBar->AddElement(box2);
 	statusBar->AddElement(box3);
+
+
+    //menu bar
+    std::shared_ptr<MenuBar> menuBar = layer->CreateMenuBar(0, 0, SCREEN_WIDTH - 12, 50, "", &tst, &gst2,
+        0, 200, Color::White);
+    menuBar->addButton("1", &buttonAction1);
+    menuBar->addButton("2", &buttonAction2);
+    menuBar->addButton("3", &buttonAction3);
+    menuBar->addButton("4", &buttonAction4);
 
 	std::shared_ptr<TextField> textBox = layer->CreateTextField(250, 350, 100, 40, "textField", &tst, &gst);
 

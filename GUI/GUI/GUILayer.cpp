@@ -162,6 +162,16 @@ std::shared_ptr<GUIStatusBar> GUILayer::CreateStatusBar(float height_, float fra
 	return statusBar;
 }
 
+std::shared_ptr<MenuBar> GUILayer::CreateMenuBar(float x, float y, float width, float height, std::string text, TextStyle *tstyle,
+    GUIStyle *gstyle,
+    float leftBorder, float rightBorder, Color staticBarColor)
+{
+    std::shared_ptr<MenuBar> menuBar(new MenuBar(window, x, y, width, height, text, tstyle, gstyle, leftBorder, rightBorder, staticBarColor, this));
+    menuBar->parent = this;
+    elements.push_back(menuBar);
+    return menuBar;
+}
+
 std::shared_ptr<TextField> GUILayer::CreateTextField(float x, float y, float width, float height, std::string text_, TextStyle *tstyle, GUIStyle *gstyle)
 {
 	std::shared_ptr<TextField> textField(new TextField(window, x, y, width, height, text_, tstyle, gstyle));
