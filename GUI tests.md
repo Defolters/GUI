@@ -2,8 +2,8 @@
 ### Elements:
 
 1. #### Progress Bar
-	1. The correct display of the ProgressBar -> **false**
-	2. The percent do not go beyond the frame -> **not all**
+	a. The correct display of the ProgressBar -> **false**
+	b. The percent do not go beyond the frame -> **not all**
 		- Non ability to specify negative left margin -> **false**
 		- Non ability to specify negative right margin -> **false**
 	3. The correct сhange the ProgressBar to fit the screen (resizing): *more* -> **false**, *less* -> **false**, *width* -> **false**, *height* -> **false** 
