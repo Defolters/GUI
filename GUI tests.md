@@ -21,14 +21,14 @@
 #### <li id="node-1"><a href="#ref-1">↩</a> ProgressBar
 1. The correct display of the ProgressBar -> **false**
 2. The percent do not go beyond the frame -> **not all**
-		- Non ability to specify negative left margin -> **false**
-		- Non ability to specify negative right margin -> **false**
+		1. Non ability to specify negative left margin -> **false**
+		2. Non ability to specify negative right margin -> **false**
 3. The correct сhange the ProgressBar to fit the screen (resizing): *more* -> **false**, *less* -> **false**, *width* -> **false**, *height* -> **false** 
 4. The correct display of the Lable -> **true**
 
 #### <li id="node-2"><a href="#ref-1">↩</a> Scroll Bar
 1. The correct display of the ScrollBar -> **not all** 
-		- Not overlap of sliders -> **false**
+		1. Not overlap of sliders -> **false**
 2. The slider does not go beyond the scrollbar -> **true**
 3. The correct сhange the ScrollBar to fit the screen (resizing): *more* -> **false**, *less* -> **false**, *width* -> **false**, *height* -> **false** 
 4. The correct sending of coordinates to the ScrollPanel -> **false**
@@ -109,7 +109,7 @@
 1. The correct display of the TextBox -> **not all**
 2. Objects do not go beyond TextBox -> **false**
 3. Support for text editing -> **not all**
-		- Ability to set cursor on the desired position -> **false** 
+		1. Ability to set cursor on the desired position -> **false** 
 4. Hotkey support -> **true**
 5. Support of another language -> **false** 
 6. The non independence of the field of printing and display fields -> **false** 
@@ -120,7 +120,7 @@
 1. The correct display of the TextArea -> **not all**
 2. Objects do not go beyond TextArea -> **false**
 3. Support for text editing -> **not all**
-		- Ability to set cursor on the desired position -> **false**
+		1. Ability to set cursor on the desired position -> **false**
 4. Hotkey support -> **true**
 5. The correct text scrolling -> **false**
 6. The correct сhange the TextArea to fit the screen (resizing): *more* -> **false**, *less* -> **false**, *width* -> **false**, *height* -> **false** 
