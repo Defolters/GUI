@@ -111,7 +111,7 @@
 3. Support for text editing -> **not all**
 		- Ability to set cursor on the desired position -> **false** 
 4. Hotkey support -> **true**
- 5. Support of another language -> **false** 
+5. Support of another language -> **false** 
 6. The non independence of the field of printing and display fields -> **false** 
 7. The correct сhange the TextBox to fit the screen (resizing): *more* -> **false**, *less* -> **false**, *width* -> **false**, *height* -> **false** 
 
