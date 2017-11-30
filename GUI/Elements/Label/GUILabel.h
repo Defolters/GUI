@@ -19,8 +19,8 @@ private:
     TextStyle *tstyle; /*!< стиль текста */
     Alignment horizontalAlignment = Alignment::CENTER; /*!< горизонтальное выравнивание */
     Alignment verticalAlignment = Alignment::CENTER; /*!< вертикальное выравнивание */
-    int iconTextGap; /*!< расстояние между иконкой и текстом */
-    bool isDependsOnSize = true;
+    unsigned int GapBetweenIconText; /*!< расстояние между иконкой и текстом */
+    bool isDependsOnSize = true; /*!< автоматический подгон размера шрифта под размер (области label) */
     RectangleShape *rect = nullptr;
 
     void FindFitSizeOfFont(Vector2f size_);
@@ -131,8 +131,8 @@ public:
     Если текст задан, то создает label, содержащий иконку и текст
     \param renderWindow_ окно, в которое рисуем
     */
-    void SetHorizontalAlignment(Alignment);
-    void SetVerticalAlignment(Alignment);
+    void SetHorizontalAlignment(Alignment aligment);
+    void SetVerticalAlignment(Alignment aligment);
     Alignment GetHorizontalAlignment();
     Alignment GetVerticalAlignment();
     /*
@@ -144,13 +144,13 @@ public:
     The SwingConstants interface defines five possible values for horizontal position: LEADING, LEFT, CENTER, RIGHT, and TRAILING (the default). 
     For vertical position: TOP, CENTER (the default), and BOTTOM.
     */
-    void SetHorizontalTextPosition(Alignment);
-    void SetVerticalTextPosition(Alignment);
+    void SetHorizontalTextPosition(Alignment aligment);
+    void SetVerticalTextPosition(Alignment aligment);
     Alignment GetHorizontalTextPosition();
     Alignment GetVerticalTextPosition();
 
     //! Sets or gets the number of pixels between the label's text and its image.
-    void SetIconTextGap(int);
-    int GetIconTextGap();
+    void SetGapBetweenIconText(unsigned int gap);
+    unsigned int GetGapBetweenIconText();
 };
 

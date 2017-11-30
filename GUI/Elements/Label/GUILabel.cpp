@@ -3,14 +3,49 @@
 
 void GUILabel::FindFitSizeOfFont(Vector2f size_)
 {
-    /*text.setCharacterSize(static_cast<unsigned int>(size_.y) + 3);
+    text.setCharacterSize(static_cast<unsigned int>(size_.y) + 3);
     sf::FloatRect bounds = text.getLocalBounds();
 
     if (bounds.width > size_.x)
     {
         text.setCharacterSize(static_cast<unsigned int>((size_.y * size_.x) / bounds.width) + 1);
+    }
+    /*
+    if (size_.x > size.y)
+    {
+        text.setCharacterSize(static_cast<unsigned int>(size_.x));
+        sf::FloatRect bounds = text.getLocalBounds();
+
+        if (bounds.height > size_.y)
+        {
+            text.setCharacterSize(static_cast<unsigned int>((size_.y * size_.x) / bounds.height));
+        }
+
+        while (bounds.width > size_.x)
+        {
+            text.setCharacterSize(text.getCharacterSize() - 1);
+            std::cout << "bounds.width > size_.x\n";
+            bounds = text.getLocalBounds();
+        }
+    }
+    else
+    {
+        text.setCharacterSize(static_cast<unsigned int>(size_.y));
+        sf::FloatRect bounds = text.getLocalBounds();
+
+        if (bounds.width > size_.x)
+        {
+            text.setCharacterSize(static_cast<unsigned int>((size_.y * size_.x) / bounds.width));
+        }
+        while (bounds.height > size_.y)
+        {
+            text.setCharacterSize(text.getCharacterSize() - 1);
+            std::cout << "bounds.height > size_.y\n";
+            bounds = text.getLocalBounds();
+        }
     }*/
-    unsigned int first = 0, second = 0;
+    /*
+    float first = 0, second = 0;
     bool width = true;
     if (size_.x > size.y)
     {
@@ -23,8 +58,9 @@ void GUILabel::FindFitSizeOfFont(Vector2f size_)
         first = size_.y;
         second = size_.x;
     }
+
     text.setCharacterSize(static_cast<unsigned int>(first));
-    sf::FloatRect bounds = text.getLocalBounds();
+    FloatRect bounds = text.getLocalBounds();
 
     if ((bounds.width > second) && (width == true))
     {
@@ -33,7 +69,7 @@ void GUILabel::FindFitSizeOfFont(Vector2f size_)
     else if ((bounds.height > second) && (width == false))
     {
         text.setCharacterSize(static_cast<unsigned int>((first * second) / bounds.height));
-    }
+    }*/
 }
 
 GUILabel::GUILabel(RenderWindow* renderWindow_, float x, float y, float width,
@@ -44,7 +80,7 @@ GUILabel::GUILabel(RenderWindow* renderWindow_, float x, float y, float width,
     text.setString(text_);
     text.setFont(tstyle->font);
     text.setFillColor(tstyle->color);
-
+    text.setCharacterSize(tstyle->fontSize);
     rect = new RectangleShape(Vector2f(width, height));
     rect->setFillColor(Color::Transparent);
     rect->setOutlineColor(Color::Red);
@@ -62,7 +98,7 @@ GUILabel::GUILabel(RenderWindow* renderWindow_, Vector2f position_, Vector2f siz
     text.setString(text_);
     text.setFont(tstyle->font);
     text.setFillColor(tstyle->color);
-
+    text.setCharacterSize(tstyle->fontSize);
     rect = new RectangleShape(size_);
     rect->setFillColor(Color::Transparent);
     rect->setOutlineColor(Color::Red);
@@ -80,6 +116,7 @@ GUILabel::GUILabel(RenderWindow * renderWindow_, float x, float y, float width,
     text.setString(text_);
     text.setFont(tstyle->font);
     text.setFillColor(tstyle->color);
+    text.setCharacterSize(tstyle->fontSize);
     icon = new Sprite(*iconT);
     rect = new RectangleShape(Vector2f(width, height));
     rect->setFillColor(Color::Transparent);
@@ -97,6 +134,7 @@ GUILabel::GUILabel(RenderWindow * renderWindow_, Vector2f position_, Vector2f si
     text.setString(text_);
     text.setFont(tstyle->font);
     text.setFillColor(tstyle->color);
+    text.setCharacterSize(tstyle->fontSize);
     icon = new Sprite(*iconT);
     rect = new RectangleShape(size_);
     rect->setFillColor(Color::Transparent);
@@ -127,41 +165,66 @@ void GUILabel::Draw()
 
 void GUILabel::Recalc()
 {
-    //text.setOrigin(10,10);
-    
+    Vector2f positionOfBox = GetPosition(); // позиция нашего объекта
+    Vector2f sizeOfBox = GUIBox::GetSize(); // размер нашего объекта
+    float width = sizeOfBox.x;
+    float height = sizeOfBox.y;
 
-    Vector2f pos = GetPosition();
-    Vector2f sz = GUIBox::GetSize();
-    float posX = pos.x;
-    float posY = pos.y;
-    float width = sz.x;
-    float height = sz.y;
+    /*float iconX = 0;
+    float iconY = 0;*/
 
-    float iconX = 0;
-    float iconY = 0;
     FloatRect textRect = text.getLocalBounds();
     float textX = textRect.left + textRect.width / 2.0f;
     float textY = textRect.top + textRect.height / 2.0f;
 
-    text.setOrigin(textX, textY); // center
-    /*
-    text.setCharacterSize(static_cast<unsigned int>(size_.y));
-    sf::FloatRect bounds = text.getLocalBounds();
+    //text.setOrigin(textX, textY); // устанавливаем начало координат на центр текста
 
-    if (bounds.width > size_.x)
+
+
+    // зависит от alignment
+    Vector2f position;
+    Vector2f origin;
+
+    if (horizontalAlignment == Alignment::LEFT)
     {
-        text.setCharacterSize(static_cast<unsigned int>((size_.y * size_.x) / bounds.width));
+        origin.x = textRect.left;
+        position.x = positionOfBox.x;
     }
-    */
+    else if (horizontalAlignment == Alignment::RIGHT)
+    {
+        origin.x = textRect.left + textRect.width;
+        position.x = positionOfBox.x + size.x;
+    }
+    else
+    {
+        origin.x = textRect.left + textRect.width / 2.0f;
+        position.x = positionOfBox.x + size.x / 2;
+    }
+
+
+    if (verticalAlignment == Alignment::TOP)
+    {
+        origin.y = textRect.top;
+        position.y = positionOfBox.y;
+    }
+    else if (verticalAlignment == Alignment::BOTTOM)
+    {
+        origin.y = textRect.top + textRect.height;
+        position.y = positionOfBox.y + size.y;
+    }
+    else
+    {
+        origin.y = textRect.top + textRect.height / 2.0f;
+        position.y = positionOfBox.y + size.y / 2;
+    }
+
+    text.setOrigin(origin);
+    text.setPosition(position); // зависит от alignment
 
     if (isDependsOnSize)
     {
         FindFitSizeOfFont(GetSize());
-        std::cout << text.getCharacterSize() << std::endl;
-    }
-    else
-    {
-        text.setCharacterSize(15);
+        //std::cout << text.getCharacterSize() << std::endl;
     }
     //text.setOrigin(0, 0);
     //FloatRect textRect = text.getLocalBounds();
@@ -177,7 +240,7 @@ void GUILabel::Recalc()
         //text.setPosition(Vector2f(posX + icon->getGlobalBounds().width, posY + (height / 2.0f)));
     }*/
 
-    text.setPosition(Vector2f(posX + iconX + size.x/2, posY + iconY + size.y/2)); // зависит от alignment
+    
 
     //icon->getGlobalBounds().width;
     /*
@@ -191,6 +254,7 @@ void GUILabel::Recalc()
     text.setPosition(Vector2f(posX + 1, posY + 1));
     */
 }
+
 /*
 void GUILabel::SetSize(float width, float height)
 {
@@ -215,13 +279,15 @@ void GUILabel::SetSize(Vector2f size_)
     }
 }
 */
+
 void GUILabel::SetSizeOfText(unsigned int size)
 {
+    text.setCharacterSize(size);
 }
 
 unsigned int GUILabel::GetSizeOfText() const
 {
-    return 0;
+    return text.getCharacterSize();
 }
 
 
@@ -248,4 +314,52 @@ void GUILabel::SetText(char * text)
 char * GUILabel::GetText() const
 {
     return nullptr;
+}
+
+void GUILabel::SetHorizontalAlignment(Alignment aligment)
+{
+    horizontalAlignment = aligment;
+}
+
+void GUILabel::SetVerticalAlignment(Alignment aligment)
+{
+    verticalAlignment = aligment;
+}
+
+Alignment GUILabel::GetHorizontalAlignment()
+{
+    return horizontalAlignment;
+}
+
+Alignment GUILabel::GetVerticalAlignment()
+{
+    return verticalAlignment;
+}
+
+void GUILabel::SetHorizontalTextPosition(Alignment aligment)
+{
+}
+
+void GUILabel::SetVerticalTextPosition(Alignment aligment)
+{
+}
+
+Alignment GUILabel::GetHorizontalTextPosition()
+{
+    return Alignment();
+}
+
+Alignment GUILabel::GetVerticalTextPosition()
+{
+    return Alignment();
+}
+
+void GUILabel::SetGapBetweenIconText(unsigned int gap)
+{
+    GapBetweenIconText = gap;
+}
+
+unsigned int GUILabel::GetGapBetweenIconText()
+{
+    return GapBetweenIconText;
 }

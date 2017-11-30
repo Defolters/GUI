@@ -42,9 +42,9 @@ void main()
 	gst.background.loadFromFile("statusBar.png");
 	gst.frameWid = 5;
 	//текстуры слайдера
-	+gst.sliderBackTex.loadFromFile("slider_back_line.png");
-	+gst.sliderFrontTex.loadFromFile("slider_front_line.png");
-	+gst.sliderHandlerTex.loadFromFile("slider_handler.png");
+	gst.sliderBackTex.loadFromFile("slider_back_line.png");
+	gst.sliderFrontTex.loadFromFile("slider_front_line.png");
+	gst.sliderHandlerTex.loadFromFile("slider_handler.png");
 
 
     static GUIStyle gst2;
@@ -55,7 +55,7 @@ void main()
 	static TextStyle tst;
 	tst.font.loadFromFile("Robotic.ttf");
 	tst.color.r = tst.color.g = tst.color.b = 255;
-	tst.fontSize = 22;
+	tst.fontSize = 10;
 	tst.align = 'c';
 
 	static GUIStyle sBarStyle;
@@ -74,7 +74,18 @@ void main()
 	icon.loadFromFile("Danger.png");
 	icon2.loadFromFile("Galaxy.png");
 	// просто текст
-	std::shared_ptr<GUILabel> label = layer->CreateLabel(0, 300, 100, 20, "Just text", &tst, &gst);
+	std::shared_ptr<GUILabel> label = layer->CreateLabel(0, 300, 100, 40, "CENTER", &tst, &gst);
+    std::shared_ptr<GUILabel> label1 = layer->CreateLabel(0, 10, 100, 40, "LEFT", &tst, &gst);
+    label1->SetHorizontalAlignment(Alignment::LEFT);
+    //label1->SetVerticalAlignment();
+    std::shared_ptr<GUILabel> label2 = layer->CreateLabel(0, 60, 100, 40, "RIGHT", &tst, &gst);
+    label2->SetHorizontalAlignment(Alignment::RIGHT);
+    //label2->SetVerticalAlignment(Alignment::TOP);
+    std::shared_ptr<GUILabel> label3 = layer->CreateLabel(0, 110, 100, 40, "TOP", &tst, &gst);
+    label3->SetVerticalAlignment(Alignment::TOP);
+    std::shared_ptr<GUILabel> label4 = layer->CreateLabel(0, 160, 100, 40, "BOTTOM", &tst, &gst);
+    label4->SetVerticalAlignment(Alignment::BOTTOM);
+
 	// иконка
 	//std::shared_ptr<GUILabel> label1 = layer->CreateLabel(0, 330, 100, 40, "", &tst, &icon, &gst);
 	// текст и иконка
