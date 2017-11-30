@@ -76,57 +76,57 @@ void main()
 	// просто текст
 	std::shared_ptr<GUILabel> label = layer->CreateLabel(0, 300, 100, 20, "Just text", &tst, &gst);
 	// иконка
-	std::shared_ptr<GUILabel> label1 = layer->CreateLabel(0, 330, 100, 40, "", &tst, &icon, &gst);
+	//std::shared_ptr<GUILabel> label1 = layer->CreateLabel(0, 330, 100, 40, "", &tst, &icon, &gst);
 	// текст и иконка
-	std::shared_ptr<GUILabel> label2 = layer->CreateLabel(0, 400, 100, 40, "text to the right of the icon", &tst, &icon2, &gst);
+	//std::shared_ptr<GUILabel> label2 = layer->CreateLabel(0, 400, 100, 40, "text to the right of the icon", &tst, &icon2, &gst);
 
 	//сохраняем ID label2
-	int label2ID = label2->GetID();
+	//int label2ID = label2->GetID();
 	//добавляем label1 уже существующий label2 как дочерний
-	label1->AddElement(label2);
+	//label1->AddElement(label2);
 	//получаем указатель на label2, находя его по id
-	auto label2again = label1->GetElement(label2ID);
-	if (label2again.get() != nullptr)//если label2 дочерний для label1, то вернется указатель на него, если нет, то на nullptr
-		std::cout << "label2 is child of label1!" << std::endl;
+	//auto label2again = label1->GetElement(label2ID);
+	//if (label2again.get() != nullptr)//если label2 дочерний для label1, то вернется указатель на него, если нет, то на nullptr
+	//	std::cout << "label2 is child of label1!" << std::endl;
 	// Cоздание прогресс бара. 
-	std::shared_ptr<GUIProgressBar> progressBar = layer->CreateProgressBar(layer, SCREEN_WIDTH / 3 + 50, SCREEN_HEIGHT / 3, 200, 30, "Sorting...", &tst, &gst,
-		0, 200, Color::White, Color::Green);
+	/*std::shared_ptr<GUIProgressBar> progressBar = layer->CreateProgressBar(layer, SCREEN_WIDTH / 3 , SCREEN_HEIGHT / 3 +200, 200, 30, "Sorting...", &tst, &gst,
+		0, 200, Color::White, Color::Green);*/
 
     std::shared_ptr<ScrollBar> scrollbarHor = layer->CreateScrollBar(0, 0, 0, 0, &gst, Orientation::HORIZONTAL, 1600);
 
     std::shared_ptr<ScrollBar> scrollbarVert = layer->CreateScrollBar(0, 0, 0, 0, &gst, Orientation::VERTICAL, 1800);
 
 	//создаем слайдер
-	std::shared_ptr<Slider> slider = layer->CreateSlider(225, 450, 350, 20, 35, 38, &gst, 0, 100, 20, &onSliderMove);
+	//std::shared_ptr<Slider> slider = layer->CreateSlider(225, 450, 350, 20, 35, 38, &gst, 0, 100, 20, &onSliderMove);
 
 	//Создание статус бара
-	std::shared_ptr<GUIStatusBar>  statusBar = layer->CreateStatusBar(40, 5, 10, &sBarStyle);
+	/*std::shared_ptr<GUIStatusBar>  statusBar = layer->CreateStatusBar(40, 5, 10, &sBarStyle);
 	std::shared_ptr<GUIBox> box1 = layer->CreateButton(100, 0, 50, 50, "", &tst, &gst, &buttonAction);
 	std::shared_ptr<GUIBox> box2 = layer->CreateButton(0, 0, 1, 1, "B", &tst, &gst, &buttonAction);
 	std::shared_ptr<GUIBox> box3 = layer->CreateButton(0, 0, 4, 1, "Test", &tst, &gst, &buttonAction);
 	statusBar->AddElement(box1);
 	statusBar->AddElement(box2);
-	statusBar->AddElement(box3);
+	statusBar->AddElement(box3);*/
 
 
     //menu bar
-    std::shared_ptr<MenuBar> menuBar = layer->CreateMenuBar(0, 0, SCREEN_WIDTH - 12, 50, "", &tst, &gst2,
+    /*std::shared_ptr<MenuBar> menuBar = layer->CreateMenuBar(0, 0, SCREEN_WIDTH - 12, 50, "", &tst, &gst2,
         0, 200, Color::White);
     menuBar->addButton("1", &buttonAction1);
     menuBar->addButton("2", &buttonAction2);
     menuBar->addButton("3", &buttonAction3);
-    menuBar->addButton("4", &buttonAction4);
+    menuBar->addButton("4", &buttonAction4);*/
 
-	std::shared_ptr<TextField> textBox = layer->CreateTextField(250, 350, 100, 40, "textField", &tst, &gst);
+	//std::shared_ptr<TextField> textBox = layer->CreateTextField(250, 350, 100, 40, "textField", &tst, &gst);
 
-	std::shared_ptr<TextArea> textArea = layer->CreateTextArea(400, 300, 300, 200, &tst, &gst);
+	//std::shared_ptr<TextArea> textArea = layer->CreateTextArea(400, 300, 300, 200, &tst, &gst);
 
 	while (1)
 	{
 		// Костыль для теста на время, пока нет Observer.
 		// Потом будет передаваться ивент об изменении значения бара.
 		//*****тест ProgressBar****
-		progressBar->increase();
+		//progressBar->increase();
 		Sleep(20);
 		//*************************
 
