@@ -21,10 +21,10 @@
 #### <li id="node-1"><a href="#ref-1">↩</a> ProgressBar
 1. The correct display of the ProgressBar -> **false**
 2. The percent do not go beyond the frame -> **not all**
-		1. Non ability to specify negative left margin -> **false**
-		2. Non ability to specify negative right margin -> **false**
-3. The correct сhange the ProgressBar to fit the screen (resizing): *more* -> **false**, *less* -> **false**, *width* -> **false**, *height* -> **false** 
-4. The correct display of the Lable -> **true**
+3. Non ability to specify negative left margin -> **false**
+4. Non ability to specify negative right margin -> **false**
+5. The correct сhange the ProgressBar to fit the screen (resizing): *more* -> **false**, *less* -> **false**, *width* -> **false**, *height* -> **false** 
+6. The correct display of the Lable -> **true**
 
 #### <li id="node-2"><a href="#ref-1">↩</a> Scroll Bar
 1. The correct display of the ScrollBar -> **not all** 
@@ -109,22 +109,22 @@
 1. The correct display of the TextBox -> **not all**
 2. Objects do not go beyond TextBox -> **false**
 3. Support for text editing -> **not all**
-		1. Ability to set cursor on the desired position -> **false** 
-4. Hotkey support -> **true**
-5. Support of another language -> **false** 
-6. The non independence of the field of printing and display fields -> **false** 
-7. The correct сhange the TextBox to fit the screen (resizing): *more* -> **false**, *less* -> **false**, *width* -> **false**, *height* -> **false** 
+4. Ability to set cursor on the desired position -> **false** 
+5. Hotkey support -> **true**
+6. Support of another language -> **false** 
+7. The non independence of the field of printing and display fields -> **false** 
+8. The correct сhange the TextBox to fit the screen (resizing): *more* -> **false**, *less* -> **false**, *width* -> **false**, *height* -> **false** 
 
 #### <li id="node-14"><a href="#ref-1">↩</a> TextArea
 
 1. The correct display of the TextArea -> **not all**
 2. Objects do not go beyond TextArea -> **false**
 3. Support for text editing -> **not all**
-		1. Ability to set cursor on the desired position -> **false**
-4. Hotkey support -> **true**
-5. The correct text scrolling -> **false**
-6. The correct сhange the TextArea to fit the screen (resizing): *more* -> **false**, *less* -> **false**, *width* -> **false**, *height* -> **false** 
-7. The non independence of the field of printing and display fields -> **false**
+4. Ability to set cursor on the desired position -> **false**
+5. Hotkey support -> **true**
+6. The correct text scrolling -> **false**
+7. The correct сhange the TextArea to fit the screen (resizing): *more* -> **false**, *less* -> **false**, *width* -> **false**, *height* -> **false** 
+8. The non independence of the field of printing and display fields -> **false**
 
 #### <li id="node-15"><a href="#ref-1">↩</a> ColorChooser
 
