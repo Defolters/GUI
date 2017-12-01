@@ -46,6 +46,10 @@ public:
 		std::string text, TextStyle *tstyle, GUIStyle *gstyle,
 		float minValue, float maxValue, Color staticBarColor, Color dynamicBarColor);
 
+    std::shared_ptr<MenuBar> CreateMenuBar(float x, float y, float width, float height, std::string text, TextStyle *tstyle,
+        GUIStyle *gstyle,
+        float leftBorder, float rightBorder, Color staticBarColor);
+
 	std::shared_ptr<ScrollBar> CreateScrollBar(float x, float y, float width, float height, GUIStyle *gstyle, Orientation orientation, float sizeScrollPanel_);
 	
 	std::shared_ptr<GUIStatusBar> CreateStatusBar(float height_, float frameSize_, float spacing_, GUIStyle *sBarStyle_);
