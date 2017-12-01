@@ -19,8 +19,9 @@ private:
     TextStyle *tstyle; /*!< стиль текста */
     Alignment horizontalAlignment = Alignment::CENTER; /*!< горизонтальное выравнивание */
     Alignment verticalAlignment = Alignment::CENTER; /*!< вертикальное выравнивание */
-    unsigned int GapBetweenIconText; /*!< расстояние между иконкой и текстом */
-    bool isDependsOnSize = true; /*!< автоматический подгон размера шрифта под размер (области label) */
+    Alignment textToIconAlignment = Alignment::CENTER; /*!< положение текста по отношению к иконке */
+    unsigned int GapBetweenIconText = 0; /*!< расстояние между иконкой и текстом */
+    bool isDependsOnSize = false; /*!< автоматический подгон размера шрифта под размер (области label) */
     RectangleShape *rect = nullptr;
 
     void FindFitSizeOfFont(Vector2f size_);
@@ -146,13 +147,14 @@ public:
     The SwingConstants interface defines five possible values for horizontal position: LEADING, LEFT, CENTER, RIGHT, and TRAILING (the default). 
     For vertical position: TOP, CENTER (the default), and BOTTOM.
     */
-    void SetHorizontalTextPosition(Alignment aligment);
-    void SetVerticalTextPosition(Alignment aligment);
-    Alignment GetHorizontalTextPosition();
-    Alignment GetVerticalTextPosition();
 
+    void SetTextToIconAlignment(Alignment aligment);
+    Alignment GetTextToIconAlignment();
     //! Sets or gets the number of pixels between the label's text and its image.
     void SetGapBetweenIconText(unsigned int gap);
     unsigned int GetGapBetweenIconText();
 };
 
+/*
+если текст + иконка, то он не меняет размер в зависимости от размера бокса.
+*/

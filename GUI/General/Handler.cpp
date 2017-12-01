@@ -74,12 +74,10 @@ void main()
 	icon.loadFromFile("Danger.png");
 	icon2.loadFromFile("Galaxy.png");
 	// просто текст
-    std::shared_ptr<GUILabel> label1 = layer->CreateLabel(110, 10, 100, 50, "LEFT", &tst, &gst);
+    std::shared_ptr<GUILabel> label1 = layer->CreateLabel(0, 10, 100, 50, "LEFT", &tst, &gst);
     label1->SetHorizontalAlignment(Alignment::LEFT);
-    //label1->SetVerticalAlignment();
     std::shared_ptr<GUILabel> label2 = layer->CreateLabel(0, 60, 100, 40, "RIGHT", &tst, &gst);
     label2->SetHorizontalAlignment(Alignment::RIGHT);
-    //label2->SetVerticalAlignment(Alignment::TOP);
     std::shared_ptr<GUILabel> label3 = layer->CreateLabel(0, 110, 100, 40, "TOP", &tst, &gst);
     label3->SetVerticalAlignment(Alignment::TOP);
     std::shared_ptr<GUILabel> label4 = layer->CreateLabel(0, 160, 100, 40, "BOTTOM", &tst, &gst);
@@ -95,6 +93,18 @@ void main()
     std::shared_ptr<GUILabel> labelIcon4 = layer->CreateLabel(110, 190, 100, 50, "", &tst, &icon, &gst);
     labelIcon4->SetVerticalAlignment(Alignment::BOTTOM);
     std::shared_ptr<GUILabel> labelIcon5 = layer->CreateLabel(110, 250, 100, 50, "", &tst, &icon, &gst);
+
+    std::shared_ptr<GUILabel> labelTextIcon1 = layer->CreateLabel(220, 10, 100, 50, "Left", &tst, &icon, &gst);
+    labelTextIcon1->SetTextToIconAlignment(Alignment::LEFT);
+    std::shared_ptr<GUILabel> labelTextIcon2 = layer->CreateLabel(220, 80, 100, 50, "RIGHT", &tst, &icon, &gst);
+    labelTextIcon2->SetTextToIconAlignment(Alignment::RIGHT);
+    std::shared_ptr<GUILabel> labelTextIcon3 = layer->CreateLabel(220, 150, 100, 50, "TOP", &tst, &icon, &gst);
+    labelTextIcon3->SetTextToIconAlignment(Alignment::TOP);
+    std::shared_ptr<GUILabel> labelTextIcon4 = layer->CreateLabel(220, 220, 100, 50, "BOTTOM", &tst, &icon, &gst);
+    labelTextIcon4->SetTextToIconAlignment(Alignment::BOTTOM);
+    std::shared_ptr<GUILabel> labelTextIcon5 = layer->CreateLabel(220, 290, 100, 50, "CENTER", &tst, &icon, &gst);
+
+    //labelTextIcon1->SetHorizontalAlignment(Alignment::LEFT);
 
 	// иконка
 	//std::shared_ptr<GUILabel> label1 = layer->CreateLabel(0, 330, 100, 40, "", &tst, &icon, &gst);

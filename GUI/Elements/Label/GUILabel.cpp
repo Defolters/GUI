@@ -171,7 +171,7 @@ void GUILabel::Draw()
     {
         renderWindow->draw(*icon);
     }
-    if (rect != nullptr)
+    if ((rect != nullptr) && ((text.getString() == "") || (icon == nullptr)))
     {
         renderWindow->draw(*rect);
     }
@@ -186,7 +186,7 @@ void GUILabel::Recalc()
 
     /*float iconX = 0;
     float iconY = 0;*/
-
+    text.setFillColor(Color::Red);
     FloatRect textRect = text.getLocalBounds();
     float textX = textRect.left + textRect.width / 2.0f;
     float textY = textRect.top + textRect.height / 2.0f;
@@ -238,14 +238,55 @@ void GUILabel::Recalc()
         position.y = positionOfBox.y + size.y / 2;
     }
 
-    text.setOrigin(origin);
-    text.setPosition(position); // зависит от alignment
+    // set position of first element
+    if (text.getString() != "" && icon != nullptr)
+    {
+        // ставим icon, а затем text
+        icon->setOrigin(origin);
+        icon->setPosition(position); // зависит от alignment
 
-    if (icon != nullptr)
+        if (textToIconAlignment == Alignment::LEFT)
+        {
+            text.setOrigin(text.getLocalBounds().left + text.getLocalBounds().width, (text.getLocalBounds().top + text.getLocalBounds().height) / 2);
+            text.setPosition(icon->getGlobalBounds().left - GapBetweenIconText, icon->getGlobalBounds().top + icon->getGlobalBounds().height / 2);
+            // text is first, then icon
+        }
+        else if (textToIconAlignment == Alignment::RIGHT)
+        {
+            text.setOrigin(text.getLocalBounds().left, (text.getLocalBounds().top + text.getLocalBounds().height) / 2);
+            text.setPosition(icon->getGlobalBounds().left + icon->getGlobalBounds().width + GapBetweenIconText, icon->getGlobalBounds().top + icon->getGlobalBounds().height / 2);
+            // text if first, then icon
+        }
+        else if (textToIconAlignment == Alignment::TOP)
+        {
+            text.setOrigin((text.getLocalBounds().left + text.getLocalBounds().width) / 2, text.getLocalBounds().top + text.getLocalBounds().height);
+            text.setPosition(icon->getGlobalBounds().left + icon->getGlobalBounds().width / 2, icon->getGlobalBounds().top - GapBetweenIconText);
+            // text if first, then icon
+        }
+        else if (textToIconAlignment == Alignment::BOTTOM)
+        {
+            text.setOrigin((text.getLocalBounds().left + text.getLocalBounds().width) / 2, text.getLocalBounds().top);
+            text.setPosition(icon->getGlobalBounds().left + icon->getGlobalBounds().width / 2, icon->getGlobalBounds().top + icon->getGlobalBounds().height + GapBetweenIconText);
+            // icon if first, then icon
+        }
+        else if (textToIconAlignment == Alignment::CENTER)
+        {
+            text.setOrigin((text.getLocalBounds().left + text.getLocalBounds().width) / 2, (text.getLocalBounds().top + text.getLocalBounds().height) / 2);
+            text.setPosition(icon->getGlobalBounds().left + icon->getGlobalBounds().width / 2, icon->getGlobalBounds().top + icon->getGlobalBounds().height / 2);
+            std::cout << "center\n";// text if first, then icon????
+        }
+    }
+    else if (icon != nullptr)
     {
         icon->setOrigin(origin);
         icon->setPosition(position); // зависит от alignment
     }
+    else
+    {
+        text.setOrigin(origin);
+        text.setPosition(position); // зависит от alignment
+    }
+    // set position of second element
 
     /*if (icon != nullptr)
     {
@@ -351,22 +392,14 @@ Alignment GUILabel::GetVerticalAlignment()
     return verticalAlignment;
 }
 
-void GUILabel::SetHorizontalTextPosition(Alignment aligment)
+void GUILabel::SetTextToIconAlignment(Alignment aligment)
 {
+    textToIconAlignment = aligment;
 }
 
-void GUILabel::SetVerticalTextPosition(Alignment aligment)
+Alignment GUILabel::GetTextToIconAlignment()
 {
-}
-
-Alignment GUILabel::GetHorizontalTextPosition()
-{
-    return Alignment();
-}
-
-Alignment GUILabel::GetVerticalTextPosition()
-{
-    return Alignment();
+    return textToIconAlignment;
 }
 
 void GUILabel::SetGapBetweenIconText(unsigned int gap)
