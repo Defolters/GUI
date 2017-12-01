@@ -24,6 +24,8 @@ private:
     RectangleShape *rect = nullptr;
 
     void FindFitSizeOfFont(Vector2f size_);
+    void FindFitScaleOfImage(Vector2f size_);
+
 
 protected:
 

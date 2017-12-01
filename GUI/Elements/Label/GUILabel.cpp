@@ -72,6 +72,20 @@ void GUILabel::FindFitSizeOfFont(Vector2f size_)
     }*/
 }
 
+void GUILabel::FindFitScaleOfImage(Vector2f size_)
+{
+    while (icon->getGlobalBounds().width > size_.x)
+    {
+        std::cout << "width icon\n";
+        icon->scale(0.9, 0.9);
+    }
+    while (icon->getGlobalBounds().height > size_.y)
+    {
+        std::cout << "height icon\n";
+        icon->scale(0.9, 0.9);
+    }
+}
+
 GUILabel::GUILabel(RenderWindow* renderWindow_, float x, float y, float width,
     float height, std::string text_, TextStyle *Ctstyle, GUIStyle *Cgstyle) :
     GUIBox(renderWindow_, x, y, width, height, Cgstyle),
@@ -177,6 +191,12 @@ void GUILabel::Recalc()
     float textX = textRect.left + textRect.width / 2.0f;
     float textY = textRect.top + textRect.height / 2.0f;
 
+    if (icon != nullptr)
+    {
+        textRect = icon->getLocalBounds();
+        float textX = textRect.left + textRect.width / 2.0f;
+        float textY = textRect.top + textRect.height / 2.0f;
+    }
     //text.setOrigin(textX, textY); // устанавливаем начало координат на центр текста
 
 
@@ -221,38 +241,33 @@ void GUILabel::Recalc()
     text.setOrigin(origin);
     text.setPosition(position); // зависит от alignment
 
-    if (isDependsOnSize)
+    if (icon != nullptr)
     {
-        FindFitSizeOfFont(GetSize());
-        //std::cout << text.getCharacterSize() << std::endl;
+        icon->setOrigin(origin);
+        icon->setPosition(position); // зависит от alignment
     }
-    //text.setOrigin(0, 0);
-    //FloatRect textRect = text.getLocalBounds();
 
     /*if (icon != nullptr)
     {
-        icon->setPosition(posX, posY);
+        icon->setPosition(width, height);
         //(icon->setOrigin;)
         icon->setScale(0.5, 0.5);
-        iconX = icon->getGlobalBounds().width + textRect.width / 2.0f;
-        iconY = icon->getGlobalBounds().height / 2.0f;
+        //iconX = icon->getGlobalBounds().width + textRect.width / 2.0f;
+        //iconY = icon->getGlobalBounds().height / 2.0f;
         text.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
-        //text.setPosition(Vector2f(posX + icon->getGlobalBounds().width, posY + (height / 2.0f)));
+        text.setPosition(Vector2f(width + icon->getGlobalBounds().width, height + (height / 2.0f)));
     }*/
 
-    
-
-    //icon->getGlobalBounds().width;
-    /*
-    if (tstyle->align == 'c')
+    if (isDependsOnSize)
     {
-    FloatRect textRect = text.getLocalBounds();
-    text.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
-    text.setPosition(Vector2f(posX + (width / 2.0f), posY + (height / 2.0f)));
+        FindFitSizeOfFont(GetSize());
+        if (icon != nullptr)
+        {
+            FindFitScaleOfImage(GetSize());
+        }
     }
-    if (tstyle->align == 'l')
-    text.setPosition(Vector2f(posX + 1, posY + 1));
-    */
+
+    // мы нашли (НЕ СОВСЕМ) нужные размеры, теперь в зависимости от расположения текста относительно иконки, установить позицию.
 }
 
 /*

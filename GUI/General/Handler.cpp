@@ -74,8 +74,7 @@ void main()
 	icon.loadFromFile("Danger.png");
 	icon2.loadFromFile("Galaxy.png");
 	// просто текст
-	std::shared_ptr<GUILabel> label = layer->CreateLabel(0, 300, 100, 40, "CENTER", &tst, &gst);
-    std::shared_ptr<GUILabel> label1 = layer->CreateLabel(0, 10, 100, 40, "LEFT", &tst, &gst);
+    std::shared_ptr<GUILabel> label1 = layer->CreateLabel(110, 10, 100, 50, "LEFT", &tst, &gst);
     label1->SetHorizontalAlignment(Alignment::LEFT);
     //label1->SetVerticalAlignment();
     std::shared_ptr<GUILabel> label2 = layer->CreateLabel(0, 60, 100, 40, "RIGHT", &tst, &gst);
@@ -85,6 +84,17 @@ void main()
     label3->SetVerticalAlignment(Alignment::TOP);
     std::shared_ptr<GUILabel> label4 = layer->CreateLabel(0, 160, 100, 40, "BOTTOM", &tst, &gst);
     label4->SetVerticalAlignment(Alignment::BOTTOM);
+    std::shared_ptr<GUILabel> label5 = layer->CreateLabel(0, 210, 100, 40, "CENTER", &tst, &gst);
+
+    std::shared_ptr<GUILabel> labelIcon1 = layer->CreateLabel(110, 10, 100, 50, "", &tst, &icon, &gst);
+    labelIcon1->SetHorizontalAlignment(Alignment::LEFT);
+    std::shared_ptr<GUILabel> labelIcon2 = layer->CreateLabel(110, 70, 100, 50, "", &tst, &icon, &gst);
+    labelIcon2->SetHorizontalAlignment(Alignment::RIGHT);
+    std::shared_ptr<GUILabel> labelIcon3 = layer->CreateLabel(110, 130, 100, 50, "", &tst, &icon, &gst);
+    labelIcon3->SetVerticalAlignment(Alignment::TOP);
+    std::shared_ptr<GUILabel> labelIcon4 = layer->CreateLabel(110, 190, 100, 50, "", &tst, &icon, &gst);
+    labelIcon4->SetVerticalAlignment(Alignment::BOTTOM);
+    std::shared_ptr<GUILabel> labelIcon5 = layer->CreateLabel(110, 250, 100, 50, "", &tst, &icon, &gst);
 
 	// иконка
 	//std::shared_ptr<GUILabel> label1 = layer->CreateLabel(0, 330, 100, 40, "", &tst, &icon, &gst);
