@@ -3,7 +3,7 @@
 GUIStatusBar::GUIStatusBar(RenderWindow* renderWindow_, float height_, float frameSize_,
 	float spacing_, GUIStyle *sBarStyle_, Location location_)
 	: IDisplayable(renderWindow_, Vector2f(0, 0), Vector2f(0, height_)), statusBar(new RectangleShape()),
-	sBarStyle(sBarStyle_), frameSize(frameSize_), spacing(spacing_), location(location_)
+	sBarStyle(sBarStyle_), frameSize(frameSize_), spacing(spacing_), location(location_), width(height_)
 {
 	statusBar->setFillColor(sBarStyle->color);
 	switch (location)
@@ -51,17 +51,6 @@ void GUIStatusBar::setLocation(Location location_)
 	Recalc();
 }
 
-
-Vector2f GUIStatusBar::GetSize()
-{
-	return Vector2f(size.x, size.y);
-}
-
-Vector2f GUIStatusBar::GetPosition()
-{
-	return Vector2f(position.x, position.y);
-}
-
 void GUIStatusBar::Draw()
 {
 	if (childCount != elements.size())
@@ -90,6 +79,7 @@ void GUIStatusBar::Recalc()
 	{
 	case Location::DOWNSIDE:
 	{
+		size.y = width;
 		size.x = renderWindow->getSize().x;
 		position.x = 0;
 		position.y = renderWindow->getSize().y - size.y;
@@ -99,6 +89,7 @@ void GUIStatusBar::Recalc()
 	}
 	case Location::UPSIDE:
 	{
+		size.y = width;
 		size.x = renderWindow->getSize().x;
 		statusBar->setPosition(0, 0);
 		statusBar->setSize(Vector2f(size.x, size.y));
@@ -106,6 +97,7 @@ void GUIStatusBar::Recalc()
 	}
 	case Location::RIGHT_SIDE:
 	{
+		size.x = width;
 		size.y = renderWindow->getSize().y;
 		statusBar->setSize(Vector2f(size.x, size.y));
 		statusBar->setPosition(renderWindow->getSize().x - size.x, 0);
@@ -113,6 +105,7 @@ void GUIStatusBar::Recalc()
 	}
 	case Location::LEFT_SIDE:
 	{
+		size.x = width;
 		size.y = renderWindow->getSize().y;
 		statusBar->setSize(Vector2f(size.x, size.y));
 		statusBar->setPosition(0, 0);

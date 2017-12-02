@@ -14,6 +14,7 @@ private:
 	Texture *background;
 	GUIStyle *sBarStyle;
 	Location location;
+	float width;
 	/*!
 	текущая X позиция для вставки следующего элемента
 	*/
@@ -46,6 +47,4 @@ public:
 	GUIStatusBar(RenderWindow* renderWindow_, float height_, float frameSize_,
 		float spacing_, GUIStyle *sBarStyle_, Location location_);
 	void setLocation(Location location_);
-	virtual Vector2f GetSize();
-	virtual Vector2f GetPosition();
 };
