@@ -21,7 +21,7 @@ private:
     Alignment verticalAlignment = Alignment::CENTER; /*!< вертикальное выравнивание */
     Alignment textToIconAlignment = Alignment::CENTER; /*!< положение текста по отношению к иконке */
     unsigned int GapBetweenIconText = 0; /*!< расстояние между иконкой и текстом */
-    bool isDependsOnSize = false; /*!< автоматический подгон размера шрифта под размер (области label) */
+    bool isDependsOnSize; /*!< автоматический подгон размера шрифта под размер (области label) */
     RectangleShape *rect = nullptr;
 
     void FindFitSizeOfFont(Vector2f size_);
@@ -29,12 +29,15 @@ private:
 
 
 protected:
-
+    // нужен ли gstyle? текстуру хранить там?
     // конструкторы икон, икон + выравнивание, строка, строка+икон+выравн, строка +выравн, пустой
     /*
     JLabel(Icon)
     // конструктор для одной иконки, tstyle нужен, чтобы потом, если вы захотите, смогли установить текст.
-    GUILabel(RenderWindow* renderWindow_, float x, float y, float width, float height, Texture *icon_, TextStyle *tstyle, GUIStyle *gstyle);
+    GUILabel(RenderWindow* renderWindow_, float x, float y, float width, float height, Texture *icon_, TextStyle *tstyle, GUIStyle *gstyle, bool isDependsOnSize_);
+    GUILabel(RenderWindow* renderWindow_, float x, float y, float width, float height, Texture *icon_, TextStyle *tstyle_, GUIStyle *gstyle_);
+    GUILabel(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_, Texture *icon_, TextStyle *tstyle_, GUIStyle *gstyle_);
+
     JLabel(Icon, int)
     // конструктор + alignment
     GUILabel(RenderWindow* renderWindow_, float x, float y, float width, float height, Texture *icon_, TextStyle *tstyle, GUIStyle *gstyle, Alignment alig);
@@ -48,7 +51,19 @@ protected:
     JLabel()
     Creates a JLabel instance, initializing it to have the specified text/image/alignment. The int argument specifies the horizontal alignment of the label's contents within its drawing area. The horizontal alignment must be one of the following constants defined in the SwingConstants interface (which JLabel implements): LEFT, CENTER, RIGHT, LEADING, or TRAILING. For ease of localization, we strongly recommend using LEADING and TRAILING, rather than LEFT and RIGHT.
     */
+    //! Конструктор c is dependsOnsize
+    /*!
+    Создает текстовый label
+    */
+    //GUILabel(RenderWindow* renderWindow_, float x, float y, float width, float height, std::string text, bool isDependsOnSize_, TextStyle *tstyle, GUIStyle *gstyle);
 
+    //! Конструктор
+    /*!
+    Создает текстовый label
+    */
+    //GUILabel(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_, std::string text, bool isDependsOnSize_, TextStyle *tstyle, GUIStyle *gstyle);
+
+    // СТАНДАРТНЫЕ КОНСТРУКТОРЫ ДЛЯ СТАРОЙ ВЕРСИИ
     //! Конструктор
     /*!
     Создает текстовый label
@@ -61,6 +76,7 @@ protected:
     */
     GUILabel(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
 
+    
     //! Конструктор
     /*!
     Создает label, состоящий из одной иконки, если текст задан пустой строкой.
@@ -77,21 +93,6 @@ protected:
     */
     GUILabel(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_, std::string text, TextStyle *tstyle, Texture *icon_, GUIStyle *gstyle);
 
-    //! Конструктор ДОБАВИТЬ В LAYER ДОБАВИТЬ ОДНУ ИКОНКУ, НО ЧТО, ЕСЛИ ПОНАДОБИТСЯ ДОБАВИТЬ ТЕКСТ?
-    /*!
-    Создает label, состоящий из одной иконки, если текст задан пустой строкой.
-    Если текст задан, то создает label, содержащий иконку и текст
-    \param renderWindow_ окно, в которое рисуем
-    */
-    //GUILabel(RenderWindow* renderWindow_, float x, float y, float width, float height, std::string text, TextStyle *tstyle, Texture *icon_, GUIStyle *gstyle);
-
-    //! Конструктор
-    /*!
-    Создает label, состоящий из одной иконки, если текст задан пустой строкой.
-    Если текст задан, то создает label, содержащий иконку и текст
-    \param renderWindow_ окно, в которое рисуем
-    */
-    //GUILabel(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_, std::string text, TextStyle *tstyle, Texture *icon_, GUIStyle *gstyle);
 
 
     //! Переопределяем функцию Draw
@@ -118,26 +119,19 @@ public:
     virtual void SetText(char *text);
     char* GetText() const;
 
-    /*
-    void setHorizontalAlignment(int)
-    void setVerticalAlignment(int)
-    int getHorizontalAlignment()
-    int getVerticalAlignment()
-    Sets or gets the area on the label where its contents should be placed. 
-    The SwingConstants interface defines five possible values for horizontal alignment: LEFT, CENTER (the default for image-only labels), 
-    RIGHT, LEADING (the default for text-only labels), TRAILING. For vertical alignment: TOP, CENTER (the default), and BOTTOM.
-    */
 
     //! Конструктор
     /*!
-    Создает label, состоящий из одной иконки, если текст задан пустой строкой.
-    Если текст задан, то создает label, содержащий иконку и текст
+    Sets or gets the area on the label where its contents should be placed. 
+    The SwingConstants interface defines five possible values for horizontal alignment: LEFT, CENTER (the default for image-only labels), 
+    RIGHT, LEADING (the default for text-only labels), TRAILING. For vertical alignment: TOP, CENTER (the default), and BOTTOM.
     \param renderWindow_ окно, в которое рисуем
     */
     void SetHorizontalAlignment(Alignment aligment);
     void SetVerticalAlignment(Alignment aligment);
     Alignment GetHorizontalAlignment();
     Alignment GetVerticalAlignment();
+    
     /*
     void setHorizontalTextPosition(int)
     void setVerticalTextPosition(int)
@@ -153,6 +147,8 @@ public:
     //! Sets or gets the number of pixels between the label's text and its image.
     void SetGapBetweenIconText(unsigned int gap);
     unsigned int GetGapBetweenIconText();
+    void SetDependsOnSize(bool state);
+    bool GetDependsOnSize();
 };
 
 /*

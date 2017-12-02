@@ -22,6 +22,20 @@ void WindowTab::Redraw()
 			}
             else if (event.type == sf::Event::Resized)
             {
+                Vector2f coefficient;
+                coefficient.x = 0.5;//800 / window.getSize().x;
+                coefficient.y = 0.5;//600 / window.getSize().y;
+
+                for (auto& layer : GUILayers)
+                {
+                    for (auto& element : layer->elements)
+                    {
+                        std::cout << "Resizing \n";
+                        element->SetSize(element->GetSize().x * coefficient.x, element->GetSize().y * coefficient.y);
+                    }
+                    //layer->GetElement().getsize;
+                    //setsize;
+                }
                 window.setView(sf::View(sf::FloatRect(0, 0, event.size.width, event.size.height)));
             }
 		}
