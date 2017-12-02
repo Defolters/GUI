@@ -1,5 +1,6 @@
 #include "../Window/WindowTab.h"
 #include <Windows.h>
+#define LABEL_DEBUG false
 
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;
@@ -72,22 +73,76 @@ void main()
     // создание label
     Texture icon, icon2;
     icon.loadFromFile("Danger.png");
-    icon2.loadFromFile("Galaxy.png");
-    // просто текст
-    std::shared_ptr<GUILabel> label = layer->CreateLabel(0, 300, 100, 20, "Just text", &tst, &gst);
-    // иконка
-    std::shared_ptr<GUILabel> label1 = layer->CreateLabel(0, 330, 100, 40, "", &tst, &icon, &gst);
-    // текст и иконка
-    std::shared_ptr<GUILabel> label2 = layer->CreateLabel(0, 400, 100, 40, "text to the right of the icon", &tst, &icon2, &gst);
 
-    //сохраняем ID label2
-    int label2ID = label2->GetID();
-    //добавляем label1 уже существующий label2 как дочерний
-    label1->AddElement(label2);
-    //получаем указатель на label2, находя его по id
-    auto label2again = label1->GetElement(label2ID);
-    if (label2again.get() != nullptr)//если label2 дочерний для label1, то вернется указатель на него, если нет, то на nullptr
-        std::cout << "label2 is child of label1!" << std::endl;
+    // test label
+    if (LABEL_DEBUG)
+    {
+        // просто текст, который меняется под размер бокса
+        std::shared_ptr<GUILabel> label1 = layer->CreateLabel(5, 10, 100, 40, "LEFT", &tst, &gst);
+        label1->SetHorizontalAlignment(Alignment::LEFT);
+        std::shared_ptr<GUILabel> label2 = layer->CreateLabel(5, 55, 100, 40, "RIGHT", &tst, &gst);
+        label2->SetHorizontalAlignment(Alignment::RIGHT);
+        std::shared_ptr<GUILabel> label3 = layer->CreateLabel(5, 100, 100, 40, "TOP", &tst, &gst);
+        label3->SetVerticalAlignment(Alignment::TOP);
+        std::shared_ptr<GUILabel> label4 = layer->CreateLabel(5, 145, 100, 40, "BOTTOM", &tst, &gst);
+        label4->SetVerticalAlignment(Alignment::BOTTOM);
+        std::shared_ptr<GUILabel> label5 = layer->CreateLabel(5, 190, 100, 40, "CENTER", &tst, &gst);
+
+        // просто текст, который НЕ меняется под размер бокса
+        std::shared_ptr<GUILabel> labelN1 = layer->CreateLabel(5, 255, 100, 40, "LEFT", &tst, &gst);
+        labelN1->SetHorizontalAlignment(Alignment::LEFT);
+        labelN1->SetDependsOnSize(false);
+        std::shared_ptr<GUILabel> labelN2 = layer->CreateLabel(5, 300, 100, 40, "RIGHT", &tst, &gst);
+        labelN2->SetHorizontalAlignment(Alignment::RIGHT);
+        labelN2->SetDependsOnSize(false);
+        std::shared_ptr<GUILabel> labelN3 = layer->CreateLabel(5, 345, 100, 40, "TOP", &tst, &gst);
+        labelN3->SetVerticalAlignment(Alignment::TOP);
+        labelN3->SetDependsOnSize(false);
+        std::shared_ptr<GUILabel> labelN4 = layer->CreateLabel(5, 390, 100, 40, "BOTTOM", &tst, &gst);
+        labelN4->SetVerticalAlignment(Alignment::BOTTOM);
+        labelN4->SetDependsOnSize(false);
+        std::shared_ptr<GUILabel> labelN5 = layer->CreateLabel(5, 435, 100, 40, "CENTER", &tst, &gst);
+        labelN5->SetDependsOnSize(false);
+
+        // просто иконка, которая меняется под размер бокса 5 по y 30 х
+        std::shared_ptr<GUILabel> labelIcon1 = layer->CreateLabel(140, 10, 100, 50, "", &tst, &icon, &gst);
+        labelIcon1->SetHorizontalAlignment(Alignment::LEFT);
+        std::shared_ptr<GUILabel> labelIcon2 = layer->CreateLabel(140, 65, 100, 50, "", &tst, &icon, &gst);
+        labelIcon2->SetHorizontalAlignment(Alignment::RIGHT);
+        std::shared_ptr<GUILabel> labelIcon3 = layer->CreateLabel(140, 120, 100, 50, "", &tst, &icon, &gst);
+        labelIcon3->SetVerticalAlignment(Alignment::TOP);
+        std::shared_ptr<GUILabel> labelIcon4 = layer->CreateLabel(140, 175, 100, 50, "", &tst, &icon, &gst);
+        labelIcon4->SetVerticalAlignment(Alignment::BOTTOM);
+        std::shared_ptr<GUILabel> labelIcon5 = layer->CreateLabel(140, 230, 100, 50, "", &tst, &icon, &gst);
+
+        // просто иконка, которая НЕ меняется под размер бокса
+        std::shared_ptr<GUILabel> labelIconN1 = layer->CreateLabel(140, 305, 100, 50, "", &tst, &icon, &gst);
+        labelIconN1->SetHorizontalAlignment(Alignment::LEFT);
+        labelIconN1->SetDependsOnSize(false);
+        std::shared_ptr<GUILabel> labelIconN2 = layer->CreateLabel(140, 360, 100, 50, "", &tst, &icon, &gst);
+        labelIconN2->SetHorizontalAlignment(Alignment::RIGHT);
+        labelIconN2->SetDependsOnSize(false);
+        std::shared_ptr<GUILabel> labelIconN3 = layer->CreateLabel(140, 415, 100, 50, "", &tst, &icon, &gst);
+        labelIconN3->SetVerticalAlignment(Alignment::TOP);
+        labelIconN3->SetDependsOnSize(false);
+        std::shared_ptr<GUILabel> labelIconN4 = layer->CreateLabel(140, 470, 100, 50, "", &tst, &icon, &gst);
+        labelIconN4->SetVerticalAlignment(Alignment::BOTTOM);
+        labelIconN4->SetDependsOnSize(false);
+        std::shared_ptr<GUILabel> labelIconN5 = layer->CreateLabel(140, 525, 100, 50, "", &tst, &icon, &gst);
+        labelIconN5->SetDependsOnSize(false);
+
+
+        std::shared_ptr<GUILabel> labelTextIcon1 = layer->CreateLabel(400, 10, 100, 50, "Left", &tst, &icon, &gst);
+        labelTextIcon1->SetTextToIconAlignment(Alignment::LEFT);
+        std::shared_ptr<GUILabel> labelTextIcon2 = layer->CreateLabel(400, 80, 100, 50, "RIGHT", &tst, &icon, &gst);
+        labelTextIcon2->SetTextToIconAlignment(Alignment::RIGHT);
+        std::shared_ptr<GUILabel> labelTextIcon3 = layer->CreateLabel(400, 150, 100, 50, "TOP", &tst, &icon, &gst);
+        labelTextIcon3->SetTextToIconAlignment(Alignment::TOP);
+        std::shared_ptr<GUILabel> labelTextIcon4 = layer->CreateLabel(400, 220, 100, 50, "BOTTOM", &tst, &icon, &gst);
+        labelTextIcon4->SetTextToIconAlignment(Alignment::BOTTOM);
+        std::shared_ptr<GUILabel> labelTextIcon5 = layer->CreateLabel(400, 290, 100, 50, "CENTER", &tst, &icon, &gst);
+    }
+
     // Cоздание прогресс бара. 
     std::shared_ptr<GUIProgressBar> progressBar = layer->CreateProgressBar(layer, SCREEN_WIDTH / 3 + 50, SCREEN_HEIGHT / 3, 200, 30, "Sorting...", &tst, &gst,
         0, 200, Color::White, Color::Green);

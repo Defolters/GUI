@@ -8,7 +8,6 @@ void WindowTab::Resizing(const Event& event_)
     {
         coefficient.x = event_.size.width / layer->GetSize().x;
         coefficient.y = event_.size.height / layer->GetSize().y;
-        std::cout << "CoefX: " << coefficient.x << "\nCoefY: " << coefficient.y << std::endl;
         layer->SetSize(layer->GetSize().x * coefficient.x, layer->GetSize().y * coefficient.y);
         for (auto& element : layer->elements)
         {
@@ -16,7 +15,6 @@ void WindowTab::Resizing(const Event& event_)
         }
     }
 
-    std::cout << event_.size.width << " == " << event_.size.height << std::endl;
     window.setView(sf::View(sf::FloatRect(0, 0, event_.size.width, event_.size.height)));
 }
 
