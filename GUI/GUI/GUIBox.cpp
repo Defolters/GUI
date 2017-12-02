@@ -1,4 +1,4 @@
-#include "GUIBox.h"
+﻿#include "GUIBox.h"
 
 GUIBox::GUIBox(RenderWindow* renderWindow_, float x, float y, float width, float height, GUIStyle *Cgstyle) : IDisplayable(renderWindow_, x, y, width, height)
 {
@@ -66,11 +66,13 @@ void GUIBox::SetPosition(float x, float y)
 void GUIBox::SetSize(Vector2f size_)
 {
 	IDisplayable::SetSize(size_);
+    // set size
 	Recalc();
 }
 void GUIBox::SetSize(float width, float height)
 {
 	IDisplayable::SetSize(width, height);
+    // set size
 	Recalc();
 }
 

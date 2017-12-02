@@ -76,8 +76,8 @@ void ScrollBar::handleEvent(const sf::Event& event) {
 		case sf::Event::MouseMoved:
 			if (isMousePressed) {
 				if (roller.getPosition().y + event.mouseMove.y - lastPos < band.getPosition().y) {
-					roller.move(0.0f, band.getPosition().y - lastPos);
-					lastPos = roller.getPosition().y;
+					roller.move(0.0f, band.getPosition().y - roller.getPosition().y);
+					lastPos = event.mouseMove.y;
 					null(0.0f, band.getPosition().y - lastPos);
 				}
 				else {
@@ -155,8 +155,8 @@ void ScrollBar::handleEvent(const sf::Event& event) {
 		case sf::Event::MouseMoved:
 			if (isMousePressed) {
 				if (roller.getPosition().x + event.mouseMove.x - lastPos < band.getPosition().x) {
-					roller.move(band.getPosition().x - lastPos, 0.0f);
-					lastPos = roller.getPosition().x;
+					roller.move(band.getPosition().x - roller.getPosition().x, 0.0f);
+					lastPos = event.mouseMove.x;
 					null(band.getPosition().x - lastPos, 0.0f);
 				}
 				else {
@@ -206,4 +206,6 @@ void ScrollBar::Recalc()
 		roller.setPosition(roller.getPosition().x, renderWindow->getSize().y - width);
 		shift = roller.getSize().x;
 	}
+
+
 }
