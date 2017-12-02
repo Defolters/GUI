@@ -8,15 +8,15 @@ void MenuBar::addButton(std::string name, void(*action)())
 {
 	//пример создания стиля gui
 	static GUIStyle gst;
-	gst.mainTex.loadFromFile("03.png");
-	gst.pressTex.loadFromFile("04.png");
-	gst.overTex.loadFromFile("05.png");
+	gst.mainTex.loadFromFile("resources/03.png");
+	gst.pressTex.loadFromFile("resources/04.png");
+	gst.overTex.loadFromFile("resources/05.png");
 
 	gst.frameWid = 3;
 
 	//пример создания стиля текста
 	static TextStyle tst;
-	tst.font.loadFromFile("Robotic.ttf");
+	tst.font.loadFromFile("resources/Robotic.ttf");
 	tst.color.r = tst.color.g = tst.color.b = 255;
 	tst.fontSize = 30;
 	tst.align = 'c';

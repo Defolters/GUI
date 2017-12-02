@@ -36,31 +36,31 @@ void main()
 {
     //пример создания стиля gui
     static GUIStyle gst;
-    gst.mainTex.loadFromFile("backGUI.png");
-    gst.pressTex.loadFromFile("pressGUI.png");
-    gst.overTex.loadFromFile("overGUI.png");
-    gst.frame.loadFromFile("frame.png");
-    gst.background.loadFromFile("statusBar.png");
+    gst.mainTex.loadFromFile("resources/backGUI.png");
+    gst.pressTex.loadFromFile("resources/pressGUI.png");
+    gst.overTex.loadFromFile("resources/overGUI.png");
+    gst.frame.loadFromFile("resources/frame.png");
+    gst.background.loadFromFile("resources/statusBar.png");
     gst.frameWid = 5;
     //текстуры слайдера
-    +gst.sliderBackTex.loadFromFile("slider_back_line.png");
-    +gst.sliderFrontTex.loadFromFile("slider_front_line.png");
-    +gst.sliderHandlerTex.loadFromFile("slider_handler.png");
+    +gst.sliderBackTex.loadFromFile("resources/slider_back_line.png");
+    +gst.sliderFrontTex.loadFromFile("resources/slider_front_line.png");
+    +gst.sliderHandlerTex.loadFromFile("resources/slider_handler.png");
 
 
     static GUIStyle gst2;
-    gst2.mainTex.loadFromFile("01.png");
-    gst2.frame.loadFromFile("02.png");
+    gst2.mainTex.loadFromFile("resources/01.png");
+    gst2.frame.loadFromFile("resources/02.png");
     gst2.frameWid = 5;
     //пример создания стиля текста
     static TextStyle tst;
-    tst.font.loadFromFile("Robotic.ttf");
+    tst.font.loadFromFile("resources/Robotic.ttf");
     tst.color.r = tst.color.g = tst.color.b = 255;
     tst.fontSize = 22;
     tst.align = 'c';
 
     static GUIStyle sBarStyle;
-    sBarStyle.background.loadFromFile("statusBar.png");
+    sBarStyle.background.loadFromFile("resources/statusBar.png");
 
     //создание окна и слоя гуи на нем 
     WindowTab main(VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "main");
@@ -72,7 +72,7 @@ void main()
 
     // создание label
     Texture icon, icon2;
-    icon.loadFromFile("Danger.png");
+    icon.loadFromFile("resources/Danger.png");
 
     // test label
     if (LABEL_DEBUG)
