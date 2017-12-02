@@ -1,4 +1,4 @@
-#include "GUIBox.h"
+﻿#include "GUIBox.h"
 
 GUIBox::GUIBox(RenderWindow* renderWindow_, float x, float y, float width, float height, GUIStyle *Cgstyle) : IDisplayable(renderWindow_, x, y, width, height)
 {

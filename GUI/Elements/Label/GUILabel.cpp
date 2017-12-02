@@ -252,9 +252,9 @@ void GUILabel::SetText(char* text)
     this->text.setString(text);
 }
 
-char* GUILabel::GetText() const
+String GUILabel::GetText() const
 {
-    return new char();//!!!!!
+    return text.getString();
 }
 
 void GUILabel::SetHorizontalAlignment(const Alignment aligment)

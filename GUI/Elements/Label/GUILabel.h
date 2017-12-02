@@ -1,6 +1,8 @@
-﻿#pragma once
+﻿#ifndef LABEL_H
+#define LABEL_H
 #include "../../GUI/GUIBox.h"
-//! An enum.
+
+//! Состояния выравнивания
 enum Alignment {
     LEFT,
     CENTER,
@@ -8,8 +10,10 @@ enum Alignment {
     TOP,
     BOTTOM
 };
+
 /*!
-\brief Class for handling Settings Dialog UI and logic.
+\brief Класс реализующий Label
+Может состоять из текста, иконки и быть выравнен. 
 */
 class GUILabel : public GUIBox
 {
@@ -25,7 +29,7 @@ private:
     Alignment textToIconAlignment = Alignment::CENTER; //!< положение текста по отношению к иконке
     unsigned int GapBetweenIconText = 0; //!< расстояние между иконкой и текстом
     bool isDependsOnSize; //!< автоматический подгон размера шрифта под размер (области label)
-    RectangleShape *rect = nullptr;
+    RectangleShape *rect = nullptr; //!< прямоугольник для демонстрации alignment
 
     /*!
     \brief Функция, которая подгоняет размер шрифта под размер элемента 
@@ -38,8 +42,6 @@ private:
     \param size_ размер элемента
     */
     void FindFitScaleOfImage(const Vector2f& size_);
-
-    
 protected:
     /*!
     * \brief Class constructor.
@@ -120,52 +122,83 @@ protected:
     virtual void Recalc() override;
 
 public:
-    //virtual void SetSize(float width, float height) override;
-    //virtual void SetSize(Vector2f size_) override;
-    //float GetSize(); этот метод уже есть в базовом
-
-    //! Устанавливает размер текста
+    /*!
+    \brief Устанавливает размер текста
+    \param size размер текста целое беззнаковое число
+    */
     void SetSizeOfText(const unsigned int size);
+
     //! Возвращает размер текста
     unsigned int GetSizeOfText() const;
 
-
-    //! Устанавливает иконку
-    void SetIcon(Texture * iconT);
-    //! Возвращает иконку
+    /*!
+    \brief Устанавливает иконку
+    \param iconT текстура иконки
+    */
+    void SetIcon(Texture* iconT);
+    
+    /*!
+    \brief Возвращает иконку
+    \return Указатель на текстуру
+    */
     Texture* GetIcon() const;
 
-    //! Устанавливает текст
-    virtual void SetText(char *text);
-    //! Возвращает текст
-    char* GetText() const;
+    /*!
+    \brief Устанавливает текст
+    \param text текст
+    */
+    virtual void SetText(char* text);
+  
+    /*!
+    \brief Возвращает текст
+    \return Текст типа sf::String
+    */
+    String GetText() const;
 
 
     /*!
-    Sets or gets the area on the label where its contents should be placed. 
-    The SwingConstants interface defines five possible values for horizontal alignment: LEFT, CENTER (the default for image-only labels), 
-    RIGHT, LEADING (the default for text-only labels), TRAILING. For vertical alignment: TOP, CENTER (the default), and BOTTOM.
-    \param renderWindow_ окно, в которое рисуем
+    \brief Устанавливает положение горизонтального выравнивания элемента
+    \param aligment позиция, которая может быть: LEFT, CENTER, RIGHT
     */
-    //! Устанавливает или возвращает горизонтальное и вертикальное положение элемента
     void SetHorizontalAlignment(const Alignment aligment);
+
+    /*!
+    \brief Устанавливает положение вертикального выравнивания элемента
+    \param aligment позиция, которая может быть: CENTER, TOP, BOTTOM
+    */
     void SetVerticalAlignment(const Alignment aligment);
+
+    //! Возвращает положение горизонтального выравнивания элемента
     Alignment GetHorizontalAlignment();
+
+    //! Возвращает положение вертикального выравнивания элемента
     Alignment GetVerticalAlignment();
     
-    /*
-    Sets or gets the location where the label's text will be placed, relative to the label's image. 
-    The SwingConstants interface defines five possible values for horizontal position: LEADING, LEFT, CENTER, RIGHT, and TRAILING (the default). 
-    For vertical position: TOP, CENTER (the default), and BOTTOM.
+    /*!
+    \brief Устанавливает положение текста по отношению к иконке
+    \param aligment позиция, которая может быть: LEFT, CENTER, RIGHT, TOP, BOTTOM
     */
     void SetTextToIconAlignment(const Alignment aligment);
+
+    //! Возвращает положение текста по отношению к иконке
     Alignment GetTextToIconAlignment();
 
-    //! Устанавливает или возвращает количество пикселей между текстом и иконкой
+    /*!
+    \brief Устанавливает количество пикселей между текстом и иконкой
+    \param gap количество пикселей между текстом и иконкой
+    */
     void SetGapBetweenIconText(unsigned int gap);
+
+    //! Возвращает количество пикселей между текстом и иконкой
     unsigned int GetGapBetweenIconText();
 
-    //! Устанавливает зависимость шрифта и иконки от размера элемента
+    /*!
+    \brief Устанавливает состояние зависимости текста или иконки от размера
+    \param state состояние зависимости текста или иконки от размера
+    */
     void SetDependsOnSize(bool state);
+
+    //! Возвращает состояние зависимости текста или иконки от размера
     bool GetDependsOnSize();
 };
+#endif // !LABEL_H
