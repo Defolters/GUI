@@ -61,6 +61,7 @@ void main()
 
     static GUIStyle sBarStyle;
     sBarStyle.background.loadFromFile("resources/statusBar.png");
+	sBarStyle.color = Color::Blue;
 
     //создание окна и слоя гуи на нем 
     WindowTab main(VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "main");
@@ -155,14 +156,14 @@ void main()
     std::shared_ptr<Slider> slider = layer->CreateSlider(225, 450, 350, 20, 35, 38, &gst, 0, 100, 20, &onSliderMove);
 
     //Создание статус бара
-    std::shared_ptr<GUIStatusBar>  statusBar = layer->CreateStatusBar(40, 5, 10, &sBarStyle);
+    std::shared_ptr<GUIStatusBar>  statusBar = layer->CreateStatusBar(40, 5, 10, &sBarStyle, Location::UPSIDE);
     std::shared_ptr<GUIBox> box1 = layer->CreateButton(100, 0, 50, 50, "", &tst, &gst, &buttonAction);
     std::shared_ptr<GUIBox> box2 = layer->CreateButton(0, 0, 1, 1, "B", &tst, &gst, &buttonAction);
     std::shared_ptr<GUIBox> box3 = layer->CreateButton(0, 0, 4, 1, "Test", &tst, &gst, &buttonAction);
     statusBar->AddElement(box1);
     statusBar->AddElement(box2);
     statusBar->AddElement(box3);
-
+	statusBar->setLocation(Location::DOWNSIDE);
 
     //menu bar
     std::shared_ptr<MenuBar> menuBar = layer->CreateMenuBar(0, 0, SCREEN_WIDTH - 12, 50, "", &tst, &gst2,

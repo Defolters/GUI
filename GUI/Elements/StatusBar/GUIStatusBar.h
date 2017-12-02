@@ -1,20 +1,19 @@
 #pragma once
 #include "../../GUI/GUIBox.h"
+
+enum class Location {
+	DOWNSIDE, UPSIDE,
+	RIGHT_SIDE, LEFT_SIDE
+};
+
 class GUIStatusBar : public IDisplayable
 {
 private:
 	friend class GUILayer;
-	Sprite *statusBar;
+	RectangleShape *statusBar;
 	Texture *background;
 	GUIStyle *sBarStyle;
-	/*! 
-	Ширина статус бара
-	*/
-	float width;
-	/*!
-	Высота статус бара
-	*/
-	float height;
+	Location location;
 	/*!
 	текущая X позиция для вставки следующего элемента
 	*/
@@ -36,10 +35,17 @@ private:
 	*/
 	int childCount = 0;
 protected:
-	void Draw() override;
-	void handleEvent(const sf::Event &event) override;
-	void Recalc();
+	virtual void Draw() override;
+	virtual void handleEvent(const sf::Event &event) override;
+	virtual void Recalc();
+	/*!
+	вызывается для перерасчета позиций дочерних эдлементов
+	*/
+	virtual void recalcElements();
 public:
 	GUIStatusBar(RenderWindow* renderWindow_, float height_, float frameSize_,
-		float spacing_, GUIStyle *sBarStyle_);
+		float spacing_, GUIStyle *sBarStyle_, Location location_);
+	void setLocation(Location location_);
+	virtual Vector2f GetSize();
+	virtual Vector2f GetPosition();
 };
