@@ -1,5 +1,25 @@
  #include "WindowTab.h"
 
+void WindowTab::Resizing(const Event& event_)
+{
+    Vector2f coefficient;
+
+    for (auto& layer : GUILayers)
+    {
+        coefficient.x = event_.size.width / layer->GetSize().x;
+        coefficient.y = event_.size.height / layer->GetSize().y;
+        std::cout << "CoefX: " << coefficient.x << "\nCoefY: " << coefficient.y << std::endl;
+        layer->SetSize(layer->GetSize().x * coefficient.x, layer->GetSize().y * coefficient.y);
+        for (auto& element : layer->elements)
+        {
+            element->SetSize(element->GetSize().x * coefficient.x, element->GetSize().y * coefficient.y);
+        }
+    }
+
+    std::cout << event_.size.width << " == " << event_.size.height << std::endl;
+    window.setView(sf::View(sf::FloatRect(0, 0, event_.size.width, event_.size.height)));
+}
+
 std::shared_ptr<GUILayer> WindowTab::CreateGUILayer(Vector2f position_, Vector2f size_)
 {
 	GUILayers.push_back(std::shared_ptr<GUILayer>(new GUILayer(window, position_, size_)));
@@ -22,21 +42,7 @@ void WindowTab::Redraw()
 			}
             else if (event.type == sf::Event::Resized)
             {
-                Vector2f coefficient;
-                coefficient.x = 0.5;//800 / window.getSize().x;
-                coefficient.y = 0.5;//600 / window.getSize().y;
-
-                for (auto& layer : GUILayers)
-                {
-                    for (auto& element : layer->elements)
-                    {
-                        std::cout << "Resizing \n";
-                        element->SetSize(element->GetSize().x * coefficient.x, element->GetSize().y * coefficient.y);
-                    }
-                    //layer->GetElement().getsize;
-                    //setsize;
-                }
-                window.setView(sf::View(sf::FloatRect(0, 0, event.size.width, event.size.height)));
+                Resizing(event);
             }
 		}
 		for (auto& layer : GUILayers)

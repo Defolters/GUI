@@ -76,12 +76,12 @@ void GUILabel::FindFitScaleOfImage(Vector2f size_)
 {
     while (icon->getGlobalBounds().width > size_.x)
     {
-        std::cout << "width icon\n";
+        //std::cout << "width icon\n";
         icon->scale(0.9, 0.9);
     }
     while (icon->getGlobalBounds().height > size_.y)
     {
-        std::cout << "height icon\n";
+        //std::cout << "height icon\n";
         icon->scale(0.9, 0.9);
     }
 }
@@ -310,9 +310,13 @@ void GUILabel::Recalc()
 
     if (isDependsOnSize && ((text.getString() == "") || (icon == nullptr)))
     {
-        FindFitSizeOfFont(GetSize());
+        if (text.getString() != "")
+        {
+            FindFitSizeOfFont(GetSize());
+        }
         if (icon != nullptr)
         {
+            icon->setScale(1, 1);
             FindFitScaleOfImage(GetSize());
         }
     }

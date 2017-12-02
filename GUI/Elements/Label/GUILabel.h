@@ -7,7 +7,7 @@ enum class Alignment {
     TOP,
     BOTTOM
 };
-// в скобочках в конструкторе
+
 class GUILabel : public GUIBox
 {
 private:
@@ -24,10 +24,21 @@ private:
     bool isDependsOnSize; /*!< автоматический подгон размера шрифта под размер (области label) */
     RectangleShape *rect = nullptr;
 
+    /*!
+    \brief Функция, которая подгоняет размер шрифта под размер элемента 
+    \param size_ размер элемента
+    */
     void FindFitSizeOfFont(Vector2f size_);
+    /*!
+    \brief Функция, которая подгоняет размер иконки под размер элемента
+    \param size_ размер элемента
+    */
     void FindFitScaleOfImage(Vector2f size_);
 
-
+    /*!
+    * \brief This signal is emitted once every time a part of the route is found.
+    * \param n Indicates the number of the route parts found.
+    */
 protected:
     // нужен ли gstyle? текстуру хранить там?
     // конструкторы икон, икон + выравнивание, строка, строка+икон+выравн, строка +выравн, пустой
@@ -106,47 +117,48 @@ public:
     //virtual void SetSize(Vector2f size_) override;
     //float GetSize(); этот метод уже есть в базовом
 
-    //! Sets or gets the size of text displayed by the label.
+    //! Устанавливает размер текста
     void SetSizeOfText(unsigned int size);
+    //! Возвращает размер текста
     unsigned int GetSizeOfText() const;
 
 
-    //! Sets or gets the image displayed by the label.
+    //! Устанавливает иконку
     void SetIcon(Texture* iconT);
+    //! Возвращает иконку
     Texture* GetIcon() const;
 
-    //! Sets or gets the text displayed by the label.
+    //! Устанавливает текст
     virtual void SetText(char *text);
+    //! Возвращает текст
     char* GetText() const;
 
 
-    //! Конструктор
     /*!
     Sets or gets the area on the label where its contents should be placed. 
     The SwingConstants interface defines five possible values for horizontal alignment: LEFT, CENTER (the default for image-only labels), 
     RIGHT, LEADING (the default for text-only labels), TRAILING. For vertical alignment: TOP, CENTER (the default), and BOTTOM.
     \param renderWindow_ окно, в которое рисуем
     */
+    //! Устанавливает или возвращает горизонтальное и вертикальное положение элемента
     void SetHorizontalAlignment(Alignment aligment);
     void SetVerticalAlignment(Alignment aligment);
     Alignment GetHorizontalAlignment();
     Alignment GetVerticalAlignment();
     
     /*
-    void setHorizontalTextPosition(int)
-    void setVerticalTextPosition(int)
-    int getHorizontalTextPosition()
-    int getVerticalTextPosition()
     Sets or gets the location where the label's text will be placed, relative to the label's image. 
     The SwingConstants interface defines five possible values for horizontal position: LEADING, LEFT, CENTER, RIGHT, and TRAILING (the default). 
     For vertical position: TOP, CENTER (the default), and BOTTOM.
     */
-
     void SetTextToIconAlignment(Alignment aligment);
     Alignment GetTextToIconAlignment();
-    //! Sets or gets the number of pixels between the label's text and its image.
+
+    //! Устанавливает или возвращает количество пикселей между текстом и иконкой
     void SetGapBetweenIconText(unsigned int gap);
     unsigned int GetGapBetweenIconText();
+
+    //! Устанавливает зависимость шрифта и иконки от размера элемента
     void SetDependsOnSize(bool state);
     bool GetDependsOnSize();
 };

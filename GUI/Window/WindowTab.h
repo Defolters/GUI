@@ -10,16 +10,23 @@ enum WindowTabState
 class WindowTab : ObservableGUI
 {
 private:
-	std::vector<std::shared_ptr<GUILayer>> GUILayers;
-	RenderWindow window;
+	std::vector<std::shared_ptr<GUILayer>> GUILayers; /*!< вектор??  */
+	RenderWindow window; /*!< окно */
+    
+    /*
+    \brief ‘ункци€, котора€ измен€ет размер компонентов, если окно раст€нули
+    \param event_ —одержит в себе новый размер окна
+    */
+    void Resizing(const Event& event_);
 public:
+    WindowTabState state;
 	//констуркутор, не парьтесь на этот счет, просто передавайте ему положение размеры
 	//пока что вторые два аргумента передавайте (0,0) и (ширинаќкна, высотаќкна)
 	//обрезание пол€ видимости все равно пока не работает :)
 	std::shared_ptr<GUILayer> CreateGUILayer(Vector2f position_, Vector2f size_);
 	void Redraw();//единственна€ функци€ которую надо вызывать дл€ отрисовки, не трогаем ее
 	WindowTab(VideoMode mode, char* name);
-	WindowTabState state;
+	
 	//TODO
 	//Ќ≈ƒќѕ»Ћ≈Ќј, Ќ≈ ё«ј“№ ѕќ ј!
 	void removeElement(IDrawable* observer) override;
