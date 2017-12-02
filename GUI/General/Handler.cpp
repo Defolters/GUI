@@ -63,7 +63,7 @@ void main()
 
     //создание окна и слоя гуи на нем 
     WindowTab main(VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "main");
-    std::shared_ptr<GUILayer> layer = main.CreateGUILayer(Vector2f(0,0), Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
+    std::shared_ptr<GUILayer> layer = main.CreateGUILayer(Vector2f(0, 0), Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
     //вот досюда
 
     //пример создания кнопки
