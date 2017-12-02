@@ -1,7 +1,7 @@
 #include "GUILabel.h"
 
 
-void GUILabel::FindFitSizeOfFont(Vector2f size_)
+void GUILabel::FindFitSizeOfFont(const Vector2f& size_)
 {
     text.setCharacterSize(static_cast<unsigned int>(size_.y) + 3);
     sf::FloatRect bounds = text.getLocalBounds();
@@ -10,78 +10,16 @@ void GUILabel::FindFitSizeOfFont(Vector2f size_)
     {
         text.setCharacterSize(static_cast<unsigned int>((size_.y * size_.x) / bounds.width) + 1);
     }
-    /*
-    if (size_.x > size.y)
-    {
-        text.setCharacterSize(static_cast<unsigned int>(size_.x));
-        sf::FloatRect bounds = text.getLocalBounds();
-
-        if (bounds.height > size_.y)
-        {
-            text.setCharacterSize(static_cast<unsigned int>((size_.y * size_.x) / bounds.height));
-        }
-
-        while (bounds.width > size_.x)
-        {
-            text.setCharacterSize(text.getCharacterSize() - 1);
-            std::cout << "bounds.width > size_.x\n";
-            bounds = text.getLocalBounds();
-        }
-    }
-    else
-    {
-        text.setCharacterSize(static_cast<unsigned int>(size_.y));
-        sf::FloatRect bounds = text.getLocalBounds();
-
-        if (bounds.width > size_.x)
-        {
-            text.setCharacterSize(static_cast<unsigned int>((size_.y * size_.x) / bounds.width));
-        }
-        while (bounds.height > size_.y)
-        {
-            text.setCharacterSize(text.getCharacterSize() - 1);
-            std::cout << "bounds.height > size_.y\n";
-            bounds = text.getLocalBounds();
-        }
-    }*/
-    /*
-    float first = 0, second = 0;
-    bool width = true;
-    if (size_.x > size.y)
-    {
-        first = size_.x;
-        second = size_.y;
-        width = false;
-    }
-    else
-    {
-        first = size_.y;
-        second = size_.x;
-    }
-
-    text.setCharacterSize(static_cast<unsigned int>(first));
-    FloatRect bounds = text.getLocalBounds();
-
-    if ((bounds.width > second) && (width == true))
-    {
-        text.setCharacterSize(static_cast<unsigned int>((first * second) / bounds.width));
-    }
-    else if ((bounds.height > second) && (width == false))
-    {
-        text.setCharacterSize(static_cast<unsigned int>((first * second) / bounds.height));
-    }*/
 }
 
-void GUILabel::FindFitScaleOfImage(Vector2f size_)
+void GUILabel::FindFitScaleOfImage(const Vector2f& size_)
 {
     while (icon->getGlobalBounds().width > size_.x)
     {
-        //std::cout << "width icon\n";
         icon->scale(0.9, 0.9);
     }
     while (icon->getGlobalBounds().height > size_.y)
     {
-        //std::cout << "height icon\n";
         icon->scale(0.9, 0.9);
     }
 }
@@ -100,8 +38,6 @@ GUILabel::GUILabel(RenderWindow* renderWindow_, float x, float y, float width,
     rect->setOutlineColor(Color::Red);
     rect->setOutlineThickness(1);
     rect->setPosition(x, y);
-
-    //Recalc();
 }
 
 GUILabel::GUILabel(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_,
@@ -118,20 +54,10 @@ GUILabel::GUILabel(RenderWindow* renderWindow_, Vector2f position_, Vector2f siz
     rect->setOutlineColor(Color::Red);
     rect->setOutlineThickness(1);
     rect->setPosition(position_);
-
-    //Recalc();
 }
 
-/*GUILabel::GUILabel(RenderWindow * renderWindow_, float x, float y, float width, float height, std::string text, bool isDependsOnSize_, TextStyle * tstyle, GUIStyle * gstyle)
-{
-}
-
-GUILabel::GUILabel(RenderWindow * renderWindow_, Vector2f position_, Vector2f size_, std::string text, bool isDependsOnSize_, TextStyle * tstyle, GUIStyle * gstyle)
-{
-}
-*/
-GUILabel::GUILabel(RenderWindow * renderWindow_, float x, float y, float width,
-    float height, std::string text_, TextStyle * Ctstyle, Texture * icon_, GUIStyle *Cgstyle) :
+GUILabel::GUILabel(RenderWindow* renderWindow_, float x, float y, float width,
+    float height, std::string text_, TextStyle* Ctstyle, Texture* icon_, GUIStyle* Cgstyle) :
     GUIBox(renderWindow_, x, y, width, height, Cgstyle),
     tstyle(Ctstyle), iconT(icon_), isDependsOnSize(true)
 {
@@ -145,11 +71,10 @@ GUILabel::GUILabel(RenderWindow * renderWindow_, float x, float y, float width,
     rect->setOutlineColor(Color::Red);
     rect->setOutlineThickness(1);
     rect->setPosition(x, y);
-    //Recalc();
 }
 
-GUILabel::GUILabel(RenderWindow * renderWindow_, Vector2f position_, Vector2f size_,
-    std::string text_, TextStyle * Ctstyle, Texture * icon_, GUIStyle *Cgstyle) :
+GUILabel::GUILabel(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_,
+    std::string text_, TextStyle* Ctstyle, Texture* icon_, GUIStyle* Cgstyle) :
     GUIBox(renderWindow_, position_, size_, Cgstyle),
     tstyle(Ctstyle), iconT(icon_), isDependsOnSize(true)
 {
@@ -163,7 +88,6 @@ GUILabel::GUILabel(RenderWindow * renderWindow_, Vector2f position_, Vector2f si
     rect->setOutlineColor(Color::Red);
     rect->setOutlineThickness(1);
     rect->setPosition(position_);
-    //Recalc();
 }
 
 void GUILabel::Draw()
@@ -193,8 +117,6 @@ void GUILabel::Recalc()
     float width = sizeOfBox.x;
     float height = sizeOfBox.y;
 
-    /*float iconX = 0;
-    float iconY = 0;*/
     text.setFillColor(Color::Green);
     FloatRect textRect = text.getLocalBounds();
     float textX = textRect.left + textRect.width / 2.0f;
@@ -206,11 +128,7 @@ void GUILabel::Recalc()
         float textX = textRect.left + textRect.width / 2.0f;
         float textY = textRect.top + textRect.height / 2.0f;
     }
-    //text.setOrigin(textX, textY); // устанавливаем начало координат на центр текста
 
-
-
-    // зависит от alignment
     Vector2f position;
     Vector2f origin;
 
@@ -247,66 +165,47 @@ void GUILabel::Recalc()
         position.y = positionOfBox.y + size.y / 2;
     }
 
-    // set position of first element
     if (text.getString() != "" && icon != nullptr)
     {
-        // ставим icon, а затем text
         icon->setOrigin(origin);
-        icon->setPosition(position); // зависит от alignment
+        icon->setPosition(position);
 
         if (textToIconAlignment == Alignment::LEFT)
         {
             text.setOrigin(text.getLocalBounds().left + text.getLocalBounds().width, (text.getLocalBounds().top + text.getLocalBounds().height) / 2);
             text.setPosition(icon->getGlobalBounds().left - GapBetweenIconText, icon->getGlobalBounds().top + icon->getGlobalBounds().height / 2);
-            // text is first, then icon
         }
         else if (textToIconAlignment == Alignment::RIGHT)
         {
             text.setOrigin(text.getLocalBounds().left, (text.getLocalBounds().top + text.getLocalBounds().height) / 2);
             text.setPosition(icon->getGlobalBounds().left + icon->getGlobalBounds().width + GapBetweenIconText, icon->getGlobalBounds().top + icon->getGlobalBounds().height / 2);
-            // text if first, then icon
         }
         else if (textToIconAlignment == Alignment::TOP)
         {
             text.setOrigin((text.getLocalBounds().left + text.getLocalBounds().width) / 2, text.getLocalBounds().top + text.getLocalBounds().height);
             text.setPosition(icon->getGlobalBounds().left + icon->getGlobalBounds().width / 2, icon->getGlobalBounds().top - GapBetweenIconText);
-            // text if first, then icon
         }
         else if (textToIconAlignment == Alignment::BOTTOM)
         {
             text.setOrigin((text.getLocalBounds().left + text.getLocalBounds().width) / 2, text.getLocalBounds().top);
             text.setPosition(icon->getGlobalBounds().left + icon->getGlobalBounds().width / 2, icon->getGlobalBounds().top + icon->getGlobalBounds().height + GapBetweenIconText);
-            // icon if first, then icon
         }
         else if (textToIconAlignment == Alignment::CENTER)
         {
-            text.setOrigin((text.getLocalBounds().left + text.getLocalBounds().width) / 2, (text.getLocalBounds().top + text.getLocalBounds().height) / 2);
+            text.setOrigin(text.getLocalBounds().left + text.getLocalBounds().width / 2, text.getLocalBounds().top + text.getLocalBounds().height / 2);
             text.setPosition(icon->getGlobalBounds().left + icon->getGlobalBounds().width / 2, icon->getGlobalBounds().top + icon->getGlobalBounds().height / 2);
-            // text if first, then icon????
         }
     }
     else if (icon != nullptr)
     {
         icon->setOrigin(origin);
-        icon->setPosition(position); // зависит от alignment
+        icon->setPosition(position);
     }
     else
     {
         text.setOrigin(origin);
-        text.setPosition(position); // зависит от alignment
+        text.setPosition(position);
     }
-    // set position of second element
-
-    /*if (icon != nullptr)
-    {
-        icon->setPosition(width, height);
-        //(icon->setOrigin;)
-        icon->setScale(0.5, 0.5);
-        //iconX = icon->getGlobalBounds().width + textRect.width / 2.0f;
-        //iconY = icon->getGlobalBounds().height / 2.0f;
-        text.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
-        text.setPosition(Vector2f(width + icon->getGlobalBounds().width, height + (height / 2.0f)));
-    }*/
 
     if (isDependsOnSize && ((text.getString() == "") || (icon == nullptr)))
     {
@@ -320,36 +219,9 @@ void GUILabel::Recalc()
             FindFitScaleOfImage(GetSize());
         }
     }
-
-    // мы нашли (НЕ СОВСЕМ) нужные размеры, теперь в зависимости от расположения текста относительно иконки, установить позицию.
 }
 
-/*
-void GUILabel::SetSize(float width, float height)
-{
-    text.setCharacterSize(static_cast<unsigned int>(height));
-    sf::FloatRect bounds = text.getLocalBounds();
-
-    if (bounds.width > width)
-    {
-        text.setCharacterSize(static_cast<unsigned int>((height * width) / bounds.width));
-    }
-    bounds = text.getLocalBounds();
-}
-
-void GUILabel::SetSize(Vector2f size_)
-{
-    text.setCharacterSize(static_cast<unsigned int>(size_.y));
-    sf::FloatRect bounds = text.getLocalBounds();
-
-    if (bounds.width > size_.x)
-    {
-        text.setCharacterSize(static_cast<unsigned int>((size_.y * size_.x) / bounds.width));
-    }
-}
-*/
-
-void GUILabel::SetSizeOfText(unsigned int size)
+void GUILabel::SetSizeOfText(const unsigned int size)
 {
     text.setCharacterSize(size);
 }
@@ -370,27 +242,27 @@ void GUILabel::SetIcon(Texture * iconT)
     icon = new Sprite(*iconT);
 }
 
-Texture * GUILabel::GetIcon() const
+Texture* GUILabel::GetIcon() const
 {
-    return nullptr;
+    return iconT;
 }
 
-void GUILabel::SetText(char * text)
+void GUILabel::SetText(char* text)
 {
     this->text.setString(text);
 }
 
-char * GUILabel::GetText() const
+char* GUILabel::GetText() const
 {
-    return nullptr;
+    return new char();//!!!!!
 }
 
-void GUILabel::SetHorizontalAlignment(Alignment aligment)
+void GUILabel::SetHorizontalAlignment(const Alignment aligment)
 {
     horizontalAlignment = aligment;
 }
 
-void GUILabel::SetVerticalAlignment(Alignment aligment)
+void GUILabel::SetVerticalAlignment(const Alignment aligment)
 {
     verticalAlignment = aligment;
 }
@@ -405,7 +277,7 @@ Alignment GUILabel::GetVerticalAlignment()
     return verticalAlignment;
 }
 
-void GUILabel::SetTextToIconAlignment(Alignment aligment)
+void GUILabel::SetTextToIconAlignment(const Alignment aligment)
 {
     textToIconAlignment = aligment;
 }

@@ -134,15 +134,15 @@ void main()
 
         std::shared_ptr<GUILabel> labelTextIcon1 = layer->CreateLabel(400, 10, 100, 50, "Left", &tst, &icon, &gst);
         labelTextIcon1->SetTextToIconAlignment(Alignment::LEFT);
-        std::shared_ptr<GUILabel> labelTextIcon2 = layer->CreateLabel(400, 80, 100, 50, "RIGHT", &tst, &icon, &gst);
+        std::shared_ptr<GUILabel> labelTextIcon2 = layer->CreateLabel(400, 75, 100, 50, "RIGHT", &tst, &icon, &gst);
         labelTextIcon2->SetTextToIconAlignment(Alignment::RIGHT);
-        std::shared_ptr<GUILabel> labelTextIcon3 = layer->CreateLabel(400, 150, 100, 50, "TOP", &tst, &icon, &gst);
+        std::shared_ptr<GUILabel> labelTextIcon3 = layer->CreateLabel(400, 155, 100, 50, "TOP", &tst, &icon, &gst);
         labelTextIcon3->SetTextToIconAlignment(Alignment::TOP);
-        std::shared_ptr<GUILabel> labelTextIcon4 = layer->CreateLabel(400, 220, 100, 50, "BOTTOM", &tst, &icon, &gst);
+        std::shared_ptr<GUILabel> labelTextIcon4 = layer->CreateLabel(400, 225, 100, 50, "BOTTOM", &tst, &icon, &gst);
         labelTextIcon4->SetTextToIconAlignment(Alignment::BOTTOM);
-        std::shared_ptr<GUILabel> labelTextIcon5 = layer->CreateLabel(400, 290, 100, 50, "CENTER", &tst, &icon, &gst);
+        std::shared_ptr<GUILabel> labelTextIcon5 = layer->CreateLabel(400, 310, 100, 50, "CENTER", &tst, &icon, &gst);
     }
-
+    
     // Cоздание прогресс бара. 
     std::shared_ptr<GUIProgressBar> progressBar = layer->CreateProgressBar(layer, SCREEN_WIDTH / 3 + 50, SCREEN_HEIGHT / 3, 200, 30, "Sorting...", &tst, &gst,
         0, 200, Color::White, Color::Green);
@@ -175,7 +175,7 @@ void main()
     std::shared_ptr<TextField> textBox = layer->CreateTextField(250, 350, 100, 40, "textField", &tst, &gst);
 
     std::shared_ptr<TextArea> textArea = layer->CreateTextArea(400, 300, 300, 200, &tst, &gst);
-
+    
     while (1)
     {
         // Костыль для теста на время, пока нет Observer.

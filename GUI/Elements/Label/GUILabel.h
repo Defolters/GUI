@@ -1,45 +1,52 @@
 ﻿#pragma once
 #include "../../GUI/GUIBox.h"
-enum class Alignment {
+//! An enum.
+enum Alignment {
     LEFT,
     CENTER,
     RIGHT,
     TOP,
     BOTTOM
 };
-
+/*!
+\brief Class for handling Settings Dialog UI and logic.
+*/
 class GUILabel : public GUIBox
 {
 private:
     friend class GUILayer;
 
-    Text text; /*!< текст */
-    Texture *iconT; /*!< текстура иконки */
-    Sprite *icon; /*!< иконка, которую можно нарисовать */
-    TextStyle *tstyle; /*!< стиль текста */
-    Alignment horizontalAlignment = Alignment::CENTER; /*!< горизонтальное выравнивание */
-    Alignment verticalAlignment = Alignment::CENTER; /*!< вертикальное выравнивание */
-    Alignment textToIconAlignment = Alignment::CENTER; /*!< положение текста по отношению к иконке */
-    unsigned int GapBetweenIconText = 0; /*!< расстояние между иконкой и текстом */
-    bool isDependsOnSize; /*!< автоматический подгон размера шрифта под размер (области label) */
+    Text text; //!< текст
+    Texture *iconT; //!< текстура иконки
+    Sprite *icon; //!< иконка, которую можно нарисовать
+    TextStyle *tstyle; //!< стиль текста
+    Alignment horizontalAlignment = Alignment::CENTER; //!< горизонтальное выравнивание
+    Alignment verticalAlignment = Alignment::CENTER; //!< вертикальное выравнивание
+    Alignment textToIconAlignment = Alignment::CENTER; //!< положение текста по отношению к иконке
+    unsigned int GapBetweenIconText = 0; //!< расстояние между иконкой и текстом
+    bool isDependsOnSize; //!< автоматический подгон размера шрифта под размер (области label)
     RectangleShape *rect = nullptr;
 
     /*!
     \brief Функция, которая подгоняет размер шрифта под размер элемента 
     \param size_ размер элемента
     */
-    void FindFitSizeOfFont(Vector2f size_);
+    void FindFitSizeOfFont(const Vector2f& size_);
+
     /*!
     \brief Функция, которая подгоняет размер иконки под размер элемента
     \param size_ размер элемента
     */
-    void FindFitScaleOfImage(Vector2f size_);
+    void FindFitScaleOfImage(const Vector2f& size_);
 
-    /*!
-    * \brief This signal is emitted once every time a part of the route is found.
-    * \param n Indicates the number of the route parts found.
-    */
+    
 protected:
+    /*!
+    * \brief Class constructor.
+    * \param parent Settings Dialog parent widget.
+    *
+    * Initializes Settings Dialog and creates its layout based on target OS.
+    */
     // нужен ли gstyle? текстуру хранить там?
     // конструкторы икон, икон + выравнивание, строка, строка+икон+выравн, строка +выравн, пустой
     /*
@@ -118,13 +125,13 @@ public:
     //float GetSize(); этот метод уже есть в базовом
 
     //! Устанавливает размер текста
-    void SetSizeOfText(unsigned int size);
+    void SetSizeOfText(const unsigned int size);
     //! Возвращает размер текста
     unsigned int GetSizeOfText() const;
 
 
     //! Устанавливает иконку
-    void SetIcon(Texture* iconT);
+    void SetIcon(Texture * iconT);
     //! Возвращает иконку
     Texture* GetIcon() const;
 
@@ -141,8 +148,8 @@ public:
     \param renderWindow_ окно, в которое рисуем
     */
     //! Устанавливает или возвращает горизонтальное и вертикальное положение элемента
-    void SetHorizontalAlignment(Alignment aligment);
-    void SetVerticalAlignment(Alignment aligment);
+    void SetHorizontalAlignment(const Alignment aligment);
+    void SetVerticalAlignment(const Alignment aligment);
     Alignment GetHorizontalAlignment();
     Alignment GetVerticalAlignment();
     
@@ -151,7 +158,7 @@ public:
     The SwingConstants interface defines five possible values for horizontal position: LEADING, LEFT, CENTER, RIGHT, and TRAILING (the default). 
     For vertical position: TOP, CENTER (the default), and BOTTOM.
     */
-    void SetTextToIconAlignment(Alignment aligment);
+    void SetTextToIconAlignment(const Alignment aligment);
     Alignment GetTextToIconAlignment();
 
     //! Устанавливает или возвращает количество пикселей между текстом и иконкой
@@ -162,7 +169,3 @@ public:
     void SetDependsOnSize(bool state);
     bool GetDependsOnSize();
 };
-
-/*
-если текст + иконка, то он не меняет размер в зависимости от размера бокса.
-*/

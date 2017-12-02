@@ -13,7 +13,8 @@ private:
 	std::vector<std::shared_ptr<GUILayer>> GUILayers; //!< вектор??
 	RenderWindow window; //!< окно
     
-    /*
+
+    /*!
     \brief Функция, которая изменяет размер компонентов, если окно растянули
     \param event_ Содержит в себе новый размер окна
     */
