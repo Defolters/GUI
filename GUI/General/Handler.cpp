@@ -63,6 +63,7 @@ void main()
 
     static GUIStyle sBarStyle;
     sBarStyle.background.loadFromFile("resources/statusBar.png");
+	sBarStyle.color = Color::Blue;
 
     //создание окна и слоя гуи на нем 
     WindowTab main(VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "main");
@@ -172,12 +173,12 @@ void main()
 	statusBar->setLocation(Location::DOWNSIDE);
 
     //menu bar
-    /*std::shared_ptr<MenuBar> menuBar = layer->CreateMenuBar(0, 0, SCREEN_WIDTH - 12, 50, "", &tst, &gst2,
+    std::shared_ptr<MenuBar> menuBar = layer->CreateMenuBar(0, 0, SCREEN_WIDTH - 12, 50, "", &tst, &gst2,
         0, 200, Color::White);
     menuBar->addButton("1", &buttonAction1);
     menuBar->addButton("2", &buttonAction2);
     menuBar->addButton("3", &buttonAction3);
-    menuBar->addButton("4", &buttonAction4);*/
+    menuBar->addButton("4", &buttonAction4);
 
     std::shared_ptr<TextField> textBox = layer->CreateTextField(250, 350, 100, 40, "textField", &tst, &gst);
 

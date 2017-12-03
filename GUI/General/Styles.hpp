@@ -18,4 +18,5 @@ struct GUIStyle {
 	Texture sliderBackTex, sliderFrontTex, sliderHandlerTex;//текстуры для слайдера
 	Texture background;
     Texture icon;
+	Color color;
 };
