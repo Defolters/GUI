@@ -55,25 +55,30 @@ void GUIBox::Recalc()
 void GUIBox::SetPosition(Vector2f position_)
 {
 	IDisplayable::SetPosition(position_);
+    for (auto& elem : elements)
+    {
+        elem->SetPosition(position_);
+    }
 	Recalc();
 }
 void GUIBox::SetPosition(float x, float y)
 {
-	IDisplayable::SetPosition(x, y);
-	Recalc();
+    SetPosition(Vector2f(x, y));
 }
 
 void GUIBox::SetSize(Vector2f size_)
 {
 	IDisplayable::SetSize(size_);
-    // set size
+    for (auto& elem : elements)
+    {
+        elem->SetSize(size_);
+    }
 	Recalc();
 }
+
 void GUIBox::SetSize(float width, float height)
 {
-	IDisplayable::SetSize(width, height);
-    // set size
-	Recalc();
+    SetSize(Vector2f(width, height));
 }
 
 void GUIBox::SetGStyle(GUIStyle *Cgstyle)
