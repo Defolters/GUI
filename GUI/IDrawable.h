@@ -31,6 +31,7 @@ public:
 	//но главное - в этой функции он должен отрисовывать свой Sprite в RenderWindow
 	//для большей информации см. IDisplayable.h
 	virtual void Draw();
+	virtual void DrawforScr(RenderWindow *swindow);
 	//Конструкторы, сначала позиция (x,y)
 	//потом размер (ширина, высота)
 	IDrawable();
