@@ -1,4 +1,4 @@
-﻿#ifndef OBSERVER_H
+#ifndef OBSERVER_H
 #define OBSERVER_H
 #include <SFML/Graphics.hpp>
 

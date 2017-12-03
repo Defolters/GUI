@@ -15,7 +15,7 @@ public:
 	virtual void Draw() override;
 	virtual void Recalc() override;
 	void handleEvent(const sf::Event& event) override;
-	void SetPosition(float x, float y) override;
+
 	Text DisplayText();
 	void ReText(char);     //формирует текст в  TextField
 	bool Select();

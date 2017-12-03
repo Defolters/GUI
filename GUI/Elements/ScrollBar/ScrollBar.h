@@ -11,28 +11,25 @@ enum class Orientation  {
 class ScrollBar : public GUIBox
 {
 public:
-	ScrollBar(RenderWindow* renderWindow_, Orientation orientation_, 
-		GUIStyle *gstyle, float sizeScrollPanel_);
+	ScrollBar(RenderWindow* renderWindow_, Orientation orientation_, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
 	~ScrollBar() = default;
 
 	virtual void handleEvent(const sf::Event& event) override;
 
 	virtual void Draw() override;
 
-	virtual void Recalc() override;
+    virtual void Recalc() override;
 
 
 private:
 	bool isMousePressed;
-	float lastPos;
+	float lastPosY;
 	Orientation orientation;
 	sf::RectangleShape band;
 	sf::RectangleShape roller;
-	sf::RectangleShape limiter;
-	const float width = 18.0f;
+	const float width = 12.0;
 	float height;
-	float shift;
-	float sizeScrollPanel;
+	const float shift = width*2;
 };
 
 #endif
