@@ -70,7 +70,7 @@ void main()
     //вот досюда
 
     //пример создания кнопки
-    //std::shared_ptr<GUIButton> button = layer->CreateButton(20, 20, 100,100, "button", &tst, &gst, &buttonAction);
+    std::shared_ptr<GUIButton> button = layer->CreateButton(20, 20, 100,100, "button", &tst, &gst, &buttonAction);
 
     // создание label
     Texture icon;

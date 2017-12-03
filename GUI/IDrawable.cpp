@@ -11,6 +11,12 @@ void IDrawable::SetPosition(Vector2f position_)
 	position = position_;
 }
 
+void IDrawable::SetPosition(Vector2f position_, Vector2f coefficient_)
+{
+    position.x = position.x * coefficient_.x;
+    position.y = position.y * coefficient_.y;
+}
+
 void IDrawable::SetSize(float width, float height)
 {
 	size.x = width;
@@ -20,6 +26,12 @@ void IDrawable::SetSize(float width, float height)
 void IDrawable::SetSize(Vector2f size_)
 {
 	size = size_;
+}
+
+void IDrawable::SetSize(Vector2f size_, Vector2f coefficient_)
+{
+    size.x = size.x * coefficient_.x;
+    size.y = size.y * coefficient_.y;
 }
 
 Vector2f IDrawable::GetSize()

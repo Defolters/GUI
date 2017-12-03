@@ -8,11 +8,14 @@ void WindowTab::Resizing(const Event& event_)
     {
         coefficient.x = event_.size.width / layer->GetSize().x;
         coefficient.y = event_.size.height / layer->GetSize().y;
+        //layer->SetSize(layer->GetSize(), coefficient);
         layer->SetSize(layer->GetSize().x * coefficient.x, layer->GetSize().y * coefficient.y);
         for (auto& element : layer->elements)
         {
-            element->SetSize(element->GetSize().x * coefficient.x, element->GetSize().y * coefficient.y);
-            element->SetPosition(element->GetPosition().x * coefficient.x, element->GetPosition().y * coefficient.y);
+            //element->SetSize(element->GetSize().x * coefficient.x, element->GetSize().y * coefficient.y);
+            //element->SetSize(element->GetSize(), coefficient);
+            //element->SetPosition(element->GetPosition().x * coefficient.x, element->GetPosition().y * coefficient.y);
+            element->SetPosition(element->GetSize(), coefficient);
         }
     }
 
