@@ -6,7 +6,6 @@ ScrollBar::ScrollBar(RenderWindow* renderWindow_, Orientation orientation_,
 	: GUIBox(renderWindow_, renderWindow_->getSize().x - width, 0.0f, width, height, gstyle),
 	orientation(orientation_), isMousePressed(false), sizeScrollPanel(sizeScrollPanel_)
 {
-	Recalc();
 	roller.setFillColor(sf::Color::Color(171, 171, 171, 255));
 	band.setFillColor(sf::Color::Color(220, 220, 220, 255));
 	limiter.setFillColor(sf::Color::Color(120, 120, 120, 255));
@@ -14,7 +13,7 @@ ScrollBar::ScrollBar(RenderWindow* renderWindow_, Orientation orientation_,
 
 void null(const float& x, const float& y)
 {
-
+	std::cout << x << "  " << y << std::endl;
 }
 
 void ScrollBar::handleEvent(const sf::Event& event) {
@@ -186,26 +185,56 @@ void ScrollBar::Draw() {
 	renderWindow->draw(limiter);
 }
 
+
+void ScrollBar::DrawforScr(RenderWindow *swindow) {
+	Recalc(swindow);
+	swindow->draw(band);
+	swindow->draw(roller);
+	swindow->draw(limiter);
+}
+
+void ScrollBar::Recalc(RenderWindow *swindow)
+{
+	limiter.setSize(sf::Vector2f(width, width));
+	limiter.setPosition(parent->GetPosition().x+parent->GetSize().x, parent->GetPosition().y + parent->GetSize().y);
+	if (orientation == Orientation::VERTICAL) {
+		height = parent->GetSize().y;
+		band.setSize(sf::Vector2f(width, height));
+		band.setPosition(parent->GetPosition().x + parent->GetSize().x, parent->GetPosition().y);
+		roller.setSize(sf::Vector2f(width, ((parent->GetSize().y / sizeScrollPanel) * band.getSize().y)));
+		//maxvalue = band.getSize().y - roller.getSize().y;
+		roller.setPosition(band.getPosition().x, band.getPosition().y); 
+		//band.getPosition().y надо изменить но так чтобы band.getPosition().y + значение
+	}
+	else {
+		height = parent->GetSize().x;
+		band.setSize(sf::Vector2f(height, width));
+		band.setPosition(parent->GetPosition().x, parent->GetPosition().y + parent->GetSize().y);
+		roller.setSize(sf::Vector2f(((parent->GetSize().x / sizeScrollPanel) * band.getSize().x), width));
+		//maxvalue = band.getSize().x - roller.getSize().x;
+		roller.setPosition(band.getPosition().x, band.getPosition().y); 
+		//band.getPosition().x надо изменить но так чтобы band.getPosition().y + значение
+	}
+}
+
 void ScrollBar::Recalc()
 {
 	limiter.setSize(sf::Vector2f(width, width));
-	limiter.setPosition(renderWindow->getSize().x - limiter.getSize().x, renderWindow->getSize().y - limiter.getSize().y);
+	limiter.setPosition(parent->GetPosition().x + parent->GetSize().x-width, parent->GetPosition().y + parent->GetSize().y-width);
 	if (orientation == Orientation::VERTICAL) {
-		height = renderWindow->getSize().y - limiter.getSize().y;
+		height = parent->GetSize().y-width;
 		band.setSize(sf::Vector2f(width, height));
-		band.setPosition(renderWindow->getSize().x - width, 0.0f);
-		roller.setSize(sf::Vector2f(width, band.getSize().y / (sizeScrollPanel / renderWindow->getSize().y)));
-		roller.setPosition(renderWindow->getSize().x - width, roller.getPosition().y);
+		band.setPosition(parent->GetPosition().x + parent->GetSize().x-width, parent->GetPosition().y);
+		roller.setSize(sf::Vector2f(width, ((parent->GetSize().y / sizeScrollPanel) * band.getSize().y)));
+		roller.setPosition(band.getPosition().x, band.getPosition().y+ roller.getPosition().y);
 		shift = roller.getSize().y;
 	}
 	else {
-		height = renderWindow->getSize().x - limiter.getSize().x;
+		height = parent->GetSize().x-width;
 		band.setSize(sf::Vector2f(height, width));
-		band.setPosition(0.0f, renderWindow->getSize().y - width);
-		roller.setSize(sf::Vector2f(band.getSize().x / (sizeScrollPanel / renderWindow->getSize().x), width));
-		roller.setPosition(roller.getPosition().x, renderWindow->getSize().y - width);
+		band.setPosition(parent->GetPosition().x, parent->GetPosition().y + parent->GetSize().y-width);
+		roller.setSize(sf::Vector2f(((parent->GetSize().x / sizeScrollPanel) * band.getSize().x), width));
+		roller.setPosition(band.getPosition().x+roller.getPosition().x, band.getPosition().y);
 		shift = roller.getSize().x;
 	}
-
-
 }

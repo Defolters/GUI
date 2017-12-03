@@ -1,5 +1,6 @@
 #include "../Window/WindowTab.h"
 #include <Windows.h>
+
 #define LABEL_DEBUG false
 
 const int SCREEN_WIDTH = 800;
@@ -65,8 +66,15 @@ void main()
     //создание окна и слоя гуи на нем 
     WindowTab main(VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "main");
     std::shared_ptr<GUILayer> layer = main.CreateGUILayer(Vector2f(0, 0), Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
+	std::shared_ptr<ScrollBar> scrollbarHor = layer->CreateScrollBar(0, 0, 0, 0, &gst, Orientation::HORIZONTAL, 1000);
+	std::shared_ptr<ScrollBar> scrollbarVert = layer->CreateScrollBar(0, 0, 0, 0, &gst, Orientation::VERTICAL, 800);
     //вот досюда
+	std::shared_ptr<ScrollingPanel> panel = main.CreateScrollPanel(Vector2f(800, 600), Vector2f(150, 150), Vector2f(200, 250), Color(50, 50, 50, 255), &gst);
+	std::shared_ptr<ScrollBar> scrollbarHor2 = panel->CreateScrollBar(0, 0, 0, 0, &gst, Orientation::HORIZONTAL, 800);
+	std::shared_ptr<ScrollBar> scrollbarVert2 = panel->CreateScrollBar(0, 0, 0, 0, &gst, Orientation::VERTICAL, 600);
 
+	std::shared_ptr<GUILabel> label15 = panel->CreateLabel(5, 10, 100, 40, "LEFT", &tst, &gst);
+	std::shared_ptr<GUILabel> label16 = panel->CreateLabel(700, 10, 90, 40, "Right", &tst, &gst);
     //пример создания кнопки
     //std::shared_ptr<GUIButton> button = layer->CreateButton(20, 20, 100,100, "button", &tst, &gst, &buttonAction);
 
@@ -142,27 +150,22 @@ void main()
         labelTextIcon4->SetTextToIconAlignment(Alignment::BOTTOM);
         std::shared_ptr<GUILabel> labelTextIcon5 = layer->CreateLabel(400, 310, 100, 50, "CENTER", &tst, &icon, &gst);
     }
-    
+   /* 
     // Cоздание прогресс бара. 
     std::shared_ptr<GUIProgressBar> progressBar = layer->CreateProgressBar(layer, SCREEN_WIDTH / 3 + 50, SCREEN_HEIGHT / 3, 200, 30, "Sorting...", &tst, &gst,
         0, 200, Color::White, Color::Green);
 
-    std::shared_ptr<ScrollBar> scrollbarHor = layer->CreateScrollBar(0, 0, 0, 0, &gst, Orientation::HORIZONTAL, 1600);
-
-    std::shared_ptr<ScrollBar> scrollbarVert = layer->CreateScrollBar(0, 0, 0, 0, &gst, Orientation::VERTICAL, 1800);
-
     //создаем слайдер
-    std::shared_ptr<Slider> slider = layer->CreateSlider(225, 450, 350, 20, 35, 38, &gst, 0, 100, 20, &onSliderMove);
+    std::shared_ptr<Slider> slider = layer->CreateSlider(225, 250, 350, 20, 35, 38, &gst, 0, 100, 20, &onSliderMove);
 
     //Создание статус бара
-    std::shared_ptr<GUIStatusBar>  statusBar = layer->CreateStatusBar(40, 5, 10, &sBarStyle);
+   std::shared_ptr<GUIStatusBar>  statusBar = layer->CreateStatusBar(40, 5, 10, &sBarStyle);
     std::shared_ptr<GUIBox> box1 = layer->CreateButton(100, 0, 50, 50, "", &tst, &gst, &buttonAction);
     std::shared_ptr<GUIBox> box2 = layer->CreateButton(0, 0, 1, 1, "B", &tst, &gst, &buttonAction);
     std::shared_ptr<GUIBox> box3 = layer->CreateButton(0, 0, 4, 1, "Test", &tst, &gst, &buttonAction);
     statusBar->AddElement(box1);
     statusBar->AddElement(box2);
     statusBar->AddElement(box3);
-
 
     //menu bar
     std::shared_ptr<MenuBar> menuBar = layer->CreateMenuBar(0, 0, SCREEN_WIDTH - 12, 50, "", &tst, &gst2,
@@ -175,13 +178,13 @@ void main()
     std::shared_ptr<TextField> textBox = layer->CreateTextField(250, 350, 100, 40, "textField", &tst, &gst);
 
     std::shared_ptr<TextArea> textArea = layer->CreateTextArea(400, 300, 300, 200, &tst, &gst);
-    
+*/
     while (1)
     {
         // Костыль для теста на время, пока нет Observer.
         // Потом будет передаваться ивент об изменении значения бара.
         //*****тест ProgressBar****
-        progressBar->increase();
+        //progressBar->increase();
         Sleep(20);
         //*************************
 

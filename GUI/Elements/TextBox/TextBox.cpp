@@ -103,7 +103,8 @@ void TextField::handleEvent(const sf::Event& event)
 	{
 		if (event.mouseButton.button == sf::Mouse::Left)
 		{
-			Vector2i mouse = Mouse::getPosition(*renderWindow); // —читываем координаты мыши
+			//Vector2i mouse = Mouse::getPosition(*renderWindow); // —читываем координаты мыши
+			Vector2i mouse = Vector2i(int(event.mouseButton.x), int(event.mouseButton.y));
 			Select(mouse);
 			//std::cout << mouse.x <<" "<<mouse.y<< std::endl;
 		}
