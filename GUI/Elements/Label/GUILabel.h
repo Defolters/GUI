@@ -29,7 +29,6 @@ private:
     Alignment textToIconAlignment; //!< положение текста по отношению к иконке
     unsigned int GapBetweenIconText; //!< расстояние между иконкой и текстом
     bool isDependsOnSize; //!< автоматический подгон размера шрифта под размер (области label)
-    RectangleShape *rect = nullptr; //!< прямоугольник для демонстрации alignment
 
     /*!
     \brief Функция, которая подгоняет размер шрифта под размер элемента 
@@ -44,81 +43,60 @@ private:
     void FindFitScaleOfImage(const Vector2f& size_);
 protected:
     /*!
-    * \brief Class constructor.
-    * \param parent Settings Dialog parent widget.
-    *
-    * Initializes Settings Dialog and creates its layout based on target OS.
-    */
-    
-    //JLabel(Icon);
-    // конструктор для одной иконки, tstyle нужен, чтобы потом, если вы захотите, смогли установить текст.
-   // GUILabel(RenderWindow* renderWindow_, float x, float y, float width, float height, Texture *icon_, TextStyle *tstyle, GUIStyle *gstyle, bool isDependsOnSize_);
-    //GUILabel(RenderWindow* renderWindow_, float x, float y, float width, float height, Texture *icon_, TextStyle *tstyle_, GUIStyle *gstyle_);
-    //GUILabel(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_, Texture *icon_, TextStyle *tstyle_, GUIStyle *gstyle_);
+    \brief Class constructor.
+    \param parent Settings Dialog parent widget.
 
-    //JLabel(Icon, int);
-    // конструктор + alignment
-    //GUILabel(RenderWindow* renderWindow_, float x, float y, float width, float height, Texture *icon_, TextStyle *tstyle, GUIStyle *gstyle, Alignment alig);
-
-    //JLabel(String);
-    // простой конструктор для текста
-    GUILabel(RenderWindow* renderWindow_, const Vector2f& position_, 
-        const Vector2f& size_, const std::string& text_, TextStyle* tstyle_, 
-        GUIStyle* gstyle_, bool isDependsOnSize_ = true);
-
-    //JLabel(String, Icon, int);
-    // конструктор icon, text, alignment
-    /*GUILabel(RenderWindow* renderWindow_, const Vector2f& position_,
-        const Vector2f& size_, const std::string& text_, TextStyle* tstyle_,
-        Texture* texture_, GUIStyle* gstyle_, const Alignment& textToIconAlig = Alignment::CENTER,
-        const unsigned int GapBetweenIconText = 0,
-        const Alignment& verticalAlig = Alignment::CENTER,
-        const Alignment horizontalAlig = Alignment::CENTER, bool isDependsOnSize_ = true);*/
-
-    //JLabel(String, int);
-    /*GUILabel(RenderWindow* renderWindow_, const Vector2f& position_, 
-        const Vector2f& size_, const std::string& text_, TextStyle* tstyle_, 
-        GUIStyle* gstyle_, const Alignment verticalAlig = Alignment::CENTER, 
-        const Alignment horizontalAlig = Alignment::CENTER, bool isDependsOnSize_ = true);*/
-
-
-
-
-
-
-    // СТАНДАРТНЫЕ КОНСТРУКТОРЫ ДЛЯ СТАРОЙ ВЕРСИИ
-    //! Конструктор
-    /*!
-    Создает текстовый label
+    Initializes Settings Dialog and creates its layout based on target OS.
     */
     GUILabel(RenderWindow* renderWindow_, float x, float y, float width, float height, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
-    //! Конструктор
+
     /*!
-    Создает текстовый label
+    \brief Class constructor.
+    \param parent Settings Dialog parent widget.
+
+    Initializes Settings Dialog and creates its layout based on target OS.
     */
-    //GUILabel(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
-    //! Конструктор
+    GUILabel(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
+
     /*!
-    Создает label, состоящий из одной иконки, если текст задан пустой строкой.
-    Если текст задан, то создает label, содержащий иконку и текст
-    \param renderWindow_ окно, в которое рисуем
+    \brief Class constructor.
+    \param parent Settings Dialog parent widget.
+
+    Initializes Settings Dialog and creates its layout based on target OS.
+    */
+    GUILabel(RenderWindow* renderWindow_, float x, float y, float width, float height, TextStyle *tstyle, Texture *icon_, GUIStyle *gstyle);
+
+    /*!
+    \brief Class constructor.
+    \param parent Settings Dialog parent widget.
+
+    Initializes Settings Dialog and creates its layout based on target OS.
+    */
+    GUILabel(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_, TextStyle *tstyle, Texture *icon_, GUIStyle *gstyle);
+
+    /*!
+    \brief Class constructor.
+    \param parent Settings Dialog parent widget.
+
+    Initializes Settings Dialog and creates its layout based on target OS.
     */
     GUILabel(RenderWindow* renderWindow_, float x, float y, float width, float height, std::string text, TextStyle *tstyle, Texture *icon_, GUIStyle *gstyle);
-    //! Конструктор
+
     /*!
-    Создает label, состоящий из одной иконки, если текст задан пустой строкой.
-    Если текст задан, то создает label, содержащий иконку и текст
-    \param renderWindow_ окно, в которое рисуем
+    \brief Class constructor.
+    \param parent Settings Dialog parent widget.
+
+    Initializes Settings Dialog and creates its layout based on target OS.
     */
     GUILabel(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_, std::string text, TextStyle *tstyle, Texture *icon_, GUIStyle *gstyle);
 
 
 
     //! Переопределяем функцию Draw
-    virtual void Draw() override;
+    void Draw() override;
 
     //! Переопределяем функцию Recalc
-    virtual void Recalc() override;
+    void Recalc() override;
 
 public:
     /*!

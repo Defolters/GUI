@@ -92,6 +92,20 @@ std::shared_ptr<GUILabel> GUILayer::CreateLabel(Vector2f position_, Vector2f siz
 	elements.push_back(label);
 	return label;
 }
+std::shared_ptr<GUILabel> GUILayer::CreateLabel(float x, float y, float width, float height, TextStyle * tstyle, Texture * texture, GUIStyle *gstyle)
+{
+    std::shared_ptr<GUILabel> label(new GUILabel(window, x, y, width, height, tstyle, texture, gstyle));
+    label->parent = this;
+    elements.push_back(label);
+    return label;
+}
+std::shared_ptr<GUILabel> GUILayer::CreateLabel(Vector2f position_, Vector2f size_, TextStyle * tstyle, Texture * texture, GUIStyle *gstyle)
+{
+    std::shared_ptr<GUILabel> label(new GUILabel(window, position_, size_, tstyle, texture, gstyle));
+    label->parent = this;
+    elements.push_back(label);
+    return label;
+}
 
 std::shared_ptr<GUIProgressBar> GUILayer::CreateProgressBar(std::shared_ptr<GUILayer> _layer, float x, float y, float width, float height,
 	std::string text_, TextStyle *tstyle, GUIStyle *gstyle,

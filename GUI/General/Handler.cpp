@@ -42,6 +42,8 @@ void main()
     gst.frame.loadFromFile("resources/frame.png");
     gst.background.loadFromFile("resources/statusBar.png");
     gst.frameWid = 5;
+    gst.icon.loadFromFile("resources/Danger.png");
+
     //текстуры слайдера
     +gst.sliderBackTex.loadFromFile("resources/slider_back_line.png");
     +gst.sliderFrontTex.loadFromFile("resources/slider_front_line.png");
@@ -71,7 +73,7 @@ void main()
     //std::shared_ptr<GUIButton> button = layer->CreateButton(20, 20, 100,100, "button", &tst, &gst, &buttonAction);
 
     // создание label
-    Texture icon, icon2;
+    Texture icon;
     icon.loadFromFile("resources/Danger.png");
 
     // test label

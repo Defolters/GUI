@@ -12,6 +12,7 @@ void WindowTab::Resizing(const Event& event_)
         for (auto& element : layer->elements)
         {
             element->SetSize(element->GetSize().x * coefficient.x, element->GetSize().y * coefficient.y);
+            element->SetPosition(element->GetPosition().x * coefficient.x, element->GetPosition().y * coefficient.y);
         }
     }
 
