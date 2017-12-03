@@ -158,10 +158,10 @@ std::shared_ptr<Slider> GUILayer::CreateSlider(float line_position_x, float line
 }
 
 std::shared_ptr<GUIStatusBar> GUILayer::CreateStatusBar(float height_, float frameSize_,
-	float spacing_, GUIStyle *sBarStyle_)
+	float spacing_, GUIStyle *sBarStyle_, Location location_)
 {
 	std::shared_ptr<GUIStatusBar> statusBar(new GUIStatusBar(window, height_, frameSize_,
-		spacing_, sBarStyle_));
+		spacing_, sBarStyle_, location_));
 	statusBar->parent = this;
 	elements.push_back(statusBar);
 	return statusBar;

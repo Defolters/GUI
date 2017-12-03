@@ -54,7 +54,7 @@ public:
 
 	std::shared_ptr<ScrollBar> CreateScrollBar(float x, float y, float width, float height, GUIStyle *gstyle, Orientation orientation, float sizeScrollPanel_);
 	
-	std::shared_ptr<GUIStatusBar> CreateStatusBar(float height_, float frameSize_, float spacing_, GUIStyle *sBarStyle_);
+	std::shared_ptr<GUIStatusBar> CreateStatusBar(float height_, float frameSize_, float spacing_, GUIStyle *sBarStyle_, Location location_);
 
 	std::shared_ptr<Slider> CreateSlider(float line_position_x, float line_position_y, float line_width_, float line_height_, float handler_width_, float handler_height_, GUIStyle* gst, float value_range_from_, float value_range_to_, float value_);
 	std::shared_ptr<Slider> CreateSlider(float line_position_x, float line_position_y, float line_width_, float line_height_, float handler_width_, float handler_height_, GUIStyle* gst, float value_range_from_, float value_range_to_, float value_, void(*action_on_move)(float slider_value));
