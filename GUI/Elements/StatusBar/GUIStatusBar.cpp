@@ -67,9 +67,13 @@ void GUIStatusBar::handleEvent(const sf::Event & event)
 	{
 		(*el)->handleEvent(event);
 	}
-	if (event.type == sf::Event::Resized)
+	switch(event.type)
 	{
+	case Event::Resized:
 		Recalc();
+		break;
+	case Event::MouseButtonPressed:
+
 	}
 }
 

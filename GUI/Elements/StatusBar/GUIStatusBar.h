@@ -15,6 +15,7 @@ private:
 	GUIStyle *sBarStyle;
 	Location location;
 	float width;
+	bool isMoved = false;
 	/*!
 	текущая X позиция для вставки следующего элемента
 	*/
