@@ -6,10 +6,9 @@ TextField::TextField(RenderWindow* renderWindow_, float x, float y, float width,
 	//this->SetPosition(150, 150);
 	//this->SetSize(200, 100);
 	txt.setPosition(this->GetPosition().x + 2, this->GetPosition().y + 2);
-	//txt.setColor(Color::Black);
+	txt.setColor(Color::Black);
 	txt.setCharacterSize(this->GetSize().y / 1.5);
 	txt.setFont(tstyle->font);
-	txt.setFillColor(Color::Black);
 	txt.setString(text);
 	focus = false;
 	Recalc();
@@ -31,11 +30,6 @@ void TextField::ReText(char _tmp)
 	}
 	text += "|";
 	txt.setString(text);
-	//std::cout << field.getSize().y << std::endl;
-	if (txt.getGlobalBounds().width > field.getSize().x - 15)
-	{
-		text.erase(text.size() - 1);
-	}
 }
 
 bool TextField::Select()
@@ -105,7 +99,6 @@ void TextField::handleEvent(const sf::Event& event)
 		{
 			Vector2i mouse = Mouse::getPosition(*renderWindow); // —читываем координаты мыши
 			Select(mouse);
-			//std::cout << mouse.x <<" "<<mouse.y<< std::endl;
 		}
 	}
 	if (event.type == sf::Event::TextEntered)
@@ -116,11 +109,4 @@ void TextField::handleEvent(const sf::Event& event)
 	}
 	txt.setString(text);
 	//(*renderWindow).draw(DisplayText());
-}
-
-void TextField::SetPosition(float x, float y)
-{
-	IDisplayable::SetPosition(x, y);
-	txt.setPosition(x + 2, y + 2);
-	Recalc();
 }

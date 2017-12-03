@@ -1,0 +1,102 @@
+Tests:
+
+
+ScrollBar
+1) The correct display of the ScrollBar <not all>
+	a) Not overlap of sliders <false>
+2) The slider does not go beyond the scrollbar <true>
+3) The correct сhange the ScrollBar to fit the screen: more <false>, less <false>, width <false>, height <false>
+
+ProgressBar
+
+1) The correct display of the ProgressBar <false>
+2) The percent do not go beyond the frame <not all>
+	a) Non ability to specify negative left margin <false>
+	b) Non ability to specify negative right margin <false>
+3) The correct сhange the ProgressBar to fit the screen: more <true>, less <true>, width <true>, height <true>
+
+Button
+1) The correct display of the image <true>
+2) The correct display of the label of Button <true>
+3) The correct working out pressing <true>
+4) The correct сhange the Button to fit the screen: more <true>, less <true>, width <true>, height <true>
+5) The correct function call <true>
+
+CheckBox
+1) The correct display of the CheckBox <false>
+2) The correct return of the value (true or false) <false>
+3) The correct сhange the CheckBox to fit the screen: more <false>, less <false>
+
+MenuBar
+1) The correct display of the MenuBar <false>
+2) The correct display vector of Buttons <false>
+3) The correct сhange the MenuBar to fit the screen: more <false>, less <false>
+
+ComboBox 
+1) The correct display of the ComboBox <false>
+2) The correct display vector of Buttons <false>
+3) The correct сhange the ComboBox  to fit the screen: more <false>, less <false>
+
+RadioButton
+1) The correct display of the RadioButton <false>
+2) The correct work of users choice (only one choice available) <false>
+3) The correct сhange the RadioButton to fit the screen: more <false>, less <false>
+
+Slider
+1) The correct display of the Slider <false>
+2) The button of the slider does not go beyond the bounds <false>
+3) The slider button moves only one axis <false>
+4) The correct сhange the Slider to fit the screen: more <false>, less <false>
+
+StatusBar
+1) The correct display of the StatusBar <false>
+2) Сorrect display of large amounts of data <false>
+3) The correct сhange the StatusBar to fit the screen: more <false>, less <false>
+
+Label 
+1) The correct display of the Labels text <true>
+2) The correct display of the Labels icon <true>
+2) The correct сhange the Label to fit the screen: more <true>, less <ftrue>, width <true>, height <true>
+
+Table
+1) The correct display of the Table <false>
+2) The correct сhange the Table to fit the screen: more <false>, less <false>
+3) Support for text editing <false>
+4) Hotkey support <false>
+5) Compression of the cell size written after the input <false>
+6) Support of formulas <false>
+7) The correct display of the cell written at the opening <false>
+
+ScrollPanel
+1) The correct display of the ScrollPanel <false>
+2) Objects do not go beyond scrollbar <false>
+3) The correct сhange the ScrollPanel to fit the screen: more <false>, less <false>
+4) The correct scrolling and displey of objects
+
+TextBox
+1) The correct display of the TextBox <false>
+2) Objects do not go beyond TextBox <false>
+3) Support for text editing <false>
+4) Hotkey support <false>
+
+TextArea
+1) The correct display of the TextArea <false>
+2) Objects do not go beyond TextArea <false>
+3) Support for text editing <false>
+4) Hotkey support <false>
+5) The correct text scrolling <false>
+6) The correct сhange the TextArea to fit the screen: more <false>, less <false>
+
+ColorChooser
+1) The correct display of the ColorChooser <false>
+2) The correct сhange the ColorChooser to fit the screen: more <false>, less <false>
+3) The correct color storage <false>
+4) The possibility of transferring color information to another block <false>
+
+PasswordField
+1) The correct display of the PasswordField <false>
+2) Configurable minimum and maximum password lengths <false>
+3) Ability to hide the password when typing <false>
+4) Ability to show password when typing <false>
+5) Inability to set a blank password <false>
+
