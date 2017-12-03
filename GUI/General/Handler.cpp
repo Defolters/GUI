@@ -61,7 +61,6 @@ void main()
 
     static GUIStyle sBarStyle;
     sBarStyle.background.loadFromFile("resources/statusBar.png");
-	sBarStyle.color = Color::Blue;
 
     //создание окна и слоя гуи на нем 
     WindowTab main(VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "main");
