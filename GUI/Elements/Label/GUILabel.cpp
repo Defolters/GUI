@@ -24,10 +24,26 @@ void GUILabel::FindFitScaleOfImage(const Vector2f& size_)
     }
 }
 
+// один текст
+GUILabel::GUILabel(RenderWindow* renderWindow_, const Vector2f& position_, const Vector2f& size_, 
+    const std::string& text_, TextStyle* tstyle_, GUIStyle* gstyle_, bool isDependsOnSize_) :
+    GUIBox(renderWindow_, position_, size_, gstyle_),
+    tstyle(tstyle_), iconT(nullptr), icon(nullptr), isDependsOnSize(isDependsOnSize_),
+    horizontalAlignment(Alignment::CENTER), verticalAlignment(Alignment::CENTER),
+    textToIconAlignment(Alignment::CENTER), GapBetweenIconText(0)
+{
+    text.setString(text_);
+    text.setFont(tstyle->font);
+    text.setFillColor(tstyle->color);
+    text.setCharacterSize(tstyle->fontSize);
+}
+
 GUILabel::GUILabel(RenderWindow* renderWindow_, float x, float y, float width,
     float height, std::string text_, TextStyle *Ctstyle, GUIStyle *Cgstyle) :
     GUIBox(renderWindow_, x, y, width, height, Cgstyle),
-    tstyle(Ctstyle), iconT(nullptr), icon(nullptr), isDependsOnSize(true) // отличие такого присваивания
+    tstyle(Ctstyle), iconT(nullptr), icon(nullptr), isDependsOnSize(true),
+    horizontalAlignment(Alignment::CENTER), verticalAlignment(Alignment::CENTER),
+    textToIconAlignment(Alignment::CENTER), GapBetweenIconText(0) // отличие такого присваивания
 {
     text.setString(text_);
     text.setFont(tstyle->font);
@@ -40,26 +56,12 @@ GUILabel::GUILabel(RenderWindow* renderWindow_, float x, float y, float width,
     rect->setPosition(x, y);
 }
 
-GUILabel::GUILabel(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_,
-    std::string text_, TextStyle *Ctstyle, GUIStyle *Cgstyle) :
-    GUIBox(renderWindow_, position_, size_, Cgstyle),
-    tstyle(Ctstyle), iconT(nullptr), icon(nullptr), isDependsOnSize(true)
-{
-    text.setString(text_);
-    text.setFont(tstyle->font);
-    text.setFillColor(tstyle->color);
-    text.setCharacterSize(tstyle->fontSize);
-    rect = new RectangleShape(size_);
-    rect->setFillColor(Color::Transparent);
-    rect->setOutlineColor(Color::Red);
-    rect->setOutlineThickness(1);
-    rect->setPosition(position_);
-}
-
 GUILabel::GUILabel(RenderWindow* renderWindow_, float x, float y, float width,
     float height, std::string text_, TextStyle* Ctstyle, Texture* icon_, GUIStyle* Cgstyle) :
     GUIBox(renderWindow_, x, y, width, height, Cgstyle),
-    tstyle(Ctstyle), iconT(icon_), isDependsOnSize(true)
+    tstyle(Ctstyle), iconT(icon_), isDependsOnSize(true),
+    horizontalAlignment(Alignment::CENTER), verticalAlignment(Alignment::CENTER),
+    textToIconAlignment(Alignment::CENTER), GapBetweenIconText(0)
 {
     text.setString(text_);
     text.setFont(tstyle->font);
@@ -76,7 +78,9 @@ GUILabel::GUILabel(RenderWindow* renderWindow_, float x, float y, float width,
 GUILabel::GUILabel(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_,
     std::string text_, TextStyle* Ctstyle, Texture* icon_, GUIStyle* Cgstyle) :
     GUIBox(renderWindow_, position_, size_, Cgstyle),
-    tstyle(Ctstyle), iconT(icon_), isDependsOnSize(true)
+    tstyle(Ctstyle), iconT(icon_), isDependsOnSize(true),
+    horizontalAlignment(Alignment::CENTER), verticalAlignment(Alignment::CENTER),
+    textToIconAlignment(Alignment::CENTER), GapBetweenIconText(0)    
 {
     text.setString(text_);
     text.setFont(tstyle->font);
@@ -105,13 +109,13 @@ void GUILabel::Draw()
     }
     if ((rect != nullptr) && ((text.getString() == "") || (icon == nullptr)))
     {
-        renderWindow->draw(*rect);
+        //renderWindow->draw(*rect);
     }
 }
 
 void GUILabel::Recalc()
 {
-    rect->setSize(GetSize());
+    //rect->setSize(GetSize());
     Vector2f positionOfBox = GetPosition(); // позиция нашего объекта
     Vector2f sizeOfBox = GUIBox::GetSize(); // размер нашего объекта
     float width = sizeOfBox.x;

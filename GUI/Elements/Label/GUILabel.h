@@ -24,10 +24,10 @@ private:
     Texture *iconT; //!< текстура иконки
     Sprite *icon; //!< иконка, которую можно нарисовать
     TextStyle *tstyle; //!< стиль текста
-    Alignment horizontalAlignment = Alignment::CENTER; //!< горизонтальное выравнивание
-    Alignment verticalAlignment = Alignment::CENTER; //!< вертикальное выравнивание
-    Alignment textToIconAlignment = Alignment::CENTER; //!< положение текста по отношению к иконке
-    unsigned int GapBetweenIconText = 0; //!< расстояние между иконкой и текстом
+    Alignment horizontalAlignment; //!< горизонтальное выравнивание
+    Alignment verticalAlignment; //!< вертикальное выравнивание
+    Alignment textToIconAlignment; //!< положение текста по отношению к иконке
+    unsigned int GapBetweenIconText; //!< расстояние между иконкой и текстом
     bool isDependsOnSize; //!< автоматический подгон размера шрифта под размер (области label)
     RectangleShape *rect = nullptr; //!< прямоугольник для демонстрации alignment
 
@@ -49,39 +49,42 @@ protected:
     *
     * Initializes Settings Dialog and creates its layout based on target OS.
     */
-    // нужен ли gstyle? текстуру хранить там?
-    // конструкторы икон, икон + выравнивание, строка, строка+икон+выравн, строка +выравн, пустой
-    /*
-    JLabel(Icon)
+    
+    //JLabel(Icon);
     // конструктор для одной иконки, tstyle нужен, чтобы потом, если вы захотите, смогли установить текст.
-    GUILabel(RenderWindow* renderWindow_, float x, float y, float width, float height, Texture *icon_, TextStyle *tstyle, GUIStyle *gstyle, bool isDependsOnSize_);
-    GUILabel(RenderWindow* renderWindow_, float x, float y, float width, float height, Texture *icon_, TextStyle *tstyle_, GUIStyle *gstyle_);
-    GUILabel(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_, Texture *icon_, TextStyle *tstyle_, GUIStyle *gstyle_);
+   // GUILabel(RenderWindow* renderWindow_, float x, float y, float width, float height, Texture *icon_, TextStyle *tstyle, GUIStyle *gstyle, bool isDependsOnSize_);
+    //GUILabel(RenderWindow* renderWindow_, float x, float y, float width, float height, Texture *icon_, TextStyle *tstyle_, GUIStyle *gstyle_);
+    //GUILabel(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_, Texture *icon_, TextStyle *tstyle_, GUIStyle *gstyle_);
 
-    JLabel(Icon, int)
+    //JLabel(Icon, int);
     // конструктор + alignment
-    GUILabel(RenderWindow* renderWindow_, float x, float y, float width, float height, Texture *icon_, TextStyle *tstyle, GUIStyle *gstyle, Alignment alig);
-    JLabel(String)
-    // простой конструктор для текста
-    GUILabel(RenderWindow* renderWindow_, float x, float y, float width, float height, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
-    JLabel(String, Icon, int)
-    // конструктор icon, text, alignment
-    GUILabel(RenderWindow* renderWindow_, float x, float y, float width, float height, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
-    JLabel(String, int)
-    JLabel()
-    Creates a JLabel instance, initializing it to have the specified text/image/alignment. The int argument specifies the horizontal alignment of the label's contents within its drawing area. The horizontal alignment must be one of the following constants defined in the SwingConstants interface (which JLabel implements): LEFT, CENTER, RIGHT, LEADING, or TRAILING. For ease of localization, we strongly recommend using LEADING and TRAILING, rather than LEFT and RIGHT.
-    */
-    //! Конструктор c is dependsOnsize
-    /*!
-    Создает текстовый label
-    */
-    //GUILabel(RenderWindow* renderWindow_, float x, float y, float width, float height, std::string text, bool isDependsOnSize_, TextStyle *tstyle, GUIStyle *gstyle);
+    //GUILabel(RenderWindow* renderWindow_, float x, float y, float width, float height, Texture *icon_, TextStyle *tstyle, GUIStyle *gstyle, Alignment alig);
 
-    //! Конструктор
-    /*!
-    Создает текстовый label
-    */
-    //GUILabel(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_, std::string text, bool isDependsOnSize_, TextStyle *tstyle, GUIStyle *gstyle);
+    //JLabel(String);
+    // простой конструктор для текста
+    GUILabel(RenderWindow* renderWindow_, const Vector2f& position_, 
+        const Vector2f& size_, const std::string& text_, TextStyle* tstyle_, 
+        GUIStyle* gstyle_, bool isDependsOnSize_ = true);
+
+    //JLabel(String, Icon, int);
+    // конструктор icon, text, alignment
+    /*GUILabel(RenderWindow* renderWindow_, const Vector2f& position_,
+        const Vector2f& size_, const std::string& text_, TextStyle* tstyle_,
+        Texture* texture_, GUIStyle* gstyle_, const Alignment& textToIconAlig = Alignment::CENTER,
+        const unsigned int GapBetweenIconText = 0,
+        const Alignment& verticalAlig = Alignment::CENTER,
+        const Alignment horizontalAlig = Alignment::CENTER, bool isDependsOnSize_ = true);*/
+
+    //JLabel(String, int);
+    /*GUILabel(RenderWindow* renderWindow_, const Vector2f& position_, 
+        const Vector2f& size_, const std::string& text_, TextStyle* tstyle_, 
+        GUIStyle* gstyle_, const Alignment verticalAlig = Alignment::CENTER, 
+        const Alignment horizontalAlig = Alignment::CENTER, bool isDependsOnSize_ = true);*/
+
+
+
+
+
 
     // СТАНДАРТНЫЕ КОНСТРУКТОРЫ ДЛЯ СТАРОЙ ВЕРСИИ
     //! Конструктор
@@ -89,14 +92,11 @@ protected:
     Создает текстовый label
     */
     GUILabel(RenderWindow* renderWindow_, float x, float y, float width, float height, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
-
     //! Конструктор
     /*!
     Создает текстовый label
     */
-    GUILabel(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
-
-    
+    //GUILabel(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
     //! Конструктор
     /*!
     Создает label, состоящий из одной иконки, если текст задан пустой строкой.
@@ -104,7 +104,6 @@ protected:
     \param renderWindow_ окно, в которое рисуем
     */
     GUILabel(RenderWindow* renderWindow_, float x, float y, float width, float height, std::string text, TextStyle *tstyle, Texture *icon_, GUIStyle *gstyle);
-
     //! Конструктор
     /*!
     Создает label, состоящий из одной иконки, если текст задан пустой строкой.
