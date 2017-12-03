@@ -17,4 +17,5 @@ struct GUIStyle {
 	int frameWid;//ширина рамки в пикселях
 	Texture sliderBackTex, sliderFrontTex, sliderHandlerTex;//текстуры для слайдера
 	Texture background;
+    Texture icon;
 };

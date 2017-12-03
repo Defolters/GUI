@@ -41,6 +41,8 @@ public:
     std::shared_ptr<GUILabel> CreateLabel(Vector2f position_, Vector2f size_, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
     std::shared_ptr<GUILabel> CreateLabel(float x, float y, float width, float height, std::string text, TextStyle *tstyle, Texture *texture, GUIStyle *gstyle);
     std::shared_ptr<GUILabel> CreateLabel(Vector2f position_, Vector2f size_, std::string text, TextStyle *tstyle, Texture *texture, GUIStyle *gstyle);
+    std::shared_ptr<GUILabel> CreateLabel(float x, float y, float width, float height, TextStyle * tstyle, Texture * texture, GUIStyle *gstyle);
+    std::shared_ptr<GUILabel> CreateLabel(Vector2f position_, Vector2f size_, TextStyle * tstyle, Texture * texture, GUIStyle *gstyle);
 
 	std::shared_ptr<GUIProgressBar> CreateProgressBar(std::shared_ptr<GUILayer> _layer, float x, float y, float width, float height,
 		std::string text, TextStyle *tstyle, GUIStyle *gstyle,
