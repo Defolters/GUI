@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "../../GUI/GUIBox.h"
 class GUIButton : public GUIBox
 {
