@@ -1,23 +1,23 @@
-#pragma once
+п»ї#pragma once
 #include "IDrawable.h"
-//базовый класс сложных элементов
+//Р±Р°Р·РѕРІС‹Р№ РєР»Р°СЃСЃ СЃР»РѕР¶РЅС‹С… СЌР»РµРјРµРЅС‚РѕРІ
 class IDisplayable abstract : public IDrawable
 {
 private:
 	//std::vector<std::shared_ptr<IDrawable>> elements;
-	//отвечает за то будет элемент рисоваться или нет
+	//РѕС‚РІРµС‡Р°РµС‚ Р·Р° С‚Рѕ Р±СѓРґРµС‚ СЌР»РµРјРµРЅС‚ СЂРёСЃРѕРІР°С‚СЊСЃСЏ РёР»Рё РЅРµС‚
 	bool toDraw;
 public:
-	//позволяет получить toDraw
+	//РїРѕР·РІРѕР»СЏРµС‚ РїРѕР»СѓС‡РёС‚СЊ toDraw
 	virtual bool GetDrawState();
-	//позволяет назначить toDraw
+	//РїРѕР·РІРѕР»СЏРµС‚ РЅР°Р·РЅР°С‡РёС‚СЊ toDraw
 	virtual void SetDrawState(bool);
-	virtual bool IsClickedThrough();//пока не думаем об этом
+	virtual bool IsClickedThrough();//РїРѕРєР° РЅРµ РґСѓРјР°РµРј РѕР± СЌС‚РѕРј
 	//virtual sf::Vector2f GetScreenSize() = 0;//TODO
 
 protected:
 	bool clicksThrough;
-	//указатель на окно в которое надо рисовать
+	//СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РѕРєРЅРѕ РІ РєРѕС‚РѕСЂРѕРµ РЅР°РґРѕ СЂРёСЃРѕРІР°С‚СЊ
 	RenderWindow* renderWindow;
 	IDisplayable(RenderWindow*, float, float, float, float);
 	IDisplayable(RenderWindow*, Vector2f, float, float);
