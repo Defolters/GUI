@@ -25,27 +25,14 @@ void GUILabel::FindFitScaleOfImage(const Vector2f& size_)
 }
 
 
-GUILabel::GUILabel(RenderWindow* renderWindow_, float x, float y, float width,
-    float height, std::string text_, TextStyle *Ctstyle, GUIStyle *Cgstyle) :
-    GUILabel(renderWindow_, Vector2f(x, y), Vector2f(width, height), text_, Ctstyle, nullptr, Cgstyle)
-{}
 
 GUILabel::GUILabel(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_,
     std::string text_, TextStyle *Ctstyle, GUIStyle *Cgstyle) :
     GUILabel(renderWindow_, position_, size_, text_, Ctstyle, nullptr, Cgstyle)
 {}
 
-GUILabel::GUILabel(RenderWindow * renderWindow_, float x, float y, float width, float height, TextStyle * Ctstyle, Texture * icon_, GUIStyle * Cgstyle):
-    GUILabel(renderWindow_, Vector2f(x, y), Vector2f(width, height), "", Ctstyle, icon_, Cgstyle)
-{}
-
 GUILabel::GUILabel(RenderWindow * renderWindow_, Vector2f position_, Vector2f size_, TextStyle * Ctstyle, Texture * icon_, GUIStyle * Cgstyle):
     GUILabel(renderWindow_, position_, size_, "", Ctstyle, icon_, Cgstyle)
-{}
-
-GUILabel::GUILabel(RenderWindow* renderWindow_, float x, float y, float width,
-    float height, std::string text_, TextStyle* Ctstyle, Texture* icon_, GUIStyle* Cgstyle) :
-    GUILabel(renderWindow_, Vector2f(x, y), Vector2f(width, height), text_, Ctstyle, icon_, Cgstyle)
 {}
 
 GUILabel::GUILabel(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_,

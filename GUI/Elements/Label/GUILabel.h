@@ -12,8 +12,9 @@ enum Alignment {
 };
 
 /*!
-\brief Класс реализующий Label
-Может состоять из текста, иконки и быть выравнен. 
+\brief Реализующий Label класс
+
+Может быть просто текстом, просто иконкой или текстом с иконкой. Так элемент может быть выравнен.
 */
 class GUILabel : public GUIBox
 {
@@ -43,54 +44,47 @@ private:
     void FindFitScaleOfImage(const Vector2f& size_);
 protected:
     /*!
-    \brief Class constructor.
-    \param parent Settings Dialog parent widget.
+    \brief Конструктор класса
 
-    Initializes Settings Dialog and creates its layout based on target OS.
+    \param renderWindow Окно, в котором будет расположен label
+    \param position Расположение label
+    \param size Размер label
+    \param text Строка текста
+    \param tstyle Стиль текста
+    \param gstyle Стиль для Box
+
+    Конструктор класса, который создает один текст
     */
-    GUILabel(RenderWindow* renderWindow_, float x, float y, float width, float height, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
+    GUILabel(RenderWindow* renderWindow, Vector2f position, Vector2f size, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
 
     /*!
-    \brief Class constructor.
-    \param parent Settings Dialog parent widget.
+    \brief Конструктор класса
 
-    Initializes Settings Dialog and creates its layout based on target OS.
+    \param renderWindow Окно, в котором будет расположен label
+    \param position Расположение label
+    \param size Размер label
+    \param tstyle Стиль текста
+    \param icon Текстура иконки
+    \param gstyle Стиль для Box
+
+    Конструктор класса, который создает одну иконку
     */
-    GUILabel(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
+    GUILabel(RenderWindow* renderWindow, Vector2f position, Vector2f size, TextStyle *tstyle, Texture *icon, GUIStyle *gstyle);
 
     /*!
-    \brief Class constructor.
-    \param parent Settings Dialog parent widget.
+    \brief Конструктор класса
 
-    Initializes Settings Dialog and creates its layout based on target OS.
+    \param renderWindow Окно, в котором будет расположен label
+    \param position Расположение label
+    \param size Размер label
+    \param text Строка текста
+    \param tstyle Стиль текста
+    \param icon Текстура иконки
+    \param gstyle Стиль для Box
+
+    Конструктор класса, который создает текст и иконку
     */
-    GUILabel(RenderWindow* renderWindow_, float x, float y, float width, float height, TextStyle *tstyle, Texture *icon_, GUIStyle *gstyle);
-
-    /*!
-    \brief Class constructor.
-    \param parent Settings Dialog parent widget.
-
-    Initializes Settings Dialog and creates its layout based on target OS.
-    */
-    GUILabel(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_, TextStyle *tstyle, Texture *icon_, GUIStyle *gstyle);
-
-    /*!
-    \brief Class constructor.
-    \param parent Settings Dialog parent widget.
-
-    Initializes Settings Dialog and creates its layout based on target OS.
-    */
-    GUILabel(RenderWindow* renderWindow_, float x, float y, float width, float height, std::string text, TextStyle *tstyle, Texture *icon_, GUIStyle *gstyle);
-
-    /*!
-    \brief Class constructor.
-    \param parent Settings Dialog parent widget.
-
-    Initializes Settings Dialog and creates its layout based on target OS.
-    */
-    GUILabel(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_, std::string text, TextStyle *tstyle, Texture *icon_, GUIStyle *gstyle);
-
-
+    GUILabel(RenderWindow* renderWindow, Vector2f position, Vector2f size, std::string text, TextStyle *tstyle, Texture *icon, GUIStyle *gstyle);
 
     //! Переопределяем функцию Draw
     void Draw() override;
@@ -131,7 +125,6 @@ public:
     \return Текст типа sf::String
     */
     String GetText() const;
-
 
     /*!
     \brief Устанавливает положение горизонтального выравнивания элемента
