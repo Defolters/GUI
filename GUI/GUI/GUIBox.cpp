@@ -63,12 +63,19 @@ void GUIBox::SetPosition(Vector2f position_)
 }
 void GUIBox::SetPosition(Vector2f position_, Vector2f coefficient_)
 {
-    IDisplayable::SetPosition(position_, coefficient_);
+    SetPosition(Vector2f(position.x * coefficient_.x, position.y * coefficient_.y));
+    for (auto& elem : elements)
+    {
+        elem->SetPosition(position_, coefficient_);
+        //elem->SetPosition(Vector2f(elem->GetPosition().x * coefficient_.x, elem->GetPosition().y * coefficient_.y));
+    }
+    Recalc();
+    /*IDisplayable::SetPosition(Vector2f(position.x * coefficient_.x, position.y * coefficient_.y));
     for (auto& elem : elements)
     {
         elem->SetPosition(position_, coefficient_);
     }
-    Recalc();
+    Recalc();*/
 }
 void GUIBox::SetPosition(float x, float y)
 {
@@ -87,10 +94,10 @@ void GUIBox::SetSize(Vector2f size_)
 
 void GUIBox::SetSize(Vector2f size_, Vector2f coefficient_)
 {
-    IDisplayable::SetSize(size_, coefficient_);
+    SetSize(Vector2f(size.x * coefficient_.x, size.y * coefficient_.y));
     for (auto& elem : elements)
     {
-        elem->SetSize(size_, coefficient_);
+        elem->SetSize(Vector2f(elem->GetSize().x * coefficient_.x, elem->GetSize().y * coefficient_.y));
     }
     Recalc();
 }
