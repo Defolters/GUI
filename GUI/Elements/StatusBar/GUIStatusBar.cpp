@@ -73,7 +73,7 @@ void GUIStatusBar::handleEvent(const sf::Event & event)
 		Recalc();
 		break;
 	case Event::MouseButtonPressed:
-
+		break;
 	}
 }
 

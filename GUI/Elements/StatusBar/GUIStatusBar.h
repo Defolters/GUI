@@ -1,51 +1,52 @@
 #pragma once
 #include "../../GUI/GUIBox.h"
-
+///	Расположение статус бара в окне
 enum class Location {
 	DOWNSIDE, UPSIDE,
 	RIGHT_SIDE, LEFT_SIDE
 };
 
+/*!
+/brief Класс, реализующий статус бар
+При добавлении дочерних элементов, помещает их начиная с правого края
+*/
 class GUIStatusBar : public IDisplayable
 {
 private:
 	friend class GUILayer;
-	RectangleShape *statusBar;
-	Texture *background;
-	GUIStyle *sBarStyle;
-	Location location;
-	float width;
+
+	RectangleShape *statusBar;	///< Статус бар
+	Texture *background;	///< Текстура фона
+	GUIStyle *sBarStyle;	///< Стиль интерфейса
+	Location location;	///< Расположение бара в окне
+	float width;	///< Толщина статус бара
 	bool isMoved = false;
-	/*!
-	текущая X позиция для вставки следующего элемента
-	*/
-	float currPosition = 0;
-	/*!
-	размеры отступов сверху и снизу от края статус бара до элементов
-	*/
-	float frameSize = 10;
-	/*!
-	отступ между добавленными элементами
-	*/
-	float spacing;
-	/*!
-	Соотношение размера добвляемого объекта
-	*/
-	float ratio;
-	/*!
-	Кол-во дочерних объектов
-	*/
-	int childCount = 0;
+	float currPosition = 0;	///< Текущая X позиция для вставки следующего элемента
+	float frameSize = 10;	///< Размеры отступов сверху и снизу от края статус бара до элементов
+	float spacing;	///< Отступ между добавленными элементами
+	float ratio;	///< Соотношение размера добвляемого объекта
+	int childCount = 0;	   ///< Количество дочерних элементов
 protected:
+	/// Переопределяем функцию Draw()
 	virtual void Draw() override;
-	virtual void handleEvent(const sf::Event &event) override;
-	virtual void Recalc();
 	/*!
-	вызывается для перерасчета позиций дочерних эдлементов
+	Принимает и обрабатывает события
+	/param event Событие
 	*/
+	virtual void handleEvent(const sf::Event &event) override;
+	/*!
+	Пересчитывает положение статус бара и элементов на нем
+	*/
+	virtual void Recalc();
+	/// Пересчитывает позиции дочерних элементов
 	virtual void recalcElements();
 public:
+	/// Конструктор
 	GUIStatusBar(RenderWindow* renderWindow_, float height_, float frameSize_,
 		float spacing_, GUIStyle *sBarStyle_, Location location_);
+	/*!
+	Устанавливает позицию статус бара относительно окна
+	/param location_ Позиция
+	*/
 	void setLocation(Location location_);
 };
