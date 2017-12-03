@@ -1,4 +1,4 @@
-#ifndef OBSERVABLE_H
+﻿#ifndef OBSERVABLE_H
 #define OBSERVABLE_H
 #include "Observer.h"
 #include "IDrawable.h"
