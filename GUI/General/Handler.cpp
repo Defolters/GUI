@@ -71,8 +71,22 @@ void main()
     //создание окна и слоя гуи на нем 
     WindowTab main(VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "main");
     std::shared_ptr<GUILayer> layer = main.CreateGUILayer(Vector2f(0, 0), Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
+	std::shared_ptr<ScrollBar> scrollbarHor = layer->CreateScrollBar(0, 0, 0, 0, &gst, Orientation::HORIZONTAL, 1000);
+	std::shared_ptr<ScrollBar> scrollbarVert = layer->CreateScrollBar(0, 0, 0, 0, &gst, Orientation::VERTICAL, 800);
     //вот досюда
+	std::shared_ptr<ScrollingPanel> panel = main.CreateScrollPanel(Vector2f(800, 600), Vector2f(150, 150), Vector2f(200, 250), Color(50, 50, 50, 255), &gst);
+	std::shared_ptr<ScrollBar> scrollbarHor2 = panel->CreateScrollBar(0, 0, 0, 0, &gst, Orientation::HORIZONTAL, 800);
+	std::shared_ptr<ScrollBar> scrollbarVert2 = panel->CreateScrollBar(0, 0, 0, 0, &gst, Orientation::VERTICAL, 600);
 
+	std::shared_ptr<MenuBar> menuBar2 = panel->CreateMenuBar(0, 0, SCREEN_WIDTH - 12, 50, "", &tst, &gst2,
+		0, 200, Color::White);
+	menuBar2->addButton("1", &buttonAction1);
+	menuBar2->addButton("2", &buttonAction2);
+	menuBar2->addButton("3", &buttonAction3);
+	menuBar2->addButton("4", &buttonAction4);
+
+	std::shared_ptr<GUILabel> label123 = panel->CreateLabel(60, 60, 100, 40, "LEFT", &tst, &gst);
+	std::shared_ptr<TextField> textBox2 = panel->CreateTextField(250, 350, 100, 40, "textField", &tst, &gst);
     //пример создания кнопки
 	// текст подгружается из локали
     std::shared_ptr<GUIButton> button = layer->CreateButton(20, 20, 100,100, locale.GetElementName("button"), &tst, &gst, &buttonAction);
@@ -149,18 +163,14 @@ void main()
         labelTextIcon4->SetTextToIconAlignment(Alignment::BOTTOM);
         std::shared_ptr<GUILabel> labelTextIcon5 = layer->CreateLabel(400, 310, 100, 50, "CENTER", &tst, &icon, &gst);
     }
-    
-    // Cоздание прогресс бара.
+  
+  // Cоздание прогресс бара.
 	// текст подгружается из локали
     std::shared_ptr<GUIProgressBar> progressBar = layer->CreateProgressBar(layer, SCREEN_WIDTH / 3 + 50, SCREEN_HEIGHT / 3, 200, 30, locale.GetDescription("progress_bar"), &tst, &gst,
         0, 200, Color::White, Color::Green);
 
-    std::shared_ptr<ScrollBar> scrollbarHor = layer->CreateScrollBar(0, 0, 0, 0, &gst, Orientation::HORIZONTAL, 1600);
-
-    std::shared_ptr<ScrollBar> scrollbarVert = layer->CreateScrollBar(0, 0, 0, 0, &gst, Orientation::VERTICAL, 1800);
-
     //создаем слайдер
-    std::shared_ptr<Slider> slider = layer->CreateSlider(225, 450, 350, 20, 35, 38, &gst, 0, 100, 20, &onSliderMove);
+    std::shared_ptr<Slider> slider = layer->CreateSlider(225, 250, 350, 20, 35, 38, &gst, 0, 100, 20, &onSliderMove);
 
     //Создание статус бара
     std::shared_ptr<GUIStatusBar>  statusBar = layer->CreateStatusBar(50, 5, 20, &sBarStyle, Location::UPSIDE);
@@ -190,13 +200,12 @@ void main()
     std::shared_ptr<TextField> textBox = layer->CreateTextField(250, 350, 100, 40, locale.GetElementName("text_field"), &tst, &gst);
 
     std::shared_ptr<TextArea> textArea = layer->CreateTextArea(400, 300, 300, 200, &tst, &gst);
-    
     while (1)
     {
         // Костыль для теста на время, пока нет Observer.
         // Потом будет передаваться ивент об изменении значения бара.
         //*****тест ProgressBar****
-        progressBar->increase();
+        //progressBar->increase();
         Sleep(20);
         //*************************
 
