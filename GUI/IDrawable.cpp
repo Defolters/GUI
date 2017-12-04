@@ -28,6 +28,12 @@ void IDrawable::SetSize(Vector2f size_)
 	size = size_;
 }
 
+
+void IDrawable::SetValue(Vector2f value_)
+{
+	value = value_;
+}
+
 void IDrawable::SetSize(Vector2f size_, Vector2f coefficient_)
 {
     size.x = size.x * coefficient_.x;
@@ -42,6 +48,11 @@ Vector2f IDrawable::GetSize()
 Vector2f IDrawable::GetPosition()
 {
 	return position;
+}
+
+Vector2f IDrawable::GetValue()
+{
+	return value;
 }
 
 int IDrawable::GetID()
@@ -64,6 +75,10 @@ void IDrawable::Draw()
 {
 	for (auto& element : elements)
 		element->Draw();
+}
+
+void IDrawable::DrawforScr(RenderWindow *swindow) 
+{
 }
 
 IDrawable::IDrawable()

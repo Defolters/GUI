@@ -32,6 +32,7 @@ void TextArea::handleEvent(const sf::Event & event)
 	{
 		if (button)
 		{
+			std::cout << "Hiiii" << std::endl;
 			if (event.text.unicode >= 32 && event.text.unicode <= 126)
 				inputString += (char)event.text.unicode;
 			else if (event.text.unicode == 8 && inputString.getSize() > 0)
@@ -59,7 +60,7 @@ void TextArea::handleEvent(const sf::Event & event)
 			text.setFont(font);
 			text.setCharacterSize(fontSize);
 			text.setFillColor(fontColor);
-			text.setPosition(400, 300);
+			text.setPosition(areaPosition.x, areaPosition.y);
 			
 		}
 		break;
