@@ -1,5 +1,5 @@
 #pragma once
-#include "GUILayer.h"
+#include "../../GUI/GUILayer.h"
 #include <typeinfo>
 
 class ScrollingPanel : public GUILayer
