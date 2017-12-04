@@ -64,8 +64,8 @@ void IDrawable::Draw()
 		element->Draw();
 }
 
-void IDrawable::DrawforScr(RenderWindow *swindow) {
-
+void IDrawable::DrawforScr(RenderWindow *swindow) 
+{
 }
 
 IDrawable::IDrawable()

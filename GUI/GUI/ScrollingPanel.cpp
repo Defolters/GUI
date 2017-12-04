@@ -23,6 +23,7 @@ void ScrollingPanel::SetPosition(Vector2f position_)
 	IDrawable::SetPosition(position_);
 	scrFieldPosition = position_;
 }
+
 void ScrollingPanel::SetSize(Vector2f size_)
 {
 	IDrawable::SetSize(size_);
@@ -31,32 +32,40 @@ void ScrollingPanel::SetSize(Vector2f size_)
 
 void ScrollingPanel::DrawPanel()
 {
+	// Рисуем элементы ScrollingPanel в невидимом окне
 	crutch.clear(scrFieldColor);
 	for (std::shared_ptr<IDrawable> bo : elements)
 		if(typeid(*bo) != typeid(ScrollBar))
 			bo->Draw();
 	crutch.display();
 
+	// Рисуем ScrollBar'ы в основном окне
 	for (std::shared_ptr<IDrawable> bo : elements)
 		if (typeid(*bo) == typeid(ScrollBar))
 			bo->DrawforScr(window);
 
+	// Захватываем изображение невидимого окна в scrImage
 	Vector2u windowSize = crutch.getSize();
 	Texture texture;
 	texture.create(windowSize.x, windowSize.y);
 	texture.update(crutch);
 	scrImage = texture.copyToImage();
-	viewPosition.x = ((this->GetValue().x)/scrFieldSize.x)*crutchsize.x; 
+
+	// Загружаем в scrTexture область размера scrFieldSize с позиции viewPosition
+	viewPosition.x = ((this->GetValue().x)/ scrFieldSize.x)*crutchsize.x;
 	viewPosition.y = ((this->GetValue().y) / scrFieldSize.y)*crutchsize.y;
 	IntRect area(viewPosition.x,viewPosition.y,scrFieldSize.x,scrFieldSize.y);
 	scrTexture.loadFromImage(scrImage, area);
 
+	// Рисуем ScrollingPanel в основном окне
 	scrField.setTexture(scrTexture);
 	window->draw(scrField);
 }
 
 void ScrollingPanel::notifysAll(const sf::Event & event) const
 {
+	// Добавляем событие newevent, которое передается для элементов, находящихся
+	// на невидимом окне
 	Event newevent;
 	newevent = event;
 	if (event.type == Event::MouseMoved)
@@ -69,6 +78,8 @@ void ScrollingPanel::notifysAll(const sf::Event & event) const
 		newevent.mouseButton.x = event.mouseButton.x - scrFieldPosition.x+ viewPosition.x;
 		newevent.mouseButton.y = event.mouseButton.y - scrFieldPosition.y+ viewPosition.y;
 	}
+
+	// Для 2 ScrollBar'ов оставляем событие без изменений, для остальных - newevent
 	int i = 0;
 	for (auto& element : elements)
 	{

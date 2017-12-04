@@ -17,11 +17,11 @@ public:
 
 	virtual void handleEvent(const sf::Event& event) override;
 
-	virtual void Draw() override;
+	//virtual void Draw() override;
 	virtual void DrawforScr(RenderWindow *swindow) override;
 
 	virtual void Recalc();
-	virtual void Recalc(RenderWindow *swindow);
+	//virtual void Recalc(RenderWindow *swindow);
 
 private:
 	bool isMousePressed;
