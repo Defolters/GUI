@@ -170,11 +170,10 @@ void main()
     std::shared_ptr<Slider> slider = layer->CreateSlider(225, 250, 350, 20, 35, 38, &gst, 0, 100, 20, &onSliderMove);
 
     //Создание статус бара
-    std::shared_ptr<GUIStatusBar>  statusBar = layer->CreateStatusBar(50, 5, 20, &gst, Location::UPSIDE);
+    std::shared_ptr<GUIStatusBar>  statusBar = layer->CreateStatusBar(40, 5, 20, &gst, Location::UPSIDE);
     std::shared_ptr<GUIButton> box1 = layer->CreateButton(100, 0, 50, 50, "A", &tst, &gst, &buttonAction);
     std::shared_ptr<GUIButton> box2 = layer->CreateButton(0, 0, 1, 1, "B", &tst, &gst, &buttonAction);
     std::shared_ptr<GUIButton> box3 = layer->CreateButton(0, 0, 4, 1, "Test", &tst, &gst, &buttonAction);
-	// текст подгружается из локали
 	std::shared_ptr<TextField> textBox1 = layer->CreateTextField(250, 350, 120, 40, locale.GetInvite("print"), &tst, &gst);
 	std::shared_ptr<GUILabel> label1 = layer->CreateLabel(5, 10, 100, 40, "READY...", &tst, &gst);
 	label1->SetHorizontalAlignment(Alignment::LEFT);
@@ -184,6 +183,8 @@ void main()
 	statusBar->AddElement(textBox1);
 	statusBar->AddElement(label1);
 	statusBar->setLocation(Location::DOWNSIDE);
+	statusBar->setSpacing(10);
+	statusBar->setHeight(50);
 
     //menu bar
     std::shared_ptr<MenuBar> menuBar = layer->CreateMenuBar(0, 0, SCREEN_WIDTH - 12, 50, "", &tst, &gst2,

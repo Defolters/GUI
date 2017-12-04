@@ -21,7 +21,7 @@ private:
 	Location location;	///< Расположение бара в окне
 	float width;	///< Толщина статус бара
 	float currPosition = 0;	///< Текущая X позиция для вставки следующего элемента
-	float frameSize = 10;	///< Размеры отступов сверху и снизу от края статус бара до элементов
+	float frameSize;	///< Размеры отступов сверху и снизу от края статус бара до элементов
 	float spacing;	///< Отступ между добавленными элементами
 	float ratio;	///< Соотношение размера добвляемого объекта
 	int childCount = 0;	   ///< Количество дочерних элементов
@@ -56,4 +56,19 @@ public:
 	/param location_ Позиция
 	*/
 	void setLocation(Location location_);
+	/*!
+	Устанавливает отступ между соседними элементы
+	/param spacing_ отступ
+	*/
+	void setSpacing(int spacing_);
+	/*!
+	Устанавливает отступ между краями статус бара и элементами
+	/param frameSize_ отступ
+	*/
+	void setFrameSize(int frameSize_);
+	/*!
+	Устанавливает высоту статус бара
+	/param height_ высота
+	*/
+	void setHeight(int height_);
 };
