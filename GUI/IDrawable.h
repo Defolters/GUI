@@ -45,7 +45,7 @@ public:
 	//ВИРТУАЛЬНЫЙ ОБРАБОТЧИК СОБЫТИЙ!
 	//Его надо перегружать и в нем все обрабатывать
 	//Пример как есть в GUIBox.h (он там закомменчен)
-	virtual void handleEvent(const sf::Event& event) {};
+	virtual void handleEvent(const sf::Event& event);
 	virtual void AddElement(std::shared_ptr<IDrawable>);
 protected:
 	int id;
