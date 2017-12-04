@@ -111,6 +111,12 @@ IDrawable::~IDrawable()
 {
 }
 
+void IDrawable::handleEvent(const sf::Event & event)
+{
+	for (auto& element : elements)
+		element->handleEvent(event);
+}
+
 void IDrawable::AddElement(std::shared_ptr<IDrawable> element)
 {
 	auto position = std::find_if(element->parent->elements.begin(), element->parent->elements.end(),
