@@ -155,8 +155,8 @@ void main()
     std::shared_ptr<ScrollBar> scrollbarVert = layer->CreateScrollBar(0, 0, 0, 0, &gst, Orientation::VERTICAL, 1800);
 
     //создаем слайдер
-    std::shared_ptr<Slider> slider = layer->CreateSlider(225, 450, 350, 20, 35, 38, &gst, 0, 100, 20, &onSliderMove);
-
+    std::shared_ptr<GUISlider> slider = layer->CreateSlider(30, 450, 350, 20, 35, 38, &gst, 0, 100, 20, &onSliderMove);
+	
     //Создание статус бара
     std::shared_ptr<GUIStatusBar>  statusBar = layer->CreateStatusBar(50, 5, 20, &sBarStyle, Location::UPSIDE);
     std::shared_ptr<GUIBox> box1 = layer->CreateButton(100, 0, 50, 50, "A", &tst, &gst, &buttonAction);
