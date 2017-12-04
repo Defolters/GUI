@@ -11,6 +11,7 @@ class GUIBox : public IDisplayable
 private:
 	//пока что нужно, подумаю как избавиться, но не думаю что возможно
 	friend class GUILayer;
+    bool resizing = false; 
 protected:
 	//графический стиль и текстовый стиль описаны в styles.h
 	GUIStyle *gstyle;
