@@ -20,7 +20,6 @@ private:
 	GUIStyle *sBarStyle;	///< Стиль интерфейса
 	Location location;	///< Расположение бара в окне
 	float width;	///< Толщина статус бара
-	bool isMoved = false;
 	float currPosition = 0;	///< Текущая X позиция для вставки следующего элемента
 	float frameSize = 10;	///< Размеры отступов сверху и снизу от края статус бара до элементов
 	float spacing;	///< Отступ между добавленными элементами

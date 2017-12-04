@@ -46,6 +46,8 @@ void main()
     gst.background.loadFromFile("resources/statusBar.png");
     gst.frameWid = 5;
     gst.icon.loadFromFile("resources/Danger.png");
+	gst.background.loadFromFile("resources/statusBar.png");
+	gst.color = Color::Blue;
 
     //текстуры слайдера
     +gst.sliderBackTex.loadFromFile("resources/slider_back_line.png");
@@ -63,11 +65,6 @@ void main()
     tst.color.r = tst.color.g = tst.color.b = 255;
     tst.fontSize = 22;
     tst.align = 'c';
-
-    static GUIStyle sBarStyle;
-    sBarStyle.background.loadFromFile("resources/statusBar.png");
-	sBarStyle.color = Color::Blue;
-
 
     WindowTab main(VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "main");
     std::shared_ptr<GUILayer> layer = main.CreateGUILayer(Vector2f(0, 0), Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
@@ -173,7 +170,7 @@ void main()
     std::shared_ptr<Slider> slider = layer->CreateSlider(225, 250, 350, 20, 35, 38, &gst, 0, 100, 20, &onSliderMove);
 
     //Создание статус бара
-    std::shared_ptr<GUIStatusBar>  statusBar = layer->CreateStatusBar(50, 5, 20, &sBarStyle, Location::UPSIDE);
+    std::shared_ptr<GUIStatusBar>  statusBar = layer->CreateStatusBar(50, 5, 20, &gst, Location::UPSIDE);
     std::shared_ptr<GUIButton> box1 = layer->CreateButton(100, 0, 50, 50, "A", &tst, &gst, &buttonAction);
     std::shared_ptr<GUIButton> box2 = layer->CreateButton(0, 0, 1, 1, "B", &tst, &gst, &buttonAction);
     std::shared_ptr<GUIButton> box3 = layer->CreateButton(0, 0, 4, 1, "Test", &tst, &gst, &buttonAction);

@@ -63,16 +63,11 @@ void GUIStatusBar::Draw()
 
 void GUIStatusBar::handleEvent(const sf::Event & event)
 {
-	for (auto el = elements.begin(); el != elements.end(); ++el)
-	{
-		(*el)->handleEvent(event);
-	}
+	IDrawable::handleEvent(event);
 	switch(event.type)
 	{
 	case Event::Resized:
 		Recalc();
-		break;
-	case Event::MouseButtonPressed:
 		break;
 	}
 }
