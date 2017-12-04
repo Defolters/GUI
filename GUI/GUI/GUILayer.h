@@ -6,7 +6,7 @@
 #include "../Observable.h"
 //по сути Layout, класс группирующий элементы интерфейса 
 //как например отдельные зоны для кода, отладки и файлов в visual studio
-class GUILayer : IDrawable, ObservableGUI
+class GUILayer : public IDrawable, ObservableGUI
 {
 private:
 	//указатель на окно на котором находится это слой
@@ -14,6 +14,7 @@ private:
 	void notifyAll(const sf::Event& event) const override;
 
 	friend class WindowTab;
+	friend class ScrollingPanel;
 	//отныне слои создаеются через WindowTab->CreateGUILayer(args);
 	//констуркутор, не парьтесь на этот счет, просто передавайте ему положение размеры
 	//пока что вторые два аргумента передавайте (0,0) и (ширинаОкна, высотаОкна)

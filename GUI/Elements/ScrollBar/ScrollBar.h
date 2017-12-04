@@ -17,10 +17,11 @@ public:
 
 	virtual void handleEvent(const sf::Event& event) override;
 
-	virtual void Draw() override;
+	//virtual void Draw() override;
+	virtual void DrawforScr(RenderWindow *swindow) override;
 
-	virtual void Recalc() override;
-
+	virtual void Recalc();
+	//virtual void Recalc(RenderWindow *swindow);
 
 private:
 	bool isMousePressed;
@@ -33,6 +34,8 @@ private:
 	float height;
 	float shift;
 	float sizeScrollPanel;
+	float value;
+	float maxvalue;
 };
 
 #endif
