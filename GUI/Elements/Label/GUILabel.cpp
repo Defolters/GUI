@@ -16,79 +16,42 @@ void GUILabel::FindFitScaleOfImage(const Vector2f& size_)
 {
     while (icon->getGlobalBounds().width > size_.x)
     {
-        icon->scale(0.9, 0.9);
+        icon->scale(0.9f, 0.9f);
     }
     while (icon->getGlobalBounds().height > size_.y)
     {
-        icon->scale(0.9, 0.9);
+        icon->scale(0.9f, 0.9f);
     }
 }
 
-GUILabel::GUILabel(RenderWindow* renderWindow_, float x, float y, float width,
-    float height, std::string text_, TextStyle *Ctstyle, GUIStyle *Cgstyle) :
-    GUIBox(renderWindow_, x, y, width, height, Cgstyle),
-    tstyle(Ctstyle), iconT(nullptr), icon(nullptr), isDependsOnSize(true) // отличие такого присваивания
-{
-    text.setString(text_);
-    text.setFont(tstyle->font);
-    text.setFillColor(tstyle->color);
-    text.setCharacterSize(tstyle->fontSize);
-    rect = new RectangleShape(Vector2f(width, height));
-    rect->setFillColor(Color::Transparent);
-    rect->setOutlineColor(Color::Red);
-    rect->setOutlineThickness(1);
-    rect->setPosition(x, y);
-}
+
 
 GUILabel::GUILabel(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_,
     std::string text_, TextStyle *Ctstyle, GUIStyle *Cgstyle) :
-    GUIBox(renderWindow_, position_, size_, Cgstyle),
-    tstyle(Ctstyle), iconT(nullptr), icon(nullptr), isDependsOnSize(true)
-{
-    text.setString(text_);
-    text.setFont(tstyle->font);
-    text.setFillColor(tstyle->color);
-    text.setCharacterSize(tstyle->fontSize);
-    rect = new RectangleShape(size_);
-    rect->setFillColor(Color::Transparent);
-    rect->setOutlineColor(Color::Red);
-    rect->setOutlineThickness(1);
-    rect->setPosition(position_);
-}
+    GUILabel(renderWindow_, position_, size_, text_, Ctstyle, nullptr, Cgstyle)
+{}
 
-GUILabel::GUILabel(RenderWindow* renderWindow_, float x, float y, float width,
-    float height, std::string text_, TextStyle* Ctstyle, Texture* icon_, GUIStyle* Cgstyle) :
-    GUIBox(renderWindow_, x, y, width, height, Cgstyle),
-    tstyle(Ctstyle), iconT(icon_), isDependsOnSize(true)
-{
-    text.setString(text_);
-    text.setFont(tstyle->font);
-    text.setFillColor(tstyle->color);
-    text.setCharacterSize(tstyle->fontSize);
-    icon = new Sprite(*iconT);
-    rect = new RectangleShape(Vector2f(width, height));
-    rect->setFillColor(Color::Transparent);
-    rect->setOutlineColor(Color::Red);
-    rect->setOutlineThickness(1);
-    rect->setPosition(x, y);
-}
+GUILabel::GUILabel(RenderWindow * renderWindow_, Vector2f position_, Vector2f size_, TextStyle * Ctstyle, Texture * icon_, GUIStyle * Cgstyle):
+    GUILabel(renderWindow_, position_, size_, "", Ctstyle, icon_, Cgstyle)
+{}
 
 GUILabel::GUILabel(RenderWindow* renderWindow_, Vector2f position_, Vector2f size_,
     std::string text_, TextStyle* Ctstyle, Texture* icon_, GUIStyle* Cgstyle) :
     GUIBox(renderWindow_, position_, size_, Cgstyle),
-    tstyle(Ctstyle), iconT(icon_), isDependsOnSize(true)
+    tstyle(Ctstyle), iconT(icon_), isDependsOnSize(true), icon(nullptr),
+    horizontalAlignment(Alignment::CENTER), verticalAlignment(Alignment::CENTER),
+    textToIconAlignment(Alignment::CENTER), GapBetweenIconText(0)    
 {
     text.setString(text_);
     text.setFont(tstyle->font);
     text.setFillColor(tstyle->color);
     text.setCharacterSize(tstyle->fontSize);
-    icon = new Sprite(*iconT);
-    rect = new RectangleShape(size_);
-    rect->setFillColor(Color::Transparent);
-    rect->setOutlineColor(Color::Red);
-    rect->setOutlineThickness(1);
-    rect->setPosition(position_);
+    if (iconT != nullptr)
+    {
+        icon = new Sprite(*iconT);
+    }
 }
+
 
 void GUILabel::Draw()
 {
@@ -103,15 +66,10 @@ void GUILabel::Draw()
     {
         renderWindow->draw(*icon);
     }
-    if ((rect != nullptr) && ((text.getString() == "") || (icon == nullptr)))
-    {
-        renderWindow->draw(*rect);
-    }
 }
 
 void GUILabel::Recalc()
 {
-    rect->setSize(GetSize());
     Vector2f positionOfBox = GetPosition(); // позиция нашего объекта
     Vector2f sizeOfBox = GUIBox::GetSize(); // размер нашего объекта
     float width = sizeOfBox.x;
