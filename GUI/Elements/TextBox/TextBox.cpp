@@ -3,15 +3,14 @@
 TextField::TextField(RenderWindow* renderWindow_, float x, float y, float width, float height, std::string text_, TextStyle *tstyle, GUIStyle *gstyle) : GUIBox(renderWindow_, x, y, width, height, gstyle)
 {
 	text = text_;
-	//this->SetPosition(150, 150);
-	//this->SetSize(200, 100);
 	txt.setPosition(this->GetPosition().x + 2, this->GetPosition().y + 2);
-	//txt.setColor(Color::Black);
 	txt.setCharacterSize(this->GetSize().y / 1.5);
 	txt.setFont(tstyle->font);
 	txt.setFillColor(Color::Black);
 	txt.setString(text);
 	focus = false;
+	currText = text;
+	position = 0;
 	Recalc();
 }
 
@@ -30,11 +29,26 @@ void TextField::ReText(char _tmp)
 		}
 	}
 	text += "|";
+	currText = text;
 	txt.setString(text);
-	//std::cout << field.getSize().y << std::endl;
-	if (txt.getGlobalBounds().width > field.getSize().x - 15)
+	
+	if (txt.getGlobalBounds().width > field.getSize().x - 10)
 	{
-		text.erase(text.size() - 1);
+		if (_tmp != 8) {
+			position++;
+			currText = text;
+			currText.erase(currText.begin(), currText.begin() + position);
+			txt.setString(currText);
+		}
+		else
+		{
+			if (position > 0) position--;
+			//std::cout << position << std::endl;
+			currText = text;
+			currText.erase(currText.begin(), currText.begin() + position);
+			//std::cout << currText << std::endl;
+			txt.setString(currText);
+		}
 	}
 }
 
@@ -51,23 +65,32 @@ bool TextField::Select(Vector2i _mouse)
 		text += "|";																// В конец строки добаляем | (что бы понимать что TextField в фокусе)
 		if (text.size() > 1 && text[text.size() - 1] == 124 && text[text.size() - 2] == 124)
 			text.erase(text.size() - 1);
+		txt.setString(text);
+		currText += "|";
+		if (currText.size() > 1 && currText[currText.size() - 1] == 124 && currText[currText.size() - 2] == 124)
+			currText.erase(currText.size() - 1);
+		txt.setString(currText);
 	}
 	else {																				//...Иначе если нажатие произошло не над объектом, то...
 		if (text.size() > 0) {																// проверка последнего символа(иначе вылетает)
 			if (text[text.size() - 1] == 124) {													// если символ | ...
 				text.erase(text.size() - 1);														// ... то удаляем его
 			}
+			if (currText[currText.size() - 1] == 124) {													// если символ | ...
+				currText.erase(currText.size() - 1);														// ... то удаляем его
+			}
+			txt.setString(currText);
 		}
 		focus = false;
 	}
 	return focus;
 }
 
-Text TextField::DisplayText()
+/*Text TextField::DisplayText()
 {
 	txt.setString(text);     // загружаем в выводимый текст загружаемый текст
 	return txt;
-}
+}*/
 
 void TextField::Draw()
 {
@@ -90,11 +113,6 @@ void TextField::Recalc()
 	field.setOutlineThickness(2);
 	field.setOutlineColor(Color(66, 66, 66));
 
-	/*sprite.setTexture(gst.overTex);
-	sprite.setScale(width, height);
-	sprite.setColor(sf::Color::White);
-	sprite.setPosition(posX, posY);
-	sprite.setTextureRect(IntRect(0, 0, width, height));*/
 }
 
 void TextField::handleEvent(const sf::Event& event)
@@ -115,7 +133,7 @@ void TextField::handleEvent(const sf::Event& event)
 			ReText(event.text.unicode);
 		}
 	}
-	txt.setString(text);
+	//txt.setString(text);
 	//(*renderWindow).draw(DisplayText());
 }
 
@@ -124,4 +142,19 @@ void TextField::SetPosition(float x, float y)
 	IDisplayable::SetPosition(x, y);
 	txt.setPosition(x + 2, y + 2);
 	Recalc();
+}
+
+void TextField::SetSize(float width, float height)
+{
+	IDisplayable::SetSize(width, height);
+	txt.setCharacterSize(height / 1.5);
+	Recalc();
+}
+
+std::string TextField::ReadText()
+{
+	std::string oldText = text;
+	if (oldText[oldText.size() - 1] == 124)
+		oldText.erase(oldText.size() - 1);
+	return oldText;
 }
