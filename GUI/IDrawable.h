@@ -20,8 +20,10 @@ public:
 	//для большей информации см. GUIlayer,h
 	virtual void SetPosition(float x, float y);
 	virtual void SetPosition(Vector2f position_);
+    virtual void SetPosition(Vector2f size_, Vector2f coefficient_);
 	virtual void SetSize(float width, float height);
 	virtual void SetSize(Vector2f size_);
+    virtual void SetSize(Vector2f size_, Vector2f coefficient_);
 	Vector2f GetSize();
 	Vector2f GetPosition();
 	int GetID();
@@ -43,7 +45,7 @@ public:
 	//ВИРТУАЛЬНЫЙ ОБРАБОТЧИК СОБЫТИЙ!
 	//Его надо перегружать и в нем все обрабатывать
 	//Пример как есть в GUIBox.h (он там закомменчен)
-	virtual void handleEvent(const sf::Event& event) {};
+	virtual void handleEvent(const sf::Event& event);
 	virtual void AddElement(std::shared_ptr<IDrawable>);
 protected:
 	int id;

@@ -1,5 +1,7 @@
 #include "../Window/WindowTab.h"
 #include <Windows.h>
+#include "../Locale.h"
+
 #define LABEL_DEBUG false
 
 const int SCREEN_WIDTH = 800;
@@ -34,6 +36,7 @@ void buttonAction4()
 //окей. теперь fun part
 void main()
 {
+	Locale locale("resources/english.json");
     //пример создания стиля gui
     static GUIStyle gst;
     gst.mainTex.loadFromFile("resources/backGUI.png");
@@ -71,7 +74,8 @@ void main()
     //вот досюда
 
     //пример создания кнопки
-    //std::shared_ptr<GUIButton> button = layer->CreateButton(20, 20, 100,100, "button", &tst, &gst, &buttonAction);
+	// текст подгружается из локали
+    std::shared_ptr<GUIButton> button = layer->CreateButton(20, 20, 100,100, locale.GetElementName("button"), &tst, &gst, &buttonAction);
 
     // создание label
     Texture icon;
@@ -146,8 +150,9 @@ void main()
         std::shared_ptr<GUILabel> labelTextIcon5 = layer->CreateLabel(400, 310, 100, 50, "CENTER", &tst, &icon, &gst);
     }
     
-    // Cоздание прогресс бара. 
-    std::shared_ptr<GUIProgressBar> progressBar = layer->CreateProgressBar(layer, SCREEN_WIDTH / 3 + 50, SCREEN_HEIGHT / 3, 200, 30, "Sorting...", &tst, &gst,
+    // Cоздание прогресс бара.
+	// текст подгружается из локали
+    std::shared_ptr<GUIProgressBar> progressBar = layer->CreateProgressBar(layer, SCREEN_WIDTH / 3 + 50, SCREEN_HEIGHT / 3, 200, 30, locale.GetDescription("progress_bar"), &tst, &gst,
         0, 200, Color::White, Color::Green);
 
     std::shared_ptr<ScrollBar> scrollbarHor = layer->CreateScrollBar(0, 0, 0, 0, &gst, Orientation::HORIZONTAL, 1600);
@@ -159,10 +164,11 @@ void main()
 
     //Создание статус бара
     std::shared_ptr<GUIStatusBar>  statusBar = layer->CreateStatusBar(50, 5, 20, &sBarStyle, Location::UPSIDE);
-    std::shared_ptr<GUIBox> box1 = layer->CreateButton(100, 0, 50, 50, "A", &tst, &gst, &buttonAction);
-    std::shared_ptr<GUIBox> box2 = layer->CreateButton(0, 0, 1, 1, "B", &tst, &gst, &buttonAction);
-    std::shared_ptr<GUIBox> box3 = layer->CreateButton(0, 0, 4, 1, "Test", &tst, &gst, &buttonAction);
-	std::shared_ptr<TextField> textBox1 = layer->CreateTextField(250, 350, 120, 40, "PrintOnMe", &tst, &gst);
+    std::shared_ptr<GUIButton> box1 = layer->CreateButton(100, 0, 50, 50, "A", &tst, &gst, &buttonAction);
+    std::shared_ptr<GUIButton> box2 = layer->CreateButton(0, 0, 1, 1, "B", &tst, &gst, &buttonAction);
+    std::shared_ptr<GUIButton> box3 = layer->CreateButton(0, 0, 4, 1, "Test", &tst, &gst, &buttonAction);
+	// текст подгружается из локали
+	std::shared_ptr<TextField> textBox1 = layer->CreateTextField(250, 350, 120, 40, locale.GetInvite("print"), &tst, &gst);
 	std::shared_ptr<GUILabel> label1 = layer->CreateLabel(5, 10, 100, 40, "READY...", &tst, &gst);
 	label1->SetHorizontalAlignment(Alignment::LEFT);
     statusBar->AddElement(box1);
@@ -180,7 +186,8 @@ void main()
     menuBar->addButton("3", &buttonAction3);
     menuBar->addButton("4", &buttonAction4);
 
-    std::shared_ptr<TextField> textBox = layer->CreateTextField(250, 350, 100, 40, "textField", &tst, &gst);
+	// текст подгружается из локали
+    std::shared_ptr<TextField> textBox = layer->CreateTextField(250, 350, 100, 40, locale.GetElementName("text_field"), &tst, &gst);
 
     std::shared_ptr<TextArea> textArea = layer->CreateTextArea(400, 300, 300, 200, &tst, &gst);
     
