@@ -73,8 +73,15 @@ void main()
 	std::shared_ptr<ScrollBar> scrollbarHor2 = panel->CreateScrollBar(0, 0, 0, 0, &gst, Orientation::HORIZONTAL, 800);
 	std::shared_ptr<ScrollBar> scrollbarVert2 = panel->CreateScrollBar(0, 0, 0, 0, &gst, Orientation::VERTICAL, 600);
 
-	std::shared_ptr<GUILabel> label15 = panel->CreateLabel(5, 10, 100, 40, "LEFT", &tst, &gst);
-	std::shared_ptr<GUILabel> label16 = panel->CreateLabel(700, 10, 90, 40, "Right", &tst, &gst);
+	std::shared_ptr<MenuBar> menuBar2 = panel->CreateMenuBar(0, 0, SCREEN_WIDTH - 12, 50, "", &tst, &gst2,
+		0, 200, Color::White);
+	menuBar2->addButton("1", &buttonAction1);
+	menuBar2->addButton("2", &buttonAction2);
+	menuBar2->addButton("3", &buttonAction3);
+	menuBar2->addButton("4", &buttonAction4);
+
+	std::shared_ptr<GUILabel> label123 = panel->CreateLabel(60, 60, 100, 40, "LEFT", &tst, &gst);
+	std::shared_ptr<TextField> textBox2 = panel->CreateTextField(250, 350, 100, 40, "textField", &tst, &gst);
     //пример создания кнопки
     //std::shared_ptr<GUIButton> button = layer->CreateButton(20, 20, 100,100, "button", &tst, &gst, &buttonAction);
 

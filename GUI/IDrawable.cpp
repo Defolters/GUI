@@ -22,6 +22,11 @@ void IDrawable::SetSize(Vector2f size_)
 	size = size_;
 }
 
+void IDrawable::SetValue(Vector2f value_)
+{
+	value = value_;
+}
+
 Vector2f IDrawable::GetSize()
 {
 	return size;
@@ -30,6 +35,11 @@ Vector2f IDrawable::GetSize()
 Vector2f IDrawable::GetPosition()
 {
 	return position;
+}
+
+Vector2f IDrawable::GetValue()
+{
+	return value;
 }
 
 int IDrawable::GetID()

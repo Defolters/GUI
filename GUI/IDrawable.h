@@ -22,8 +22,10 @@ public:
 	virtual void SetPosition(Vector2f position_);
 	virtual void SetSize(float width, float height);
 	virtual void SetSize(Vector2f size_);
+	virtual void SetValue(Vector2f value_);
 	Vector2f GetSize();
 	Vector2f GetPosition();
+	Vector2f GetValue();
 	int GetID();
 	std::shared_ptr<IDrawable> GetElement(int);
 	//Функция отрисовки
@@ -60,5 +62,6 @@ protected:
 	//размер и позиция
 	Vector2f size;
 	Vector2f position;
+	Vector2f value;
 };
 

@@ -5,6 +5,7 @@ ScrollingPanel::ScrollingPanel(Vector2f maxScrollPanelSize_, RenderWindow &Swind
 {
 	this->SetSize(scrFieldSize_);
 	this->SetPosition(scrFieldPosition_);
+	this->SetValue(Vector2f(0, 0));
 	viewPosition = Vector2i(0, 0);
 
 	crutch.create(VideoMode(int(maxScrollPanelSize_.x), int(maxScrollPanelSize_.y)), "");
@@ -30,50 +31,28 @@ void ScrollingPanel::SetSize(Vector2f size_)
 
 void ScrollingPanel::DrawPanel()
 {
-	//Recalc();
 	crutch.clear(scrFieldColor);
 	for (std::shared_ptr<IDrawable> bo : elements)
 		if(typeid(*bo) != typeid(ScrollBar))
 			bo->Draw();
-
 	crutch.display();
+
+	for (std::shared_ptr<IDrawable> bo : elements)
+		if (typeid(*bo) == typeid(ScrollBar))
+			bo->DrawforScr(window);
+
 	Vector2u windowSize = crutch.getSize();
 	Texture texture;
 	texture.create(windowSize.x, windowSize.y);
 	texture.update(crutch);
 	scrImage = texture.copyToImage();
-
+	viewPosition.x = ((this->GetValue().x)/scrFieldSize.x)*crutchsize.x; 
+	viewPosition.y = ((this->GetValue().y) / scrFieldSize.y)*crutchsize.y;
 	IntRect area(viewPosition.x,viewPosition.y,scrFieldSize.x,scrFieldSize.y);
 	scrTexture.loadFromImage(scrImage, area);
 
 	scrField.setTexture(scrTexture);
-	for (std::shared_ptr<IDrawable> bo : elements)
-		if (typeid(*bo) == typeid(ScrollBar))
-			bo->DrawforScr(window);
 	window->draw(scrField);
-
-
-
-}
-
-void ScrollingPanel::Recalc()
-{
-	int count = 0;
-	for (auto bars = elements.begin(); bars != elements.end(); ++bars)
-		{
-		if (count == 0)
-		{ //Для вертикального справа
-			(*bars)->SetPosition(float(scrFieldPosition.x + scrFieldSize.x), float(scrFieldPosition.y));
-			(*bars)->SetSize(float((*bars)->GetSize().x), float(scrFieldSize.y));
-		}
-		else if (count == 1)
-		{ //Для горизонт снизу
-			(*bars)->SetPosition(float(scrFieldPosition.x), float(scrFieldPosition.y + scrFieldSize.y));
-			(*bars)->SetSize(float(scrFieldSize.x),float((*bars)->GetSize().y));
-		}
-		count++;
-		}
-	std::cout << count << std::endl;
 }
 
 void ScrollingPanel::notifysAll(const sf::Event & event) const
@@ -90,31 +69,18 @@ void ScrollingPanel::notifysAll(const sf::Event & event) const
 		newevent.mouseButton.x = event.mouseButton.x - scrFieldPosition.x+ viewPosition.x;
 		newevent.mouseButton.y = event.mouseButton.y - scrFieldPosition.y+ viewPosition.y;
 	}
+	int i = 0;
 	for (auto& element : elements)
+	{
+		if (i<=1)
+			element->handleEvent(event);
+		else
 		element->handleEvent(newevent);
+		i++;
+	}
 }
 
 void ScrollingPanel::handlesEvent(const sf::Event & event)
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-	{
-		if (viewPosition.x !=0)
-		(viewPosition.x)-=5;
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-	{
-		if (viewPosition.y != 0)
-			(viewPosition.y)-= 5;
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-	{
-		if ((viewPosition.x+ scrFieldSize.x) != crutchsize.x)
-			(viewPosition.x) += 5;
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-	{
-		if ((viewPosition.y+ scrFieldSize.y) != crutchsize.y)
-			(viewPosition.y) += 5;
-	}
 	notifysAll(event);
 }

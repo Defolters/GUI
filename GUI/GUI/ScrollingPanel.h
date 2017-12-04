@@ -26,7 +26,6 @@ public:
 	virtual void SetPosition(Vector2f position_) override;
 	virtual void SetSize(Vector2f size_) override;
 	virtual void DrawPanel();
-	virtual void Recalc();
 	void notifysAll(const sf::Event& event) const;
 	void handlesEvent(const sf::Event& event);
 };

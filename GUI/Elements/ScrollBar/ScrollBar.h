@@ -34,8 +34,8 @@ private:
 	float height;
 	float shift;
 	float sizeScrollPanel;
-	//float value;
-	//float maxvalue;
+	float value;
+	float maxvalue;
 };
 
 #endif

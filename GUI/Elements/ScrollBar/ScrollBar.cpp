@@ -6,14 +6,11 @@ ScrollBar::ScrollBar(RenderWindow* renderWindow_, Orientation orientation_,
 	: GUIBox(renderWindow_, renderWindow_->getSize().x - width, 0.0f, width, height, gstyle),
 	orientation(orientation_), isMousePressed(false), sizeScrollPanel(sizeScrollPanel_)
 {
+	value = 0;
+	shift = 0;
 	roller.setFillColor(sf::Color::Color(171, 171, 171, 255));
 	band.setFillColor(sf::Color::Color(220, 220, 220, 255));
 	limiter.setFillColor(sf::Color::Color(120, 120, 120, 255));
-}
-
-void null(const float& x, const float& y)
-{
-	std::cout << x << "  " << y << std::endl;
 }
 
 void ScrollBar::handleEvent(const sf::Event& event) {
@@ -27,70 +24,40 @@ void ScrollBar::handleEvent(const sf::Event& event) {
 			}
 			if (event.mouseButton.button == sf::Mouse::Left) {
 				if ((event.mouseButton.x > band.getPosition().x) &&
-					(event.mouseButton.x < band.getPosition().x + width) &&
+					(event.mouseButton.x < (band.getPosition().x + band.getSize().x)) &&
 					(event.mouseButton.y > band.getPosition().y) &&
-					(event.mouseButton.y < band.getPosition().y + band.getSize().y)) {
-
-					if (event.mouseButton.y < roller.getPosition().y) {
-
-						if (roller.getPosition().y - shift < band.getPosition().y) {
-							roller.move(0.0f, band.getPosition().y - roller.getPosition().y);
-							null(0.0, band.getPosition().y - roller.getPosition().y);
-						}
-						else {
-							roller.move(0.0f, -shift);
-							null(0.0f, -shift);
-						}
-					}
+					(event.mouseButton.y < (band.getPosition().y + band.getSize().y))) {
+					if ((event.mouseButton.y >= roller.getPosition().y) && (event.mouseButton.y <= (roller.getPosition().y+roller.getSize().y))) 
+						isMousePressed = true;
 					else {
-						if (event.mouseButton.y > roller.getPosition().y + roller.getSize().y) {
-							if (roller.getPosition().y + roller.getSize().y + shift > band.getPosition().y + band.getSize().y) {
-								roller.move(0.0f, band.getPosition().y + band.getSize().y - roller.getPosition().y - roller.getSize().y);
-								null(0.0f, band.getPosition().y + band.getSize().y - roller.getPosition().y - roller.getSize().y);
-							}
-							else {
-								roller.move(0.0f, shift);
-								null(0.0f, shift);
-							}
-						}
-						else {
-							if (!isMousePressed) {
-								isMousePressed = true;
-								lastPos = event.mouseButton.y;
-							}
-						}
+						value = event.mouseButton.y-band.getPosition().y;
+						if (value > maxvalue) value = maxvalue;
+						parent->SetValue(Vector2f(parent->GetValue().x,value));
 					}
 				}
 
 			}
 			break;
 		case sf::Event::MouseButtonReleased:
-			if (event.mouseButton.button == sf::Mouse::Right) {
+			if (event.mouseButton.button == sf::Mouse::Right) 
 				return;
-			}
-			if (event.mouseButton.button == sf::Mouse::Left) {
+			if (event.mouseButton.button == sf::Mouse::Left) 
 				isMousePressed = false;
-			}
 			break;
 		case sf::Event::MouseMoved:
 			if (isMousePressed) {
-				if (roller.getPosition().y + event.mouseMove.y - lastPos < band.getPosition().y) {
-					roller.move(0.0f, band.getPosition().y - roller.getPosition().y);
-					lastPos = event.mouseMove.y;
-					null(0.0f, band.getPosition().y - lastPos);
-				}
-				else {
-					if (roller.getPosition().y + event.mouseMove.y - lastPos > band.getPosition().y + band.getSize().y - roller.getSize().y) {
-						roller.move(0.0f, band.getPosition().y + band.getSize().y - roller.getPosition().y - roller.getSize().y);
-						lastPos = roller.getPosition().y;
-						null(0.0f, band.getPosition().y + band.getSize().y - roller.getPosition().y - roller.getSize().y);
+				if (event.mouseMove.y >= band.getPosition().y)
+					{
+						value = event.mouseMove.y - band.getPosition().y;
+						if (value > maxvalue) value = maxvalue;
+						parent->SetValue(Vector2f(parent->GetValue().x, value));
 					}
-					else {
-						roller.move(0.0f, event.mouseMove.y - lastPos);
-						lastPos = event.mouseMove.y;
+				else
+					{
+						value = 0;
+						parent->SetValue(Vector2f(parent->GetValue().x, value));
 					}
 				}
-			}
 			break;
 		default:
 			break;
@@ -105,69 +72,40 @@ void ScrollBar::handleEvent(const sf::Event& event) {
 				return;
 			}
 			if (event.mouseButton.button == sf::Mouse::Left) {
-				if ((event.mouseButton.y > band.getPosition().y) &&
-					(event.mouseButton.y < band.getPosition().y + height) &&
-					(event.mouseButton.x > band.getPosition().x) &&
-					(event.mouseButton.x < band.getPosition().x + band.getSize().x)) {
-
-					if (event.mouseButton.x < roller.getPosition().x) {
-
-						if (roller.getPosition().x - shift < band.getPosition().x) {
-							roller.move(band.getPosition().x - roller.getPosition().x, 0.0f);
-							null(band.getPosition().x - roller.getPosition().x, 0.0f);
-						}
-						else {
-							roller.move(-shift, 0.0f);
-							null(-shift, 0.0f);
-						}
+				if ((event.mouseButton.x > band.getPosition().x) &&
+					(event.mouseButton.x < (band.getPosition().x + band.getSize().x)) &&
+					(event.mouseButton.y > band.getPosition().y) &&
+					(event.mouseButton.y < (band.getPosition().y + band.getSize().y))) {
+					if ((event.mouseButton.x >= roller.getPosition().x) && (event.mouseButton.x <= (roller.getPosition().x + roller.getSize().x)))
+					{
+						isMousePressed = true;
 					}
 					else {
-						if (event.mouseButton.x > roller.getPosition().x + roller.getSize().x) {
-							if (roller.getPosition().x + roller.getSize().x + shift > band.getPosition().x + band.getSize().x) {
-								roller.move(band.getPosition().x + band.getSize().x - roller.getPosition().x - roller.getSize().x, 0.0f);
-								null(band.getPosition().x + band.getSize().x - roller.getPosition().x - roller.getSize().x, 0.0f);
-							}
-							else {
-								roller.move(shift, 0.0f);
-								null(shift, 0.0f);
-							}
-						}
-						else {
-							if (!isMousePressed) {
-								isMousePressed = true;
-								lastPos = event.mouseButton.x;
-							}
-						}
+						value = event.mouseButton.x - band.getPosition().x;
+						if (value > maxvalue) value = maxvalue;
+						parent->SetValue(Vector2f(value, parent->GetValue().y));
 					}
 				}
-
 			}
 			break;
 		case sf::Event::MouseButtonReleased:
-			if (event.mouseButton.button == sf::Mouse::Right) {
+			if (event.mouseButton.button == sf::Mouse::Right)
 				return;
-			}
-			if (event.mouseButton.button == sf::Mouse::Left) {
+			if (event.mouseButton.button == sf::Mouse::Left)
 				isMousePressed = false;
-			}
 			break;
 		case sf::Event::MouseMoved:
 			if (isMousePressed) {
-				if (roller.getPosition().x + event.mouseMove.x - lastPos < band.getPosition().x) {
-					roller.move(band.getPosition().x - roller.getPosition().x, 0.0f);
-					lastPos = event.mouseMove.x;
-					null(band.getPosition().x - lastPos, 0.0f);
+				if (event.mouseMove.x >= band.getPosition().x)
+				{
+					value = event.mouseMove.x - band.getPosition().x;
+					if (value > maxvalue) value = maxvalue;
+					parent->SetValue(Vector2f(value, parent->GetValue().y));
 				}
-				else {
-					if (roller.getPosition().x + event.mouseMove.x - lastPos > band.getPosition().x + band.getSize().x - roller.getSize().x) {
-						roller.move(band.getPosition().x + band.getSize().x - roller.getPosition().x - roller.getSize().x, 0.0f);
-						lastPos = roller.getPosition().x;
-						null(band.getPosition().x + band.getSize().x - roller.getPosition().x - roller.getSize().x, 0.0f);
-					}
-					else {
-						roller.move(event.mouseMove.x - lastPos, 0.0f);
-						lastPos = event.mouseMove.x;
-					}
+				else
+				{
+					value = 0;
+					parent->SetValue(Vector2f(value, parent->GetValue().y));
 				}
 			}
 			break;
@@ -202,18 +140,16 @@ void ScrollBar::Recalc(RenderWindow *swindow)
 		band.setSize(sf::Vector2f(width, height));
 		band.setPosition(parent->GetPosition().x + parent->GetSize().x, parent->GetPosition().y);
 		roller.setSize(sf::Vector2f(width, ((parent->GetSize().y / sizeScrollPanel) * band.getSize().y)));
-		//maxvalue = band.getSize().y - roller.getSize().y;
-		roller.setPosition(band.getPosition().x, band.getPosition().y); 
-		//band.getPosition().y надо изменить но так чтобы band.getPosition().y + значение
+		maxvalue = band.getSize().y - roller.getSize().y;
+		roller.setPosition(band.getPosition().x, band.getPosition().y+value); 
 	}
 	else {
 		height = parent->GetSize().x;
 		band.setSize(sf::Vector2f(height, width));
 		band.setPosition(parent->GetPosition().x, parent->GetPosition().y + parent->GetSize().y);
 		roller.setSize(sf::Vector2f(((parent->GetSize().x / sizeScrollPanel) * band.getSize().x), width));
-		//maxvalue = band.getSize().x - roller.getSize().x;
-		roller.setPosition(band.getPosition().x, band.getPosition().y); 
-		//band.getPosition().x надо изменить но так чтобы band.getPosition().y + значение
+		maxvalue = band.getSize().x - roller.getSize().x;
+		roller.setPosition((band.getPosition().x+value), band.getPosition().y); 
 	}
 }
 
