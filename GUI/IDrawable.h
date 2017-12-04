@@ -20,8 +20,10 @@ public:
 	//для большей информации см. GUIlayer,h
 	virtual void SetPosition(float x, float y);
 	virtual void SetPosition(Vector2f position_);
+    virtual void SetPosition(Vector2f size_, Vector2f coefficient_);
 	virtual void SetSize(float width, float height);
 	virtual void SetSize(Vector2f size_);
+    virtual void SetSize(Vector2f size_, Vector2f coefficient_);
 	Vector2f GetSize();
 	Vector2f GetPosition();
 	int GetID();
