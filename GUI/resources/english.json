@@ -1,0 +1,17 @@
+{
+    "elements_names" :
+    {
+        "box" : "Box",
+        "button" : "Button",
+        "label" : "Label",
+        "text_field" : "Text Field"
+    },
+    "invites" :
+    {
+        "print" : "PrintOnMe"
+    },
+    "descriptions" :
+    {
+        "progress_bar" : "Sorting..."
+    }
+}
