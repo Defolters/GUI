@@ -4,31 +4,35 @@
 #include "../General/Headers.h"
 #include "GUIBox.h"
 #include "../Observable.h"
-//по сути Layout, класс группирующий элементы интерфейса 
-//как например отдельные зоны для кода, отладки и файлов в visual studio
 
+/*!
+\brief Фабрика и базовый отрисовщик элементов
+
+Класс, являющийся фабрикой элементов и родителем для элемнтов без явного назначенных родителей
+*/
 class GUILayer : public IDrawable, ObservableGUI
 {
 private:
-	//указатель на окно на котором находится это слой
-	RenderWindow* window;
+	RenderWindow* window;//!< указатель на окно на котором находится это слой
+	//! Оповестить всех слушателей о событии
 	void notifyAll(const sf::Event& event) const override;
 
 	friend class WindowTab;
 	friend class ScrollingPanel;
-	//отныне слои создаеются через WindowTab->CreateGUILayer(args);
-	//констуркутор, не парьтесь на этот счет, просто передавайте ему положение размеры
-	//пока что вторые два аргумента передавайте (0,0) и (ширинаОкна, высотаОкна)
-	//обрезание поля видимости все равно пока не работает :)
+	/*!
+	\brief Конструктор класса
+
+	\param renderWindow Окно, в котором будет расположен layer
+	\param position Расположение layer
+	\param size Размер layer
+
+	Конструктор слоя элементов
+	*/
 	GUILayer(RenderWindow &Swindow, Vector2f, Vector2f);
-	//это метод отрисоывавает все содержимое векторов с элементами, ТРОГАТЬ ЕГО НЕ НАДО
+	//! Переопределяем функцию Draw
 	void Draw() override;
 public:
-	//КЛЮЧЕВОЙ МОМЕНТ!
-	//во избежание проблем с созданием указателей пользуемся shared_ptr<НазваниеЭлемент> (гуглите, на самом деле простоая вещь, синтаксиси похож на простые указатели)
-	//для сохранения инкапсуляции:
-	//СОЗДАВАЙТЕ ТАКИЕ МЕТОДЫ (хотя бы 1) ДЛЯ СВОИХ ЭЛЕМЕНТОВ
-	//он должен создавать элемент, сохранять его в векторе (описаны выше) и возвращать shared_ptr на него (как это используется смотрите в handler.cpp)
+
 	std::shared_ptr<GUIBox> CreateBox(float x, float y, float width, float height, GUIStyle *gstyle);
 	std::shared_ptr<GUIBox> CreateBox(Vector2f position_, Vector2f size_, GUIStyle *gstyle);
 	std::shared_ptr<GUIBox> CreateBox(Vector2f position_, float width, float height, GUIStyle *gstyle);
@@ -38,7 +42,7 @@ public:
 	std::shared_ptr<GUIButton> CreateButton(Vector2f position_, Vector2f size_, std::string text, TextStyle *tstyle, GUIStyle *gstyle, void(*action)());
 	std::shared_ptr<GUIButton> CreateButton(Vector2f position_, float width, float height, std::string text, TextStyle *tstyle, GUIStyle *gstyle, void(*action)());
 	std::shared_ptr<GUIButton> CreateButton(float x, float y, Vector2f size_, std::string text, TextStyle *tstyle, GUIStyle *gstyle, void(*action)());
-	
+
     std::shared_ptr<GUILabel> CreateLabel(float x, float y, float width, float height, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
     std::shared_ptr<GUILabel> CreateLabel(Vector2f position_, Vector2f size_, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
     std::shared_ptr<GUILabel> CreateLabel(float x, float y, float width, float height, std::string text, TextStyle *tstyle, Texture *texture, GUIStyle *gstyle);
@@ -62,22 +66,21 @@ public:
 
 
 	std::shared_ptr<ScrollBar> CreateScrollBar(float x, float y, float width, float height, GUIStyle *gstyle, Orientation orientation, float sizeScrollPanel_);
-	
+
 	std::shared_ptr<GUIStatusBar> CreateStatusBar(float height_, float frameSize_, float spacing_, GUIStyle *sBarStyle_, Location location_);
 
 	std::shared_ptr<GUISlider> CreateSlider(float line_position_x, float line_position_y, float line_width_, float line_height_, float handler_width_, float handler_height_, GUIStyle* gst, float value_range_from_, float value_range_to_, float value_);
 	std::shared_ptr<GUISlider> CreateSlider(float line_position_x, float line_position_y, float line_width_, float line_height_, float handler_width_, float handler_height_, GUIStyle* gst, float value_range_from_, float value_range_to_, float value_, void(*action_on_move)(float slider_value));
 
 	std::shared_ptr<TextField> CreateTextField(float x, float y, float width, float height, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
-	
+
 	std::shared_ptr<TextArea> CreateTextArea(float x, float y, float width, float height, TextStyle * tstyle, GUIStyle * gstyle);
     std::shared_ptr<RadioButton> CreateRadButton(std::shared_ptr<GUILayer> layer, int count, float x, float y, float width, float height, std::vector<std::string> text, TextStyle *tstyle, GUIStyle *gstyle);
     std::shared_ptr<RadioButton> CreateRadButton(std::shared_ptr<GUILayer> layer, int count, Vector2f position, Vector2f size, std::vector<std::string> text, TextStyle *tstyle, GUIStyle *gstyle);
 
-	//Запускает обработчики у элементов, трогать его не надо
+	//! перегрузка функции обработки событий
 	void handleEvent(const sf::Event& event) override;
 
-	//TODO
-	//НЕДОПИЛЕН, НЕ ЮЗАТЬ ПОКА!
+	//! TODO
 	void removeElement(IDrawable* observer) override;
 };
