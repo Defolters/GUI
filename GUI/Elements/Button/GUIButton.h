@@ -7,13 +7,12 @@
 */
 class GUIButton : public GUIBox
 {
-private:
 	friend class GUILayer;
+protected:
 	void(*action)();//!< функция, вызываемая при нажатии
 	bool clicked;//!< функция, вызываемая при нажатии
 	bool entered;//!< функция, вызываемая при нажатии
 	GUILayer* layer;//!< функция, вызываемая при нажатии
-protected:
 	/*!
 	\brief Конструктор класса
 
@@ -26,7 +25,7 @@ protected:
 	\param tstyle Стиль текста
 	\param gstyle Стиль для Box
 	\param action функция вызываемая при нажатии
-	Конструктор класса, который создает один текст
+
 	*/
 	GUIButton(GUILayer* layer_, RenderWindow* renderWindow_, float x, float y, float width, float height, std::string text, TextStyle *tstyle, GUIStyle *gstyle, void(*action)());
 	/*!
@@ -39,7 +38,7 @@ protected:
 	\param tstyle Стиль текста
 	\param gstyle Стиль для Box
 	\param action функция вызываемая при нажатии
-	Конструктор класса, который создает один текст
+
 	*/
 	GUIButton(GUILayer* layer_, RenderWindow* renderWindow_, Vector2f position_, Vector2f size_, std::string text, TextStyle *tstyle, GUIStyle *gstyle, void(*action)());
 	/*!
@@ -53,7 +52,7 @@ protected:
 	\param tstyle Стиль текста
 	\param gstyle Стиль для Box
 	\param action функция вызываемая при нажатии
-	Конструктор класса, который создает один текст
+
 	*/
 	GUIButton(GUILayer* layer_, RenderWindow* renderWindow_, Vector2f position_, float width, float height, std::string text, TextStyle *tstyle, GUIStyle *gstyle, void(*action)());
 	/*!
@@ -67,7 +66,7 @@ protected:
 	\param tstyle Стиль текста
 	\param gstyle Стиль для Box
 	\param action функция вызываемая при нажатии
-	Конструктор класса, который создает один текст
+
 	*/
 	GUIButton(GUILayer* layer_, RenderWindow* renderWindow_, float x, float y, Vector2f size_, std::string text, TextStyle *tstyle, GUIStyle *gstyle, void(*action)());
 

@@ -63,7 +63,7 @@ public:
 		GUIStyle *gstyle,
 		float leftBorder, float rightBorder, Color staticBarColor);
 
-
+	std::shared_ptr<GUICheckButton> CreateCheckButton(float x, float y, float width, float height, std::string text, TextStyle *tstyle, GUIStyle *gstyle, void(*action)());
 
 	std::shared_ptr<ScrollBar> CreateScrollBar(float x, float y, float width, float height, GUIStyle *gstyle, Orientation orientation, float sizeScrollPanel_);
 

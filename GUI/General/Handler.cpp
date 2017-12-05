@@ -92,7 +92,7 @@ void main()
     //пример создания кнопки
 	// текст подгружается из локали
     std::shared_ptr<GUIButton> button = layer->CreateButton(20, 60, 100,100, locale.GetElementName("button"), &tst, &gst, &buttonAction);
-
+	std::shared_ptr<GUICheckButton> checkButton = layer->CreateCheckButton(300, 60, 100, 100, locale.GetElementName("button"), &tst, &gst, &buttonAction);
     // создание label
     Texture icon;
     icon.loadFromFile("resources/Danger.png");
@@ -165,7 +165,7 @@ void main()
         labelTextIcon4->SetTextToIconAlignment(Alignment::BOTTOM);
         std::shared_ptr<GUILabel> labelTextIcon5 = layer->CreateLabel(400, 310, 100, 50, "CENTER", &tst, &gst.icon, &gst);
     }
-  
+	
   // Cоздание прогресс бара.
 	// текст подгружается из локали
     std::shared_ptr<GUIProgressBar> progressBar = layer->CreateProgressBar(layer, SCREEN_WIDTH / 3 + 50, SCREEN_HEIGHT / 3, 200, 30, locale.GetDescription("progress_bar"), &tst, &gst,
@@ -219,7 +219,6 @@ void main()
         progressBar->increase();
         Sleep(20);
         //*************************
-
         main.Redraw();
     }
 }
