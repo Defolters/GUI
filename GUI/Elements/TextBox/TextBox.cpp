@@ -6,7 +6,7 @@ TextField::TextField(RenderWindow* renderWindow_, float x, float y, float width,
 	txt.setPosition(this->GetPosition().x + 2, this->GetPosition().y + 2);
 	txt.setCharacterSize(this->GetSize().y / 1.5);
 	txt.setFont(tstyle->font);
-	txt.setFillColor(Color::Black);
+	txt.setFillColor(Color::Red);
 	txt.setString(text);
 	focus = false;
 	currText = text;
@@ -32,7 +32,7 @@ void TextField::ReText(char _tmp)
 	currText = text;
 	txt.setString(text);
 	
-	if (txt.getGlobalBounds().width > field.getSize().x - 10)
+	if (txt.getGlobalBounds().width > field.getSize().x - 20)
 	{
 		if (_tmp != 8) {
 			position++;

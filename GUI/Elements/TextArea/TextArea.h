@@ -6,7 +6,7 @@
 class TextArea : public IDisplayable
 {
 public:
-	TextArea(RenderWindow * window, float x, float y, float width, float height, TextStyle * tstyle,GUIStyle* gstyle);
+	TextArea(RenderWindow * window, float x, float y, float width, float height, TextStyle * tstyle, GUIStyle* gstyle);
 	/*virtual void SetPosition(float x, float y) override;
 	virtual void SetPosition(Vector2f position_) override;
 	virtual void SetSize(float width, float height) override;
@@ -34,6 +34,17 @@ private:
 	Vector2f areaSize;
 	Vector2f areaPosition;
 	bool button;
+	int maxX;
+	int maxY;
+	int minX;
+	int minY;
+	RectangleShape cursor;
+	Vector2f cursorSize;
+	Color cursorColor;
+	Vector2f cursorPosition;
+	int numChar = 0;
+	sf::String stringForEntering;
+	int cursorLastNum = -1;
 };
 
 #endif
