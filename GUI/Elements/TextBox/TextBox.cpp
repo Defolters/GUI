@@ -50,6 +50,8 @@ void TextField::ReText(char _tmp)
 			txt.setString(currText);
 		}
 	}
+	else
+		position = 0;
 }
 
 bool TextField::Select()
