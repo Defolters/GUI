@@ -191,3 +191,16 @@ std::shared_ptr<TextArea> GUILayer::CreateTextArea(float x, float y, float width
 	elements.push_back(textarea);
 	return textarea;
 }
+std::shared_ptr<RadioButton> GUILayer::CreateRadButton(std::shared_ptr<GUILayer> layer, int count, float x, float y, float width, float height, std::vector<std::string> text, TextStyle * tstyle, GUIStyle * gstyle)
+{
+    std::shared_ptr<RadioButton> radBut(new RadioButton(layer, window, count, x, y, width, height, text, tstyle, gstyle));
+    elements.push_back(radBut);
+    return radBut;
+}
+
+std::shared_ptr<RadioButton> GUILayer::CreateRadButton(std::shared_ptr<GUILayer> layer, int count, Vector2f position, Vector2f size, std::vector<std::string> text, TextStyle * tstyle, GUIStyle * gstyle)
+{
+    std::shared_ptr<RadioButton> radBut(new RadioButton(layer, window, count, position.x, position.y, size.x, size.y, text, tstyle, gstyle));
+    elements.push_back(radBut);
+    return radBut;
+}

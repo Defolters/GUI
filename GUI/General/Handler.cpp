@@ -200,6 +200,17 @@ void main()
     std::shared_ptr<TextField> textBox = layer->CreateTextField(250, 350, 100, 40, locale.GetElementName("text_field"), &tst, &gst);
 
     std::shared_ptr<TextArea> textArea = layer->CreateTextArea(400, 300, 300, 200, &tst, &gst);
+
+    //текстуры radbutton 
+    gst.checkedRadBut.loadFromFile("resources/checked.png");
+    gst.uncheckedRadBut.loadFromFile("resources/unchecked.png");
+    //radioButton 
+    std::vector<std::string> texts = { "Yes", "No", "NONO", "OFC","lol","kek", "","","","" };
+    std::shared_ptr <RadioButton> radBut = layer->CreateRadButton(layer, 3, Vector2f(300, 20), Vector2f(30, 30), texts, &tst, &gst);
+
+
+    std::shared_ptr <RadioButton> radBut2 = layer->CreateRadButton(layer, 6, 500, 20, 30, 30, texts, &tst, &gst);
+
     while (1)
     {
         // Костыль для теста на время, пока нет Observer.
