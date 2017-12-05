@@ -2,7 +2,7 @@
 #include <iostream>
 
 
-void Slider::Draw()
+void GUISlider::Draw()
 {
 	if (isMoving)
 		onHandlerMove();
@@ -10,19 +10,28 @@ void Slider::Draw()
 	renderWindow->draw(back_line_sprite);
 	renderWindow->draw(front_line_sprite);
 	renderWindow->draw(handler_sprite);
+
+	for (int i = 0; i < elements.size(); i++)
+	{
+		elements[i]->Draw();
+	}
 }
 
-void Slider::SetPosition(float x_, float y_)
+void GUISlider::SetPosition(float x_, float y_)
 {
+	float deltax = x_ - line_position_x;
+	float deltay = y_ - line_position_y;
 	back_line_sprite.setPosition(x_, y_);
 	front_line_sprite.setPosition(x_, y_);
 	line_position_x = x_;
 	line_position_y = y_;
 	SetVerticalHandlerPosition(vertical_handler_pos);
 	SetValue(value);
+	//обновляем позицию у всех дочерних
+	//for (int i = 0; i < )
 }
 
-void Slider::SetPosition(Vector2f position_)
+void GUISlider::SetPosition(Vector2f position_)
 {
 	back_line_sprite.setPosition(position_.x, position_.y);
 	front_line_sprite.setPosition(position_.x, position_.y);
@@ -31,7 +40,7 @@ void Slider::SetPosition(Vector2f position_)
 	line_position_y = position_.y;
 }
 
-void Slider::SetSize(float width_, float height_)
+void GUISlider::SetSize(float width_, float height_)
 {
 	back_line_sprite.setScale(width_ / back_line_texture.getSize().x, height_ / back_line_texture.getSize().y);
 	front_line_sprite.setScale(width_ / front_line_texture.getSize().x, height_ / front_line_texture.getSize().y);
@@ -41,7 +50,7 @@ void Slider::SetSize(float width_, float height_)
 
 }
 
-void Slider::SetSize(Vector2f size_)
+void GUISlider::SetSize(Vector2f size_)
 {
 	back_line_sprite.setScale(size_.x / back_line_texture.getSize().x, size_.y / back_line_texture.getSize().y);
 	front_line_sprite.setScale(size_.x / front_line_texture.getSize().x, size_.y / front_line_texture.getSize().y);
@@ -49,19 +58,29 @@ void Slider::SetSize(Vector2f size_)
 	line_size_y = size_.y;
 }
 
-void Slider::SetHandlerSize(float width_, float height_)
+Vector2f GUISlider::GetPosition()
+{
+	return Vector2f(line_position_x, line_position_y);
+}
+
+Vector2f GUISlider::GetSize()
+{
+	return Vector2f(line_size_x, line_size_y);
+}
+
+void GUISlider::SetHandlerSize(float width_, float height_)
 {
 	handler_sprite.setScale(width_ / handler_texture.getSize().x, height_ / handler_texture.getSize().y);
 	handler_size_x = width_;
 	handler_size_y = height_;
 }
 
-float Slider::GetVerticalHandlerPosition()
+float GUISlider::GetVerticalHandlerPosition()
 {
 	return vertical_handler_pos;
 }
 
-void Slider::SetVerticalHandlerPosition(float persentage_of_line_height_)
+void GUISlider::SetVerticalHandlerPosition(float persentage_of_line_height_)
 {
 	vertical_handler_pos = persentage_of_line_height_;
 	float new_pos_y = line_position_y + line_size_y * persentage_of_line_height_ / 100;
@@ -88,7 +107,7 @@ void Slider::SetTextures(std::string back_line_file_name_, std::string front_lin
 	SetValue(value);
 }*/
 
-void Slider::SetTextures()
+void GUISlider::SetTextures()
  {
 	back_line_texture = guistyle->sliderBackTex;
 	front_line_texture = guistyle->sliderFrontTex;
@@ -107,15 +126,19 @@ void Slider::SetTextures()
 		SetValue(value);
 }
 
-void Slider::SetGUIStyle(GUIStyle* gst)
+void GUISlider::SetGUIStyle(GUIStyle* gst)
  {
 	guistyle = gst;
 	SetTextures();
 	}
 
-void Slider::onHandlerMove()
+void GUISlider::onHandlerMove()
 {
-	int mouse_pos_x = Mouse::getPosition().x - renderWindow->getPosition().x - 11;
+	/*if ()
+	{
+
+	}*/
+	int mouse_pos_x = Mouse::getPosition(*renderWindow).x;
 
 	if (mouse_pos_x + delta > line_position_x + line_size_x)
 	{
@@ -142,13 +165,14 @@ void Slider::onHandlerMove()
 	action_on_move(value);
 }
 
-Slider::Slider(RenderWindow * renderWindow_, float line_position_x_, float line_position_y_,
+GUISlider::GUISlider(GUILayer* layer, RenderWindow * renderWindow_, float line_position_x_, float line_position_y_,
 	float line_width_, float line_height_, float handler_width_, float handler_height_, GUIStyle* gst,
 	float value_range_from_, float value_range_to_, float value_, void (*action_on_move)(float slider_value))
 	: IDisplayable(renderWindow_, line_position_x_, line_position_y_, line_width_, line_height_)
 {
 	renderWindow = renderWindow_;
 	guistyle = gst;
+	this->layer = layer;
 
 	value = value_;
 	value_range_from = value_range_from_;
@@ -177,13 +201,14 @@ Slider::Slider(RenderWindow * renderWindow_, float line_position_x_, float line_
 	this->action_on_move = action_on_move;
 }
 
-Slider::Slider(RenderWindow * renderWindow_, float line_position_x_, float line_position_y_,
+GUISlider::GUISlider(GUILayer* layer, RenderWindow * renderWindow_, float line_position_x_, float line_position_y_,
 	float line_width_, float line_height_, float handler_width_, float handler_height_, GUIStyle* gst,
 	float value_range_from_, float value_range_to_, float value_)
 	: IDisplayable(renderWindow_, line_position_x_, line_position_y_, line_width_, line_height_)
 {
 	renderWindow = renderWindow_;
 	guistyle = gst;
+	this->layer = layer;
 
 	value = value_;
 	value_range_from = value_range_from_;
@@ -210,10 +235,18 @@ Slider::Slider(RenderWindow * renderWindow_, float line_position_x_, float line_
 	SetTextures();
 }
 
-void Slider::handleEvent(const sf::Event & event)
+void GUISlider::handleEvent(const sf::Event & event)
 {
+	for (int i = 0; i < elements.size(); i++)
+	{
+		elements[i]->handleEvent(event);
+	}
+
 	if (event.type == Event::MouseButtonPressed && event.mouseButton.button == Mouse::Button::Left)
 	{
+		float mousex = Mouse::getPosition(*renderWindow).x;
+		float mousey = Mouse::getPosition(*renderWindow).y;
+		std::cout << mousex << " " << mousey << "\n";
 		if (event.mouseButton.x > handler_sprite.getPosition().x - handler_size_x / 2.0 &&
 			event.mouseButton.x < handler_sprite.getPosition().x + handler_size_x / 2.0 &&
 			event.mouseButton.y > handler_sprite.getPosition().y - handler_size_y / 2.0 &&
@@ -244,12 +277,12 @@ void Slider::handleEvent(const sf::Event & event)
 	}
 }
 
-float Slider::GetValue()
+float GUISlider::GetValue()
 {
 	return value;
 }
 
-void Slider::SetValue(float value_)
+void GUISlider::SetValue(float value_)
 {
 	if (value_ > value_range_to || value_ < value_range_from)
 	{
@@ -263,19 +296,19 @@ void Slider::SetValue(float value_)
 	front_line_sprite.setScale(front_line_scale_x * percent, back_line_sprite.getScale().y);
 }
 
-Vector2f Slider::GetValueRange()
+Vector2f GUISlider::GetValueRange()
 {
 	return Vector2f(value_range_from, value_range_to);
 }
 
-void Slider::SetValueRange(Vector2f range_)
+void GUISlider::SetValueRange(Vector2f range_)
 {
 	value_range_from = range_.x;
 	value_range_to = range_.y;
 	SetValue(value);
 }
 
-void Slider::SetValueRange(float range_from_, float range_to_)
+void GUISlider::SetValueRange(float range_from_, float range_to_)
 {
 	value_range_from = range_from_;
 	value_range_to = range_to_;
