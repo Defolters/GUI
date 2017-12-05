@@ -43,7 +43,6 @@ void main()
     gst.pressTex.loadFromFile("resources/pressGUI.png");
     gst.overTex.loadFromFile("resources/overGUI.png");
     gst.frame.loadFromFile("resources/frame.png");
-    gst.background.loadFromFile("resources/statusBar.png");
     gst.frameWid = 5;
     gst.icon.loadFromFile("resources/Danger.png");
 	gst.background.loadFromFile("resources/statusBar.png");
@@ -176,12 +175,15 @@ void main()
     std::shared_ptr<GUIButton> box3 = layer->CreateButton(0, 0, 4, 1, "Test", &tst, &gst, &buttonAction);
 	std::shared_ptr<TextField> textBox1 = layer->CreateTextField(250, 350, 120, 40, locale.GetInvite("print"), &tst, &gst);
 	std::shared_ptr<GUILabel> label1 = layer->CreateLabel(5, 10, 100, 40, "READY...", &tst, &gst);
+	std::shared_ptr<GUISlider> slider1 = layer->CreateSlider(0, 0, 150, 20, 35, 38, &gst, 0, 100, 20, &onSliderMove);
 	label1->SetHorizontalAlignment(Alignment::LEFT);
+	statusBar->AddElement(slider1);
     statusBar->AddElement(box1);
     statusBar->AddElement(box2);
     statusBar->AddElement(box3);
 	statusBar->AddElement(textBox1);
 	statusBar->AddElement(label1);
+
 	statusBar->setLocation(Location::DOWNSIDE);
 	statusBar->setSpacing(10);
 	statusBar->setHeight(50);
