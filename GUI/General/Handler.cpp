@@ -163,14 +163,20 @@ void main()
     statusBar->AddElement(box2);
     statusBar->AddElement(box3);
 
-
+	
     //menu bar
-    std::shared_ptr<MenuBar> menuBar = layer->CreateMenuBar(0, 0, SCREEN_WIDTH - 12, 50, "", &tst, &gst2,
-        0, 200, Color::White);
+    std::shared_ptr<MenuBar> menuBar = layer->CreateMenuBar(0, 0, SCREEN_WIDTH, 50, "", &tst, &gst2, 0, 200, Color::White);
     menuBar->addButton("1", &buttonAction1);
     menuBar->addButton("2", &buttonAction2);
     menuBar->addButton("3", &buttonAction3);
     menuBar->addButton("4", &buttonAction4);
+
+	menuBar->resizing();
+
+
+
+
+
 
     std::shared_ptr<TextField> textBox = layer->CreateTextField(250, 350, 100, 40, "textField", &tst, &gst);
 

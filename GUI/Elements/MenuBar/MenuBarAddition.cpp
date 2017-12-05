@@ -21,11 +21,21 @@ void MenuBar::addButton(std::string name, void(*action)())
 	tst.fontSize = 30;
 	tst.align = 'c';
 
-	//пример создания просто "коробки" с созданными стилями, положением 0,0 и размером 300,400 на созданном выше слое
 	std::shared_ptr<GUIBox> box;
 	buttonVect.push_back(box);
 	
-	box = layer->CreateButton(buttonPosHelp, 5, 200, 40, name, &tst, &gst, action);
-	buttonPosHelp = buttonPosHelp + 200;
-
+	box = layer->CreateButton(buttonPosHelp, 5, buttonSizeHelp, 40, name, &tst, &gst, action);
+	buttonPosHelp = buttonPosHelp + buttonSizeHelp;
+	///resizing test
+	
+	///
 }
+void MenuBar::resizing()
+{
+	for (auto a = buttonVect.begin(); a != buttonVect.end(); ++a)
+	{
+	//	(*a)->GetPosition();
+		//buttonPosHelp += (*a)->GetSize().x + 10;
+		//((*a)->SetPosition(renderWindow->getSize().x - buttonPosHelp, renderWindow->getSize().y - (*a)->GetSize().y));
+	}
+ }

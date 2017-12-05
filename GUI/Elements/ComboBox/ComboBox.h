@@ -3,20 +3,15 @@
 #include <vector>
 #include <string.h>
 #include "../../Observable.h"
-#include "../../IDrawable.h"
-class MenuBar : public GUIBox 
+
+class ComboBox : public GUIBox
 {
 private:
 	std::vector<std::shared_ptr <GUIBox> > buttonVect;
 	const int SCREEN_WIDTH = 800;
 	const int SCREEN_HEIGHT = 600;
 
-	int buttonPosHelp=0;
-	int buttonSizeHelp = 195;
-
-	////
-	float ratio;
-	///
+	int buttonPosHelp = 0;
 	GUILayer * layer;
 
 	friend class GUILayer;
@@ -29,18 +24,21 @@ private:
 	RectangleShape * staticBar;
 
 
-	
+	float leftBord;
+	float rightBord;
+
+	float point;
+
 protected:
-	MenuBar(RenderWindow* renderWindow_, float x, float y, float width, float height,
+	ComboBox(RenderWindow* renderWindow_, float x, float y, float width, float height,
 		std::string text, TextStyle *tstyle, GUIStyle *gstyle,
 		float leftBorder, float rightBorder, Color staticBarColor, GUILayer* layer);
 
 	//virtual void Draw() override;
 
 public:
-	
 
-	void addButton(std::string name , void(*action)());
-	void resizing();
+
+	void addButton(std::string name, void(*action)());
 };
 
