@@ -64,31 +64,40 @@ void ScrollingPanel::DrawPanel()
 
 void ScrollingPanel::notifysAll(const sf::Event & event) const
 {
-	// Добавляем событие newevent, которое передается для элементов, находящихся
-	// на невидимом окне
-	Event newevent;
-	newevent = event;
-	if (event.type == Event::MouseMoved)
-	{
-		newevent.mouseMove.x = event.mouseMove.x - scrFieldPosition.x+viewPosition.x;
-		newevent.mouseMove.y = event.mouseMove.y - scrFieldPosition.y+ viewPosition.y;
-	}
-	else if ((event.type == Event::MouseButtonPressed) || (event.type == Event::MouseButtonReleased))
-	{
-		newevent.mouseButton.x = event.mouseButton.x - scrFieldPosition.x+ viewPosition.x;
-		newevent.mouseButton.y = event.mouseButton.y - scrFieldPosition.y+ viewPosition.y;
-	}
+    // Добавляем событие newevent, которое передается для элементов, находящихся
+    // на невидимом окне
+    Event newevent;
+    newevent = event;
 
-	// Для 2 ScrollBar'ов оставляем событие без изменений, для остальных - newevent
-	int i = 0;
-	for (auto& element : elements)
-	{
-		if (i<=1)
-			element->handleEvent(event);
-		else
-		element->handleEvent(newevent);
-		i++;
-	}
+    if (event.type == Event::MouseMoved)
+    {
+        newevent.mouseMove.x = event.mouseMove.x - scrFieldPosition.x + viewPosition.x;
+        newevent.mouseMove.y = event.mouseMove.y - scrFieldPosition.y + viewPosition.y;
+    }
+    else if ((event.type == Event::MouseButtonPressed) || (event.type == Event::MouseButtonReleased))
+    {
+        newevent.mouseButton.x = event.mouseButton.x - scrFieldPosition.x + viewPosition.x;
+        newevent.mouseButton.y = event.mouseButton.y - scrFieldPosition.y + viewPosition.y;
+    }
+
+    // Для 2 ScrollBar'ов оставляем событие без изменений, для остальных - newevent
+    int i = 0;
+    for (auto& element : elements)
+    {
+        if (i <= 1)
+            element->handleEvent(event);
+        else
+        {
+
+            if (((event.mouseMove.x <= (scrFieldPosition.x + scrFieldSize.x)) && (event.mouseMove.x >= scrFieldPosition.x) &&
+                (event.mouseMove.y <= (scrFieldPosition.y + scrFieldSize.y)) && (event.mouseMove.y >= scrFieldPosition.y)) ||
+                ((event.mouseButton.x <= (scrFieldPosition.x + scrFieldSize.x)) && (event.mouseButton.x >= scrFieldPosition.x) &&
+                (event.mouseButton.y <= (scrFieldPosition.y + scrFieldSize.y)) && (event.mouseButton.y >= scrFieldPosition.y))
+                || (event.type == Event::TextEntered))
+                element->handleEvent(newevent);
+        }
+        i++;
+    }
 }
 
 void ScrollingPanel::handlesEvent(const sf::Event & event)
