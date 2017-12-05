@@ -28,9 +28,9 @@ std::shared_ptr<GUILayer> WindowTab::CreateGUILayer(Vector2f position_, Vector2f
 	return GUILayers[GUILayers.size() - 1];
 }
 
-std::shared_ptr<ScrollingPanel> WindowTab::CreateScrollPanel(Vector2f maxScrollPanelSize, Vector2f scrFieldPosition, Vector2f scrFieldSize, Color scrFieldColor, GUIStyle *gst)
+std::shared_ptr<ScrollingPanel> WindowTab::CreateScrollPanel(Vector2f maxScrollPanelSize, Vector2f scrFieldPosition, Vector2f scrFieldSize, Color scrFieldColor)
 {
-	ScrollPanels.push_back(std::shared_ptr<ScrollingPanel>(new ScrollingPanel(maxScrollPanelSize, window, scrFieldPosition, scrFieldSize, scrFieldColor, gst)));
+	ScrollPanels.push_back(std::shared_ptr<ScrollingPanel>(new ScrollingPanel(maxScrollPanelSize, window, scrFieldPosition, scrFieldSize, scrFieldColor)));
 	return ScrollPanels[ScrollPanels.size() - 1];
 }
 

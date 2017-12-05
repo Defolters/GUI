@@ -3,7 +3,7 @@
 #include "../Locale.h"
 
 #define LABEL_DEBUG false
-#define PANEL_DEBUG false
+#define PANEL_DEBUG true
 #define RADIO_DEBUG false
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;
@@ -75,7 +75,7 @@ void main()
     std::shared_ptr<GUILayer> layer = main.CreateGUILayer(Vector2f(0, 0), Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
 
     if (PANEL_DEBUG) {
-        std::shared_ptr<ScrollingPanel> panel = main.CreateScrollPanel(Vector2f(800, 600), Vector2f(10, 150), Vector2f(200, 250), Color(50, 50, 50, 255), &gst);
+        std::shared_ptr<ScrollingPanel> panel = main.CreateScrollPanel(Vector2f(800, 600), Vector2f(10, 150), Vector2f(200, 250), Color(50, 50, 50, 255));
         std::shared_ptr<ScrollBar> scrollbarHor2 = panel->CreateScrollBar(0, 0, 0, 0, &gst, Orientation::HORIZONTAL, 800);
         std::shared_ptr<ScrollBar> scrollbarVert2 = panel->CreateScrollBar(0, 0, 0, 0, &gst, Orientation::VERTICAL, 600);
 

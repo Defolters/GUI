@@ -19,7 +19,7 @@ private:
 	Color scrFieldColor; // Цвет фона для элементов ScrollingPanel
 public:
 	ScrollingPanel(Vector2f maxScrollPanelSize, RenderWindow &Swindow, Vector2f scrFieldPosition, 
-				   Vector2f scrFieldSize, Color scrFieldColor, GUIStyle *gst);
+				   Vector2f scrFieldSize, Color scrFieldColor);
 
 	Vector2i viewPosition; // Позиция "камеры" относительно невидимого окна	
 

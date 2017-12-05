@@ -1,6 +1,6 @@
 #include "ScrollingPanel.h"
 
-ScrollingPanel::ScrollingPanel(Vector2f maxScrollPanelSize_, RenderWindow &Swindow, Vector2f scrFieldPosition_, Vector2f scrFieldSize_, Color scrFieldColor_, GUIStyle *gst)
+ScrollingPanel::ScrollingPanel(Vector2f maxScrollPanelSize_, RenderWindow &Swindow, Vector2f scrFieldPosition_, Vector2f scrFieldSize_, Color scrFieldColor_)
 	:GUILayer((this->crutch), scrFieldPosition, scrFieldSize)
 {
 	this->SetSize(scrFieldSize_);
