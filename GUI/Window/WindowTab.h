@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include <map>
 #include "../GUI/GUILayer.h"
-#include "../GUI/ScrollingPanel.h"
+#include "../Elements/ScrollingPanel/ScrollingPanel.h"
 
 enum WindowTabState
 {
