@@ -1,4 +1,4 @@
-#include "TextBox.h"
+п»ї#include "TextBox.h"
 
 TextField::TextField(RenderWindow* renderWindow_, float x, float y, float width, float height, std::string text_, TextStyle *tstyle, GUIStyle *gstyle) : GUIBox(renderWindow_, x, y, width, height, gstyle)
 {
@@ -59,10 +59,10 @@ bool TextField::Select()
 
 bool TextField::Select(Vector2i _mouse)
 {
-	if ((_mouse.x > GetPosition().x && _mouse.x < GetPosition().x + GetSize().x) && (_mouse.y > GetPosition().y && _mouse.y < GetPosition().y + GetSize().y)) 	//Если нажат клаиша над объектом TextField...
+	if ((_mouse.x > GetPosition().x && _mouse.x < GetPosition().x + GetSize().x) && (_mouse.y > GetPosition().y && _mouse.y < GetPosition().y + GetSize().y)) 	//Р•СЃР»Рё РЅР°Р¶Р°С‚ РєР»Р°РёС€Р° РЅР°Рґ РѕР±СЉРµРєС‚РѕРј TextField...
 	{
-		focus = true;																	   	// Фокус true
-		text += "|";																// В конец строки добаляем | (что бы понимать что TextField в фокусе)
+		focus = true;																	   	// Р¤РѕРєСѓСЃ true
+		text += "|";																// Р’ РєРѕРЅРµС† СЃС‚СЂРѕРєРё РґРѕР±Р°Р»СЏРµРј | (С‡С‚Рѕ Р±С‹ РїРѕРЅРёРјР°С‚СЊ С‡С‚Рѕ TextField РІ С„РѕРєСѓСЃРµ)
 		if (text.size() > 1 && text[text.size() - 1] == 124 && text[text.size() - 2] == 124)
 			text.erase(text.size() - 1);
 		txt.setString(text);
@@ -71,13 +71,13 @@ bool TextField::Select(Vector2i _mouse)
 			currText.erase(currText.size() - 1);
 		txt.setString(currText);
 	}
-	else {																				//...Иначе если нажатие произошло не над объектом, то...
-		if (text.size() > 0) {																// проверка последнего символа(иначе вылетает)
-			if (text[text.size() - 1] == 124) {													// если символ | ...
-				text.erase(text.size() - 1);														// ... то удаляем его
+	else {																				//...РРЅР°С‡Рµ РµСЃР»Рё РЅР°Р¶Р°С‚РёРµ РїСЂРѕРёР·РѕС€Р»Рѕ РЅРµ РЅР°Рґ РѕР±СЉРµРєС‚РѕРј, С‚Рѕ...
+		if (text.size() > 0) {																// РїСЂРѕРІРµСЂРєР° РїРѕСЃР»РµРґРЅРµРіРѕ СЃРёРјРІРѕР»Р°(РёРЅР°С‡Рµ РІС‹Р»РµС‚Р°РµС‚)
+			if (text[text.size() - 1] == 124) {													// РµСЃР»Рё СЃРёРјРІРѕР» | ...
+				text.erase(text.size() - 1);														// ... С‚Рѕ СѓРґР°Р»СЏРµРј РµРіРѕ
 			}
-			if (currText[currText.size() - 1] == 124) {													// если символ | ...
-				currText.erase(currText.size() - 1);														// ... то удаляем его
+			if (currText[currText.size() - 1] == 124) {													// РµСЃР»Рё СЃРёРјРІРѕР» | ...
+				currText.erase(currText.size() - 1);														// ... С‚Рѕ СѓРґР°Р»СЏРµРј РµРіРѕ
 			}
 			txt.setString(currText);
 		}
@@ -88,7 +88,7 @@ bool TextField::Select(Vector2i _mouse)
 
 /*Text TextField::DisplayText()
 {
-	txt.setString(text);     // загружаем в выводимый текст загружаемый текст
+	txt.setString(text);     // Р·Р°РіСЂСѓР¶Р°РµРј РІ РІС‹РІРѕРґРёРјС‹Р№ С‚РµРєСЃС‚ Р·Р°РіСЂСѓР¶Р°РµРјС‹Р№ С‚РµРєСЃС‚
 	return txt;
 }*/
 
@@ -112,6 +112,8 @@ void TextField::Recalc()
 	field.setFillColor(Color::White);
 	field.setOutlineThickness(2);
 	field.setOutlineColor(Color(66, 66, 66));
+	txt.setPosition(this->GetPosition().x + 2, this->GetPosition().y + 2);
+	txt.setCharacterSize(this->GetSize().y / 1.5);
 
 }
 
@@ -121,7 +123,7 @@ void TextField::handleEvent(const sf::Event& event)
 	{
 		if (event.mouseButton.button == sf::Mouse::Left)
 		{
-			//Vector2i mouse = Mouse::getPosition(*renderWindow); // Считываем координаты мыши
+			//Vector2i mouse = Mouse::getPosition(*renderWindow); // РЎС‡РёС‚С‹РІР°РµРј РєРѕРѕСЂРґРёРЅР°С‚С‹ РјС‹С€Рё
 			Vector2i mouse = Vector2i(int(event.mouseButton.x), int(event.mouseButton.y));
 			Select(mouse);
 			//std::cout << mouse.x <<" "<<mouse.y<< std::endl;
