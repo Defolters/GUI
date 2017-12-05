@@ -178,6 +178,15 @@ std::shared_ptr<MenuBar> GUILayer::CreateMenuBar(float x, float y, float width, 
     elements.push_back(menuBar);
     return menuBar;
 }
+std::shared_ptr<ComboBox> GUILayer::CreateComboBox(float x, float y, float width, float height, std::string text, TextStyle *tstyle,
+	GUIStyle *gstyle,
+	float leftBorder, float rightBorder, Color staticBarColor)
+{
+	std::shared_ptr<ComboBox> comboBox(new ComboBox(window, x, y, width, height, text, tstyle, gstyle, leftBorder, rightBorder, staticBarColor, this));
+	comboBox->parent = this;
+	elements.push_back(comboBox);
+	return comboBox;
+}
 
 std::shared_ptr<TextField> GUILayer::CreateTextField(float x, float y, float width, float height, std::string text_, TextStyle *tstyle, GUIStyle *gstyle)
 {

@@ -3,7 +3,8 @@
 #include "../Locale.h"
 
 #define LABEL_DEBUG false
-
+#define PANEL_DEBUG false
+#define RADIO_DEBUG false
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;
 
@@ -43,11 +44,11 @@ void main()
     gst.pressTex.loadFromFile("resources/pressGUI.png");
     gst.overTex.loadFromFile("resources/overGUI.png");
     gst.frame.loadFromFile("resources/frame.png");
+    gst.background.loadFromFile("resources/statusBar.png");
     gst.frameWid = 5;
     gst.icon.loadFromFile("resources/Danger.png");
-	gst.background.loadFromFile("resources/statusBar.png");
-	gst.color = Color::Blue;
-
+    gst.checkedRadBut.loadFromFile("resources/checked.png");
+    gst.uncheckedRadBut.loadFromFile("resources/unchecked.png");
     //текстуры слайдера
     +gst.sliderBackTex.loadFromFile("resources/slider_back_line.png");
     +gst.sliderFrontTex.loadFromFile("resources/slider_front_line.png");
@@ -55,7 +56,7 @@ void main()
 
 
     static GUIStyle gst2;
-    gst2.mainTex.loadFromFile("resources/01.png");
+    gst2.mainTex.loadFromFile("resources/statusBar.png");
     gst2.frame.loadFromFile("resources/02.png");
     gst2.frameWid = 5;
     //пример создания стиля текста
@@ -65,25 +66,32 @@ void main()
     tst.fontSize = 22;
     tst.align = 'c';
 
+    static GUIStyle sBarStyle;
+    sBarStyle.background.loadFromFile("resources/statusBar.png");
+	sBarStyle.color = Color::Blue;
+
+
     WindowTab main(VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "main");
     std::shared_ptr<GUILayer> layer = main.CreateGUILayer(Vector2f(0, 0), Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
 
-	std::shared_ptr<ScrollingPanel> panel = main.CreateScrollPanel(Vector2f(800, 600), Vector2f(10, 150), Vector2f(200, 250), Color(50, 50, 50, 255), &gst);
-	std::shared_ptr<ScrollBar> scrollbarHor2 = panel->CreateScrollBar(0, 0, 0, 0, &gst, Orientation::HORIZONTAL, 800);
-	std::shared_ptr<ScrollBar> scrollbarVert2 = panel->CreateScrollBar(0, 0, 0, 0, &gst, Orientation::VERTICAL, 600);
+    if (PANEL_DEBUG) {
+        std::shared_ptr<ScrollingPanel> panel = main.CreateScrollPanel(Vector2f(800, 600), Vector2f(10, 150), Vector2f(200, 250), Color(50, 50, 50, 255), &gst);
+        std::shared_ptr<ScrollBar> scrollbarHor2 = panel->CreateScrollBar(0, 0, 0, 0, &gst, Orientation::HORIZONTAL, 800);
+        std::shared_ptr<ScrollBar> scrollbarVert2 = panel->CreateScrollBar(0, 0, 0, 0, &gst, Orientation::VERTICAL, 600);
 
-	std::shared_ptr<MenuBar> menuBar2 = panel->CreateMenuBar(0, 0, SCREEN_WIDTH - 12, 50, "", &tst, &gst2,
-		0, 200, Color::White);
-	menuBar2->addButton("1", &buttonAction1);
-	menuBar2->addButton("2", &buttonAction2);
-	menuBar2->addButton("3", &buttonAction3);
-	menuBar2->addButton("4", &buttonAction4);
+        std::shared_ptr<MenuBar> menuBar2 = panel->CreateMenuBar(0, 0, SCREEN_WIDTH - 12, 50, "", &tst, &gst2,
+            0, 200, Color::White);
+        menuBar2->addButton("1", &buttonAction1);
+        menuBar2->addButton("2", &buttonAction2);
+        menuBar2->addButton("3", &buttonAction3);
+        menuBar2->addButton("4", &buttonAction4);
 
-	std::shared_ptr<GUILabel> label123 = panel->CreateLabel(60, 60, 100, 40, "LEFT", &tst, &gst);
-	std::shared_ptr<TextField> textBox2 = panel->CreateTextField(250, 350, 100, 40, "textField", &tst, &gst);
+        std::shared_ptr<GUILabel> label123 = panel->CreateLabel(60, 60, 100, 40, "LEFT", &tst, &gst);
+        std::shared_ptr<TextField> textBox2 = panel->CreateTextField(250, 350, 100, 40, "textField", &tst, &gst);
+    }
     //пример создания кнопки
 	// текст подгружается из локали
-    std::shared_ptr<GUIButton> button = layer->CreateButton(20, 20, 100,100, locale.GetElementName("button"), &tst, &gst, &buttonAction);
+    std::shared_ptr<GUIButton> button = layer->CreateButton(20, 60, 100,100, locale.GetElementName("button"), &tst, &gst, &buttonAction);
 
     // создание label
     Texture icon;
@@ -167,28 +175,25 @@ void main()
     std::shared_ptr<GUISlider> slider = layer->CreateSlider(30, 450, 350, 20, 35, 38, &gst, 0, 100, 20, &onSliderMove);
 	
     //Создание статус бара
-    std::shared_ptr<GUIStatusBar>  statusBar = layer->CreateStatusBar(40, 5, 20, &gst, Location::UPSIDE);
+    std::shared_ptr<GUIStatusBar>  statusBar = layer->CreateStatusBar(50, 5, 20, &sBarStyle, Location::UPSIDE);
     std::shared_ptr<GUIButton> box1 = layer->CreateButton(100, 0, 50, 50, "A", &tst, &gst, &buttonAction);
     std::shared_ptr<GUIButton> box2 = layer->CreateButton(0, 0, 1, 1, "B", &tst, &gst, &buttonAction);
     std::shared_ptr<GUIButton> box3 = layer->CreateButton(0, 0, 4, 1, "Test", &tst, &gst, &buttonAction);
+	// текст подгружается из локали
 	std::shared_ptr<TextField> textBox1 = layer->CreateTextField(250, 350, 120, 40, locale.GetInvite("print"), &tst, &gst);
 	std::shared_ptr<GUILabel> label1 = layer->CreateLabel(5, 10, 100, 40, "READY...", &tst, &gst);
-	std::shared_ptr<GUISlider> slider1 = layer->CreateSlider(0, 0, 150, 20, 35, 38, &gst, 0, 100, 20, &onSliderMove);
 	label1->SetHorizontalAlignment(Alignment::LEFT);
-	statusBar->AddElement(slider1);
     statusBar->AddElement(box1);
     statusBar->AddElement(box2);
     statusBar->AddElement(box3);
 	statusBar->AddElement(textBox1);
 	statusBar->AddElement(label1);
-
 	statusBar->setLocation(Location::DOWNSIDE);
-	statusBar->setSpacing(10);
-	statusBar->setHeight(50);
 
-    //menu bar
-    std::shared_ptr<MenuBar> menuBar = layer->CreateMenuBar(0, 0, SCREEN_WIDTH - 12, 50, "", &tst, &gst2,
-        0, 200, Color::White);
+    // Создание МенюБара
+    std::shared_ptr<MenuBar> menuBar;
+    menuBar = layer->CreateMenuBar(0, 0, 1920, 50, "", &tst, &gst2, 0, 200, Color::White);
+    // Добавление четырех кнопок на МенюБар
     menuBar->addButton("1", &buttonAction1);
     menuBar->addButton("2", &buttonAction2);
     menuBar->addButton("3", &buttonAction3);
@@ -199,22 +204,19 @@ void main()
 
     std::shared_ptr<TextArea> textArea = layer->CreateTextArea(400, 300, 300, 200, &tst, &gst);
 
-    //текстуры radbutton 
-    gst.checkedRadBut.loadFromFile("resources/checked.png");
-    gst.uncheckedRadBut.loadFromFile("resources/unchecked.png");
-    //radioButton 
-    std::vector<std::string> texts = { "Yes", "No", "NONO", "OFC","lol","kek", "","","","" };
-    std::shared_ptr <RadioButton> radBut = layer->CreateRadButton(layer, 3, Vector2f(300, 20), Vector2f(30, 30), texts, &tst, &gst);
-
-
-    std::shared_ptr <RadioButton> radBut2 = layer->CreateRadButton(layer, 6, 500, 20, 30, 30, texts, &tst, &gst);
-
+    if (RADIO_DEBUG)
+    {
+        //radioButton 
+        std::vector<std::string> texts = { "Yes", "No", "NONO", "OFC","lol","kek", "","","","" };
+        std::shared_ptr <RadioButton> radBut = layer->CreateRadButton(layer, 3, Vector2f(550, 100), Vector2f(30, 30), texts, &tst, &gst);
+        std::shared_ptr <RadioButton> radBut2 = layer->CreateRadButton(layer, 6, 680, 100, 30, 30, texts, &tst, &gst);
+    }
     while (1)
     {
         // Костыль для теста на время, пока нет Observer.
         // Потом будет передаваться ивент об изменении значения бара.
         //*****тест ProgressBar****
-        //progressBar->increase();
+        progressBar->increase();
         Sleep(20);
         //*************************
 

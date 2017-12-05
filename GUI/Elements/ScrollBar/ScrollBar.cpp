@@ -107,7 +107,7 @@ void ScrollBar::handleEvent(const sf::Event& event) {
 			}
 			if (event.mouseButton.button == sf::Mouse::Left) {
 				if ((event.mouseButton.y > band.getPosition().y) &&
-					(event.mouseButton.y < band.getPosition().y + height) &&
+					(event.mouseButton.y < band.getPosition().y + width) &&
 					(event.mouseButton.x > band.getPosition().x) &&
 					(event.mouseButton.x < band.getPosition().x + band.getSize().x)) {
 
