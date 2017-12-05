@@ -9,18 +9,10 @@ MenuBar::MenuBar(RenderWindow* renderWindow_, float x, float y, float width,
 	staticBar(new RectangleShape())
 {
 	this->layer = layer;
-	iconT = nullptr;
-	icon = nullptr;
-
-	leftBord = leftBorder;
-	rightBord = rightBorder;
-
-
-	staticBar->setPosition(x, y);
-	staticBar->setSize(Vector2f(width, height));
-	staticBar->setFillColor(staticBarColor);
-
-
-	
+	/*staticBar->setPosition(x, y);
+	size.y = height;
+	size.x = renderWindow_->getSize().x;
+	staticBar->setSize(Vector2f(size.x, size.y));*/
 }
+
 
