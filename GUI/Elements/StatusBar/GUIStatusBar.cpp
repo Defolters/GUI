@@ -51,6 +51,24 @@ void GUIStatusBar::setLocation(Location location_)
 	Recalc();
 }
 
+void GUIStatusBar::setSpacing(int spacing_)
+{
+	spacing = spacing_;
+	Recalc();
+}
+
+void GUIStatusBar::setFrameSize(int frameSize_)
+{
+	frameSize = frameSize_;
+	Recalc();
+}
+
+void GUIStatusBar::setHeight(int height_)
+{
+	width = height_;
+	Recalc();
+}
+
 void GUIStatusBar::Draw()
 {
 	if (childCount != elements.size())
@@ -63,16 +81,11 @@ void GUIStatusBar::Draw()
 
 void GUIStatusBar::handleEvent(const sf::Event & event)
 {
-	for (auto el = elements.begin(); el != elements.end(); ++el)
-	{
-		(*el)->handleEvent(event);
-	}
+	IDrawable::handleEvent(event);
 	switch(event.type)
 	{
 	case Event::Resized:
 		Recalc();
-		break;
-	case Event::MouseButtonPressed:
 		break;
 	}
 }
