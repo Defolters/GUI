@@ -1,4 +1,4 @@
-﻿#include "GUIProgressBar.h"
+#include "GUIProgressBar.h"
 #include "../../GUI/GUILayer.h"
 
 GUIProgressBar::GUIProgressBar(RenderWindow* renderWindow_, std::shared_ptr<GUILayer> _layer, float x, float y, float width,
@@ -14,7 +14,7 @@ GUIProgressBar::GUIProgressBar(RenderWindow* renderWindow_, std::shared_ptr<GUIL
 	text.setCharacterSize(tstyle->fontSize);
 	text.setFillColor(tstyle->color);
 
-	label = layer->CreateLabel(((x + width / 2) - (text.getGlobalBounds().width / 2)), y - height, text.getGlobalBounds().width, height / 2 , text_, tstyle, gstyle);
+	label = layer->CreateLabel(((x + width / 2) - (text.getGlobalBounds().width / 2)), y - height, text.getGlobalBounds().width, height / 2, text_, tstyle, gstyle);
 	AddElement(label);
 
 	minValue = _minValue;
@@ -40,7 +40,7 @@ GUIProgressBar::GUIProgressBar(RenderWindow* renderWindow_, std::shared_ptr<GUIL
 	staticBar(new RectangleShape()), dynamicBar(new RectangleShape())
 {
 	layer = _layer;
-	
+
 	text.setString("");
 	text.setFont(tstyle->font);
 	text.setCharacterSize(tstyle->fontSize);
@@ -76,7 +76,7 @@ void GUIProgressBar::setValue(float _value)
 	float height = sz.y;
 
 	if (value < width - 2)
-	{	
+	{
 		value = _value * point;
 		dynamicBar->setSize(Vector2f(value, height - 2));
 	}
@@ -105,7 +105,7 @@ void GUIProgressBar::SetPosition(float x, float y)
 	coef.y = 0.9;
 	Vector2f position_(x, y);
 	GUIBox::SetPosition(position_, coef);*/
-	GUIBox::SetPosition(x,y);
+	GUIBox::SetPosition(x, y);
 
 	dynamicBar->setPosition(x + 1, y + 1);
 	staticBar->setPosition(x, y);
@@ -125,7 +125,7 @@ void GUIProgressBar::SetPosition(Vector2f position_)
 
 void GUIProgressBar::SetPosition(Vector2f position_, Vector2f coefficient_)
 {
-	
+
 }
 
 void GUIProgressBar::SetSize(float width, float height)

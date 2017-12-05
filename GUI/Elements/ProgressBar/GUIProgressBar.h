@@ -9,7 +9,7 @@
 class GUIProgressBar : public GUIBox
 {
 private:
-	friend class GUILayer; 
+	friend class GUILayer;
 	TextStyle *tstyle; //!< стиль текста
 	Text text; //!< текст 
 
@@ -81,13 +81,13 @@ public:
 	\param _value Текущее значение бара
 	*/
 	void setValue(float _value);
- 
+
 	/*!
 	\brief Установка текущего текста для Label
 	\param _value Текст
 	*/
 	void setText(const std::string & _text);
- 
+
 	/*!
 	\brief Изменение позиции бара
 	\param x Смещение по оси x
