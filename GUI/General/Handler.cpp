@@ -69,7 +69,7 @@ void main()
 	if (label2again.get() != nullptr)//если label2 дочерний для label1, то вернется указатель на него, если нет, то на nullptr
 		std::cout << "label2 is child of label1!" << std::endl;
 	// Cоздание прогресс бара. 
-	std::shared_ptr<GUIProgressBar> progressBar = layer->CreateProgressBar(SCREEN_WIDTH / 3 + 50, SCREEN_HEIGHT / 3, 200, 30, "Sorting...", &tst, &gst,
+	std::shared_ptr<GUIProgressBar> progressBar = layer->CreateProgressBar(layer, SCREEN_WIDTH / 3 + 50, SCREEN_HEIGHT / 3, 200, 30, "Sorting...", &tst, &gst,
 		0, 200, Color::White, Color::Green);
 
     std::shared_ptr<ScrollBar> scrollbarHor = layer->CreateScrollBar(0, 0, 0, 0, &gst, Orientation::HORIZONTAL, 1600);
@@ -90,13 +90,15 @@ void main()
 
 	std::shared_ptr<TextField> textBox = layer->CreateTextField(250, 350, 100, 40, "textField", &tst, &gst);
 
+	int value = 20, x = 10, y = 10;
 	while (1)
 	{
-		// Костыль для теста на время, пока нет Observer.
-		// Потом будет передаваться ивент об изменении значения бара.
 		//*****тест ProgressBar****
-		progressBar->increase();
-		Sleep(20);
+		progressBar->setValue(value);
+		progressBar->SetPosition(x, y);
+		x++; y++;
+		value += 20;
+		Sleep(1000);
 		//*************************
 
 		main.Redraw();

@@ -16,8 +16,6 @@ GUIProgressBar::GUIProgressBar(RenderWindow* renderWindow_, std::shared_ptr<GUIL
 	text.setFillColor(Ctstyle->color);
 
 	label = layer->CreateLabel(((x + width / 2) - (text.getGlobalBounds().width / 2)), y - height, text.getGlobalBounds().width, height / 2 , text_, Ctstyle, Cgstyle);
-	iconT = nullptr;
-	icon = nullptr;
 
 	minValue = _minValue;
 	maxValue = _maxValue;
@@ -71,7 +69,7 @@ void GUIProgressBar::setText(const std::string & _text)
 void GUIProgressBar::SetPosition(float x, float y)
 {
 	GUIBox::SetPosition(x, y);
-	label->SetPosition(x, y);
+	//label->SetPosition(x, y);
 	dynamicBar->setPosition(x + 1, y + 1);
 	staticBar->setPosition(x, y);
 }
@@ -79,7 +77,7 @@ void GUIProgressBar::SetPosition(float x, float y)
 void GUIProgressBar::SetPosition(Vector2f position_)
 {
 	GUIBox::SetPosition(position_);
-	label->SetPosition(position_);
+	//label->SetPosition(position_);
 	dynamicBar->setPosition(position_.x + 1, position_.y + 1);
 	staticBar->setPosition(position_.x, position_.y);
 }
@@ -87,7 +85,7 @@ void GUIProgressBar::SetPosition(Vector2f position_)
 void GUIProgressBar::SetSize(float width, float height)
 {
 	GUIBox::SetSize(width, height);
-	label->SetSize(width, height);
+	//label->SetSize(width, height);
 	staticBar->setSize(Vector2f(width, height));
 	dynamicBar->setSize(Vector2f(value, height - 2));
 
@@ -97,7 +95,7 @@ void GUIProgressBar::SetSize(float width, float height)
 void GUIProgressBar::SetSize(Vector2f size_)
 {
 	GUIBox::SetSize(size_);
-	label->SetSize(size_);
+	//label->SetSize(size_);
 	staticBar->setSize(Vector2f(size_.x, size_.y));
 	dynamicBar->setSize(Vector2f(value, size_.y - 2));
 
@@ -122,7 +120,6 @@ void GUIProgressBar::Recalc()
 
 void GUIProgressBar::Draw()
 {
-	// Костыль для теста на время, пока нет Observer.
 	Recalc();
 
 	/*if (text.getString() != "")
