@@ -6,6 +6,7 @@
 #include "../Observable.h"
 //по сути Layout, класс группирующий элементы интерфейса 
 //как например отдельные зоны для кода, отладки и файлов в visual studio
+
 class GUILayer : public IDrawable, ObservableGUI
 {
 private:
@@ -57,12 +58,15 @@ public:
 	
 	std::shared_ptr<GUIStatusBar> CreateStatusBar(float height_, float frameSize_, float spacing_, GUIStyle *sBarStyle_, Location location_);
 
-	std::shared_ptr<Slider> CreateSlider(float line_position_x, float line_position_y, float line_width_, float line_height_, float handler_width_, float handler_height_, GUIStyle* gst, float value_range_from_, float value_range_to_, float value_);
-	std::shared_ptr<Slider> CreateSlider(float line_position_x, float line_position_y, float line_width_, float line_height_, float handler_width_, float handler_height_, GUIStyle* gst, float value_range_from_, float value_range_to_, float value_, void(*action_on_move)(float slider_value));
+	std::shared_ptr<GUISlider> CreateSlider(float line_position_x, float line_position_y, float line_width_, float line_height_, float handler_width_, float handler_height_, GUIStyle* gst, float value_range_from_, float value_range_to_, float value_);
+	std::shared_ptr<GUISlider> CreateSlider(float line_position_x, float line_position_y, float line_width_, float line_height_, float handler_width_, float handler_height_, GUIStyle* gst, float value_range_from_, float value_range_to_, float value_, void(*action_on_move)(float slider_value));
 
 	std::shared_ptr<TextField> CreateTextField(float x, float y, float width, float height, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
 	
 	std::shared_ptr<TextArea> CreateTextArea(float x, float y, float width, float height, TextStyle * tstyle, GUIStyle * gstyle);
+    std::shared_ptr<RadioButton> CreateRadButton(std::shared_ptr<GUILayer> layer, int count, float x, float y, float width, float height, std::vector<std::string> text, TextStyle *tstyle, GUIStyle *gstyle);
+    std::shared_ptr<RadioButton> CreateRadButton(std::shared_ptr<GUILayer> layer, int count, Vector2f position, Vector2f size, std::vector<std::string> text, TextStyle *tstyle, GUIStyle *gstyle);
+
 	//Запускает обработчики у элементов, трогать его не надо
 	void handleEvent(const sf::Event& event) override;
 
