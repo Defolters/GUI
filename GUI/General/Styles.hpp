@@ -19,4 +19,5 @@ struct GUIStyle {
 	Texture background;
     Texture icon;
 	Color color;
+    Texture checkedRadBut, uncheckedRadBut;//текстуры Radbutt
 };
