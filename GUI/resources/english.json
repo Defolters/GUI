@@ -4,7 +4,8 @@
         "box" : "Box",
         "button" : "Button",
         "label" : "Label",
-        "text_field" : "Text Field"
+        "text_field": "Text Field",
+        "check_button" : "Check Button"
     },
     "invites" :
     {
