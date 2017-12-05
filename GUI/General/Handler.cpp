@@ -166,7 +166,7 @@ void main()
   
   // Cоздание прогресс бара.
 	// текст подгружается из локали
-    std::shared_ptr<GUIProgressBar> progressBar = layer->CreateProgressBar(layer, SCREEN_WIDTH / 3 + 50, SCREEN_HEIGHT / 3, 200, 30, locale.GetDescription("progress_bar"), &tst, &gst,
+    std::shared_ptr<GUIProgressBar> progressBar = layer->CreateProgressBar(layer, SCREEN_WIDTH / 3 + 50, SCREEN_HEIGHT / 3, 200, 30, locale.GetDescription("progress_bar_action"), &tst, &gst,
         0, 200, Color::White, Color::Green);
 
     //создаем слайдер
@@ -200,13 +200,18 @@ void main()
     std::shared_ptr<TextField> textBox = layer->CreateTextField(250, 350, 100, 40, locale.GetElementName("text_field"), &tst, &gst);
 
     std::shared_ptr<TextArea> textArea = layer->CreateTextArea(400, 300, 300, 200, &tst, &gst);
+	int value = 20, x = 10, y = 10;
     while (1)
     {
-        // Костыль для теста на время, пока нет Observer.
-        // Потом будет передаваться ивент об изменении значения бара.
         //*****тест ProgressBar****
         //progressBar->increase();
-        Sleep(20);
+		progressBar->setValue(value);
+		value += 20;
+        Sleep(500);
+		if (value > progressBar->End())
+		{
+			progressBar->setText(locale.GetDescription("progress_bar_success"));
+		}
         //*************************
 
         main.Redraw();
