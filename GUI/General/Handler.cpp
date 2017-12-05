@@ -43,9 +43,10 @@ void main()
     gst.pressTex.loadFromFile("resources/pressGUI.png");
     gst.overTex.loadFromFile("resources/overGUI.png");
     gst.frame.loadFromFile("resources/frame.png");
-    gst.background.loadFromFile("resources/statusBar.png");
     gst.frameWid = 5;
     gst.icon.loadFromFile("resources/Danger.png");
+	gst.background.loadFromFile("resources/statusBar.png");
+	gst.color = Color::Blue;
 
     //текстуры слайдера
     +gst.sliderBackTex.loadFromFile("resources/slider_back_line.png");
@@ -64,15 +65,8 @@ void main()
     tst.fontSize = 22;
     tst.align = 'c';
 
-    static GUIStyle sBarStyle;
-    sBarStyle.background.loadFromFile("resources/statusBar.png");
-	sBarStyle.color = Color::Blue;
-
-
     WindowTab main(VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "main");
     std::shared_ptr<GUILayer> layer = main.CreateGUILayer(Vector2f(0, 0), Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
-	std::shared_ptr<ScrollBar> scrollbarHor = layer->CreateScrollBar(0, 0, 0, 0, &gst, Orientation::HORIZONTAL, 1000);
-	std::shared_ptr<ScrollBar> scrollbarVert = layer->CreateScrollBar(0, 0, 0, 0, &gst, Orientation::VERTICAL, 800);
 
 	std::shared_ptr<ScrollingPanel> panel = main.CreateScrollPanel(Vector2f(800, 600), Vector2f(10, 150), Vector2f(200, 250), Color(50, 50, 50, 255), &gst);
 	std::shared_ptr<ScrollBar> scrollbarHor2 = panel->CreateScrollBar(0, 0, 0, 0, &gst, Orientation::HORIZONTAL, 800);
@@ -126,42 +120,42 @@ void main()
         labelN5->SetDependsOnSize(false);
 
         // просто иконка, которая меняется под размер бокса 5 по y 30 х
-        std::shared_ptr<GUILabel> labelIcon1 = layer->CreateLabel(140, 10, 100, 50, "", &tst, &icon, &gst);
+        std::shared_ptr<GUILabel> labelIcon1 = layer->CreateLabel(140, 10, 100, 50, "", &tst, &gst.icon, &gst);
         labelIcon1->SetHorizontalAlignment(Alignment::LEFT);
-        std::shared_ptr<GUILabel> labelIcon2 = layer->CreateLabel(140, 65, 100, 50, "", &tst, &icon, &gst);
+        std::shared_ptr<GUILabel> labelIcon2 = layer->CreateLabel(140, 65, 100, 50, "", &tst, &gst.icon, &gst);
         labelIcon2->SetHorizontalAlignment(Alignment::RIGHT);
-        std::shared_ptr<GUILabel> labelIcon3 = layer->CreateLabel(140, 120, 100, 50, "", &tst, &icon, &gst);
+        std::shared_ptr<GUILabel> labelIcon3 = layer->CreateLabel(140, 120, 100, 50, "", &tst, &gst.icon, &gst);
         labelIcon3->SetVerticalAlignment(Alignment::TOP);
-        std::shared_ptr<GUILabel> labelIcon4 = layer->CreateLabel(140, 175, 100, 50, "", &tst, &icon, &gst);
+        std::shared_ptr<GUILabel> labelIcon4 = layer->CreateLabel(140, 175, 100, 50, "", &tst, &gst.icon, &gst);
         labelIcon4->SetVerticalAlignment(Alignment::BOTTOM);
-        std::shared_ptr<GUILabel> labelIcon5 = layer->CreateLabel(140, 230, 100, 50, "", &tst, &icon, &gst);
+        std::shared_ptr<GUILabel> labelIcon5 = layer->CreateLabel(140, 230, 100, 50, "", &tst, &gst.icon, &gst);
 
         // просто иконка, которая НЕ меняется под размер бокса
-        std::shared_ptr<GUILabel> labelIconN1 = layer->CreateLabel(140, 305, 100, 50, "", &tst, &icon, &gst);
+        std::shared_ptr<GUILabel> labelIconN1 = layer->CreateLabel(140, 305, 100, 50, "", &tst, &gst.icon, &gst);
         labelIconN1->SetHorizontalAlignment(Alignment::LEFT);
         labelIconN1->SetDependsOnSize(false);
-        std::shared_ptr<GUILabel> labelIconN2 = layer->CreateLabel(140, 360, 100, 50, "", &tst, &icon, &gst);
+        std::shared_ptr<GUILabel> labelIconN2 = layer->CreateLabel(140, 360, 100, 50, "", &tst, &gst.icon, &gst);
         labelIconN2->SetHorizontalAlignment(Alignment::RIGHT);
         labelIconN2->SetDependsOnSize(false);
-        std::shared_ptr<GUILabel> labelIconN3 = layer->CreateLabel(140, 415, 100, 50, "", &tst, &icon, &gst);
+        std::shared_ptr<GUILabel> labelIconN3 = layer->CreateLabel(140, 415, 100, 50, "", &tst, &gst.icon, &gst);
         labelIconN3->SetVerticalAlignment(Alignment::TOP);
         labelIconN3->SetDependsOnSize(false);
-        std::shared_ptr<GUILabel> labelIconN4 = layer->CreateLabel(140, 470, 100, 50, "", &tst, &icon, &gst);
+        std::shared_ptr<GUILabel> labelIconN4 = layer->CreateLabel(140, 470, 100, 50, "", &tst, &gst.icon, &gst);
         labelIconN4->SetVerticalAlignment(Alignment::BOTTOM);
         labelIconN4->SetDependsOnSize(false);
-        std::shared_ptr<GUILabel> labelIconN5 = layer->CreateLabel(140, 525, 100, 50, "", &tst, &icon, &gst);
+        std::shared_ptr<GUILabel> labelIconN5 = layer->CreateLabel(140, 525, 100, 50, "", &tst, &gst.icon, &gst);
         labelIconN5->SetDependsOnSize(false);
 
 
-        std::shared_ptr<GUILabel> labelTextIcon1 = layer->CreateLabel(400, 10, 100, 50, "Left", &tst, &icon, &gst);
+        std::shared_ptr<GUILabel> labelTextIcon1 = layer->CreateLabel(400, 10, 100, 50, "Left", &tst, &gst.icon, &gst);
         labelTextIcon1->SetTextToIconAlignment(Alignment::LEFT);
-        std::shared_ptr<GUILabel> labelTextIcon2 = layer->CreateLabel(400, 75, 100, 50, "RIGHT", &tst, &icon, &gst);
+        std::shared_ptr<GUILabel> labelTextIcon2 = layer->CreateLabel(400, 75, 100, 50, "RIGHT", &tst, &gst.icon, &gst);
         labelTextIcon2->SetTextToIconAlignment(Alignment::RIGHT);
-        std::shared_ptr<GUILabel> labelTextIcon3 = layer->CreateLabel(400, 155, 100, 50, "TOP", &tst, &icon, &gst);
+        std::shared_ptr<GUILabel> labelTextIcon3 = layer->CreateLabel(400, 155, 100, 50, "TOP", &tst, &gst.icon, &gst);
         labelTextIcon3->SetTextToIconAlignment(Alignment::TOP);
-        std::shared_ptr<GUILabel> labelTextIcon4 = layer->CreateLabel(400, 225, 100, 50, "BOTTOM", &tst, &icon, &gst);
+        std::shared_ptr<GUILabel> labelTextIcon4 = layer->CreateLabel(400, 225, 100, 50, "BOTTOM", &tst, &gst.icon, &gst);
         labelTextIcon4->SetTextToIconAlignment(Alignment::BOTTOM);
-        std::shared_ptr<GUILabel> labelTextIcon5 = layer->CreateLabel(400, 310, 100, 50, "CENTER", &tst, &icon, &gst);
+        std::shared_ptr<GUILabel> labelTextIcon5 = layer->CreateLabel(400, 310, 100, 50, "CENTER", &tst, &gst.icon, &gst);
     }
   
   // Cоздание прогресс бара.
@@ -173,20 +167,24 @@ void main()
     std::shared_ptr<GUISlider> slider = layer->CreateSlider(30, 450, 350, 20, 35, 38, &gst, 0, 100, 20, &onSliderMove);
 	
     //Создание статус бара
-    std::shared_ptr<GUIStatusBar>  statusBar = layer->CreateStatusBar(50, 5, 20, &sBarStyle, Location::UPSIDE);
+    std::shared_ptr<GUIStatusBar>  statusBar = layer->CreateStatusBar(40, 5, 20, &gst, Location::UPSIDE);
     std::shared_ptr<GUIButton> box1 = layer->CreateButton(100, 0, 50, 50, "A", &tst, &gst, &buttonAction);
     std::shared_ptr<GUIButton> box2 = layer->CreateButton(0, 0, 1, 1, "B", &tst, &gst, &buttonAction);
     std::shared_ptr<GUIButton> box3 = layer->CreateButton(0, 0, 4, 1, "Test", &tst, &gst, &buttonAction);
-	// текст подгружается из локали
 	std::shared_ptr<TextField> textBox1 = layer->CreateTextField(250, 350, 120, 40, locale.GetInvite("print"), &tst, &gst);
 	std::shared_ptr<GUILabel> label1 = layer->CreateLabel(5, 10, 100, 40, "READY...", &tst, &gst);
+	std::shared_ptr<GUISlider> slider1 = layer->CreateSlider(0, 0, 150, 20, 35, 38, &gst, 0, 100, 20, &onSliderMove);
 	label1->SetHorizontalAlignment(Alignment::LEFT);
+	statusBar->AddElement(slider1);
     statusBar->AddElement(box1);
     statusBar->AddElement(box2);
     statusBar->AddElement(box3);
 	statusBar->AddElement(textBox1);
 	statusBar->AddElement(label1);
+
 	statusBar->setLocation(Location::DOWNSIDE);
+	statusBar->setSpacing(10);
+	statusBar->setHeight(50);
 
     //menu bar
     std::shared_ptr<MenuBar> menuBar = layer->CreateMenuBar(0, 0, SCREEN_WIDTH - 12, 50, "", &tst, &gst2,

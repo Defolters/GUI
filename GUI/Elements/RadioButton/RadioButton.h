@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #include "../../GUI/GUIBox.h"
 #include <vector>
 #include <memory>  
@@ -7,58 +7,63 @@
 class CheckButton;
 
 /*!
-\brief Класс, реализующий radio button
+\brief РљР»Р°СЃСЃ, СЂРµР°Р»РёР·СѓСЋС‰РёР№ radio button
 
-Кнопки создаются ветикально с небольшим промежутком и текстом слева. 
+РљРЅРѕРїРєРё СЃРѕР·РґР°СЋС‚СЃСЏ РІРµС‚РёРєР°Р»СЊРЅРѕ СЃ РЅРµР±РѕР»СЊС€РёРј РїСЂРѕРјРµР¶СѓС‚РєРѕРј Рё С‚РµРєСЃС‚РѕРј СЃР»РµРІР°. 
 */
 class RadioButton: public  IDisplayable
 {
 public:
 	/*!
-	\brief Конструктор класса
+	\brief РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєР»Р°СЃСЃР°
 
-	\param layer слой, на котором будут расположены кнопки
-	\param renderWindow_ Окно, в котором будет расположен radioButton
-	\param count Количество кнопок в группе
-	\param x Координата X левого верхнего угла поля radioButton
-	\param y Координата Y левого верхнего угла поля radioButton
-	\param width Ширина текстуры кнопки
-	\param height Высота текстуры кнопки
-	\param text Вектор строк, 1 кнопка - 1 элемент
-	\param tstyle Стиль текста
-	\param gstyle Стиль кнопки
+	\param layer СЃР»РѕР№, РЅР° РєРѕС‚РѕСЂРѕРј Р±СѓРґСѓС‚ СЂР°СЃРїРѕР»РѕР¶РµРЅС‹ РєРЅРѕРїРєРё
+	\param renderWindow_ РћРєРЅРѕ, РІ РєРѕС‚РѕСЂРѕРј Р±СѓРґРµС‚ СЂР°СЃРїРѕР»РѕР¶РµРЅ radioButton
+	\param count РљРѕР»РёС‡РµСЃС‚РІРѕ РєРЅРѕРїРѕРє РІ РіСЂСѓРїРїРµ
+	\param x РљРѕРѕСЂРґРёРЅР°С‚Р° X Р»РµРІРѕРіРѕ РІРµСЂС…РЅРµРіРѕ СѓРіР»Р° РїРѕР»СЏ radioButton
+	\param y РљРѕРѕСЂРґРёРЅР°С‚Р° Y Р»РµРІРѕРіРѕ РІРµСЂС…РЅРµРіРѕ СѓРіР»Р° РїРѕР»СЏ radioButton
+	\param width РЁРёСЂРёРЅР° С‚РµРєСЃС‚СѓСЂС‹ РєРЅРѕРїРєРё
+	\param height Р’С‹СЃРѕС‚Р° С‚РµРєСЃС‚СѓСЂС‹ РєРЅРѕРїРєРё
+	\param text Р’РµРєС‚РѕСЂ СЃС‚СЂРѕРє, 1 РєРЅРѕРїРєР° - 1 СЌР»РµРјРµРЅС‚
+	\param tstyle РЎС‚РёР»СЊ С‚РµРєСЃС‚Р°
+	\param gstyle РЎС‚РёР»СЊ РєРЅРѕРїРєРё
 
-	Конструктор класса, который создает radioButton
+	РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєР»Р°СЃСЃР°, РєРѕС‚РѕСЂС‹Р№ СЃРѕР·РґР°РµС‚ radioButton
 	*/
 	RadioButton(std::shared_ptr<GUILayer> layer, RenderWindow* renderWindow_,
 		int count, float x, float y, float width, float height,
 		std::vector<std::string> text, TextStyle *tstyle, GUIStyle *gstyle);
 	/*!
-	\brief Возвращает bool вектор состояний
-	\return Вектор типа bool
+	\brief Р’РѕР·РІСЂР°С‰Р°РµС‚ bool РІРµРєС‚РѕСЂ СЃРѕСЃС‚РѕСЏРЅРёР№
+	\return Р’РµРєС‚РѕСЂ С‚РёРїР° bool
 	*/
 	std::vector<bool> getState();
 	/*!
-	\brief Устанавливает новую позицию для всех кнопок
-	\param x новая координата X левого верхнего угла поля radioButton
-	\param y новая координата Y левого верхнего угла поля radioButton
+	\brief РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ РЅРѕРІСѓСЋ РїРѕР·РёС†РёСЋ РґР»СЏ РІСЃРµС… РєРЅРѕРїРѕРє
+	\param x РЅРѕРІР°СЏ РєРѕРѕСЂРґРёРЅР°С‚Р° X Р»РµРІРѕРіРѕ РІРµСЂС…РЅРµРіРѕ СѓРіР»Р° РїРѕР»СЏ radioButton
+	\param y РЅРѕРІР°СЏ РєРѕРѕСЂРґРёРЅР°С‚Р° Y Р»РµРІРѕРіРѕ РІРµСЂС…РЅРµРіРѕ СѓРіР»Р° РїРѕР»СЏ radioButton
 	*/
 	void SetPosition(float x, float y);
 	/*!
-	\brief Устанавливает новую позицию
-	\param position Vector2f с новыми координатами левого верхнего угла поля radioButton
+	\brief РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ РЅРѕРІСѓСЋ РїРѕР·РёС†РёСЋ
+	\param position Vector2f СЃ РЅРѕРІС‹РјРё РєРѕРѕСЂРґРёРЅР°С‚Р°РјРё Р»РµРІРѕРіРѕ РІРµСЂС…РЅРµРіРѕ СѓРіР»Р° РїРѕР»СЏ radioButton
 	*/
 	void SetPosition(Vector2f position);
 
+    /*!
+    \brief РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ РЅРѕРІСѓСЋ РїРѕР·РёС†РёСЋ
+    \param position Vector2f СЃ РЅРѕРІС‹РјРё РєРѕРѕСЂРґРёРЅР°С‚Р°РјРё Р»РµРІРѕРіРѕ РІРµСЂС…РЅРµРіРѕ СѓРіР»Р° РїРѕР»СЏ radioButton
+    \param coefficient РљРѕСЌС„С„РёС†РёРµРЅС‚, РЅР° РєРѕС‚РѕСЂС‹Р№ РёР·РјРµРЅРёР»СЃСЏ СЂР°Р·РјРµСЂ РѕРєРЅР°
+    */
 	void SetPosition(Vector2f pos, Vector2f coefficient);
 protected:
-	//! Переопределяем функцию Draw
+	//! РџРµСЂРµРѕРїСЂРµРґРµР»СЏРµРј С„СѓРЅРєС†РёСЋ Draw
 	void Draw() override;
-	//! Переопределение метода handleEvent
+	//! РџРµСЂРµРѕРїСЂРµРґРµР»РµРЅРёРµ РјРµС‚РѕРґР° handleEvent
 	void handleEvent(const sf::Event & event) override;
 private:
-	std::vector<CheckButton*> options;//!< Вектор кнопок
-	std::vector<bool> stateArray;//!< Вектор состояний
-	int butHeight;//!< Высота кнопки
-	int butWidth;//!< Ширина кнопки
+	std::vector<CheckButton*> options;//!< Р’РµРєС‚РѕСЂ РєРЅРѕРїРѕРє
+	std::vector<bool> stateArray;//!< Р’РµРєС‚РѕСЂ СЃРѕСЃС‚РѕСЏРЅРёР№
+	int butHeight;//!< Р’С‹СЃРѕС‚Р° РєРЅРѕРїРєРё
+	int butWidth;//!< РЁРёСЂРёРЅР° РєРЅРѕРїРєРё
 };
