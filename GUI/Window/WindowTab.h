@@ -1,6 +1,8 @@
 ﻿#pragma once
 #include <map>
 #include "../GUI/GUILayer.h"
+#include "../Elements/ScrollingPanel/ScrollingPanel.h"
+
 enum WindowTabState
 {
 	opened = 0,
@@ -11,6 +13,7 @@ class WindowTab : ObservableGUI
 {
 private:
 	std::vector<std::shared_ptr<GUILayer>> GUILayers; //!< вектор??
+	std::vector<std::shared_ptr<ScrollingPanel>> ScrollPanels;
 	RenderWindow window; //!< окно
     
 
@@ -25,6 +28,7 @@ public:
 	//пока что вторые два аргумента передавайте (0,0) и (ширинаОкна, высотаОкна)
 	//обрезание поля видимости все равно пока не работает :)
 	std::shared_ptr<GUILayer> CreateGUILayer(Vector2f position_, Vector2f size_);
+	std::shared_ptr<ScrollingPanel> CreateScrollPanel(Vector2f maxScrollPanelSize, Vector2f scrFieldPosition, Vector2f scrFieldSize, Color scrFieldColor, GUIStyle *gst);
 	void Redraw();//единственная функция которую надо вызывать для отрисовки, не трогаем ее
 	WindowTab(VideoMode mode, char* name);
 	

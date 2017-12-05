@@ -11,6 +11,7 @@ class GUIBox : public IDisplayable
 private:
 	//пока что нужно, подумаю как избавиться, но не думаю что возможно
 	friend class GUILayer;
+    bool resizing = false; 
 protected:
 	//графический стиль и текстовый стиль описаны в styles.h
 	GUIStyle *gstyle;
@@ -30,10 +31,12 @@ public:
 	//те же функции что и в IDisplayable
 	//без надобности лучше их не перегружать, если перегружаете - вызывать функцию родительского класса в начале
 	//если не поняли что написано выше - стучите в лс или гуглите, но это риал важно
-	virtual void SetPosition(float x, float y) override;
-	virtual void SetPosition(Vector2f position_) override;
-	virtual void SetSize(float width, float height) override;
-	virtual void SetSize(Vector2f size_) override;
+	void SetPosition(float x, float y) override;
+	void SetPosition(Vector2f position_) override;
+    void SetPosition(Vector2f position_, Vector2f coefficient_) override;
+    void SetSize(float width, float height) override;
+	void SetSize(Vector2f size_) override;
+    void SetSize(Vector2f size_, Vector2f coefficient_) override;
 	//сеттеры стилей и текста
 	virtual void SetGStyle(GUIStyle *gstyle);
 

@@ -8,6 +8,8 @@ private:
 	std::string text; //вводимый текст
 	Text txt;         //выводимый текст
 	RectangleShape field;
+	std::string currText; //текст, находящийся в поле видимости
+	int position;
 protected:
 	TextField(RenderWindow* renderWindow_, float x, float y, float width, float height, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
 	bool focus;
@@ -16,9 +18,11 @@ public:
 	virtual void Recalc() override;
 	void handleEvent(const sf::Event& event) override;
 	void SetPosition(float x, float y) override;
-	Text DisplayText();
+	void SetSize(float width, float height) override;
+	//Text DisplayText();
 	void ReText(char);     //формирует текст в  TextField
 	bool Select();
 	bool Select(Vector2i); //проверка фокуса
+	std::string ReadText();
 
 };

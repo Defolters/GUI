@@ -12,3 +12,4 @@ sfml-*
 *.pro
 *.pro.user
 *.vs
+/GUI/x64/Release

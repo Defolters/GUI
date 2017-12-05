@@ -66,10 +66,7 @@ std::shared_ptr<GUIButton> GUILayer::CreateButton(float x, float y, Vector2f siz
 
 std::shared_ptr<GUILabel> GUILayer::CreateLabel(float x, float y, float width, float height, std::string text_, TextStyle *tstyle, GUIStyle *gstyle)
 {
-	std::shared_ptr<GUILabel> label(new GUILabel(window, x, y, width, height, text_, tstyle, gstyle));
-	label->parent = this;
-	elements.push_back(label);
-	return label;
+	return CreateLabel(Vector2f(x, y), Vector2f( width, height), text_, tstyle, gstyle);
 }
 std::shared_ptr<GUILabel> GUILayer::CreateLabel(Vector2f position_, Vector2f size_, std::string text_, TextStyle * tstyle, GUIStyle * gstyle)
 {
@@ -80,10 +77,7 @@ std::shared_ptr<GUILabel> GUILayer::CreateLabel(Vector2f position_, Vector2f siz
 }
 std::shared_ptr<GUILabel> GUILayer::CreateLabel(float x, float y, float width, float height, std::string text_, TextStyle * tstyle, Texture * texture, GUIStyle *gstyle)
 {
-	std::shared_ptr<GUILabel> label(new GUILabel(window, x, y, width, height, text_, tstyle, texture, gstyle));
-	label->parent = this;
-	elements.push_back(label);
-	return label;
+	return CreateLabel(Vector2f(x, y), Vector2f(width, height), text_, tstyle, texture, gstyle);
 }
 std::shared_ptr<GUILabel> GUILayer::CreateLabel(Vector2f position_, Vector2f size_, std::string text_, TextStyle * tstyle, Texture * texture, GUIStyle *gstyle)
 {
@@ -91,6 +85,17 @@ std::shared_ptr<GUILabel> GUILayer::CreateLabel(Vector2f position_, Vector2f siz
 	label->parent = this;
 	elements.push_back(label);
 	return label;
+}
+std::shared_ptr<GUILabel> GUILayer::CreateLabel(float x, float y, float width, float height, TextStyle * tstyle, Texture * texture, GUIStyle *gstyle)
+{
+    return CreateLabel(Vector2f(x, y), Vector2f(width, height), tstyle, texture, gstyle);
+}
+std::shared_ptr<GUILabel> GUILayer::CreateLabel(Vector2f position_, Vector2f size_, TextStyle * tstyle, Texture * texture, GUIStyle *gstyle)
+{
+    std::shared_ptr<GUILabel> label(new GUILabel(window, position_, size_, tstyle, texture, gstyle));
+    label->parent = this;
+    elements.push_back(label);
+    return label;
 }
 
 std::shared_ptr<GUIProgressBar> GUILayer::CreateProgressBar(std::shared_ptr<GUILayer> _layer, float x, float y, float width, float height,
@@ -153,10 +158,10 @@ std::shared_ptr<Slider> GUILayer::CreateSlider(float line_position_x, float line
 }
 
 std::shared_ptr<GUIStatusBar> GUILayer::CreateStatusBar(float height_, float frameSize_,
-	float spacing_, GUIStyle *sBarStyle_)
+	float spacing_, GUIStyle *sBarStyle_, Location location_)
 {
 	std::shared_ptr<GUIStatusBar> statusBar(new GUIStatusBar(window, height_, frameSize_,
-		spacing_, sBarStyle_));
+		spacing_, sBarStyle_, location_));
 	statusBar->parent = this;
 	elements.push_back(statusBar);
 	return statusBar;
