@@ -12,7 +12,6 @@
     },
     "descriptions" :
     {
-        "progress_bar_action": "Sorting...",
-        "progress_bar_success": "Success"
+        "progress_bar" : "Sorting..."
     }
 }
