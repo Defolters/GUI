@@ -11,6 +11,12 @@ void IDrawable::SetPosition(Vector2f position_)
 	position = position_;
 }
 
+void IDrawable::SetPosition(Vector2f position_, Vector2f coefficient_)
+{
+    position.x = position.x * coefficient_.x;
+    position.y = position.y * coefficient_.y;
+}
+
 void IDrawable::SetSize(float width, float height)
 {
 	size.x = width;
@@ -22,6 +28,18 @@ void IDrawable::SetSize(Vector2f size_)
 	size = size_;
 }
 
+
+void IDrawable::SetValue(Vector2f value_)
+{
+	value = value_;
+}
+
+void IDrawable::SetSize(Vector2f size_, Vector2f coefficient_)
+{
+    size.x = size.x * coefficient_.x;
+    size.y = size.y * coefficient_.y;
+}
+
 Vector2f IDrawable::GetSize()
 {
 	return size;
@@ -30,6 +48,11 @@ Vector2f IDrawable::GetSize()
 Vector2f IDrawable::GetPosition()
 {
 	return position;
+}
+
+Vector2f IDrawable::GetValue()
+{
+	return value;
 }
 
 int IDrawable::GetID()
@@ -52,6 +75,10 @@ void IDrawable::Draw()
 {
 	for (auto& element : elements)
 		element->Draw();
+}
+
+void IDrawable::DrawforScr(RenderWindow *swindow) 
+{
 }
 
 IDrawable::IDrawable()
@@ -97,6 +124,12 @@ IDrawable::IDrawable(Vector2f position_, Vector2f size_)
 
 IDrawable::~IDrawable()
 {
+}
+
+void IDrawable::handleEvent(const sf::Event & event)
+{
+	for (auto& element : elements)
+		element->handleEvent(event);
 }
 
 void IDrawable::AddElement(std::shared_ptr<IDrawable> element)

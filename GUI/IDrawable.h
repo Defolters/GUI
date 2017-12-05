@@ -20,10 +20,16 @@ public:
 	//для большей информации см. GUIlayer,h
 	virtual void SetPosition(float x, float y);
 	virtual void SetPosition(Vector2f position_);
+    virtual void SetPosition(Vector2f size_, Vector2f coefficient_);
 	virtual void SetSize(float width, float height);
 	virtual void SetSize(Vector2f size_);
+  virtual void SetSize(Vector2f size_, Vector2f coefficient_);
+  
+	virtual void SetValue(Vector2f value_);
+  
 	Vector2f GetSize();
 	Vector2f GetPosition();
+	Vector2f GetValue();
 	int GetID();
 	std::shared_ptr<IDrawable> GetElement(int);
 	//Функция отрисовки
@@ -31,6 +37,7 @@ public:
 	//но главное - в этой функции он должен отрисовывать свой Sprite в RenderWindow
 	//для большей информации см. IDisplayable.h
 	virtual void Draw();
+	virtual void DrawforScr(RenderWindow *swindow);
 	//Конструкторы, сначала позиция (x,y)
 	//потом размер (ширина, высота)
 	IDrawable();
@@ -43,7 +50,7 @@ public:
 	//ВИРТУАЛЬНЫЙ ОБРАБОТЧИК СОБЫТИЙ!
 	//Его надо перегружать и в нем все обрабатывать
 	//Пример как есть в GUIBox.h (он там закомменчен)
-	virtual void handleEvent(const sf::Event& event) {};
+	virtual void handleEvent(const sf::Event& event);
 	virtual void AddElement(std::shared_ptr<IDrawable>);
 protected:
 	int id;
@@ -59,5 +66,6 @@ protected:
 	//размер и позиция
 	Vector2f size;
 	Vector2f position;
+	Vector2f value;
 };
 
