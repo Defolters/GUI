@@ -77,9 +77,10 @@ void main()
 	std::shared_ptr<ScrollingPanel> panel = main.CreateScrollPanel(Vector2f(800, 600), Vector2f(10, 150), Vector2f(200, 250), Color(50, 50, 50, 255), &gst);
 	std::shared_ptr<ScrollBar> scrollbarHor2 = panel->CreateScrollBar(0, 0, 0, 0, &gst, Orientation::HORIZONTAL, 800);
 	std::shared_ptr<ScrollBar> scrollbarVert2 = panel->CreateScrollBar(0, 0, 0, 0, &gst, Orientation::VERTICAL, 600);
-
-	std::shared_ptr<MenuBar> menuBar2 = panel->CreateMenuBar(0, 0, SCREEN_WIDTH - 12, 50, "", &tst, &gst2,
+	///создание МенюБара
+	std::shared_ptr<MenuBar> menuBar2 = panel->CreateMenuBar(0, 0, SCREEN_WIDTH , 50, "", &tst, &gst2,
 		0, 200, Color::White);
+	// Добавляем 4 кнопки на меню бар
 	menuBar2->addButton("1", &buttonAction1);
 	menuBar2->addButton("2", &buttonAction2);
 	menuBar2->addButton("3", &buttonAction3);
@@ -187,15 +188,16 @@ void main()
 	statusBar->AddElement(textBox1);
 	statusBar->AddElement(label1);
 	statusBar->setLocation(Location::DOWNSIDE);
-
-    //menu bar
-    std::shared_ptr<MenuBar> menuBar = layer->CreateMenuBar(0, 0, SCREEN_WIDTH - 12, 50, "", &tst, &gst2,
-        0, 200, Color::White);
+	
+    // Создание МенюБара
+	std::shared_ptr<MenuBar> menuBar;
+	menuBar = layer->CreateMenuBar(0, 0, 1920, 50, "", &tst, &gst2, 0, 200, Color::White);
+	// Добавление четырех кнопок на МенюБар
     menuBar->addButton("1", &buttonAction1);
     menuBar->addButton("2", &buttonAction2);
     menuBar->addButton("3", &buttonAction3);
     menuBar->addButton("4", &buttonAction4);
-
+	
 	// текст подгружается из локали
     std::shared_ptr<TextField> textBox = layer->CreateTextField(250, 350, 100, 40, locale.GetElementName("text_field"), &tst, &gst);
 

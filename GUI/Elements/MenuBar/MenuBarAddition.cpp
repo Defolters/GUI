@@ -3,6 +3,7 @@
 
 
 
+
 void MenuBar::addButton(std::string name, void(*action)())
 
 {
@@ -21,21 +22,55 @@ void MenuBar::addButton(std::string name, void(*action)())
 	tst.fontSize = 30;
 	tst.align = 'c';
 
-	std::shared_ptr<GUIBox> box;
-	buttonVect.push_back(box);
+	std::shared_ptr<GUIButton> box;
 	
 	box = layer->CreateButton(buttonPosHelp, 5, buttonSizeHelp, 40, name, &tst, &gst, action);
-	buttonPosHelp = buttonPosHelp + buttonSizeHelp;
+	buttonVect.push_back(box);
+	AddElement(box);
+
 	///resizing test
 	
 	///
+	buttonPosHelp = buttonPosHelp + buttonSizeHelp;
 }
-void MenuBar::resizing()
+void MenuBar::Draw()
 {
-	for (auto a = buttonVect.begin(); a != buttonVect.end(); ++a)
+	GUIBox::Draw();
+	IDrawable::Draw();
+}
+
+void MenuBar::SetSize(Vector2f size_)
+{
+	GUIBox::SetSize(size_);
+	buttonVect[0]->SetSize(size_);
+	buttonVect[1]->SetSize(size_);
+	buttonVect[2]->SetSize(size_);
+	buttonVect[3]->SetSize(size_);
+	staticBar->setSize(Vector2f(size_.x, size_.y));
+	
+}
+void MenuBar::SetSize(Vector2f size_, Vector2f coefficient_)
+{
+	GUIBox::SetSize(size_);
+	buttonVect[0]->SetSize(size_);
+	buttonVect[1]->SetSize(size_);
+	buttonVect[2]->SetSize(size_);
+	buttonVect[3]->SetSize(size_);
+	staticBar->setSize(Vector2f(size_.x, size_.y));
+}
+void MenuBar::SetPosition(Vector2f position_)
+{
+	Vector2f posButton;
+	GUIBox::SetPosition(position_);
+	int step = 0;
+	for (int i = 0; i < 4; i++)
 	{
-	//	(*a)->GetPosition();
-		//buttonPosHelp += (*a)->GetSize().x + 10;
-		//((*a)->SetPosition(renderWindow->getSize().x - buttonPosHelp, renderWindow->getSize().y - (*a)->GetSize().y));
+		buttonVect[i]->SetPosition(position_.x+step, position_.y + 5);
+		step += buttonSizeHelp;
 	}
- }
+	staticBar->setPosition(position_.x, position_.y);
+}
+void MenuBar::SetPosition(Vector2f position_, Vector2f coefficient_)
+{
+
+}
