@@ -1,4 +1,4 @@
-#include "GUIButton.h"
+﻿#include "GUIButton.h"
 #include "../../GUI/GUILayer.h"
 GUIButton::GUIButton(GUILayer* layer_, RenderWindow* renderWindow_, float x, float y, float width, float height, std::string text_, TextStyle *Ctstyle, GUIStyle *Cgstyle, void(*Caction)()) : GUIBox(renderWindow_, x, y, width, height, Cgstyle)
 {
