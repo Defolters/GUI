@@ -36,7 +36,7 @@ public:
 	Создание слоя на этом окне
 	*/
 	std::shared_ptr<GUILayer> CreateGUILayer(Vector2f position_, Vector2f size_);
-	std::shared_ptr<ScrollingPanel> CreateScrollPanel(Vector2f maxScrollPanelSize, Vector2f scrFieldPosition, Vector2f scrFieldSize, Color scrFieldColor, GUIStyle *gst);
+	std::shared_ptr<ScrollingPanel> CreateScrollPanel(Vector2f maxScrollPanelSize, Vector2f scrFieldPosition, Vector2f scrFieldSize, Color scrFieldColor);
 	void Redraw();//единственная функция которую надо вызывать для отрисовки, не трогаем ее
 	/*!
 	\brief Конструктор класса

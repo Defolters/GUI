@@ -56,7 +56,8 @@ protected:
 
     Конструктор класса, который создает один текст
     */
-    GUILabel(RenderWindow* renderWindow, Vector2f position, Vector2f size, std::string text, TextStyle *tstyle, GUIStyle *gstyle);
+    GUILabel(RenderWindow* renderWindow, Vector2f position, Vector2f size, 
+        std::string text, TextStyle *tstyle, GUIStyle *gstyle);
 
     /*!
     \brief Конструктор класса
@@ -70,7 +71,8 @@ protected:
 
     Конструктор класса, который создает одну иконку
     */
-    GUILabel(RenderWindow* renderWindow, Vector2f position, Vector2f size, TextStyle *tstyle, Texture *icon, GUIStyle *gstyle);
+    GUILabel(RenderWindow* renderWindow, Vector2f position, Vector2f size, 
+        TextStyle *tstyle, Texture *icon, GUIStyle *gstyle);
 
     /*!
     \brief Конструктор класса
@@ -85,7 +87,8 @@ protected:
 
     Конструктор класса, который создает текст и иконку
     */
-    GUILabel(RenderWindow* renderWindow, Vector2f position, Vector2f size, std::string text, TextStyle *tstyle, Texture *icon, GUIStyle *gstyle);
+    GUILabel(RenderWindow* renderWindow, Vector2f position, Vector2f size, 
+        std::string text, TextStyle *tstyle, Texture *icon, GUIStyle *gstyle);
 
     //! Переопределяем функцию Draw
     void Draw() override;
