@@ -143,16 +143,18 @@ std::shared_ptr<ScrollBar> GUILayer::CreateScrollBar(float x, float y, float wid
 	return scrollbar;
 }
 
-std::shared_ptr<Slider> GUILayer::CreateSlider(float line_position_x, float line_position_y, float line_width_, float line_height_, float handler_width_, float handler_height_, GUIStyle* gst, float value_range_from_, float value_range_to_, float value_)
+std::shared_ptr<GUISlider> GUILayer::CreateSlider(float line_position_x, float line_position_y, float line_width_, float line_height_, float handler_width_, float handler_height_, GUIStyle* gst, float value_range_from_, float value_range_to_, float value_)
 {
-	std::shared_ptr<Slider> slider(new Slider(window, line_position_x, line_position_y, line_width_, line_height_, handler_width_, handler_height_, gst, value_range_from_, value_range_to_, value_));
+	std::shared_ptr<GUISlider> slider(new GUISlider(this, window, line_position_x, line_position_y, line_width_, line_height_, handler_width_, handler_height_, gst, value_range_from_, value_range_to_, value_));
+	slider->parent = this;
 	elements.push_back(slider);
 	return slider;
 }
 
-std::shared_ptr<Slider> GUILayer::CreateSlider(float line_position_x, float line_position_y, float line_width_, float line_height_, float handler_width_, float handler_height_, GUIStyle* gst, float value_range_from_, float value_range_to_, float value_, void(*action_on_move)(float slider_value))
+std::shared_ptr<GUISlider> GUILayer::CreateSlider(float line_position_x, float line_position_y, float line_width_, float line_height_, float handler_width_, float handler_height_, GUIStyle* gst, float value_range_from_, float value_range_to_, float value_, void(*action_on_move)(float slider_value))
 {
-	std::shared_ptr<Slider> slider(new Slider(window, line_position_x, line_position_y, line_width_, line_height_, handler_width_, handler_height_, gst, value_range_from_, value_range_to_, value_, action_on_move));
+	std::shared_ptr<GUISlider> slider(new GUISlider(this, window, line_position_x, line_position_y, line_width_, line_height_, handler_width_, handler_height_, gst, value_range_from_, value_range_to_, value_, action_on_move));
+	slider->parent = this;
 	elements.push_back(slider);
 	return slider;
 }
@@ -190,4 +192,17 @@ std::shared_ptr<TextArea> GUILayer::CreateTextArea(float x, float y, float width
 	std::shared_ptr<TextArea> textarea(new TextArea(window, x, y, width, height, tstyle, gstyle));
 	elements.push_back(textarea);
 	return textarea;
+}
+std::shared_ptr<RadioButton> GUILayer::CreateRadButton(std::shared_ptr<GUILayer> layer, int count, float x, float y, float width, float height, std::vector<std::string> text, TextStyle * tstyle, GUIStyle * gstyle)
+{
+    std::shared_ptr<RadioButton> radBut(new RadioButton(layer, window, count, x, y, width, height, text, tstyle, gstyle));
+    elements.push_back(radBut);
+    return radBut;
+}
+
+std::shared_ptr<RadioButton> GUILayer::CreateRadButton(std::shared_ptr<GUILayer> layer, int count, Vector2f position, Vector2f size, std::vector<std::string> text, TextStyle * tstyle, GUIStyle * gstyle)
+{
+    std::shared_ptr<RadioButton> radBut(new RadioButton(layer, window, count, position.x, position.y, size.x, size.y, text, tstyle, gstyle));
+    elements.push_back(radBut);
+    return radBut;
 }

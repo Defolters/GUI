@@ -170,8 +170,8 @@ void main()
         0, 200, Color::White, Color::Green);
 
     //создаем слайдер
-    std::shared_ptr<Slider> slider = layer->CreateSlider(225, 250, 350, 20, 35, 38, &gst, 0, 100, 20, &onSliderMove);
-
+    std::shared_ptr<GUISlider> slider = layer->CreateSlider(30, 450, 350, 20, 35, 38, &gst, 0, 100, 20, &onSliderMove);
+	
     //Создание статус бара
     std::shared_ptr<GUIStatusBar>  statusBar = layer->CreateStatusBar(50, 5, 20, &sBarStyle, Location::UPSIDE);
     std::shared_ptr<GUIButton> box1 = layer->CreateButton(100, 0, 50, 50, "A", &tst, &gst, &buttonAction);
@@ -200,6 +200,17 @@ void main()
     std::shared_ptr<TextField> textBox = layer->CreateTextField(250, 350, 100, 40, locale.GetElementName("text_field"), &tst, &gst);
 
     std::shared_ptr<TextArea> textArea = layer->CreateTextArea(400, 300, 300, 200, &tst, &gst);
+
+    //текстуры radbutton 
+    gst.checkedRadBut.loadFromFile("resources/checked.png");
+    gst.uncheckedRadBut.loadFromFile("resources/unchecked.png");
+    //radioButton 
+    std::vector<std::string> texts = { "Yes", "No", "NONO", "OFC","lol","kek", "","","","" };
+    std::shared_ptr <RadioButton> radBut = layer->CreateRadButton(layer, 3, Vector2f(300, 20), Vector2f(30, 30), texts, &tst, &gst);
+
+
+    std::shared_ptr <RadioButton> radBut2 = layer->CreateRadButton(layer, 6, 500, 20, 30, 30, texts, &tst, &gst);
+
     while (1)
     {
         // Костыль для теста на время, пока нет Observer.
