@@ -46,17 +46,12 @@ void MenuBar::SetSize(Vector2f size_)
 	buttonVect[1]->SetSize(size_);
 	buttonVect[2]->SetSize(size_);
 	buttonVect[3]->SetSize(size_);
-	staticBar->setSize(Vector2f(size_.x, size_.y));
+
 	
 }
 void MenuBar::SetSize(Vector2f size_, Vector2f coefficient_)
 {
-	GUIBox::SetSize(size_);
-	buttonVect[0]->SetSize(size_);
-	buttonVect[1]->SetSize(size_);
-	buttonVect[2]->SetSize(size_);
-	buttonVect[3]->SetSize(size_);
-	staticBar->setSize(Vector2f(size_.x, size_.y));
+
 }
 void MenuBar::SetPosition(Vector2f position_)
 {
