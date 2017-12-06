@@ -94,6 +94,8 @@ void main()
     std::shared_ptr<GUIButton> button = layer->CreateButton(20, 60, 100,100, locale.GetElementName("button"), &tst, &gst, &buttonAction);
 	std::shared_ptr<GUICheckButton> checkButton = layer->CreateCheckButton(300, 60, 100, 100, locale.GetElementName("check_button"), &tst, &gst, &buttonAction);
     
+	std::shared_ptr<Table> table = layer->CreateTable(750, 300, 5, 6, &tst, &gst);
+
 	// создание label
     Texture icon;
     icon.loadFromFile("resources/Danger.png");

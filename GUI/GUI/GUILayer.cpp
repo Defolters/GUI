@@ -224,6 +224,15 @@ std::shared_ptr<RadioButton> GUILayer::CreateRadButton(std::shared_ptr<GUILayer>
     return radBut;
 }
 
+
+std::shared_ptr<Table> GUILayer::CreateTable(float x, float y, float width, float height, TextStyle * tst, GUIStyle * gst)
+{
+	std::shared_ptr<Table> table(new Table(this, window, x, y, width, height, tst, gst));
+	elements.push_back(table);
+	return table;
+}
+}
+
 std::shared_ptr<PasswordField> GUILayer::CreatePassword(float x, float y, float width, float height, std::string text_, TextStyle *tstyle, GUIStyle *gstyle, std::string correct)
 {
     std::shared_ptr<PasswordField> textField(new PasswordField(window, x, y, width, height, text_, tstyle, gstyle, correct));
