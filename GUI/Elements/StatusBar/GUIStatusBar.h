@@ -7,7 +7,7 @@ enum class Location {
 };
 
 /*!
-/brief Класс, реализующий статус бар
+\brief Класс, реализующий статус бар
 При добавлении дочерних элементов, помещает их начиная с правого края
 */
 class GUIStatusBar : public IDisplayable
@@ -41,34 +41,34 @@ protected:
 	virtual void recalcElements();
 public:
 	/*!
-	/brief Конструктор класса
-	/param renderWindow_ Окно, в котором будет раположен статус бар
-	/param height_ Высота статус бара
-	/param frameSize_ Размер рамок между верхним или нижним краем и края статус бара
-	/param spacing_ Отступы между добавленными элементами
-	/param sBarStyle Стиль gui
-	/param locatinon_ Расположение статус бара относительно окна
+	\brief Конструктор класса
+	\param renderWindow_ Окно, в котором будет раположен статус бар
+	\param height_ Высота статус бара
+	\param frameSize_ Размер рамок между верхним или нижним краем и края статус бара
+	\param spacing_ Отступы между добавленными элементами
+	\param sBarStyle Стиль gui
+	\param locatinon_ Расположение статус бара относительно окна
 	*/
 	GUIStatusBar(RenderWindow* renderWindow_, float height_, float frameSize_,
 		float spacing_, GUIStyle *sBarStyle_, Location location_);
 	/*!
 	Устанавливает позицию статус бара относительно окна
-	/param location_ Позиция
+	\param location_ Позиция
 	*/
 	void setLocation(Location location_);
 	/*!
 	Устанавливает отступ между соседними элементы
-	/param spacing_ отступ
+	\param spacing_ отступ
 	*/
 	void setSpacing(int spacing_);
 	/*!
 	Устанавливает отступ между краями статус бара и элементами
-	/param frameSize_ отступ
+	\param frameSize_ отступ
 	*/
 	void setFrameSize(int frameSize_);
 	/*!
 	Устанавливает высоту статус бара
-	/param height_ высота
+	\param height_ высота
 	*/
 	void setHeight(int height_);
 };
