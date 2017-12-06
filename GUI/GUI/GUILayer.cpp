@@ -215,3 +215,11 @@ std::shared_ptr<RadioButton> GUILayer::CreateRadButton(std::shared_ptr<GUILayer>
     elements.push_back(radBut);
     return radBut;
 }
+
+std::shared_ptr<PasswordField> GUILayer::CreatePassword(float x, float y, float width, float height, std::string text_, TextStyle *tstyle, GUIStyle *gstyle, std::string correct)
+{
+    std::shared_ptr<PasswordField> textField(new PasswordField(window, x, y, width, height, text_, tstyle, gstyle, correct));
+    textField->parent = this;
+    elements.push_back(textField);
+    return textField;
+}
