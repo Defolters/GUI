@@ -5,6 +5,8 @@
 #define LABEL_DEBUG false
 #define PANEL_DEBUG true
 #define RADIO_DEBUG false
+#define TABLE_DEBUG false
+
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;
 
@@ -93,9 +95,9 @@ void main()
 	// текст подгружается из локали
     std::shared_ptr<GUIButton> button = layer->CreateButton(20, 60, 100,100, locale.GetElementName("button"), &tst, &gst, &buttonAction);
 	std::shared_ptr<GUICheckButton> checkButton = layer->CreateCheckButton(300, 60, 100, 100, locale.GetElementName("check_button"), &tst, &gst, &buttonAction);
-    
-	std::shared_ptr<Table> table = layer->CreateTable(750, 300, 5, 6, &tst, &gst);
-
+    if (TABLE_DEBUG) {
+        std::shared_ptr<Table> table = layer->CreateTable(200, 200, 5, 6, &tst, &gst);
+    }
 	// создание label
     Texture icon;
     icon.loadFromFile("resources/Danger.png");
@@ -206,7 +208,7 @@ void main()
     std::shared_ptr<TextField> textBox = layer->CreateTextField(250, 350, 100, 40, locale.GetElementName("text_field"), &tst, &gst);
 
     std::shared_ptr<TextArea> textArea = layer->CreateTextArea(400, 300, 300, 200, &tst, &gst);
-    std::shared_ptr<PasswordField> password = layer->CreatePassword(315, 100, 200, 30, "Password", &tst, &gst, "right_pass");
+    std::shared_ptr<PasswordField> password = layer->CreatePassword(500, 100, 200, 30, "Password", &tst, &gst, "right_pass");
     if (RADIO_DEBUG)
     {
         //radioButton 

@@ -214,7 +214,7 @@ void TextArea::handleEvent(const sf::Event & event)
 				}
 				if (text.getGlobalBounds().height > areaSize.y - fontSize - 10)
 				{
-					if (areaPosition.y + areaSize.y < maxY - 100)
+					if (areaPosition.y + areaSize.y < maxY - 50)
 					{
 						sf::FloatRect rect2 = text.getGlobalBounds();
 						areaSize.y = rect2.height + (fontSize - 8);

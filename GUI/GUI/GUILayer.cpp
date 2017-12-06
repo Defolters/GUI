@@ -231,7 +231,7 @@ std::shared_ptr<Table> GUILayer::CreateTable(float x, float y, float width, floa
 	elements.push_back(table);
 	return table;
 }
-}
+
 
 std::shared_ptr<PasswordField> GUILayer::CreatePassword(float x, float y, float width, float height, std::string text_, TextStyle *tstyle, GUIStyle *gstyle, std::string correct)
 {
