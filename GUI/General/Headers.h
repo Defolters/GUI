@@ -10,4 +10,5 @@
 #include "../Elements/MenuBar/MenuBar.h"
 #include "../Elements/RadioButton/RadioButton.h"
 #include "../Elements/ComboBox/ComboBox.h"
+#include "../Elements/PasswordField/PasswordField.h"
 #include "../Elements/CheckButton/GUICheckButton.h"

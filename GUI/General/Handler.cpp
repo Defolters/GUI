@@ -203,8 +203,8 @@ void main()
 	// текст подгружается из локали
     std::shared_ptr<TextField> textBox = layer->CreateTextField(250, 350, 100, 40, locale.GetElementName("text_field"), &tst, &gst);
 
-    std::shared_ptr<TextArea> textArea = layer->CreateTextArea(400, 240, 300, 200, &tst, &gst);
-
+    std::shared_ptr<TextArea> textArea = layer->CreateTextArea(400, 300, 300, 200, &tst, &gst);
+    std::shared_ptr<PasswordField> password = layer->CreatePassword(315, 100, 200, 30, "Password", &tst, &gst, "right_pass");
     if (RADIO_DEBUG)
     {
         //radioButton 

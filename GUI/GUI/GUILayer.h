@@ -77,7 +77,7 @@ public:
 	std::shared_ptr<TextArea> CreateTextArea(float x, float y, float width, float height, TextStyle * tstyle, GUIStyle * gstyle);
     std::shared_ptr<RadioButton> CreateRadButton(std::shared_ptr<GUILayer> layer, int count, float x, float y, float width, float height, std::vector<std::string> text, TextStyle *tstyle, GUIStyle *gstyle);
     std::shared_ptr<RadioButton> CreateRadButton(std::shared_ptr<GUILayer> layer, int count, Vector2f position, Vector2f size, std::vector<std::string> text, TextStyle *tstyle, GUIStyle *gstyle);
-
+    std::shared_ptr<PasswordField> CreatePassword(float x, float y, float width, float height, std::string text, TextStyle *tstyle, GUIStyle *gstyle, std::string correct);
 	//! перегрузка функции обработки событий
 	void handleEvent(const sf::Event& event) override;
 
