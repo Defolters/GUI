@@ -223,3 +223,11 @@ std::shared_ptr<RadioButton> GUILayer::CreateRadButton(std::shared_ptr<GUILayer>
     elements.push_back(radBut);
     return radBut;
 }
+
+
+std::shared_ptr<Table> GUILayer::CreateTable(float x, float y, float width, float height, TextStyle * tst, GUIStyle * gst)
+{
+	std::shared_ptr<Table> table(new Table(this, window, x, y, width, height, tst, gst));
+	elements.push_back(table);
+	return table;
+}
